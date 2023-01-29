@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.detector.types;
 
@@ -12,9 +9,11 @@ import static mods.railcraft.common.plugins.forge.PowerPlugin.FULL_POWER;
 import static mods.railcraft.common.plugins.forge.PowerPlugin.NO_POWER;
 
 import java.util.List;
+
 import mods.railcraft.common.blocks.detector.DetectorFilter;
 import mods.railcraft.common.blocks.detector.EnumDetector;
 import mods.railcraft.common.gui.EnumGui;
+
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,8 +35,7 @@ public class DetectorSheep extends DetectorFilter {
             if (cart.riddenByEntity instanceof EntitySheep) {
                 EntitySheep sheep = (EntitySheep) cart.riddenByEntity;
                 ItemStack wool = getFilters().getStackInSlot(0);
-                if (!sheep.isChild()
-                        && !sheep.getSheared()
+                if (!sheep.isChild() && !sheep.getSheared()
                         && (wool == null || sheep.getFleeceColor() == wool.getItemDamage())) {
                     return FULL_POWER;
                 }

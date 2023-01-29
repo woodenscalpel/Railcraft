@@ -1,25 +1,25 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.network;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
 import mods.railcraft.common.blocks.tracks.TrackFactory;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class PacketTileEntity extends RailcraftPacket {
 
@@ -31,15 +31,15 @@ public class PacketTileEntity extends RailcraftPacket {
 
     public PacketTileEntity(RailcraftTileEntity tile) {
         this.tile = tile;
-        //        System.out.println("Created Tile Packet: " + tile.getClass().getSimpleName());
+        // System.out.println("Created Tile Packet: " + tile.getClass().getSimpleName());
     }
 
-    //    @Override
-    //    public FMLProxyPacket getPacket() {
-    //        Packet pkt = super.getPacket();
-    //        pkt.isChunkDataPacket = true;
-    //        return pkt;
-    //    }
+    // @Override
+    // public FMLProxyPacket getPacket() {
+    // Packet pkt = super.getPacket();
+    // pkt.isChunkDataPacket = true;
+    // return pkt;
+    // }
     @Override
     public void writeData(DataOutputStream data) throws IOException {
         data.writeInt(tile.xCoord);
@@ -54,7 +54,7 @@ public class PacketTileEntity extends RailcraftPacket {
     public void readData(DataInputStream data) throws IOException {
         World world = Game.getWorld();
         if (world == null) {
-            //            Game.logDebug("Receive Tile Packet: World Null");
+            // Game.logDebug("Receive Tile Packet: World Null");
             return;
         }
 
@@ -64,7 +64,7 @@ public class PacketTileEntity extends RailcraftPacket {
         short id = data.readShort();
 
         if (id < 0 || y < 0 || !world.blockExists(x, y, z)) {
-            //            Game.logDebug("Receive Tile Packet: Block not found");
+            // Game.logDebug("Receive Tile Packet: Block not found");
             return;
         }
 
@@ -90,7 +90,7 @@ public class PacketTileEntity extends RailcraftPacket {
 
         if (tile == null) return;
 
-        //        Game.logDebug("Receive Tile Packet: {0}", tile.getClass().toString());
+        // Game.logDebug("Receive Tile Packet: {0}", tile.getClass().toString());
 
         try {
             tile.readPacketData(data);

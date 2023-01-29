@@ -1,44 +1,43 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.carts;
 
-import com.google.common.collect.MapMaker;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
+
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.ILinkableCart;
 import mods.railcraft.api.carts.ILinkageManager;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.entity.item.EntityMinecart;
+
 import org.apache.logging.log4j.Level;
 
+import com.google.common.collect.MapMaker;
+
 /**
- * The LinkageManager contains all the functions needed to link and interacted
- * with linked carts.
+ * The LinkageManager contains all the functions needed to link and interacted with linked carts.
  * <p/>
- * One concept if import is that of the Linkage Id. Every cart is given a unique
- * identifier by the LinkageManager the first time it encounters the cart.
+ * One concept if import is that of the Linkage Id. Every cart is given a unique identifier by the LinkageManager the
+ * first time it encounters the cart.
  * <p/>
- * This identifier is stored in the entity's NBT data between world loads so
- * that links are persistent rather than transitory.
+ * This identifier is stored in the entity's NBT data between world loads so that links are persistent rather than
+ * transitory.
  * <p/>
- * Links are also stored in NBT data as an Integer value that contains the
- * Linkage Id of the cart it is linked to.
+ * Links are also stored in NBT data as an Integer value that contains the Linkage Id of the cart it is linked to.
  * <p/>
- * Generally you can ignore most of this and use the functions that don't
- * require or return Linkage Ids.
+ * Generally you can ignore most of this and use the functions that don't require or return Linkage Ids.
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class LinkageManager implements ILinkageManager {
+
     public static final String AUTO_LINK = "rcAutoLink";
     public static final String LINK_A_HIGH = "rcLinkAHigh";
     public static final String LINK_A_LOW = "rcLinkALow";
@@ -68,9 +67,8 @@ public class LinkageManager implements ILinkageManager {
     /**
      * Removes a id:cart pairing from the linkage registry.
      * <p/>
-     * You should not need to call this function ever, it is needed only by the
-     * LinkageHandler (internal RailcraftProxy code) in order to clean up dead
-     * links left by dead carts.
+     * You should not need to call this function ever, it is needed only by the LinkageHandler (internal RailcraftProxy
+     * code) in order to clean up dead links left by dead carts.
      *
      * @param cart The cart to remove
      */
@@ -107,8 +105,7 @@ public class LinkageManager implements ILinkageManager {
     }
 
     /**
-     * Returns the square of the max distance two carts can be and still be
-     * linkable.
+     * Returns the square of the max distance two carts can be and still be linkable.
      *
      * @param cart1 First Cart
      * @param cart2 Second Cart
@@ -150,7 +147,10 @@ public class LinkageManager implements ILinkageManager {
             cart2.getEntityData().removeTag(LinkageManager.AUTO_LINK);
             printDebug(
                     "Automatically Linked Carts {0}({1}) and {2}({3}).",
-                    getLinkageId(cart1), cart1, getLinkageId(cart2), cart2);
+                    getLinkageId(cart1),
+                    cart1,
+                    getLinkageId(cart2),
+                    cart2);
             if (cart1 instanceof EntityLocomotive) {
                 ((EntityLocomotive) cart1).setSpeed(EntityLocomotive.LocoSpeed.SLOWEST);
             }
@@ -163,8 +163,7 @@ public class LinkageManager implements ILinkageManager {
     }
 
     /**
-     * Returns true if there is nothing preventing the two carts from being
-     * linked.
+     * Returns true if there is nothing preventing the two carts from being linked.
      *
      * @param cart1 First Cart
      * @param cart2 Second Cart
@@ -195,8 +194,7 @@ public class LinkageManager implements ILinkageManager {
     }
 
     /**
-     * Creates a link between two carts, but only if there is nothing preventing
-     * such a link.
+     * Creates a link between two carts, but only if there is nothing preventing such a link.
      *
      * @param cart1 First Cart
      * @param cart2 Second Cart
@@ -215,8 +213,8 @@ public class LinkageManager implements ILinkageManager {
             if (cart1 instanceof ILinkableCart) ((ILinkableCart) cart1).onLinkCreated(cart2);
             if (cart2 instanceof ILinkableCart) ((ILinkableCart) cart2).onLinkCreated(cart1);
 
-            //            sendLinkInfo(cart1);
-            //            sendLinkInfo(cart2);
+            // sendLinkInfo(cart1);
+            // sendLinkInfo(cart2);
             return true;
         }
         return false;
@@ -260,8 +258,7 @@ public class LinkageManager implements ILinkageManager {
     }
 
     /**
-     * Returns the cart linked to LinkType A or null if nothing is currently
-     * occupying LinkType A.
+     * Returns the cart linked to LinkType A or null if nothing is currently occupying LinkType A.
      *
      * @param cart The cart for which to get the link
      * @return The linked cart or null
@@ -272,8 +269,7 @@ public class LinkageManager implements ILinkageManager {
     }
 
     /**
-     * Returns the cart linked to LinkType B or null if nothing is currently
-     * occupying LinkType B.
+     * Returns the cart linked to LinkType B or null if nothing is currently occupying LinkType B.
      *
      * @param cart The cart for which to get the link
      * @return The linked cart or null
@@ -332,29 +328,29 @@ public class LinkageManager implements ILinkageManager {
      *
      * @param cart1  First Cart
      * @param cart2  Second Cart
-     * @param strict true if both carts should have linking data pointing to the other cart,
-     *               false if its ok if only one cart has the data (this is technically an invalid state, but its been known to happen)
+     * @param strict true if both carts should have linking data pointing to the other cart, false if its ok if only one
+     *               cart has the data (this is technically an invalid state, but its been known to happen)
      * @return True if linked
      */
     public boolean areLinked(EntityMinecart cart1, EntityMinecart cart2, boolean strict) {
         if (cart1 == null || cart2 == null) return false;
         if (cart1 == cart2) return false;
 
-        //        System.out.println("cart2 id = " + getLinkageId(cart2));
-        //        System.out.println("cart2 A = " + getLinkA(cart2));
-        //        System.out.println("cart2 B = " + getLinkB(cart2));
-        //        System.out.println("cart1 id = " + getLinkageId(cart1));
-        //        System.out.println("cart1 A = " + getLinkA(cart1));
-        //        System.out.println("cart1 B = " + getLinkB(cart1));
+        // System.out.println("cart2 id = " + getLinkageId(cart2));
+        // System.out.println("cart2 A = " + getLinkA(cart2));
+        // System.out.println("cart2 B = " + getLinkB(cart2));
+        // System.out.println("cart1 id = " + getLinkageId(cart1));
+        // System.out.println("cart1 A = " + getLinkA(cart1));
+        // System.out.println("cart1 B = " + getLinkB(cart1));
         boolean cart1Linked = false;
         UUID id1 = getLinkageId(cart1);
         UUID id2 = getLinkageId(cart2);
-        if (id2.equals(getLinkA(cart1)) || id2.equals(getLinkB(cart1)))
-            cart1Linked = true; //            System.out.println("cart1 linked");
+        if (id2.equals(getLinkA(cart1)) || id2.equals(getLinkB(cart1))) cart1Linked = true; // System.out.println("cart1
+                                                                                            // linked");
 
         boolean cart2Linked = false;
-        if (id1.equals(getLinkA(cart2)) || id1.equals(getLinkB(cart2)))
-            cart2Linked = true; //            System.out.println("cart2 linked");
+        if (id1.equals(getLinkA(cart2)) || id1.equals(getLinkB(cart2))) cart2Linked = true; // System.out.println("cart2
+                                                                                            // linked");
 
         if (strict) return cart1Linked && cart2Linked;
         else return cart1Linked || cart2Linked;
@@ -368,20 +364,20 @@ public class LinkageManager implements ILinkageManager {
      */
     @Override
     public void breakLink(EntityMinecart cart1, EntityMinecart cart2) {
-        //        if (!areLinked(cart1, cart2))
-        //            return;
+        // if (!areLinked(cart1, cart2))
+        // return;
 
         UUID link = getLinkageId(cart2);
         if (link.equals(getLinkA(cart1))) breakLinkA(cart1);
 
         if (link.equals(getLinkB(cart1))) breakLinkB(cart1);
 
-        //        int numCarts1 = numLinkedCarts(null, cart1);
-        //        int numCarts2 = numLinkedCarts(null, cart2);
-        //        if (numCarts1 >= numCarts2)
-        //            Train.getTrain(cart1).removeAllLinkedCarts(cart2);
-        //        else
-        //            Train.getTrain(cart2).removeAllLinkedCarts(cart1);
+        // int numCarts1 = numLinkedCarts(null, cart1);
+        // int numCarts2 = numLinkedCarts(null, cart2);
+        // if (numCarts1 >= numCarts2)
+        // Train.getTrain(cart1).removeAllLinkedCarts(cart2);
+        // else
+        // Train.getTrain(cart2).removeAllLinkedCarts(cart1);
     }
 
     /**
@@ -428,7 +424,11 @@ public class LinkageManager implements ILinkageManager {
 
         printDebug(
                 "Carts {0}({1}) and {2}({3}) unlinked ({4}).",
-                getLinkageId(cart), cart, link, other != null ? other : "null", linkType.name());
+                getLinkageId(cart),
+                cart,
+                link,
+                other != null ? other : "null",
+                linkType.name());
         return other;
     }
 
@@ -460,9 +460,11 @@ public class LinkageManager implements ILinkageManager {
 
     public Iterable<EntityMinecart> getLinkedCarts(final EntityMinecart cart, final LinkType type) {
         return new Iterable<EntityMinecart>() {
+
             @Override
             public Iterator<EntityMinecart> iterator() {
                 return new Iterator<EntityMinecart>() {
+
                     private final LinkageManager lm = LinkageManager.instance();
                     private EntityMinecart last = null;
                     private EntityMinecart current = cart;
@@ -514,8 +516,10 @@ public class LinkageManager implements ILinkageManager {
     }
 
     public static enum LinkType {
+
         LINK_A(LINK_A_HIGH, LINK_A_LOW),
         LINK_B(LINK_B_HIGH, LINK_B_LOW);
+
         public final String tagHigh, tagLow;
 
         private LinkType(String tagHigh, String tagLow) {

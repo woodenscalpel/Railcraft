@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.render;
 
@@ -19,6 +16,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
+
 import org.lwjgl.opengl.GL11;
 
 public class RenderTools {
@@ -38,8 +36,8 @@ public class RenderTools {
         return renderblocks.renderStandardBlock(block, x, y, z);
     }
 
-    public static boolean renderStandardBlockWithColorMultiplier(
-            RenderBlocks renderblocks, Block block, int x, int y, int z) {
+    public static boolean renderStandardBlockWithColorMultiplier(RenderBlocks renderblocks, Block block, int x, int y,
+            int z) {
         renderblocks.setRenderBoundsFromBlock(block);
         int mult = block.colorMultiplier(renderblocks.blockAccess, x, y, z);
         float r = (float) (mult >> 16 & 255) / 255.0F;
@@ -58,8 +56,8 @@ public class RenderTools {
         return renderblocks.renderStandardBlockWithColorMultiplier(block, x, y, z, r, g, b);
     }
 
-    public static void renderBlockSideWithBrightness(
-            RenderBlocks renderblocks, IBlockAccess world, Block block, int i, int j, int k, int side, int brightness) {
+    public static void renderBlockSideWithBrightness(RenderBlocks renderblocks, IBlockAccess world, Block block, int i,
+            int j, int k, int side, int brightness) {
         renderblocks.setRenderBoundsFromBlock(block);
         renderblocks.enableAO = false;
         Tessellator tessellator = Tessellator.instance;
@@ -81,20 +79,20 @@ public class RenderTools {
         renderBlockOnInventory(renderblocks, block, meta, light, side, null);
     }
 
-    public static void renderBlockOnInventory(
-            RenderBlocks renderblocks, Block block, int meta, float light, int side, IIcon iconOveride) {
+    public static void renderBlockOnInventory(RenderBlocks renderblocks, Block block, int meta, float light, int side,
+            IIcon iconOveride) {
         Tessellator tessellator = Tessellator.instance;
-        //        boolean flag = block.blockID == Block.grass.blockID;
-        //        if (renderblocks.useInventoryTint) {
-        //            int j = block.getRenderColor(meta);
-        //            if (flag) {
-        //                j = 0xffffff;
-        //            }
-        //            float red = (float) (j >> 16 & 0xff) / 255F;
-        //            float green = (float) (j >> 8 & 0xff) / 255F;
-        //            float blue = (float) (j & 0xff) / 255F;
-        //            GL11.glColor4f(red * light, green * light, blue * light, 1.0F);
-        //        }
+        // boolean flag = block.blockID == Block.grass.blockID;
+        // if (renderblocks.useInventoryTint) {
+        // int j = block.getRenderColor(meta);
+        // if (flag) {
+        // j = 0xffffff;
+        // }
+        // float red = (float) (j >> 16 & 0xff) / 255F;
+        // float green = (float) (j >> 8 & 0xff) / 255F;
+        // float blue = (float) (j & 0xff) / 255F;
+        // GL11.glColor4f(red * light, green * light, blue * light, 1.0F);
+        // }
         block.setBlockBoundsForItemRender();
         renderblocks.setRenderBoundsFromBlock(block);
         GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
@@ -105,13 +103,13 @@ public class RenderTools {
             if (icon != null) renderblocks.renderFaceYNeg(block, 0.0D, 0.0D, 0.0D, icon);
             tessellator.draw();
         }
-        //        if (flag && renderblocks.useInventoryTint) {
-        //            int k1 = block.getRenderColor(meta);
-        //            float f6 = (float) (k1 >> 16 & 0xff) / 255F;
-        //            float f8 = (float) (k1 >> 8 & 0xff) / 255F;
-        //            float f9 = (float) (k1 & 0xff) / 255F;
-        //            GL11.glColor4f(f6 * light, f8 * light, f9 * light, 1.0F);
-        //        }
+        // if (flag && renderblocks.useInventoryTint) {
+        // int k1 = block.getRenderColor(meta);
+        // float f6 = (float) (k1 >> 16 & 0xff) / 255F;
+        // float f8 = (float) (k1 >> 8 & 0xff) / 255F;
+        // float f9 = (float) (k1 & 0xff) / 255F;
+        // GL11.glColor4f(f6 * light, f8 * light, f9 * light, 1.0F);
+        // }
         if (side == 1 || side == -1) {
             tessellator.startDrawingQuads();
             tessellator.setNormal(0.0F, 1.0F, 0.0F);
@@ -119,9 +117,9 @@ public class RenderTools {
             if (icon != null) renderblocks.renderFaceYPos(block, 0.0D, 0.0D, 0.0D, icon);
             tessellator.draw();
         }
-        //        if (flag && renderblocks.useInventoryTint) {
-        //            GL11.glColor4f(light, light, light, 1.0F);
-        //        }
+        // if (flag && renderblocks.useInventoryTint) {
+        // GL11.glColor4f(light, light, light, 1.0F);
+        // }
         if (side == 2 || side == -1) {
             tessellator.startDrawingQuads();
             tessellator.setNormal(0.0F, 0.0F, -1F);

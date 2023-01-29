@@ -1,16 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.epsilon;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+
 import mods.railcraft.api.electricity.IElectricGrid;
 import mods.railcraft.api.tracks.ITrackInstance;
 import mods.railcraft.api.tracks.ITrackLockdown;
@@ -23,6 +21,7 @@ import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.effects.EffectManager;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -49,6 +48,7 @@ public class TileForceTrackEmitter extends TileMachineBase implements IElectricG
     private State state = State.RETRACTED;
 
     private static enum State {
+
         EXTENDED,
         RETRACTED,
         EXTENDING,
@@ -110,17 +110,16 @@ public class TileForceTrackEmitter extends TileMachineBase implements IElectricG
         if (Game.isNotHost(getWorld())) return;
 
         double draw = getDraw(numTracks);
-        if (powered && chargeHandler.removeCharge(draw) >= draw)
-            switch (state) {
-                case RETRACTED:
-                case RETRACTING:
-                case HALTED:
-                    state = State.EXTENDING;
-                    break;
-                case EXTENDED:
-                    if (clock % TICKS_PER_REFRESH == 0) state = State.EXTENDING;
-                    break;
-            }
+        if (powered && chargeHandler.removeCharge(draw) >= draw) switch (state) {
+            case RETRACTED:
+            case RETRACTING:
+            case HALTED:
+                state = State.EXTENDING;
+                break;
+            case EXTENDED:
+                if (clock % TICKS_PER_REFRESH == 0) state = State.EXTENDING;
+                break;
+        }
         else if (state == State.EXTENDED || state == State.EXTENDING || state == State.HALTED) state = State.RETRACTING;
 
         state.doAction(this);

@@ -1,15 +1,13 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.carts;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.IEnergyTransfer;
 import mods.railcraft.api.carts.ILinkageManager;
@@ -21,6 +19,7 @@ import mods.railcraft.common.plugins.ic2.IC2Plugin;
 import mods.railcraft.common.util.misc.APIErrorHandler;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.SafeNBTWrapper;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -115,8 +114,8 @@ abstract class EntityCartEnergy extends CartContainerBase
     }
 
     @Override
-    public double injectEnergy(
-            Object source, double amount, int tier, boolean ignoreTransferLimit, boolean simulate, boolean passAlong) {
+    public double injectEnergy(Object source, double amount, int tier, boolean ignoreTransferLimit, boolean simulate,
+            boolean passAlong) {
         if (tier < getTier()) return amount;
         double extra = 0;
         if (!ignoreTransferLimit) {
@@ -153,8 +152,8 @@ abstract class EntityCartEnergy extends CartContainerBase
     }
 
     @Override
-    public double extractEnergy(
-            Object source, double amount, int tier, boolean ignoreTransferLimit, boolean simulate, boolean passAlong) {
+    public double extractEnergy(Object source, double amount, int tier, boolean ignoreTransferLimit, boolean simulate,
+            boolean passAlong) {
         if (tier < getTier()) return 0;
         if (!ignoreTransferLimit) amount = Math.min(amount, getTransferLimit());
         double e = getEnergy();

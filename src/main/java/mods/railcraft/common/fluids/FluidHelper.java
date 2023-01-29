@@ -1,20 +1,19 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.fluids;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import mods.railcraft.common.fluids.tanks.StandardTank;
 import mods.railcraft.common.items.ModItems;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.entity.player.EntityPlayer;
@@ -31,6 +30,7 @@ import net.minecraftforge.fluids.FluidContainerRegistry.FluidContainerData;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public final class FluidHelper {
+
     public static final int BUCKET_FILL_TIME = 8;
     public static final int NETWORK_UPDATE_INTERVAL = 128;
     public static final int BUCKET_VOLUME = 1000;
@@ -44,8 +44,8 @@ public final class FluidHelper {
 
     private FluidHelper() {}
 
-    public static boolean handleRightClick(
-            IFluidHandler tank, ForgeDirection side, EntityPlayer player, boolean fill, boolean drain) {
+    public static boolean handleRightClick(IFluidHandler tank, ForgeDirection side, EntityPlayer player, boolean fill,
+            boolean drain) {
         if (player == null) return false;
         ItemStack current = player.inventory.getCurrentItem();
         if (current != null) {
@@ -60,12 +60,14 @@ public final class FluidHelper {
                     if (!player.capabilities.isCreativeMode) {
                         if (current.stackSize > 1) {
                             if (drainReturn.container != null
-                                    && !player.inventory.addItemStackToInventory(drainReturn.container)) return false;
+                                    && !player.inventory.addItemStackToInventory(drainReturn.container))
+                                return false;
                             player.inventory.setInventorySlotContents(
-                                    player.inventory.currentItem, InvTools.depleteItem(current));
+                                    player.inventory.currentItem,
+                                    InvTools.depleteItem(current));
                         } else {
-                            player.inventory.setInventorySlotContents(
-                                    player.inventory.currentItem, drainReturn.container);
+                            player.inventory
+                                    .setInventorySlotContents(player.inventory.currentItem, drainReturn.container);
                         }
                         player.inventory.markDirty();
                         player.inventoryContainer.detectAndSendChanges();
@@ -81,12 +83,14 @@ public final class FluidHelper {
                     if (fillReturn.amount > 0) {
                         if (current.stackSize > 1) {
                             if (fillReturn.container != null
-                                    && !player.inventory.addItemStackToInventory(fillReturn.container)) return false;
+                                    && !player.inventory.addItemStackToInventory(fillReturn.container))
+                                return false;
                             player.inventory.setInventorySlotContents(
-                                    player.inventory.currentItem, InvTools.depleteItem(current));
+                                    player.inventory.currentItem,
+                                    InvTools.depleteItem(current));
                         } else {
-                            player.inventory.setInventorySlotContents(
-                                    player.inventory.currentItem, fillReturn.container);
+                            player.inventory
+                                    .setInventorySlotContents(player.inventory.currentItem, fillReturn.container);
                         }
                         player.inventory.markDirty();
                         player.inventoryContainer.detectAndSendChanges();
@@ -103,32 +107,20 @@ public final class FluidHelper {
         processContainers(tank, inv, inputSlot, outputSlot, tank.getFluidType(), true, true);
     }
 
-    public static void processContainers(
-            StandardTank tank,
-            IInventory inv,
-            int inputSlot,
-            int outputSlot,
-            Fluid fluidToFill,
-            boolean processFilled,
-            boolean processEmpty) {
+    public static void processContainers(StandardTank tank, IInventory inv, int inputSlot, int outputSlot,
+            Fluid fluidToFill, boolean processFilled, boolean processEmpty) {
         TankManager tankManger = new TankManager();
         tankManger.add(tank);
         processContainers(tankManger, inv, inputSlot, outputSlot, fluidToFill, processFilled, processEmpty);
     }
 
-    public static void processContainers(
-            TankManager tank, IInventory inv, int inputSlot, int outputSlot, Fluid fluidToFill) {
+    public static void processContainers(TankManager tank, IInventory inv, int inputSlot, int outputSlot,
+            Fluid fluidToFill) {
         processContainers(tank, inv, inputSlot, outputSlot, fluidToFill, true, true);
     }
 
-    public static void processContainers(
-            IFluidHandler fluidHandler,
-            IInventory inv,
-            int inputSlot,
-            int outputSlot,
-            Fluid fluidToFill,
-            boolean processFilled,
-            boolean processEmpty) {
+    public static void processContainers(IFluidHandler fluidHandler, IInventory inv, int inputSlot, int outputSlot,
+            Fluid fluidToFill, boolean processFilled, boolean processEmpty) {
         ItemStack input = inv.getStackInSlot(inputSlot);
 
         if (input == null) return;
@@ -138,13 +130,13 @@ public final class FluidHelper {
         if (processEmpty && fluidToFill != null) fillContainers(fluidHandler, inv, inputSlot, outputSlot, fluidToFill);
     }
 
-    public static boolean fillContainers(
-            IFluidHandler fluidHandler, IInventory inv, int inputSlot, int outputSlot, Fluid fluidToFill) {
+    public static boolean fillContainers(IFluidHandler fluidHandler, IInventory inv, int inputSlot, int outputSlot,
+            Fluid fluidToFill) {
         if (fluidToFill == null) return false;
         ItemStack input = inv.getStackInSlot(inputSlot);
         ItemStack output = inv.getStackInSlot(outputSlot);
-        FluidItemHelper.FillReturn fill =
-                FluidItemHelper.fillContainer(input, new FluidStack(fluidToFill, PROCESS_VOLUME));
+        FluidItemHelper.FillReturn fill = FluidItemHelper
+                .fillContainer(input, new FluidStack(fluidToFill, PROCESS_VOLUME));
         if (fill.container != null && hasPlaceToPutContainer(output, fill.container)) {
             FluidStack drain = fluidHandler.drain(ForgeDirection.UNKNOWN, fill.amount, false);
             if (drain != null && drain.amount == fill.amount) {
@@ -184,8 +176,8 @@ public final class FluidHelper {
     }
 
     /**
-     * We can assume that if null is passed for the container that the container
-     * was consumed by the process and we should just remove the input container.
+     * We can assume that if null is passed for the container that the container was consumed by the process and we
+     * should just remove the input container.
      */
     private static void storeContainer(IInventory inv, int inputSlot, int outputSlot, ItemStack container) {
         if (container == null) {

@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.render;
 
@@ -14,6 +11,7 @@ import mods.railcraft.common.blocks.aesthetics.post.*;
 import mods.railcraft.common.blocks.tracks.TrackTools;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
@@ -26,12 +24,14 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import org.lwjgl.opengl.GL11;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class RenderBlockPost extends BlockRenderer {
+
     private static final float PIX = RenderTools.PIXEL;
 
     protected RenderBlockPost(Block block) {
@@ -51,6 +51,7 @@ public class RenderBlockPost extends BlockRenderer {
     }
 
     protected static class RenderPost implements ICombinedRenderer {
+
         @Override
         public void renderBlock(RenderBlocks renderblocks, IBlockAccess world, int x, int y, int z, Block block) {
             BlockPostBase blockPost = (BlockPostBase) block;
@@ -67,8 +68,8 @@ public class RenderBlockPost extends BlockRenderer {
             blockPost.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
         }
 
-        private boolean renderTwoThinConnectStyle(
-                RenderBlocks renderblocks, IBlockAccess world, int x, int y, int z, BlockPostBase block) {
+        private boolean renderTwoThinConnectStyle(RenderBlocks renderblocks, IBlockAccess world, int x, int y, int z,
+                BlockPostBase block) {
             boolean east_west = false;
             boolean north_south = false;
             boolean west = PostConnectionHelper.connect(world, x, y, z, ForgeDirection.WEST) == ConnectStyle.TWO_THIN;
@@ -108,25 +109,18 @@ public class RenderBlockPost extends BlockRenderer {
             return east || west || north || south;
         }
 
-        private void renderSingleThickConnectStyle(
-                RenderBlocks renderblocks,
-                IBlockAccess world,
-                int x,
-                int y,
-                int z,
-                BlockPostBase block,
-                boolean thinConnected,
-                boolean renderColumn) {
+        private void renderSingleThickConnectStyle(RenderBlocks renderblocks, IBlockAccess world, int x, int y, int z,
+                BlockPostBase block, boolean thinConnected, boolean renderColumn) {
             boolean east_west = false;
             boolean north_south = false;
-            boolean west =
-                    PostConnectionHelper.connect(world, x, y, z, ForgeDirection.WEST) == ConnectStyle.SINGLE_THICK;
-            boolean east =
-                    PostConnectionHelper.connect(world, x, y, z, ForgeDirection.EAST) == ConnectStyle.SINGLE_THICK;
-            boolean north =
-                    PostConnectionHelper.connect(world, x, y, z, ForgeDirection.NORTH) == ConnectStyle.SINGLE_THICK;
-            boolean south =
-                    PostConnectionHelper.connect(world, x, y, z, ForgeDirection.SOUTH) == ConnectStyle.SINGLE_THICK;
+            boolean west = PostConnectionHelper.connect(world, x, y, z, ForgeDirection.WEST)
+                    == ConnectStyle.SINGLE_THICK;
+            boolean east = PostConnectionHelper.connect(world, x, y, z, ForgeDirection.EAST)
+                    == ConnectStyle.SINGLE_THICK;
+            boolean north = PostConnectionHelper.connect(world, x, y, z, ForgeDirection.NORTH)
+                    == ConnectStyle.SINGLE_THICK;
+            boolean south = PostConnectionHelper.connect(world, x, y, z, ForgeDirection.SOUTH)
+                    == ConnectStyle.SINGLE_THICK;
             if (east || west) east_west = true;
             if (north || south) north_south = true;
             if (!east_west && !north_south && thinConnected && !renderColumn) east_west = true;
@@ -148,15 +142,8 @@ public class RenderBlockPost extends BlockRenderer {
             }
         }
 
-        public boolean evaluateCenterColumn(
-                RenderBlocks renderblocks,
-                IBlockAccess world,
-                int x,
-                int y,
-                int z,
-                BlockPostBase block,
-                int meta,
-                TileEntity tile) {
+        public boolean evaluateCenterColumn(RenderBlocks renderblocks, IBlockAccess world, int x, int y, int z,
+                BlockPostBase block, int meta, TileEntity tile) {
             boolean renderColumm = shouldRenderColumn(world, x, y, z);
 
             Block aboveBlock = world.getBlock(x, y + 1, z);
@@ -179,7 +166,7 @@ public class RenderBlockPost extends BlockRenderer {
                         || PostConnectionHelper.connect(world, x, y, z, ForgeDirection.DOWN) != ConnectStyle.NONE)
                     return true;
                 else if (above instanceof BlockPostBase)
-                    //                else if (PostConnectionHelper.connect(world, x, y, z, ForgeDirection.UP) || above
+                    // else if (PostConnectionHelper.connect(world, x, y, z, ForgeDirection.UP) || above
                     // instanceof BlockPostBase)
                     return true;
             return false;
@@ -226,15 +213,27 @@ public class RenderBlockPost extends BlockRenderer {
                 if (section == 0) block.setBlockBounds(0.5F - f4, 0.0F, 0.0F, 0.5F + f4, 1.0F, f4 * 2.0F);
                 if (section == 1) block.setBlockBounds(0.5F - f4, 0.0F, 1.0F - f4 * 2.0F, 0.5F + f4, 1.0F, 1.0F);
                 f4 = 0.0625F;
-                if (section == 2)
-                    block.setBlockBounds(
-                            0.5F - f4, 1.0F - f4 * 3.0F, -f4 * 2.0F, 0.5F + f4, 1.0F - f4, 1.0F + f4 * 2.0F);
-                if (section == 3)
-                    block.setBlockBounds(
-                            0.5F - f4, 0.5F - f4 * 3.0F, -f4 * 2.0F, 0.5F + f4, 0.5F - f4, 1.0F + f4 * 2.0F);
-                if (section == 4)
-                    block.setBlockBounds(
-                            0.0F, (16 - getPlatformThickness()) * RenderTools.PIXEL, 0.0F, 1.0F, 1.0F, 1.0F);
+                if (section == 2) block.setBlockBounds(
+                        0.5F - f4,
+                        1.0F - f4 * 3.0F,
+                        -f4 * 2.0F,
+                        0.5F + f4,
+                        1.0F - f4,
+                        1.0F + f4 * 2.0F);
+                if (section == 3) block.setBlockBounds(
+                        0.5F - f4,
+                        0.5F - f4 * 3.0F,
+                        -f4 * 2.0F,
+                        0.5F + f4,
+                        0.5F - f4,
+                        1.0F + f4 * 2.0F);
+                if (section == 4) block.setBlockBounds(
+                        0.0F,
+                        (16 - getPlatformThickness()) * RenderTools.PIXEL,
+                        0.0F,
+                        1.0F,
+                        1.0F,
+                        1.0F);
                 renderblocks.setRenderBoundsFromBlock(block);
                 GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
                 Tessellator tess = Tessellator.instance;
@@ -269,6 +268,7 @@ public class RenderBlockPost extends BlockRenderer {
     }
 
     protected static class RenderPostStone extends RenderPost {
+
         @Override
         public float getPlatformThickness() {
             return 4;
@@ -280,8 +280,8 @@ public class RenderBlockPost extends BlockRenderer {
         }
 
         @Override
-        public void renderBlock(
-                RenderBlocks renderblocks, IBlockAccess iBlockAccess, int x, int y, int z, Block block) {
+        public void renderBlock(RenderBlocks renderblocks, IBlockAccess iBlockAccess, int x, int y, int z,
+                Block block) {
             BlockPostBase blockPost = (BlockPostBase) block;
             float pix = RenderTools.PIXEL;
 
@@ -373,6 +373,7 @@ public class RenderBlockPost extends BlockRenderer {
     }
 
     protected static class RenderPostSign extends RenderPost {
+
         @Override
         public void renderBlock(RenderBlocks renderblocks, IBlockAccess world, int x, int y, int z, Block block) {
             super.renderBlock(renderblocks, world, x, y, z, block);
@@ -411,7 +412,8 @@ public class RenderBlockPost extends BlockRenderer {
 
             minY = 2 * pix;
             if (world.isSideSolid(x, y - 1, z, ForgeDirection.UP, true)
-                    || PostConnectionHelper.connect(world, x, y, z, ForgeDirection.DOWN) != ConnectStyle.NONE) minY = 0;
+                    || PostConnectionHelper.connect(world, x, y, z, ForgeDirection.DOWN) != ConnectStyle.NONE)
+                minY = 0;
             block.setBlockBounds(b1, minY, b1, b2, 1.0F, b2);
             RenderTools.renderStandardBlock(renderblocks, block, x, y, z);
         }
@@ -432,7 +434,7 @@ public class RenderBlockPost extends BlockRenderer {
             if (block == null) return;
 
             GL11.glPushMatrix();
-            //            GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
+            // GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
             switch (renderType) {
                 case EQUIPPED_FIRST_PERSON:
                     GL11.glRotatef(270, 0, 1, 0);
@@ -452,7 +454,7 @@ public class RenderBlockPost extends BlockRenderer {
             RenderTools.renderBlockOnInventory(renderblocks, block, item.getItemDamage(), 1, -1, texture);
 
             renderEmblem(ItemPost.getEmblem(item));
-            //            GL11.glTranslatef(0.5F, 0.5F, 0.5F);
+            // GL11.glTranslatef(0.5F, 0.5F, 0.5F);
 
             block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
             GL11.glPopMatrix();
@@ -482,6 +484,7 @@ public class RenderBlockPost extends BlockRenderer {
     }
 
     public static class EmblemPostTESR extends TileEntitySpecialRenderer {
+
         public EmblemPostTESR() {}
 
         @Override
@@ -491,9 +494,9 @@ public class RenderBlockPost extends BlockRenderer {
 
             GL11.glPushMatrix();
             GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
-            //            GL11.glDisable(GL11.GL_LIGHTING);
+            // GL11.glDisable(GL11.GL_LIGHTING);
             GL11.glDisable(GL11.GL_BLEND);
-            //        GL11.glEnable(GL11.GL_CULL_FACE);
+            // GL11.glEnable(GL11.GL_CULL_FACE);
 
             float pix = RenderTools.PIXEL;
             float shift = 0.5F;

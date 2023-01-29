@@ -1,15 +1,14 @@
 /*
- * ******************************************************************************
- *  Copyright 2011-2015 CovertJaguar
- *
- *  This work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
+ * ****************************************************************************** Copyright 2011-2015 CovertJaguar This
+ * work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
  * ***************************************************************************
  */
 
 package mods.railcraft.api.events;
 
-import cpw.mods.fml.common.eventhandler.Event;
 import net.minecraft.entity.item.EntityMinecart;
+
+import cpw.mods.fml.common.eventhandler.Event;
 
 /**
  *
@@ -30,8 +29,7 @@ public abstract class CartLockdownEvent extends Event {
     }
 
     /**
-     * This event is posted every tick that a LockType Track (Lockdown, Holding,
-     * Boarding) is holding onto a minecart.
+     * This event is posted every tick that a LockType Track (Lockdown, Holding, Boarding) is holding onto a minecart.
      */
     public static class Lock extends CartLockdownEvent {
 
@@ -41,8 +39,7 @@ public abstract class CartLockdownEvent extends Event {
     }
 
     /**
-     * This event is posted every tick that a LockType Track (Lockdown, Holding,
-     * Boarding) is releasing a minecart.
+     * This event is posted every tick that a LockType Track (Lockdown, Holding, Boarding) is releasing a minecart.
      */
     public static class Release extends CartLockdownEvent {
 

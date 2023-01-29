@@ -1,17 +1,16 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.ore;
 
 import java.util.List;
+
 import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.items.EntityItemFireproof;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -56,14 +55,12 @@ public class ItemOre extends ItemBlock {
     }
 
     /**
-     * Determines if this Item has a special entity for when they are in the
-     * world. Is called when a EntityItem is spawned in the world, if true and
-     * Item#createCustomEntity returns non null, the EntityItem will be
-     * destroyed and the new Entity will be added to the world.
+     * Determines if this Item has a special entity for when they are in the world. Is called when a EntityItem is
+     * spawned in the world, if true and Item#createCustomEntity returns non null, the EntityItem will be destroyed and
+     * the new Entity will be added to the world.
      *
      * @param stack The current item stack
-     * @return True of the item has a custom entity, If true,
-     * Item#createCustomEntity will be called
+     * @return True of the item has a custom entity, If true, Item#createCustomEntity will be called
      */
     @Override
     public boolean hasCustomEntity(ItemStack stack) {
@@ -72,14 +69,12 @@ public class ItemOre extends ItemBlock {
     }
 
     /**
-     * This function should return a new entity to replace the dropped item.
-     * Returning null here will not kill the EntityItem and will leave it to
-     * function normally. Called when the item it placed in a world.
+     * This function should return a new entity to replace the dropped item. Returning null here will not kill the
+     * EntityItem and will leave it to function normally. Called when the item it placed in a world.
      *
-     * @param world The world object
-     * @param location The EntityItem object, useful for getting the position of
-     * the entity
-     * @param stack The current item stack
+     * @param world    The world object
+     * @param location The EntityItem object, useful for getting the position of the entity
+     * @param stack    The current item stack
      * @return A new Entity object to spawn or null
      */
     @Override

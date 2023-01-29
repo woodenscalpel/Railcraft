@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.render.models.bore;
 
@@ -12,7 +9,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 
 // Referenced classes of package net.minecraft.src:
-//            Modelbase, ModelRenderer
+// Modelbase, ModelRenderer
 public class ModelTunnelBore extends ModelBase {
 
     private ModelRenderer base;
@@ -101,7 +98,13 @@ public class ModelTunnelBore extends ModelBase {
                 rearWidth,
                 0.0F);
         furnaceBox.addBox(
-                -boxLength / 2 + boxXOffset, -boxHeight + offset, -boxWidth / 2, boxLength, boxHeight, boxWidth, 0.0F);
+                -boxLength / 2 + boxXOffset,
+                -boxHeight + offset,
+                -boxWidth / 2,
+                boxLength,
+                boxHeight,
+                boxWidth,
+                0.0F);
         furnaceIdle.addBox(
                 -furnaceLength / 2 + furnaceXOffset,
                 -furnaceHeight + offset - furnaceYOffset,
@@ -160,7 +163,13 @@ public class ModelTunnelBore extends ModelBase {
                 0.0F);
 
         boreHead.addBox(
-                -headLength + headXOffset, -headHeight / 2, -headWidth / 2, headLength, headHeight, headWidth, 0.0F);
+                -headLength + headXOffset,
+                -headHeight / 2,
+                -headWidth / 2,
+                headLength,
+                headHeight,
+                headWidth,
+                0.0F);
         boreHead.setRotationPoint(0, -headHeight / 2 + headYOffset, 0);
 
         // boreHead.rotateAngleX = 1;

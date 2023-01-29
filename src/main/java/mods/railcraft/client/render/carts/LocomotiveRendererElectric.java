@@ -1,26 +1,26 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.render.carts;
 
-import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import mods.railcraft.api.carts.locomotive.IRenderer;
 import mods.railcraft.client.render.TexturedQuadAdv;
 import mods.railcraft.client.render.models.ModelSimple;
 import mods.railcraft.client.render.models.locomotives.ModelLocomotiveElectric;
 import mods.railcraft.common.carts.EntityLocomotive;
 import mods.railcraft.common.core.RailcraftConstants;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.TexturedQuad;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.common.ObfuscationReflectionHelper;
 
 /**
  *
@@ -41,14 +41,8 @@ public class LocomotiveRendererElectric extends LocomotiveRendererDefault {
     }
 
     @Override
-    public void renderLocomotive(
-            IRenderer renderer,
-            EntityMinecart cart,
-            int primaryColor,
-            int secondaryColor,
-            ResourceLocation emblemTexture,
-            float light,
-            float time) {
+    public void renderLocomotive(IRenderer renderer, EntityMinecart cart, int primaryColor, int secondaryColor,
+            ResourceLocation emblemTexture, float light, float time) {
         super.renderLocomotive(renderer, cart, primaryColor, secondaryColor, emblemTexture, light, time);
         GL11.glPushMatrix();
         GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
@@ -87,8 +81,8 @@ public class LocomotiveRendererElectric extends LocomotiveRendererDefault {
         public ModelLampOn() {
             for (Object box : renderer.cubeList) {
                 TexturedQuadAdv[] quadsNew = new TexturedQuadAdv[6];
-                TexturedQuad[] quadsOld =
-                        ObfuscationReflectionHelper.getPrivateValue(ModelBox.class, (ModelBox) box, 1);
+                TexturedQuad[] quadsOld = ObfuscationReflectionHelper
+                        .getPrivateValue(ModelBox.class, (ModelBox) box, 1);
                 for (int i = 0; i < 6; i++) {
                     quadsNew[i] = new TexturedQuadAdv(quadsOld[i].vertexPositions);
                     quadsNew[i].setBrightness(210);

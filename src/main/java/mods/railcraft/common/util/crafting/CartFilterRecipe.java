@@ -1,20 +1,19 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.crafting;
 
 import javax.annotation.Nullable;
+
 import mods.railcraft.common.carts.EntityCartFiltered;
 import mods.railcraft.common.carts.EnumCart;
 import mods.railcraft.common.carts.ICartType;
 import mods.railcraft.common.fluids.FluidItemHelper;
 import mods.railcraft.common.util.inventory.wrappers.IInvSlot;
 import mods.railcraft.common.util.inventory.wrappers.InventoryIterator;
+
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -26,13 +25,16 @@ import net.minecraft.world.World;
 public class CartFilterRecipe implements IRecipe {
 
     public enum FilterType {
+
         Cargo(EnumCart.CARGO),
         Tank(EnumCart.TANK) {
+
             @Override
             public boolean isAllowedFilterItem(ItemStack stack) {
                 return FluidItemHelper.isFilledContainer(stack);
             }
         };
+
         public static FilterType[] VALUES = values();
         public final ICartType cartType;
 
@@ -96,10 +98,13 @@ public class CartFilterRecipe implements IRecipe {
         }
 
         if (filterItem.getItem().hasContainerItem(filterItem)) {
-            /*System.out.println("Has container item.");
-            System.out.println("Does Container Item Leave Crafting Grid: "+filterItem.getItem().doesContainerItemLeaveCraftingGrid(filterItem));
-            ItemStack cont = filterItem.getItem().getContainerItem(filterItem);
-            System.out.println("Container item: "+cont.getDisplayName()+" x"+cont.stackSize); */
+            /*
+             * System.out.println("Has container item.");
+             * System.out.println("Does Container Item Leave Crafting Grid: "+filterItem.getItem().
+             * doesContainerItemLeaveCraftingGrid(filterItem)); ItemStack cont =
+             * filterItem.getItem().getContainerItem(filterItem);
+             * System.out.println("Container item: "+cont.getDisplayName()+" x"+cont.stackSize);
+             */
             return null;
         } else {
             filterItem.stackSize = 1;

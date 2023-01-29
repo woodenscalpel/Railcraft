@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.misc;
 
@@ -12,8 +9,8 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 
 /**
- * A mutable 2D Vector class that supports a broader range of math operations
- * than Minecraft's immutable Vec3D class.
+ * A mutable 2D Vector class that supports a broader range of math operations than Minecraft's immutable Vec3D class.
+ * 
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class Vec2D extends Point2D.Double {
@@ -161,6 +158,7 @@ public class Vec2D extends Point2D.Double {
 
     /**
      * Finds the dot product of two vectors.
+     * 
      * @param v
      * @return
      */

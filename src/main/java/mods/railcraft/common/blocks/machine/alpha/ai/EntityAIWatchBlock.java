@@ -1,15 +1,13 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.alpha.ai;
 
 import mods.railcraft.api.core.WorldCoordinate;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -56,18 +54,17 @@ public class EntityAIWatchBlock extends EntityAIBase {
     @Override
     public boolean shouldExecute() {
         if (this.theWatcher.getRNG().nextFloat() >= this.weight) return false;
-        //            if (this.theWatcher.getAttackTarget() != null)
-        //                return false;
+        // if (this.theWatcher.getAttackTarget() != null)
+        // return false;
 
-        if (watchedBlock == null || !isBlockValid())
-            watchedBlock = WorldPlugin.findBlock(
-                    theWatcher.worldObj,
-                    (int) theWatcher.posX,
-                    (int) theWatcher.posY,
-                    (int) theWatcher.posZ,
-                    maxDist,
-                    searchedBlock,
-                    searchedMeta);
+        if (watchedBlock == null || !isBlockValid()) watchedBlock = WorldPlugin.findBlock(
+                theWatcher.worldObj,
+                (int) theWatcher.posX,
+                (int) theWatcher.posY,
+                (int) theWatcher.posZ,
+                maxDist,
+                searchedBlock,
+                searchedMeta);
 
         return watchedBlock != null;
     }
@@ -110,10 +107,12 @@ public class EntityAIWatchBlock extends EntityAIBase {
      */
     @Override
     public void updateTask() {
-        this.theWatcher
-                .getLookHelper()
-                .setLookPosition(watchedBlock.x + 0.5, watchedBlock.y + 0.5, watchedBlock.z + 0.5, 10.0F, (float)
-                        this.theWatcher.getVerticalFaceSpeed());
+        this.theWatcher.getLookHelper().setLookPosition(
+                watchedBlock.x + 0.5,
+                watchedBlock.y + 0.5,
+                watchedBlock.z + 0.5,
+                10.0F,
+                (float) this.theWatcher.getVerticalFaceSpeed());
         --this.lookTime;
     }
 }

@@ -1,25 +1,26 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.plugins.forge;
 
-import com.google.common.collect.Lists;
-import cpw.mods.fml.common.registry.GameRegistry;
 import java.util.List;
+
 import mods.railcraft.common.items.IItemMetaEnum;
 import mods.railcraft.common.items.RailcraftItem;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+
 import org.apache.logging.log4j.Level;
+
+import com.google.common.collect.Lists;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
@@ -99,7 +100,8 @@ public class CraftingPlugin {
     public static void addShapelessRecipe(ItemStack result, Object... recipeArray) {
         if (result == null || result.stackSize <= 0) {
             Game.logTrace(
-                    Level.WARN, "Tried to define invalid shapeless recipe, the result was null or zero. Skipping");
+                    Level.WARN,
+                    "Tried to define invalid shapeless recipe, the result was null or zero. Skipping");
             return;
         }
         recipeArray = cleanRecipeArray(recipeArray);

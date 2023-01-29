@@ -1,17 +1,13 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.gui;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
+
 import mods.railcraft.client.gui.buttons.GuiBetterButton;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.core.RailcraftConstants;
@@ -20,6 +16,7 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.network.PacketCurrentItemNBT;
 import mods.railcraft.common.util.network.PacketDispatcher;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,14 +26,18 @@ import net.minecraft.util.ChatAllowedCharacters;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class GuiTicket extends GuiScreen {
 
-    public static final ResourceLocation TEXTURE =
-            new ResourceLocation(RailcraftConstants.GUI_TEXTURE_FOLDER + "ticket_gold.png");
+    public static final ResourceLocation TEXTURE = new ResourceLocation(
+            RailcraftConstants.GUI_TEXTURE_FOLDER + "ticket_gold.png");
     public static final int WRAP_WIDTH = 226;
     /**
      * The player editing the book
@@ -83,21 +84,32 @@ public class GuiTicket extends GuiScreen {
 
         List<GuiBetterButton> buttons = new ArrayList<GuiBetterButton>();
         buttons.add(
-                buttonDone =
-                        new GuiBetterButton(0, 0, imageHeight + 25, 65, StatCollector.translateToLocal("gui.done")));
+                buttonDone = new GuiBetterButton(
+                        0,
+                        0,
+                        imageHeight + 25,
+                        65,
+                        StatCollector.translateToLocal("gui.done")));
         buttons.add(
                 buttonHelp = new GuiBetterButton(
-                        1, 0, imageHeight + 25, 65, LocalizationPlugin.translate("railcraft.gui.help")));
+                        1,
+                        0,
+                        imageHeight + 25,
+                        65,
+                        LocalizationPlugin.translate("railcraft.gui.help")));
         buttons.add(
-                buttonCancel =
-                        new GuiBetterButton(2, 0, imageHeight + 25, 65, StatCollector.translateToLocal("gui.cancel")));
+                buttonCancel = new GuiBetterButton(
+                        2,
+                        0,
+                        imageHeight + 25,
+                        65,
+                        StatCollector.translateToLocal("gui.cancel")));
         GuiTools.newButtonRowAuto(buttonList, width / 2 - 100, 200, buttons);
         updateButtons();
     }
 
     /**
-     * Called when the screen is unloaded. Used to disable keyboard repeat
-     * events
+     * Called when the screen is unloaded. Used to disable keyboard repeat events
      */
     @Override
     public void onGuiClosed() {
@@ -105,8 +117,7 @@ public class GuiTicket extends GuiScreen {
     }
 
     private void updateButtons() {
-        buttonHelp.displayString = readingManual
-                ? StatCollector.translateToLocal("gui.back")
+        buttonHelp.displayString = readingManual ? StatCollector.translateToLocal("gui.back")
                 : LocalizationPlugin.translate("railcraft.gui.help");
     }
 
@@ -123,8 +134,7 @@ public class GuiTicket extends GuiScreen {
     }
 
     /**
-     * Fired when a control is clicked. This is the equivalent of
-     * ActionListener.actionPerformed(ActionEvent e).
+     * Fired when a control is clicked. This is the equivalent of ActionListener.actionPerformed(ActionEvent e).
      */
     @Override
     protected void actionPerformed(GuiButton button) {
@@ -143,8 +153,7 @@ public class GuiTicket extends GuiScreen {
     }
 
     /**
-     * Fired when a key is typed. This is the equivalent of
-     * KeyListener.keyTyped(KeyEvent e).
+     * Fired when a key is typed. This is the equivalent of KeyListener.keyTyped(KeyEvent e).
      */
     @Override
     protected void keyTyped(char c, int key) {
@@ -163,8 +172,7 @@ public class GuiTicket extends GuiScreen {
                         }
                         return;
                     default:
-                        if (!Character.isWhitespace(c)
-                                && ChatAllowedCharacters.isAllowedCharacter(c)
+                        if (!Character.isWhitespace(c) && ChatAllowedCharacters.isAllowedCharacter(c)
                                 && dest.length() + 1 < ItemTicket.LINE_LENGTH) {
                             dest += c;
                             modified = true;

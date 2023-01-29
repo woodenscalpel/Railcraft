@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.plugins.craftguide;
 
@@ -26,8 +23,8 @@ public class RockCrusherPlugin implements RecipeProvider {
         slots[0] = new ItemSlot(4, 11, 16, 16);
         for (int y = 0; y < 3; y++) {
             for (int x = 0; x < 3; x++) {
-                slots[1 + y * 3 + x] =
-                        new FloatChanceSlot(24 + x * 18, 3 + y * 18, 16, 16, true).setSlotType(SlotType.OUTPUT_SLOT);
+                slots[1 + y * 3 + x] = new FloatChanceSlot(24 + x * 18, 3 + y * 18, 16, 16, true)
+                        .setSlotType(SlotType.OUTPUT_SLOT);
             }
         }
 

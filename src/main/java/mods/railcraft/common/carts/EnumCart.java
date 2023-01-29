@@ -1,16 +1,13 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.carts;
 
-import cpw.mods.fml.common.registry.EntityRegistry;
 import java.lang.reflect.Constructor;
 import java.util.Locale;
+
 import mods.railcraft.api.carts.locomotive.LocomotiveRenderType;
 import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
 import mods.railcraft.common.core.Railcraft;
@@ -20,6 +17,7 @@ import mods.railcraft.common.util.misc.EntityIDs;
 import mods.railcraft.common.util.misc.EnumColor;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
+
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.item.EntityMinecartHopper;
@@ -28,7 +26,10 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import cpw.mods.fml.common.registry.EntityRegistry;
+
 public enum EnumCart implements ICartType {
+
     BASIC(0, EntityCartBasic.class, null),
     CHEST(0, EntityCartChest.class, new ItemStack(Blocks.chest)),
     FURNACE(0, EntityCartFurnace.class, new ItemStack(Blocks.furnace)),
@@ -58,6 +59,7 @@ public enum EnumCart implements ICartType {
     TRACK_REMOVER(1, EntityCartTrackRemover.class, null),
     COMMAND_BLOCK(3, EntityCartCommand.class, null),
     REDSTONE_FLUX(0, EntityCartRF.class, null);
+
     public static final EnumCart[] VALUES = values();
     private final Class<? extends EntityMinecart> type;
     private final byte id;
@@ -112,8 +114,8 @@ public enum EnumCart implements ICartType {
     @Override
     public EntityMinecart makeCart(ItemStack stack, World world, double i, double j, double k) {
         try {
-            Constructor<? extends EntityMinecart> con =
-                    type.getConstructor(World.class, double.class, double.class, double.class);
+            Constructor<? extends EntityMinecart> con = type
+                    .getConstructor(World.class, double.class, double.class, double.class);
             EntityMinecart entity = con.newInstance(world, i, j, k);
             if (entity instanceof IRailcraftCart) ((IRailcraftCart) entity).initEntityFromItem(stack);
             return entity;

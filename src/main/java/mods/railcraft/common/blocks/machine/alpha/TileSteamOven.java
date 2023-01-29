@@ -1,21 +1,18 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.alpha;
 
 import static net.minecraftforge.common.util.ForgeDirection.DOWN;
 import static net.minecraftforge.common.util.ForgeDirection.UP;
 
-import buildcraft.api.statements.IActionExternal;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.*;
+
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
@@ -38,6 +35,7 @@ import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.sounds.SoundHelper;
 import mods.railcraft.common.util.steam.ISteamUser;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -54,16 +52,19 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
+import buildcraft.api.statements.IActionExternal;
+
 public class TileSteamOven extends TileMultiBlockInventory
         implements IFluidHandler, ISidedInventory, ISteamUser, IHasWork {
+
     public static final int SLOT_INPUT = 0;
     public static final int SLOT_OUTPUT = 9;
-    private static final ForgeDirection[] UP_DOWN_AXES = new ForgeDirection[] {UP, DOWN};
+    private static final ForgeDirection[] UP_DOWN_AXES = new ForgeDirection[] { UP, DOWN };
     private static final int STEAM_PER_BATCH = 8000;
     private static final int TOTAL_COOK_TIME = 256;
     private static final int COOK_STEP = 16;
     private static final int ITEMS_SMELTED = 9;
-    private static final int[] SLOTS = new int[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17};
+    private static final int[] SLOTS = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
     private static final int TANK_CAPACITY = 8 * FluidHelper.BUCKET_VOLUME;
     private static final List<MultiBlockPattern> patterns = new ArrayList<MultiBlockPattern>();
     private final TankManager tankManager = new TankManager();
@@ -74,31 +75,10 @@ public class TileSteamOven extends TileMultiBlockInventory
 
     static {
         char[][][] map = {
-            {
-                {'*', 'O', 'O', '*'},
-                {'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O'},
-                {'*', 'O', 'O', '*'},
-            },
-            {
-                {'*', 'O', 'O', '*'},
-                {'O', 'B', 'B', 'O'},
-                {'O', 'B', 'B', 'O'},
-                {'*', 'O', 'O', '*'}
-            },
-            {
-                {'*', 'O', 'O', '*'},
-                {'O', 'B', 'B', 'O'},
-                {'O', 'B', 'B', 'O'},
-                {'*', 'O', 'O', '*'}
-            },
-            {
-                {'*', 'O', 'O', '*'},
-                {'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O'},
-                {'*', 'O', 'O', '*'},
-            },
-        };
+                { { '*', 'O', 'O', '*' }, { 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O' }, { '*', 'O', 'O', '*' }, },
+                { { '*', 'O', 'O', '*' }, { 'O', 'B', 'B', 'O' }, { 'O', 'B', 'B', 'O' }, { '*', 'O', 'O', '*' } },
+                { { '*', 'O', 'O', '*' }, { 'O', 'B', 'B', 'O' }, { 'O', 'B', 'B', 'O' }, { '*', 'O', 'O', '*' } },
+                { { '*', 'O', 'O', '*' }, { 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O' }, { '*', 'O', 'O', '*' }, }, };
         patterns.add(new MultiBlockPattern(map));
     }
 
@@ -117,8 +97,8 @@ public class TileSteamOven extends TileMultiBlockInventory
         for (MultiBlockPattern pattern : TileSteamOven.patterns) {
             Map<Character, Integer> blockMapping = new HashMap<Character, Integer>();
             blockMapping.put('B', EnumMachineAlpha.STEAM_OVEN.ordinal());
-            TileEntity tile =
-                    pattern.placeStructure(world, x, y, z, RailcraftBlocks.getBlockMachineAlpha(), blockMapping);
+            TileEntity tile = pattern
+                    .placeStructure(world, x, y, z, RailcraftBlocks.getBlockMachineAlpha(), blockMapping);
             if (tile instanceof TileSteamOven) {
                 TileSteamOven master = (TileSteamOven) tile;
                 for (int slot = 0; slot < 9; slot++) {
@@ -145,37 +125,36 @@ public class TileSteamOven extends TileMultiBlockInventory
 
     @Override
     public IIcon getIcon(int side) {
-        if (isStructureValid() && side == getFacing().ordinal())
-            switch (side) {
-                case 2:
-                    if (getPatternPositionY() == 2) {
-                        if (getPatternPositionX() == 2) return Texture.DOOR_TL.getIcon();
-                        return Texture.DOOR_TR.getIcon();
-                    }
-                    if (getPatternPositionX() == 2) return Texture.DOOR_BL.getIcon();
-                    return Texture.DOOR_BR.getIcon();
-                case 3:
-                    if (getPatternPositionY() == 2) {
-                        if (getPatternPositionX() == 1) return Texture.DOOR_TL.getIcon();
-                        return Texture.DOOR_TR.getIcon();
-                    }
-                    if (getPatternPositionX() == 1) return Texture.DOOR_BL.getIcon();
-                    return Texture.DOOR_BR.getIcon();
-                case 4:
-                    if (getPatternPositionY() == 2) {
-                        if (getPatternPositionZ() == 1) return Texture.DOOR_TL.getIcon();
-                        return Texture.DOOR_TR.getIcon();
-                    }
-                    if (getPatternPositionZ() == 1) return Texture.DOOR_BL.getIcon();
-                    return Texture.DOOR_BR.getIcon();
-                case 5:
-                    if (getPatternPositionY() == 2) {
-                        if (getPatternPositionZ() == 2) return Texture.DOOR_TL.getIcon();
-                        return Texture.DOOR_TR.getIcon();
-                    }
-                    if (getPatternPositionZ() == 2) return Texture.DOOR_BL.getIcon();
-                    return Texture.DOOR_BR.getIcon();
-            }
+        if (isStructureValid() && side == getFacing().ordinal()) switch (side) {
+            case 2:
+                if (getPatternPositionY() == 2) {
+                    if (getPatternPositionX() == 2) return Texture.DOOR_TL.getIcon();
+                    return Texture.DOOR_TR.getIcon();
+                }
+                if (getPatternPositionX() == 2) return Texture.DOOR_BL.getIcon();
+                return Texture.DOOR_BR.getIcon();
+            case 3:
+                if (getPatternPositionY() == 2) {
+                    if (getPatternPositionX() == 1) return Texture.DOOR_TL.getIcon();
+                    return Texture.DOOR_TR.getIcon();
+                }
+                if (getPatternPositionX() == 1) return Texture.DOOR_BL.getIcon();
+                return Texture.DOOR_BR.getIcon();
+            case 4:
+                if (getPatternPositionY() == 2) {
+                    if (getPatternPositionZ() == 1) return Texture.DOOR_TL.getIcon();
+                    return Texture.DOOR_TR.getIcon();
+                }
+                if (getPatternPositionZ() == 1) return Texture.DOOR_BL.getIcon();
+                return Texture.DOOR_BR.getIcon();
+            case 5:
+                if (getPatternPositionY() == 2) {
+                    if (getPatternPositionZ() == 2) return Texture.DOOR_TL.getIcon();
+                    return Texture.DOOR_TR.getIcon();
+                }
+                if (getPatternPositionZ() == 2) return Texture.DOOR_BL.getIcon();
+                return Texture.DOOR_BR.getIcon();
+        }
         if (side > 1) return Texture.SIDE.getIcon();
         return Texture.CAP.getIcon();
     }
@@ -224,21 +203,24 @@ public class TileSteamOven extends TileMultiBlockInventory
             if (clock % 16 == 0) processActions();
             if (clock % COOK_STEP == 0) {
                 setHasFinishedCycle(false);
-                if (!paused)
-                    if (hasRecipe()) {
-                        if (cookTime <= 0 && drainSteam()) cookTime = 1;
-                        else if (cookTime > 0) {
-                            cookTime += COOK_STEP;
-                            if (cookTime >= TOTAL_COOK_TIME)
-                                if (smeltItems()) {
-                                    cookTime = 0;
-                                    setHasFinishedCycle(true);
-                                    SoundHelper.playSound(
-                                            worldObj, xCoord, yCoord, zCoord, SoundHelper.SOUND_STEAM_BURST, 1, (float)
-                                                    (1 + MiscTools.getRand().nextGaussian() * 0.1));
-                                }
+                if (!paused) if (hasRecipe()) {
+                    if (cookTime <= 0 && drainSteam()) cookTime = 1;
+                    else if (cookTime > 0) {
+                        cookTime += COOK_STEP;
+                        if (cookTime >= TOTAL_COOK_TIME) if (smeltItems()) {
+                            cookTime = 0;
+                            setHasFinishedCycle(true);
+                            SoundHelper.playSound(
+                                    worldObj,
+                                    xCoord,
+                                    yCoord,
+                                    zCoord,
+                                    SoundHelper.SOUND_STEAM_BURST,
+                                    1,
+                                    (float) (1 + MiscTools.getRand().nextGaussian() * 0.1));
                         }
-                    } else cookTime = 0;
+                    }
+                } else cookTime = 0;
             }
         }
     }
@@ -314,7 +296,12 @@ public class TileSteamOven extends TileMultiBlockInventory
         TileMultiBlock masterBlock = getMasterBlock();
         if (masterBlock != null) {
             GuiHandler.openGui(
-                    EnumGui.STEAN_OVEN, player, worldObj, masterBlock.xCoord, masterBlock.yCoord, masterBlock.zCoord);
+                    EnumGui.STEAN_OVEN,
+                    player,
+                    worldObj,
+                    masterBlock.xCoord,
+                    masterBlock.yCoord,
+                    masterBlock.zCoord);
             return true;
         }
         return false;
@@ -434,12 +421,14 @@ public class TileSteamOven extends TileMultiBlockInventory
     }
 
     enum Texture {
+
         DOOR_TL(6),
         DOOR_TR(7),
         DOOR_BL(8),
         DOOR_BR(9),
         SIDE(2),
         CAP(0);
+
         private final int index;
 
         private Texture(int index) {

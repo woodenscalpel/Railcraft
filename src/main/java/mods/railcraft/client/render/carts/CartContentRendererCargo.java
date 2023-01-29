@@ -1,16 +1,15 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.render.carts;
 
 import java.util.Random;
+
 import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
 import mods.railcraft.common.carts.EntityCartCargo;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.entity.RenderItem;
@@ -20,12 +19,14 @@ import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
+
 import org.lwjgl.opengl.GL11;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class CartContentRendererCargo extends CartContentRenderer {
+
     private final RenderInfo filterSign = new RenderInfo();
     private Random rand = new Random();
 
@@ -46,13 +47,12 @@ public class CartContentRendererCargo extends CartContentRenderer {
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glDisable(GL11.GL_BLEND);
 
-        EntityItem item =
-                new EntityItem(null, 0.0D, 0.0D, 0.0D, cart.getFilterItem().copy());
+        EntityItem item = new EntityItem(null, 0.0D, 0.0D, 0.0D, cart.getFilterItem().copy());
         item.getEntityItem().stackSize = 1;
         item.hoverStart = 0.0F;
 
-        boolean renderIn3D = RenderBlocks.renderItemIn3d(
-                Block.getBlockFromItem(item.getEntityItem().getItem()).getRenderType());
+        boolean renderIn3D = RenderBlocks
+                .renderItemIn3d(Block.getBlockFromItem(item.getEntityItem().getItem()).getRenderType());
 
         RenderItem.renderInFrame = true;
 
@@ -107,8 +107,7 @@ public class CartContentRendererCargo extends CartContentRenderer {
     private void renderEntityItem(EntityItem item) {
         try {
             RenderManager.instance.renderEntityWithPosYaw(item, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
-        } catch (Exception ex) {
-        }
+        } catch (Exception ex) {}
     }
 
     @Override

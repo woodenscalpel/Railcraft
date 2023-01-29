@@ -1,16 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.items;
 
-import com.google.common.collect.MapMaker;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import java.util.Map;
+
 import mods.railcraft.api.carts.ILinkableCart;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.common.carts.EntityTunnelBore;
@@ -20,20 +16,24 @@ import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.modules.ModuleManager.Module;
 import mods.railcraft.common.plugins.forge.ChatPlugin;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 
+import com.google.common.collect.MapMaker;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 @SuppressWarnings("unused")
 public class CrowbarHandler {
+
     public static final float SMACK_VELOCITY = 0.07f;
-    private static final Map<EntityPlayer, EntityMinecart> linkMap =
-            new MapMaker().weakKeys().weakValues().makeMap();
+    private static final Map<EntityPlayer, EntityMinecart> linkMap = new MapMaker().weakKeys().weakValues().makeMap();
     private static CrowbarHandler instance;
 
     public static CrowbarHandler instance() {
@@ -84,13 +84,13 @@ public class CrowbarHandler {
                 } else if (crowbar.canBoost(thePlayer, stack, cart)) {
                     thePlayer.addExhaustion(1F);
 
-                    //noinspection StatementWithEmptyBody
+                    // noinspection StatementWithEmptyBody
                     if (thePlayer.ridingEntity != null) {
                         // NOOP
-                    } else //noinspection StatementWithEmptyBody
-                    if (cart instanceof EntityTunnelBore) {
-                        // NOOP
-                    } else if (cart instanceof IDirectionalCart) ((IDirectionalCart) cart).reverse();
+                    } else // noinspection StatementWithEmptyBody
+                        if (cart instanceof EntityTunnelBore) {
+                            // NOOP
+                        } else if (cart instanceof IDirectionalCart) ((IDirectionalCart) cart).reverse();
                     else {
                         if (cart.posX < thePlayer.posX) cart.motionX -= SMACK_VELOCITY;
                         else cart.motionX += SMACK_VELOCITY;

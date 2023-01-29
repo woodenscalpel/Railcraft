@@ -1,14 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.render;
 
 import java.util.EnumSet;
+
 import mods.railcraft.api.electricity.GridTools;
 import mods.railcraft.api.electricity.IElectricGrid;
 import mods.railcraft.api.electricity.IElectricGrid.ChargeHandler.ConnectType;
@@ -19,6 +17,7 @@ import mods.railcraft.common.blocks.machine.delta.TileWire;
 import mods.railcraft.common.blocks.machine.delta.TileWire.AddonType;
 import mods.railcraft.common.blocks.tracks.TrackTools;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
@@ -71,7 +70,8 @@ public class RenderBlockMachineDelta extends BlockRenderer {
             for (ForgeDirection dir : search) {
                 TileEntity tile = WorldPlugin.getTileEntityOnSide(world, x, y, z, dir);
                 if (tile instanceof IElectricGrid
-                        && ((IElectricGrid) tile).getChargeHandler().getType() == ConnectType.BLOCK) plugCons.add(dir);
+                        && ((IElectricGrid) tile).getChargeHandler().getType() == ConnectType.BLOCK)
+                    plugCons.add(dir);
             }
 
             wireCons.addAll(plugCons);
@@ -81,7 +81,7 @@ public class RenderBlockMachineDelta extends BlockRenderer {
             if (above != null && TrackTools.isRailBlockAt(world, x, y + 1, z)) {
                 wireCons.add(ForgeDirection.UP);
                 plugCons.add(ForgeDirection.UP);
-                //                renderPlatform(renderblocks, world, x, y, z, block);
+                // renderPlatform(renderblocks, world, x, y, z, block);
                 powered = true;
             }
 
@@ -102,15 +102,14 @@ public class RenderBlockMachineDelta extends BlockRenderer {
         }
 
         private void renderFrame(RenderBlocks renderblocks, IBlockAccess world, int x, int y, int z, Block block) {
-            if (renderFrame != null)
-                renderFrame.renderWorldBlock(
-                        world,
-                        x,
-                        y,
-                        z,
-                        BlockFrame.getBlock(),
-                        BlockFrame.getBlock().getRenderType(),
-                        renderblocks);
+            if (renderFrame != null) renderFrame.renderWorldBlock(
+                    world,
+                    x,
+                    y,
+                    z,
+                    BlockFrame.getBlock(),
+                    BlockFrame.getBlock().getRenderType(),
+                    renderblocks);
         }
 
         private void renderPlatform(RenderBlocks renderblocks, IBlockAccess world, int x, int y, int z, Block block) {
@@ -118,13 +117,7 @@ public class RenderBlockMachineDelta extends BlockRenderer {
             RenderTools.renderStandardBlock(renderblocks, block, x, y, z);
         }
 
-        private void renderWire(
-                RenderBlocks renderblocks,
-                IBlockAccess world,
-                int x,
-                int y,
-                int z,
-                Block block,
+        private void renderWire(RenderBlocks renderblocks, IBlockAccess world, int x, int y, int z, Block block,
                 EnumSet<ForgeDirection> wireCons) {
             float pix = RenderTools.PIXEL;
             float max = 0.999F;
@@ -171,13 +164,7 @@ public class RenderBlockMachineDelta extends BlockRenderer {
             }
         }
 
-        private void renderPlug(
-                RenderBlocks renderblocks,
-                IBlockAccess world,
-                int x,
-                int y,
-                int z,
-                Block block,
+        private void renderPlug(RenderBlocks renderblocks, IBlockAccess world, int x, int y, int z, Block block,
                 EnumSet<ForgeDirection> plugCons) {
             if (plugCons.isEmpty()) return;
 
@@ -215,13 +202,23 @@ public class RenderBlockMachineDelta extends BlockRenderer {
                 rotated = MatrixTransformations.deepClone(plugA);
                 MatrixTransformations.transform(rotated, dir);
                 block.setBlockBounds(
-                        rotated[0][0], rotated[1][0], rotated[2][0], rotated[0][1], rotated[1][1], rotated[2][1]);
+                        rotated[0][0],
+                        rotated[1][0],
+                        rotated[2][0],
+                        rotated[0][1],
+                        rotated[1][1],
+                        rotated[2][1]);
                 RenderTools.renderStandardBlock(renderblocks, block, x, y, z);
 
                 rotated = MatrixTransformations.deepClone(plugB);
                 MatrixTransformations.transform(rotated, dir);
                 block.setBlockBounds(
-                        rotated[0][0], rotated[1][0], rotated[2][0], rotated[0][1], rotated[1][1], rotated[2][1]);
+                        rotated[0][0],
+                        rotated[1][0],
+                        rotated[2][0],
+                        rotated[0][1],
+                        rotated[1][1],
+                        rotated[2][1]);
                 RenderTools.renderStandardBlock(renderblocks, block, x, y, z);
             }
         }
@@ -266,45 +263,37 @@ public class RenderBlockMachineDelta extends BlockRenderer {
 
             if (WorldPlugin.getBlock(world, x - 1, y, z) != block
                     || world.getBlockMetadata(x - 1, y, z) != EnumMachineDelta.CAGE.ordinal()) {
-                vertices = new double[][] {
-                    {x + offset, (y + 1) + border, (z + 1) + border, minU, minV},
-                    {x + offset, (y + 0) - border, (z + 1) + border, minU, maxV},
-                    {x + offset, (y + 0) - border, (z + 0) - border, maxU, maxV},
-                    {x + offset, (y + 1) + border, (z + 0) - border, maxU, minV},
-                };
+                vertices = new double[][] { { x + offset, (y + 1) + border, (z + 1) + border, minU, minV },
+                        { x + offset, (y + 0) - border, (z + 1) + border, minU, maxV },
+                        { x + offset, (y + 0) - border, (z + 0) - border, maxU, maxV },
+                        { x + offset, (y + 1) + border, (z + 0) - border, maxU, minV }, };
                 renderFace(tessellator, vertices);
             }
 
             if (WorldPlugin.getBlock(world, x + 1, y, z) != block
                     || world.getBlockMetadata(x + 1, y, z) != EnumMachineDelta.CAGE.ordinal()) {
-                vertices = new double[][] {
-                    {(x + 1) - offset, (y + 0) - border, (z + 1) + border, maxU, maxV},
-                    {(x + 1) - offset, (y + 1) + border, (z + 1) + border, maxU, minV},
-                    {(x + 1) - offset, (y + 1) + border, (z + 0) - border, minU, minV},
-                    {(x + 1) - offset, (y + 0) - border, (z + 0) - border, minU, maxV},
-                };
+                vertices = new double[][] { { (x + 1) - offset, (y + 0) - border, (z + 1) + border, maxU, maxV },
+                        { (x + 1) - offset, (y + 1) + border, (z + 1) + border, maxU, minV },
+                        { (x + 1) - offset, (y + 1) + border, (z + 0) - border, minU, minV },
+                        { (x + 1) - offset, (y + 0) - border, (z + 0) - border, minU, maxV }, };
                 renderFace(tessellator, vertices);
             }
 
             if (WorldPlugin.getBlock(world, x, y, z - 1) != block
                     || world.getBlockMetadata(x, y, z - 1) != EnumMachineDelta.CAGE.ordinal()) {
-                vertices = new double[][] {
-                    {(x + 1) + border, (y + 0) - border, z + offset, maxU, maxV},
-                    {(x + 1) + border, (y + 1) + border, z + offset, maxU, minV},
-                    {(x + 0) - border, (y + 1) + border, z + offset, minU, minV},
-                    {(x + 0) - border, (y + 0) - border, z + offset, minU, maxV},
-                };
+                vertices = new double[][] { { (x + 1) + border, (y + 0) - border, z + offset, maxU, maxV },
+                        { (x + 1) + border, (y + 1) + border, z + offset, maxU, minV },
+                        { (x + 0) - border, (y + 1) + border, z + offset, minU, minV },
+                        { (x + 0) - border, (y + 0) - border, z + offset, minU, maxV }, };
                 renderFace(tessellator, vertices);
             }
 
             if (WorldPlugin.getBlock(world, x, y, z + 1) != block
                     || world.getBlockMetadata(x, y, z + 1) != EnumMachineDelta.CAGE.ordinal()) {
-                vertices = new double[][] {
-                    {(x + 1) + border, (y + 1) + border, (z + 1) - offset, minU, minV},
-                    {(x + 1) + border, (y + 0) - border, (z + 1) - offset, minU, maxV},
-                    {(x + 0) - border, (y + 0) - border, (z + 1) - offset, maxU, maxV},
-                    {(x + 0) - border, (y + 1) + border, (z + 1) - offset, maxU, minV},
-                };
+                vertices = new double[][] { { (x + 1) + border, (y + 1) + border, (z + 1) - offset, minU, minV },
+                        { (x + 1) + border, (y + 0) - border, (z + 1) - offset, minU, maxV },
+                        { (x + 0) - border, (y + 0) - border, (z + 1) - offset, maxU, maxV },
+                        { (x + 0) - border, (y + 1) + border, (z + 1) - offset, maxU, minV }, };
                 renderFace(tessellator, vertices);
             }
 
@@ -318,12 +307,10 @@ public class RenderBlockMachineDelta extends BlockRenderer {
                 maxU = (double) icon.getMaxU();
                 maxV = (double) icon.getMaxV();
 
-                vertices = new double[][] {
-                    {(x + 1) + border, y + offset, (z + 1) + border, minU, minV},
-                    {(x + 0) - border, y + offset, (z + 1) + border, minU, maxV},
-                    {(x + 0) - border, y + offset, (z + 0) - border, maxU, maxV},
-                    {(x + 1) + border, y + offset, (z + 0) - border, maxU, minV},
-                };
+                vertices = new double[][] { { (x + 1) + border, y + offset, (z + 1) + border, minU, minV },
+                        { (x + 0) - border, y + offset, (z + 1) + border, minU, maxV },
+                        { (x + 0) - border, y + offset, (z + 0) - border, maxU, maxV },
+                        { (x + 1) + border, y + offset, (z + 0) - border, maxU, minV }, };
                 renderFace(tessellator, vertices);
             }
 
@@ -337,12 +324,10 @@ public class RenderBlockMachineDelta extends BlockRenderer {
                 maxU = (double) icon.getMaxU();
                 maxV = (double) icon.getMaxV();
 
-                vertices = new double[][] {
-                    {(x + 0) - border, (y + 1) - offset, (z + 1) + border, maxU, maxV},
-                    {(x + 1) + border, (y + 1) - offset, (z + 1) + border, maxU, minV},
-                    {(x + 1) + border, (y + 1) - offset, (z + 0) - border, minU, minV},
-                    {(x + 0) - border, (y + 1) - offset, (z + 0) - border, minU, maxV},
-                };
+                vertices = new double[][] { { (x + 0) - border, (y + 1) - offset, (z + 1) + border, maxU, maxV },
+                        { (x + 1) + border, (y + 1) - offset, (z + 1) + border, maxU, minV },
+                        { (x + 1) + border, (y + 1) - offset, (z + 0) - border, minU, minV },
+                        { (x + 0) - border, (y + 1) - offset, (z + 0) - border, minU, maxV }, };
                 renderFace(tessellator, vertices);
             }
         }
@@ -354,7 +339,11 @@ public class RenderBlockMachineDelta extends BlockRenderer {
             }
             for (int i = 0; i < 4; i++) {
                 tess.addVertexWithUV(
-                        vertices[3 - i][0], vertices[3 - i][1], vertices[3 - i][2], vertices[i][3], vertices[i][4]);
+                        vertices[3 - i][0],
+                        vertices[3 - i][1],
+                        vertices[3 - i][2],
+                        vertices[i][3],
+                        vertices[i][4]);
             }
         }
     }

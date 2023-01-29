@@ -1,15 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.inventory;
 
 import java.util.*;
+
 import javax.annotation.Nonnull;
+
 import mods.railcraft.api.core.items.IStackFilter;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
@@ -26,6 +25,7 @@ import mods.railcraft.common.util.misc.EnumColor;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.ITileFilter;
 import mods.railcraft.common.util.misc.MiscTools;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
@@ -45,6 +45,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.oredict.OreDictionary;
 
 public abstract class InvTools {
+
     private static final String TAG_SLOT = "Slot";
 
     public static ItemStack makeStack(Item item, int qty, int meta) {
@@ -61,8 +62,8 @@ public abstract class InvTools {
         return getAdjacentInventories(world, i, j, k, null);
     }
 
-    public static List<IInventory> getAdjacentInventories(
-            World world, int i, int j, int k, Class<? extends IInventory> type) {
+    public static List<IInventory> getAdjacentInventories(World world, int i, int j, int k,
+            Class<? extends IInventory> type) {
         List<IInventory> list = new ArrayList<IInventory>(5);
         for (int side = 0; side < 6; side++) {
             IInventory inv = getInventoryFromSide(world, i, j, k, ForgeDirection.getOrientation(side), type, null);
@@ -75,8 +76,8 @@ public abstract class InvTools {
         return getAdjacentInventoryMap(world, i, j, k, null);
     }
 
-    public static Map<Integer, IInventory> getAdjacentInventoryMap(
-            World world, int i, int j, int k, Class<? extends IInventory> type) {
+    public static Map<Integer, IInventory> getAdjacentInventoryMap(World world, int i, int j, int k,
+            Class<? extends IInventory> type) {
         Map<Integer, IInventory> map = new TreeMap<Integer, IInventory>();
         for (int side = 0; side < 6; side++) {
             IInventory inv = getInventoryFromSide(world, i, j, k, ForgeDirection.getOrientation(side), type, null);
@@ -85,15 +86,10 @@ public abstract class InvTools {
         return map;
     }
 
-    public static IInventory getInventoryFromSide(
-            World world,
-            int x,
-            int y,
-            int z,
-            ForgeDirection side,
-            final Class<? extends IInventory> type,
-            final Class<? extends IInventory> exclude) {
+    public static IInventory getInventoryFromSide(World world, int x, int y, int z, ForgeDirection side,
+            final Class<? extends IInventory> type, final Class<? extends IInventory> exclude) {
         return getInventoryFromSide(world, x, y, z, side, new ITileFilter() {
+
             @Override
             public boolean matches(TileEntity tile) {
                 if (type != null && !type.isAssignableFrom(tile.getClass())) return false;
@@ -102,8 +98,8 @@ public abstract class InvTools {
         });
     }
 
-    public static IInventory getInventoryFromSide(
-            World world, int x, int y, int z, ForgeDirection side, ITileFilter filter) {
+    public static IInventory getInventoryFromSide(World world, int x, int y, int z, ForgeDirection side,
+            ITileFilter filter) {
         TileEntity tile = WorldPlugin.getTileEntityOnSide(world, x, y, z, side);
         if (tile == null || !(tile instanceof IInventory) || !filter.matches(tile)) return null;
         return getInventoryFromTile(tile, side.getOpposite());
@@ -112,8 +108,8 @@ public abstract class InvTools {
     public static IInventory getInventoryFromTile(TileEntity tile, ForgeDirection side) {
         if (tile == null || !(tile instanceof IInventory)) return null;
 
-        //        if (!PipeManager.canExtractItems(null, tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord))
-        //            return null;
+        // if (!PipeManager.canExtractItems(null, tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord))
+        // return null;
 
         if (tile instanceof TileEntityChest) {
             TileEntityChest chest = (TileEntityChest) tile;
@@ -125,8 +121,8 @@ public abstract class InvTools {
     public static IInventory getInventory(IInventory inv, ForgeDirection side) {
         if (inv == null) return null;
 
-        //        if (inv instanceof ISpecialInventory)
-        //            inv = new SpecialInventoryMapper((ISpecialInventory) inv, side);
+        // if (inv instanceof ISpecialInventory)
+        // inv = new SpecialInventoryMapper((ISpecialInventory) inv, side);
         else if (inv instanceof ISidedInventory) inv = new SidedInventoryMapper((ISidedInventory) inv, side);
         return inv;
     }
@@ -268,8 +264,12 @@ public abstract class InvTools {
                 ItemStack newStack = stack.copy();
                 newStack.stackSize = numToDrop;
                 stack.stackSize -= numToDrop;
-                EntityItem entityItem =
-                        new EntityItem(world, (float) x + xOffset, (float) y + yOffset, (float) z + zOffset, newStack);
+                EntityItem entityItem = new EntityItem(
+                        world,
+                        (float) x + xOffset,
+                        (float) y + yOffset,
+                        (float) z + zOffset,
+                        newStack);
                 float variance = 0.05F;
                 entityItem.motionX = (float) MiscTools.getRand().nextGaussian() * variance;
                 entityItem.motionY = (float) MiscTools.getRand().nextGaussian() * variance + 0.2F;
@@ -401,12 +401,11 @@ public abstract class InvTools {
     }
 
     /**
-     * Returns a map backed by an <code>ItemStackMap</code> that lists the total
-     * number of each type of item in the inventory.
+     * Returns a map backed by an <code>ItemStackMap</code> that lists the total number of each type of item in the
+     * inventory.
      *
      * @param inv The <code>IInventory</code> to generate the manifest for
-     * @return A <code>Map</code> that lists how many of each item is in * * *
-     * the <code>IInventory</code>
+     * @return A <code>Map</code> that lists how many of each item is in * * * the <code>IInventory</code>
      * @see ItemStackMap
      */
     public static Map<ItemStack, Integer> getManifest(IInventory inv) {
@@ -518,8 +517,8 @@ public abstract class InvTools {
     /**
      * Attempts to move one item to a collection of inventories.
      */
-    public static ItemStack moveOneItemExcept(
-            IInventory source, Collection<IInventory> destinations, ItemStack... filters) {
+    public static ItemStack moveOneItemExcept(IInventory source, Collection<IInventory> destinations,
+            ItemStack... filters) {
         for (IInventory dest : destinations) {
             ItemStack moved = InvTools.moveOneItemExcept(source, dest, filters);
             if (moved != null) return moved;
@@ -542,8 +541,7 @@ public abstract class InvTools {
      * <p/>
      * Two null stacks will return true, unlike the other functions.
      * <p/>
-     * This function is primarily intended to be used to track changes to an
-     * ItemStack.
+     * This function is primarily intended to be used to track changes to an ItemStack.
      *
      * @param a An ItemStack
      * @param b An ItemStack
@@ -565,8 +563,7 @@ public abstract class InvTools {
      * <p/>
      * Two null stacks will return true, unlike the other functions.
      * <p/>
-     * This function is primarily intended to be used to track changes to an
-     * ItemStack.
+     * This function is primarily intended to be used to track changes to an ItemStack.
      *
      * @param a An ItemStack
      * @param b An ItemStack
@@ -581,8 +578,7 @@ public abstract class InvTools {
     }
 
     /**
-     * A more robust item comparison function. Supports items with damage = -1
-     * matching any sub-type.
+     * A more robust item comparison function. Supports items with damage = -1 matching any sub-type.
      *
      * @param a An ItemStack
      * @param b An ItemStack
@@ -593,8 +589,7 @@ public abstract class InvTools {
     }
 
     /**
-     * A more robust item comparison function. Supports items with damage = -1
-     * matching any sub-type.
+     * A more robust item comparison function. Supports items with damage = -1 matching any sub-type.
      *
      * @param a An ItemStack
      * @param b An ItemStack
@@ -604,8 +599,8 @@ public abstract class InvTools {
         return isItemEqual(a, b, true, false);
     }
 
-    public static boolean isItemEqual(
-            final ItemStack a, final ItemStack b, final boolean matchDamage, final boolean matchNBT) {
+    public static boolean isItemEqual(final ItemStack a, final ItemStack b, final boolean matchDamage,
+            final boolean matchNBT) {
         if (a == null || b == null) return false;
         if (a.getItem() != b.getItem()) return false;
         if (matchNBT && !ItemStack.areItemStackTagsEqual(a, b)) return false;
@@ -653,13 +648,13 @@ public abstract class InvTools {
     }
 
     /**
-     * Places an ItemStack in a destination IInventory. Will attempt to move as
-     * much of the stack as possible, returning any remainder.
+     * Places an ItemStack in a destination IInventory. Will attempt to move as much of the stack as possible, returning
+     * any remainder.
      *
      * @param stack The ItemStack to put in the inventory.
      * @param dest  The destination IInventory.
-     * @return Null if itemStack was completely moved, a new itemStack with
-     * remaining stackSize if part or none of the stack was moved.
+     * @return Null if itemStack was completely moved, a new itemStack with remaining stackSize if part or none of the
+     *         stack was moved.
      */
     public static ItemStack moveItemStack(ItemStack stack, IInventory dest) {
         InventoryManipulator im = InventoryManipulator.get(dest);
@@ -667,13 +662,13 @@ public abstract class InvTools {
     }
 
     /**
-     * Places an ItemStack in a collection destination IInventories. Will attempt to move as
-     * much of the stack as possible, returning any remainder.
+     * Places an ItemStack in a collection destination IInventories. Will attempt to move as much of the stack as
+     * possible, returning any remainder.
      *
      * @param stack The ItemStack to put in the inventory.
      * @param dest  The destination IInventories.
-     * @return Null if itemStack was completely moved, a new itemStack with
-     * remaining stackSize if part or none of the stack was moved.
+     * @return Null if itemStack was completely moved, a new itemStack with remaining stackSize if part or none of the
+     *         stack was moved.
      */
     public static ItemStack moveItemStack(ItemStack stack, Collection<IInventory> dest) {
         for (IInventory inv : dest) {
@@ -697,12 +692,11 @@ public abstract class InvTools {
     }
 
     /**
-     * Removes a up to numItems worth of items from the inventory, not caring
-     * about what the items are.
+     * Removes a up to numItems worth of items from the inventory, not caring about what the items are.
      */
     public static ItemStack[] removeItems(IInventory inv, int numItems) {
-        //        if (inv instanceof ISpecialInventory)
-        //            return ((ISpecialInventory) inv).extractItem(true, ForgeDirection.UNKNOWN, numItems);
+        // if (inv instanceof ISpecialInventory)
+        // return ((ISpecialInventory) inv).extractItem(true, ForgeDirection.UNKNOWN, numItems);
         StandaloneInventory output = new StandaloneInventory(27);
         for (int i = 0; i < inv.getSizeInventory(); i++) {
             if (numItems <= 0) break;
@@ -736,8 +730,7 @@ public abstract class InvTools {
     }
 
     /**
-     * Removes and returns a single item from the inventory that matches the
-     * filter.
+     * Removes and returns a single item from the inventory that matches the filter.
      *
      * @param inv    The inventory
      * @param filter ItemStack to match against
@@ -748,8 +741,7 @@ public abstract class InvTools {
     }
 
     /**
-     * Removes and returns a single item from the inventory that matches the
-     * filter.
+     * Removes and returns a single item from the inventory that matches the filter.
      *
      * @param inv    The inventory
      * @param filter EnumItemType to match against
@@ -761,8 +753,7 @@ public abstract class InvTools {
     }
 
     /**
-     * Removes and returns a single item from the inventory that matches the
-     * filter.
+     * Removes and returns a single item from the inventory that matches the filter.
      *
      * @param invs   The inventories
      * @param filter EnumItemType to match against
@@ -777,24 +768,20 @@ public abstract class InvTools {
     }
 
     /**
-     * Removes a specified number of items matching the filter, but only if the
-     * operation can be completed. If the function returns false, the inventory
-     * will not be modified.
+     * Removes a specified number of items matching the filter, but only if the operation can be completed. If the
+     * function returns false, the inventory will not be modified.
      *
-     * @return true if there are enough items that can be removed, false
-     * otherwise.
+     * @return true if there are enough items that can be removed, false otherwise.
      */
     public static boolean removeItemsAbsolute(IInventory inv, int amount, ItemStack... filter) {
         return removeItemsAbsolute(inv, amount, new ArrayStackFilter(filter));
     }
 
     /**
-     * Removes a specified number of items matching the filter, but only if the
-     * operation can be completed. If the function returns false, the inventory
-     * will not be modified.
+     * Removes a specified number of items matching the filter, but only if the operation can be completed. If the
+     * function returns false, the inventory will not be modified.
      *
-     * @return true if there are enough items that can be removed, false
-     * otherwise.
+     * @return true if there are enough items that can be removed, false otherwise.
      */
     public static boolean removeItemsAbsolute(IInventory inv, int amount, IStackFilter filter) {
         InventoryManipulator im = InventoryManipulator.get(inv);
@@ -806,8 +793,7 @@ public abstract class InvTools {
     }
 
     /**
-     * Returns a single item from the inventory that matches the
-     * filter, but does not remove it.
+     * Returns a single item from the inventory that matches the filter, but does not remove it.
      *
      * @param inv    The inventory
      * @param filter IStackFilter to match against
@@ -819,9 +805,8 @@ public abstract class InvTools {
     }
 
     /**
-     * Returns all items from the inventory that match the
-     * filter, but does not remove them.
-     * The resulting set will be populated with a single instance of each item type.
+     * Returns all items from the inventory that match the filter, but does not remove them. The resulting set will be
+     * populated with a single instance of each item type.
      *
      * @param inv    The inventory
      * @param filter EnumItemType to match against

@@ -3,6 +3,7 @@ package mods.railcraft.common.gui.slots;
 import mods.railcraft.api.fuel.FuelManager;
 import mods.railcraft.common.fluids.FluidItemHelper;
 import mods.railcraft.common.fluids.Fluids;
+
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;

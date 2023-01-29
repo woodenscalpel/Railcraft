@@ -1,16 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.plugins.forge;
 
 import static net.minecraftforge.common.util.ForgeDirection.*;
 
 import mods.railcraft.common.util.misc.MiscTools;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -22,7 +20,7 @@ import net.minecraftforge.common.util.ForgeDirection;
  */
 public class PowerPlugin {
 
-    private static final ForgeDirection[] SIDES = {NORTH, EAST, SOUTH, WEST};
+    private static final ForgeDirection[] SIDES = { NORTH, EAST, SOUTH, WEST };
     public static final int NO_POWER = 0;
     public static final int FULL_POWER = 15;
 

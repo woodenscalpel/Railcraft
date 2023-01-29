@@ -1,16 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.gamma;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+
 import mods.railcraft.common.carts.CartUtils;
 import mods.railcraft.common.gui.buttons.IButtonTextureSet;
 import mods.railcraft.common.gui.buttons.IMultiButtonState;
@@ -21,6 +19,7 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.inventory.PhantomInventory;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
+
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -33,12 +32,15 @@ import net.minecraft.nbt.NBTTagCompound;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public abstract class TileLoaderItemBase extends TileLoaderBase implements IGuiReturnHandler, ISidedInventory {
+
     protected static final int[] SLOTS = InvTools.buildSlotArray(0, 9);
     private final PhantomInventory invFilters = new PhantomInventory(9, this);
-    private final MultiButtonController<EnumTransferMode> transferModeController =
-            new MultiButtonController(EnumTransferMode.ALL.ordinal(), EnumTransferMode.values());
-    private final MultiButtonController<EnumRedstoneMode> redstoneModeController =
-            new MultiButtonController(0, getValidRedstoneModes());
+    private final MultiButtonController<EnumTransferMode> transferModeController = new MultiButtonController(
+            EnumTransferMode.ALL.ordinal(),
+            EnumTransferMode.values());
+    private final MultiButtonController<EnumRedstoneMode> redstoneModeController = new MultiButtonController(
+            0,
+            getValidRedstoneModes());
     protected boolean movedItemCart = false;
 
     public MultiButtonController<EnumTransferMode> getTransferModeController() {
@@ -86,9 +88,9 @@ public abstract class TileLoaderItemBase extends TileLoaderBase implements IGuiR
         if (cartInv.getSizeInventory() <= 0) return false;
         ItemStack minecartSlot1 = getCartFilters().getStackInSlot(0);
         ItemStack minecartSlot2 = getCartFilters().getStackInSlot(1);
-        if (minecartSlot1 != null || minecartSlot2 != null)
-            if (!CartUtils.doesCartMatchFilter(minecartSlot1, cart)
-                    && !CartUtils.doesCartMatchFilter(minecartSlot2, cart)) return false;
+        if (minecartSlot1 != null || minecartSlot2 != null) if (!CartUtils.doesCartMatchFilter(minecartSlot1, cart)
+                && !CartUtils.doesCartMatchFilter(minecartSlot2, cart))
+            return false;
         return true;
     }
 
@@ -158,10 +160,12 @@ public abstract class TileLoaderItemBase extends TileLoaderBase implements IGuiR
     }
 
     public enum EnumTransferMode implements IMultiButtonState {
+
         TRANSFER("railcraft.gui.item.loader.transfer"),
         STOCK("railcraft.gui.item.loader.stock"),
         EXCESS("railcraft.gui.item.loader.excess"),
         ALL("railcraft.gui.item.loader.all");
+
         private final String label;
         private final ToolTip tip;
 
@@ -187,10 +191,12 @@ public abstract class TileLoaderItemBase extends TileLoaderBase implements IGuiR
     }
 
     public enum EnumRedstoneMode implements IMultiButtonState {
+
         IMMEDIATE("railcraft.gui.item.loader.immediate"),
         COMPLETE("railcraft.gui.item.loader.complete"),
         MANUAL("railcraft.gui.item.loader.manual"),
         PARTIAL("railcraft.gui.item.loader.partial");
+
         private final String label;
         private final ToolTip tip;
 

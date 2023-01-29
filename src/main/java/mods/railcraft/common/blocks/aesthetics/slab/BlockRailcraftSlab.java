@@ -1,18 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.aesthetics.slab;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
 import mods.railcraft.client.particles.ParticleHelper;
 import mods.railcraft.client.sounds.RailcraftSound;
 import mods.railcraft.common.blocks.aesthetics.EnumBlockMaterial;
@@ -22,6 +18,7 @@ import mods.railcraft.common.plugins.forge.CreativePlugin;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.sounds.IBlockSoundProvider;
+
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EffectRenderer;
@@ -40,6 +37,9 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockRailcraftSlab extends BlockContainer implements IBlockSoundProvider {
 
@@ -161,8 +161,8 @@ public class BlockRailcraftSlab extends BlockContainer implements IBlockSoundPro
     }
 
     @Override
-    public float getExplosionResistance(
-            Entity entity, World world, int x, int y, int z, double explosionX, double explosionY, double explosionZ) {
+    public float getExplosionResistance(Entity entity, World world, int x, int y, int z, double explosionX,
+            double explosionY, double explosionZ) {
         TileEntity tile = world.getTileEntity(x, y, z);
         if (tile instanceof TileSlab) {
             EnumBlockMaterial top = ((TileSlab) tile).getTopSlab();
@@ -233,16 +233,14 @@ public class BlockRailcraftSlab extends BlockContainer implements IBlockSoundPro
     public void registerBlockIcons(IIconRegister par1IconRegister) {}
 
     /**
-     * Updates the blocks bounds based on its current state. Args: world, x, y,
-     * z
+     * Updates the blocks bounds based on its current state. Args: world, x, y, z
      */
     @Override
     public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
         TileSlab slab = getSlabTile(world, x, y, z);
-        if (slab != null)
-            if (slab.isDoubleSlab()) setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-            else if (slab.isBottomSlab()) setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
-            else if (slab.isTopSlab()) setBlockBounds(0.0F, 0.5F, 0.0F, 1.0F, 1.0F, 1.0F);
+        if (slab != null) if (slab.isDoubleSlab()) setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+        else if (slab.isBottomSlab()) setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
+        else if (slab.isTopSlab()) setBlockBounds(0.0F, 0.5F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
 
     /**
@@ -254,21 +252,19 @@ public class BlockRailcraftSlab extends BlockContainer implements IBlockSoundPro
     }
 
     /**
-     * Adds all intersecting collision boxes to a list. (Be sure to only add
-     * boxes to the list if they intersect the mask.) Parameters: World, X, Y,
-     * Z, mask, list, colliding entity
+     * Adds all intersecting collision boxes to a list. (Be sure to only add boxes to the list if they intersect the
+     * mask.) Parameters: World, X, Y, Z, mask, list, colliding entity
      */
     @Override
-    public void addCollisionBoxesToList(
-            World world, int x, int y, int z, AxisAlignedBB aabb, List list, Entity entity) {
+    public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB aabb, List list,
+            Entity entity) {
         this.setBlockBoundsBasedOnState(world, x, y, z);
         super.addCollisionBoxesToList(world, x, y, z, aabb, list, entity);
     }
 
     /**
-     * Is this block (a) opaque and (b) a full 1m cube? This determines whether
-     * or not to render the shared face of two adjacent blocks and also whether
-     * the player can attach torches, redstone wire, etc to this block.
+     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the shared face of two
+     * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
      *
      * @return
      */
@@ -278,8 +274,7 @@ public class BlockRailcraftSlab extends BlockContainer implements IBlockSoundPro
     }
 
     /**
-     * If this block doesn't render as an ordinary block it will return False
-     * (examples: signs, buttons, stairs, etc)
+     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
      *
      * @return
      */
@@ -290,9 +285,8 @@ public class BlockRailcraftSlab extends BlockContainer implements IBlockSoundPro
 
     @SideOnly(Side.CLIENT)
     /**
-     * Returns true if the given side of this block type should be rendered, if
-     * the adjacent block is at the given coordinates. Args: blockAccess, x, y,
-     * z, side
+     * Returns true if the given side of this block type should be rendered, if the adjacent block is at the given
+     * coordinates. Args: blockAccess, x, y, z, side
      */
     @Override
     public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
@@ -330,8 +324,7 @@ public class BlockRailcraftSlab extends BlockContainer implements IBlockSoundPro
                 if (otherSlab != null) {
                     if (slab.isDoubleSlab()) return false;
                     return otherSlab.isTopSlab()
-                            || (otherSlab.isBottomSlab()
-                                    && otherSlab.getBottomSlab().isTransparent());
+                            || (otherSlab.isBottomSlab() && otherSlab.getBottomSlab().isTransparent());
                 }
             }
         }

@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.signals;
 
@@ -17,14 +14,17 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
+
 import mods.railcraft.api.signals.*;
 import mods.railcraft.common.plugins.buildcraft.triggers.IAspectProvider;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileBoxInterlock extends TileBoxBase implements IControllerTile, IReceiverTile, IAspectProvider {
-    private static final ForgeDirection[] SIDES = {NORTH, WEST, SOUTH, EAST};
+
+    private static final ForgeDirection[] SIDES = { NORTH, WEST, SOUTH, EAST };
     private final SimpleSignalController controller = new SimpleSignalController(getLocalizationTag(), this);
     private final SimpleSignalReceiver receiver = new SimpleSignalReceiver(getLocalizationTag(), this);
     private Interlock interlock = new Interlock(this);
@@ -86,9 +86,8 @@ public class TileBoxInterlock extends TileBoxBase implements IControllerTile, IR
             TileEntity t = tileCache.getTileOnSide(forgeSide);
             if (t instanceof TileBoxBase) {
                 TileBoxBase tile = (TileBoxBase) t;
-                if (tile.canTransferAspect())
-                    newAspect =
-                            SignalAspect.mostRestrictive(newAspect, tile.getBoxSignalAspect(forgeSide.getOpposite()));
+                if (tile.canTransferAspect()) newAspect = SignalAspect
+                        .mostRestrictive(newAspect, tile.getBoxSignalAspect(forgeSide.getOpposite()));
             }
         }
         return newAspect;
@@ -183,6 +182,7 @@ public class TileBoxInterlock extends TileBoxBase implements IControllerTile, IR
     }
 
     private static class TileComparator implements Comparator<TileBoxInterlock> {
+
         public static TileComparator INSTANCE = new TileComparator();
 
         @Override
@@ -195,6 +195,7 @@ public class TileBoxInterlock extends TileBoxBase implements IControllerTile, IR
     }
 
     private class Interlock {
+
         private static final int DELAY = 20 * 10;
         private TreeSet<TileBoxInterlock> interlocks = new TreeSet<TileBoxInterlock>(TileComparator.INSTANCE);
         private TreeSet<TileBoxInterlock> lockRequests = new TreeSet<TileBoxInterlock>(TileComparator.INSTANCE);

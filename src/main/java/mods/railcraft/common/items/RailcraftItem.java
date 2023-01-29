@@ -1,15 +1,13 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.items;
 
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -19,6 +17,7 @@ import net.minecraftforge.oredict.OreDictionary;
  * @author CovertJaguar <http://www.railcraft.info/>
  */
 public enum RailcraftItem {
+
     circuit(ItemCircuit.class, "part.circuit"),
     dust(ItemDust.class, "dust"),
     gear(ItemGear.class, "part.gear"),
@@ -31,6 +30,7 @@ public enum RailcraftItem {
     signalLabel(ItemSignalLabel.class, "tool.signal.label"),
     signalLamp(ItemSignalLamp.class, "part.signal.lamp", Blocks.redstone_lamp),
     tie(ItemTie.class, "part.tie");
+
     public static final RailcraftItem[] VALUES = values();
     private final Class<? extends ItemRailcraft> itemClass;
     private final String tag;

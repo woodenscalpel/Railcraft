@@ -1,29 +1,30 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.items;
 
-import com.mojang.authlib.GameProfile;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
+
 import mods.railcraft.api.core.items.IStackFilter;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.plugins.forge.PlayerPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.util.inventory.InvTools;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.EnumChatFormatting;
+
+import com.mojang.authlib.GameProfile;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  *
@@ -32,6 +33,7 @@ import net.minecraft.util.EnumChatFormatting;
 public class ItemTicket extends ItemRailcraft {
 
     public static final IStackFilter FILTER = new IStackFilter() {
+
         @Override
         public boolean matches(ItemStack stack) {
             return stack != null && stack.getItem() instanceof ItemTicket;
@@ -119,19 +121,18 @@ public class ItemTicket extends ItemRailcraft {
         itemIcon = iconRegister.registerIcon("railcraft:ticket");
     }
 
-    //    @Override
-    //    public String getItemDisplayName(ItemStack stack) {
-    //        String dest = getDestination(stack);
+    // @Override
+    // public String getItemDisplayName(ItemStack stack) {
+    // String dest = getDestination(stack);
     //
-    //        if (!dest.equals("")) {
-    //            return super.getItemDisplayName(stack) + " - " + dest.substring(dest.lastIndexOf("/") + 1);
-    //        }
+    // if (!dest.equals("")) {
+    // return super.getItemDisplayName(stack) + " - " + dest.substring(dest.lastIndexOf("/") + 1);
+    // }
     //
-    //        return super.getItemDisplayName(stack);
-    //    }
+    // return super.getItemDisplayName(stack);
+    // }
     /**
-     * allows items to add custom lines of information to the mouseover
-     * description
+     * allows items to add custom lines of information to the mouseover description
      */
     @SideOnly(Side.CLIENT)
     @Override
@@ -139,15 +140,17 @@ public class ItemTicket extends ItemRailcraft {
         if (stack.hasTagCompound()) {
             GameProfile owner = getOwner(stack);
             if (owner.getId() != null) {
-                list.add(EnumChatFormatting.WHITE
-                        + LocalizationPlugin.translate("railcraft.gui.routing.ticket.tip.issuer"));
+                list.add(
+                        EnumChatFormatting.WHITE
+                                + LocalizationPlugin.translate("railcraft.gui.routing.ticket.tip.issuer"));
                 list.add(EnumChatFormatting.GRAY + PlayerPlugin.getUsername(player.worldObj, owner));
             }
 
             String dest = getDestination(stack);
             if (!dest.equals("")) {
-                list.add(EnumChatFormatting.WHITE
-                        + LocalizationPlugin.translate("railcraft.gui.routing.ticket.tip.dest"));
+                list.add(
+                        EnumChatFormatting.WHITE
+                                + LocalizationPlugin.translate("railcraft.gui.routing.ticket.tip.dest"));
                 list.add(EnumChatFormatting.GRAY + dest);
             }
         } else list.add(LocalizationPlugin.translate("railcraft.gui.routing.ticket.tip.blank"));

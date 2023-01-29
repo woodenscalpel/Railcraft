@@ -1,16 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.tracks;
 
 import mods.railcraft.api.tracks.ITrackCustomPlaced;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -85,12 +83,12 @@ public class TrackSuspended extends TrackUnsupported implements ITrackCustomPlac
 
     @Override
     public boolean canPlaceRailAt(World world, int i, int j, int k) {
-        //        if(BlockRail.isRailBlockAt(world, i, j - 1, k)) {
-        //            return false;
-        //        }
-        //        if(BlockRail.isRailBlockAt(world, i, j + 1, k)) {
-        //            return false;
-        //        }
+        // if(BlockRail.isRailBlockAt(world, i, j - 1, k)) {
+        // return false;
+        // }
+        // if(BlockRail.isRailBlockAt(world, i, j + 1, k)) {
+        // return false;
+        // }
         if (isSupported(world, i, j, k, 0) || isSupported(world, i, j, k, 1)) return true;
         return world.isSideSolid(i, j - 1, k, ForgeDirection.UP);
     }

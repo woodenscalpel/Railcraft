@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.tracks;
 
@@ -13,6 +10,7 @@ import mods.railcraft.client.util.textures.TextureAtlasSheet;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -29,9 +27,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 /**
- * Implementation of the iron ladder blocks. Iron ladders act much like normal
- * (wooden) ladders. Climbing down iron ladders is a bit faster than climbing
- * down normal ladders. Additionally, minecarts can run down vertically on iron
+ * Implementation of the iron ladder blocks. Iron ladders act much like normal (wooden) ladders. Climbing down iron
+ * ladders is a bit faster than climbing down normal ladders. Additionally, minecarts can run down vertically on iron
  * ladders, as if they were vertical rail tracks.
  *
  * @author DizzyDragon
@@ -47,17 +44,14 @@ public class BlockTrackElevator extends Block {
      */
     public static double CLIMB_DOWN_VELOCITY = -0.3;
     /**
-     * The inverse of the downward motion an entity gets within a single update
-     * of the game engine due to gravity.
+     * The inverse of the downward motion an entity gets within a single update of the game engine due to gravity.
      */
     public static double FALL_DOWN_CORRECTION = 0.039999999105930328D;
     /**
      * Metadata values for the direction the ladder is facing.
      */
-    public static final int FACING_EAST_METADATA_VALUE = 2,
-            FACING_WEST_METADATA_VALUE = 3,
-            FACING_NORTH_METADATA_VALUE = 4,
-            FACING_SOUTH_METADATA_VALUE = 5;
+    public static final int FACING_EAST_METADATA_VALUE = 2, FACING_WEST_METADATA_VALUE = 3,
+            FACING_NORTH_METADATA_VALUE = 4, FACING_SOUTH_METADATA_VALUE = 5;
     /**
      * Velocity at which a minecart travels up on the rail when activated
      */
@@ -67,9 +61,8 @@ public class BlockTrackElevator extends Block {
      */
     public static final double RIDE_DOWN_VELOCITY = -0.4;
     /**
-     * The bits of the metadata that are used for storing the direction of the
-     * ladder. Use the bitwise-and operator (&) on the metadata to discard all
-     * other data from a metadata value.
+     * The bits of the metadata that are used for storing the direction of the ladder. Use the bitwise-and operator (&)
+     * on the metadata to discard all other data from a metadata value.
      */
     public static final int BLOCK_FACING_DATA_METADATA_MASK = 0x0007;
 
@@ -78,7 +71,7 @@ public class BlockTrackElevator extends Block {
 
     public BlockTrackElevator(int renderId) {
         super(new MaterialElevator());
-        //		  setBlockName(name);
+        // setBlockName(name);
         setHardness(1.05F);
         setStepSound(soundTypeMetal);
         this.renderType = renderId;
@@ -203,7 +196,7 @@ public class BlockTrackElevator extends Block {
 
     @Override
     public void dropBlockAsItemWithChance(World world, int i, int j, int k, int l, float f, int i1) {
-        //        System.out.println("dropping item");
+        // System.out.println("dropping item");
         super.dropBlockAsItemWithChance(world, i, j, k, l, f, i1);
     }
 
@@ -222,7 +215,7 @@ public class BlockTrackElevator extends Block {
         } else {
             boolean powered = (meta & 8) != 0;
             if (powered ^ isPowered(world, i, j, k)) {
-                //					 System.out.println("Power change");
+                // System.out.println("Power change");
                 world.setBlockMetadataWithNotify(i, j, k, meta ^ 8, 3);
                 world.markBlockForUpdate(i, j, k);
             }
@@ -245,47 +238,45 @@ public class BlockTrackElevator extends Block {
     }
 
     ////////////////////////////////////////////////////////////////////////////
-    // PROTECTED                                                                //
+    // PROTECTED //
     ////////////////////////////////////////////////////////////////////////////
     protected boolean isPowered(World world, int x, int y, int z) {
         int meta = getLadderFacingMetadata(world, x, y, z);
         if (world.getBlock(x, y - 1, z) == this && meta == getLadderFacingMetadata(world, x, y - 1, z))
             if (PowerPlugin.isBlockBeingPowered(world, x, y - 1, z)) return true;
         if (PowerPlugin.isBlockBeingPowered(world, x, y, z)) return true;
-        return world.getBlock(x, y + 1, z) == this
-                && meta == getLadderFacingMetadata(world, x, y + 1, z)
+        return world.getBlock(x, y + 1, z) == this && meta == getLadderFacingMetadata(world, x, y + 1, z)
                 && isPowered(world, x, y + 1, z);
     }
 
     /**
-     * Updates the state of a single minecart that is whithin the block's area
-     * of effect according to the state of the block.
+     * Updates the state of a single minecart that is whithin the block's area of effect according to the state of the
+     * block.
      *
      * @param world the world in which the block resides
-     * @param i the x-coordinate of the block
-     * @param j the y-coordinate of the block
-     * @param k the z-coordinate of the block
-     * @param cart the minecart for which the state will be updated. It is
-     * assumed that the minecart is whithin the area of effect of the block
+     * @param i     the x-coordinate of the block
+     * @param j     the y-coordinate of the block
+     * @param k     the z-coordinate of the block
+     * @param cart  the minecart for which the state will be updated. It is assumed that the minecart is whithin the
+     *              area of effect of the block
      */
     protected void minecartInteraction(World world, EntityMinecart cart, int i, int j, int k) {
         cart.getEntityData().setByte("elevator", (byte) 20);
 
         boolean powered = getPoweredBit(world, i, j, k);
-        if (powered)
-            if (world.getBlock(i, j + 1, k) == this || isOffloadRail(world, i, j + 1, k)) {
-                boolean empty = true;
-                for (EntityMinecart c : CartTools.getMinecartsAt(world, i, j + 1, k, 0.2f)) {
-                    if (c != cart) empty = false;
-                }
-                if ((getPoweredBit(world, i, j + 1, k) || isOffloadRail(world, i, j + 1, k)) && empty)
-                    cart.motionY = RIDE_UP_VELOCITY + FALL_DOWN_CORRECTION;
-                else if (pushMinecartOntoRail(world, i, j, k, cart)) return;
-                else {
-                    cart.setPosition(cart.posX, j + 0.5f, cart.posZ);
-                    cart.motionY = FALL_DOWN_CORRECTION;
-                }
-            } else cart.setPosition(cart.posX, j + 0.5f, cart.posZ);
+        if (powered) if (world.getBlock(i, j + 1, k) == this || isOffloadRail(world, i, j + 1, k)) {
+            boolean empty = true;
+            for (EntityMinecart c : CartTools.getMinecartsAt(world, i, j + 1, k, 0.2f)) {
+                if (c != cart) empty = false;
+            }
+            if ((getPoweredBit(world, i, j + 1, k) || isOffloadRail(world, i, j + 1, k)) && empty)
+                cart.motionY = RIDE_UP_VELOCITY + FALL_DOWN_CORRECTION;
+            else if (pushMinecartOntoRail(world, i, j, k, cart)) return;
+            else {
+                cart.setPosition(cart.posX, j + 0.5f, cart.posZ);
+                cart.motionY = FALL_DOWN_CORRECTION;
+            }
+        } else cart.setPosition(cart.posX, j + 0.5f, cart.posZ);
         else if (world.getBlock(i, j - 1, k) != this) {
             pushMinecartOntoRail(world, i, j, k, cart);
             return;
@@ -308,20 +299,18 @@ public class BlockTrackElevator extends Block {
             keepMinecartConnected(world, i, j, k, cart);
         } else cart.setCanUseRail(true);
 
-        //        RailcraftUtils.resetFallDistance(cart);
+        // RailcraftUtils.resetFallDistance(cart);
         if (powered) pushMinecartOnSupportingBlockIfPossible(world, i, j, k, cart);
     }
 
     /**
-     * Adjusts the motion and rotationyaw of a minecart so that it stays in
-     * position and alligned to the iron ladder.
+     * Adjusts the motion and rotationyaw of a minecart so that it stays in position and alligned to the iron ladder.
      *
-     * @param world the world in which the block resides
-     * @param x the x-coordinate of the block
-     * @param y the y-coordinate of the block
-     * @param z the z-coordinate of the block
-     * @param minecart the minecart for which motion and rotation will be
-     * adjusted
+     * @param world    the world in which the block resides
+     * @param x        the x-coordinate of the block
+     * @param y        the y-coordinate of the block
+     * @param z        the z-coordinate of the block
+     * @param minecart the minecart for which motion and rotation will be adjusted
      */
     protected void keepMinecartConnected(World world, int x, int y, int z, EntityMinecart minecart) {
         minecart.motionX = (x + 0.5) - minecart.posX;
@@ -333,12 +322,11 @@ public class BlockTrackElevator extends Block {
     /**
      * Alligns the minecart to the ladder to the ladder
      *
-     * @param world the world in which the block resides
-     * @param x the x-coordinate of the block
-     * @param y the y-coordinate of the block
-     * @param z the z-coordinate of the block
-     * @param minecart the minecart for which motion and rotation will be
-     * adjusted
+     * @param world    the world in which the block resides
+     * @param x        the x-coordinate of the block
+     * @param y        the y-coordinate of the block
+     * @param z        the z-coordinate of the block
+     * @param minecart the minecart for which motion and rotation will be adjusted
      */
     protected void allignMinecart(World world, int x, int y, int z, EntityMinecart minecart) {
         switch (getLadderFacingMetadata(world, x, y, z)) {
@@ -358,72 +346,69 @@ public class BlockTrackElevator extends Block {
     private boolean isOffloadRail(World world, int x, int y, int z) {
         if (world.getBlock(x, y, z) != this)
             switch (world.getBlockMetadata(x, y - 1, z) & BLOCK_FACING_DATA_METADATA_MASK) {
-                case FACING_EAST_METADATA_VALUE:
-                    if (TrackTools.isRailBlockAt(world, x, y, z + 1)) return true;
+            case FACING_EAST_METADATA_VALUE:
+            if (TrackTools.isRailBlockAt(world, x, y, z + 1)) return true;
 
-                case FACING_WEST_METADATA_VALUE:
-                    if (TrackTools.isRailBlockAt(world, x, y, z - 1)) return true;
+            case FACING_WEST_METADATA_VALUE:
+            if (TrackTools.isRailBlockAt(world, x, y, z - 1)) return true;
 
-                case FACING_NORTH_METADATA_VALUE:
-                    if (TrackTools.isRailBlockAt(world, x + 1, y, z)) return true;
+            case FACING_NORTH_METADATA_VALUE:
+            if (TrackTools.isRailBlockAt(world, x + 1, y, z)) return true;
 
-                case FACING_SOUTH_METADATA_VALUE:
-                    if (TrackTools.isRailBlockAt(world, x - 1, y, z)) return true;
+            case FACING_SOUTH_METADATA_VALUE:
+            if (TrackTools.isRailBlockAt(world, x - 1, y, z)) return true;
 
-                default:
-                    return false;
+            default:
+            return false;
             }
         else return false;
     }
 
     /**
-     * Pushes a minecart onto the block on which the ladder is placed if it is
-     * possible. It is only possible to push the minecart if there is air
-     * directly above the ladder block and if the block directly above the
-     * supporting block is a rail.
+     * Pushes a minecart onto the block on which the ladder is placed if it is possible. It is only possible to push the
+     * minecart if there is air directly above the ladder block and if the block directly above the supporting block is
+     * a rail.
      *
-     * @param world the world in which the block resides
-     * @param i the x-coordinate of the ladder block
-     * @param j the y-coordinate of the ladder block
-     * @param k the z-coordinate of the ladder block
-     * @param minecart the minecart that is pushed which onto the block if
-     * possible
-     * @return true if the minecart can be pushed onto the supporting block,
-     * otherwise false
+     * @param world    the world in which the block resides
+     * @param i        the x-coordinate of the ladder block
+     * @param j        the y-coordinate of the ladder block
+     * @param k        the z-coordinate of the ladder block
+     * @param minecart the minecart that is pushed which onto the block if possible
+     * @return true if the minecart can be pushed onto the supporting block, otherwise false
      */
     private boolean pushMinecartOnSupportingBlockIfPossible(World world, int i, int j, int k, EntityMinecart minecart) {
         if (!world.getBlock(i, j, k).getMaterial().isSolid())
             switch (world.getBlockMetadata(i, j, k) & BLOCK_FACING_DATA_METADATA_MASK) {
-                case FACING_EAST_METADATA_VALUE:
-                    if (TrackTools.isRailBlockAt(world, i, j + 1, k + 1)) {
-                        minecart.motionY = RIDE_UP_VELOCITY;
-                        minecart.motionZ = RIDE_UP_VELOCITY;
-                    }
-                    return true;
+            case FACING_EAST_METADATA_VALUE:
+            if (TrackTools.isRailBlockAt(world, i, j + 1, k + 1)) {
+                minecart.motionY = RIDE_UP_VELOCITY;
+                minecart.motionZ = RIDE_UP_VELOCITY;
+            }
+            return true;
 
-                case FACING_WEST_METADATA_VALUE:
-                    if (TrackTools.isRailBlockAt(world, i, j + 1, k - 1)) {
-                        minecart.motionY = RIDE_UP_VELOCITY;
-                        minecart.motionZ = -RIDE_UP_VELOCITY;
-                    }
-                    return true;
+            case FACING_WEST_METADATA_VALUE:
+            if (TrackTools.isRailBlockAt(world, i, j + 1, k - 1)) {
+                minecart.motionY = RIDE_UP_VELOCITY;
+                minecart.motionZ = -RIDE_UP_VELOCITY;
+            }
+            return true;
 
-                case FACING_NORTH_METADATA_VALUE:
-                    if (TrackTools.isRailBlockAt(world, i + 1, j + 1, k)) {
-                        minecart.motionY = RIDE_UP_VELOCITY;
-                        minecart.motionX = RIDE_UP_VELOCITY;
-                    }
-                    return true;
+            case FACING_NORTH_METADATA_VALUE:
+            if (TrackTools.isRailBlockAt(world, i + 1, j + 1, k)) {
+                minecart.motionY = RIDE_UP_VELOCITY;
+                minecart.motionX = RIDE_UP_VELOCITY;
+            }
+            return true;
 
-                case FACING_SOUTH_METADATA_VALUE:
-                    if (TrackTools.isRailBlockAt(world, i - 1, j + 1, k)) {
-                        minecart.motionY = RIDE_UP_VELOCITY;
-                        minecart.motionX = -RIDE_UP_VELOCITY;
-                    }
-                    return true;
+            case FACING_SOUTH_METADATA_VALUE:
+            if (TrackTools.isRailBlockAt(world, i - 1, j + 1, k)) {
+                minecart.motionY = RIDE_UP_VELOCITY;
+                minecart.motionX = -RIDE_UP_VELOCITY;
+            }
+            return true;
 
-                default:
-                    return false;
+            default:
+            return false;
             }
         else return false;
     }

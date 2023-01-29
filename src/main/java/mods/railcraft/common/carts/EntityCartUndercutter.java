@@ -1,16 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.carts;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.common.blocks.aesthetics.post.ItemPost;
 import mods.railcraft.common.blocks.tracks.EnumTrackMeta;
@@ -21,6 +19,7 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.sounds.SoundHelper;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -99,8 +98,8 @@ public class EntityCartUndercutter extends CartMaintenancePatternBase {
         Block block = this.worldObj.getBlock(x, y, z);
 
         if (TrackTools.isRailBlock(block)) {
-            EnumTrackMeta trackMeta =
-                    EnumTrackMeta.fromMeta(((BlockRailBase) block).getBasicRailMetadata(worldObj, this, x, y, z));
+            EnumTrackMeta trackMeta = EnumTrackMeta
+                    .fromMeta(((BlockRailBase) block).getBasicRailMetadata(worldObj, this, x, y, z));
             y--;
 
             boolean slotANull = true;

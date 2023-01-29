@@ -1,15 +1,13 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.carts;
 
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.plugins.ic2.IC2Plugin;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -17,6 +15,7 @@ import net.minecraft.world.World;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public final class EntityCartEnergyMFE extends EntityCartEnergy {
+
     private final int TIER = IC2Plugin.isClassic() ? 2 : 3;
     private final int CAPACITY = IC2Plugin.isClassic() ? 600000 : 4000000;
     private final int TRANSFER = IC2Plugin.isClassic() ? 128 : 512;

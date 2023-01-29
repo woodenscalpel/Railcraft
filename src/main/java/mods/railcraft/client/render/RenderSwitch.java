@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.render;
 
@@ -13,6 +10,7 @@ import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
 import mods.railcraft.common.blocks.signals.BlockSignalRailcraft;
 import mods.railcraft.common.blocks.signals.EnumSignal;
 import mods.railcraft.common.blocks.signals.TileSwitchBase;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
@@ -21,6 +19,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
+
 import org.lwjgl.opengl.GL11;
 
 public class RenderSwitch implements ICombinedRenderer {
@@ -70,15 +69,15 @@ public class RenderSwitch implements ICombinedRenderer {
             info.setBlockBounds(0.0F, 0.0F, 5.99F * PIX, 1.0F, 3.01F * PIX, 10.01F * PIX);
             RenderFakeBlock.renderAsBlock(info, renderblocks, world, x, y, z);
         }
-        //        if (type == EnumSignal.SWITCH_ROUTING) {
-        //            if (facing == 2 || facing == 3) {
-        //                info.setBlockBounds(0.0F, 0.0F, 5.99F * PIX, 1.0F, 3.01F * PIX, 10.01F * PIX);
-        //                RenderFakeBlock.renderAsBlock(info, renderblocks, world, x, y, z);
-        //            } else {
-        //                info.setBlockBounds(5.99F * PIX, 0.0F, 2F * PIX, 10.01F * PIX, 3.01F * PIX, 1.0F);
-        //                RenderFakeBlock.renderAsBlock(info, renderblocks, world, x, y, z);
-        //            }
-        //        }
+        // if (type == EnumSignal.SWITCH_ROUTING) {
+        // if (facing == 2 || facing == 3) {
+        // info.setBlockBounds(0.0F, 0.0F, 5.99F * PIX, 1.0F, 3.01F * PIX, 10.01F * PIX);
+        // RenderFakeBlock.renderAsBlock(info, renderblocks, world, x, y, z);
+        // } else {
+        // info.setBlockBounds(5.99F * PIX, 0.0F, 2F * PIX, 10.01F * PIX, 3.01F * PIX, 1.0F);
+        // RenderFakeBlock.renderAsBlock(info, renderblocks, world, x, y, z);
+        // }
+        // }
 
         // Targets
 
@@ -218,8 +217,8 @@ public class RenderSwitch implements ICombinedRenderer {
         }
     }
 
-    private void renderTarget(
-            ArrowDirection arrow, RenderBlocks renderblocks, IBlockAccess world, int x, int y, int z) {
+    private void renderTarget(ArrowDirection arrow, RenderBlocks renderblocks, IBlockAccess world, int x, int y,
+            int z) {
         switch (arrow) {
             case NORTH:
                 renderTargetNorth(renderblocks, world, x, y, z);

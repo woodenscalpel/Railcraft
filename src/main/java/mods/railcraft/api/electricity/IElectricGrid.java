@@ -1,24 +1,22 @@
 /*
- * ******************************************************************************
- *  Copyright 2011-2015 CovertJaguar
- *
- *  This work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
+ * ****************************************************************************** Copyright 2011-2015 CovertJaguar This
+ * work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
  * ***************************************************************************
  */
 
 package mods.railcraft.api.electricity;
 
 import java.util.*;
+
 import mods.railcraft.api.core.WorldCoordinate;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
 /**
- * Any Electric Track needs to implement this interface on either the track
- * TileEntity or ITrackInstance object.
+ * Any Electric Track needs to implement this interface on either the track TileEntity or ITrackInstance object.
  *
- * Other blocks can also implement this on their tile entity to gain access to
- * the grid.
+ * Other blocks can also implement this on their tile entity to gain access to the grid.
  *
  * @author CovertJaguar <http://www.railcraft.info/>
  */
@@ -36,6 +34,7 @@ public interface IElectricGrid {
     public static final class ChargeHandler {
 
         public enum ConnectType {
+
             TRACK {
 
                 @Override
@@ -45,8 +44,7 @@ public interface IElectricGrid {
                     int x = gridObject.getTile().xCoord;
                     int y = gridObject.getTile().yCoord;
                     int z = gridObject.getTile().zCoord;
-                    Map<WorldCoordinate, EnumSet<ConnectType>> positions =
-                            new HashMap<WorldCoordinate, EnumSet<ConnectType>>();
+                    Map<WorldCoordinate, EnumSet<ConnectType>> positions = new HashMap<WorldCoordinate, EnumSet<ConnectType>>();
 
                     EnumSet<ConnectType> all = EnumSet.allOf(ConnectType.class);
                     EnumSet<ConnectType> notWire = EnumSet.complementOf(EnumSet.of(ConnectType.WIRE));
@@ -75,6 +73,7 @@ public interface IElectricGrid {
                 }
             },
             WIRE {
+
                 @Override
                 public Map<WorldCoordinate, EnumSet<ConnectType>> getPossibleConnectionLocations(
                         IElectricGrid gridObject) {
@@ -82,8 +81,7 @@ public interface IElectricGrid {
                     int x = gridObject.getTile().xCoord;
                     int y = gridObject.getTile().yCoord;
                     int z = gridObject.getTile().zCoord;
-                    Map<WorldCoordinate, EnumSet<ConnectType>> positions =
-                            new HashMap<WorldCoordinate, EnumSet<ConnectType>>();
+                    Map<WorldCoordinate, EnumSet<ConnectType>> positions = new HashMap<WorldCoordinate, EnumSet<ConnectType>>();
 
                     EnumSet<ConnectType> all = EnumSet.allOf(ConnectType.class);
                     EnumSet<ConnectType> notTrack = EnumSet.complementOf(EnumSet.of(ConnectType.TRACK));
@@ -98,6 +96,7 @@ public interface IElectricGrid {
                 }
             },
             BLOCK {
+
                 @Override
                 public Map<WorldCoordinate, EnumSet<ConnectType>> getPossibleConnectionLocations(
                         IElectricGrid gridObject) {
@@ -105,8 +104,7 @@ public interface IElectricGrid {
                     int x = gridObject.getTile().xCoord;
                     int y = gridObject.getTile().yCoord;
                     int z = gridObject.getTile().zCoord;
-                    Map<WorldCoordinate, EnumSet<ConnectType>> positions =
-                            new HashMap<WorldCoordinate, EnumSet<ConnectType>>();
+                    Map<WorldCoordinate, EnumSet<ConnectType>> positions = new HashMap<WorldCoordinate, EnumSet<ConnectType>>();
 
                     EnumSet<ConnectType> all = EnumSet.allOf(ConnectType.class);
 
@@ -186,8 +184,7 @@ public interface IElectricGrid {
         }
 
         /**
-         * Remove up to the requested amount of charge and returns the amount
-         * removed.
+         * Remove up to the requested amount of charge and returns the amount removed.
          *
          * @param request
          * @return charge removed
@@ -205,9 +202,8 @@ public interface IElectricGrid {
         }
 
         private void removeLosses() {
-            if (lossPerTick > 0.0)
-                if (charge >= lossPerTick) charge -= lossPerTick;
-                else charge = 0.0;
+            if (lossPerTick > 0.0) if (charge >= lossPerTick) charge -= lossPerTick;
+            else charge = 0.0;
         }
 
         /**

@@ -1,16 +1,15 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.carts;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import mods.railcraft.api.carts.IItemCart;
+
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -25,6 +24,7 @@ import net.minecraftforge.event.entity.minecart.MinecartInteractEvent;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public abstract class CartBase extends EntityMinecart implements IRailcraftCart, IItemCart {
+
     public CartBase(World world) {
         super(world);
         renderDistanceWeight = CartConstants.RENDER_DIST_MULTIPLIER;

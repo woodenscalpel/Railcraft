@@ -1,14 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.render.models.engine;
 
 import mods.railcraft.common.blocks.machine.beta.TileEngine.EnergyStage;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 
@@ -26,7 +24,7 @@ public class ModelEngineTrunk extends ModelBase {
     private ModelRenderer[] renderers;
 
     public ModelEngineTrunk() {
-        renderers = new ModelRenderer[] {blue, green, yellow, orange, red};
+        renderers = new ModelRenderer[] { blue, green, yellow, orange, red };
 
         blue.setTextureOffset(1, 57);
         green.setTextureOffset(35, 57);

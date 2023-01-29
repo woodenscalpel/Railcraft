@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.items.firestone;
 
@@ -15,6 +12,7 @@ import java.util.Deque;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
+
 import mods.railcraft.api.core.WorldCoordinate;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
 import mods.railcraft.common.fluids.FluidHelper;
@@ -22,6 +20,7 @@ import mods.railcraft.common.fluids.Fluids;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.effects.EffectManager;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
@@ -30,6 +29,7 @@ import net.minecraft.nbt.NBTTagCompound;
  * @author CovertJaguar <http://www.railcraft.info/>
  */
 public class TileFirestoneRecharge extends RailcraftTileEntity {
+
     public static final int[] REBUILD_DELAY = new int[8];
     private final Deque<WorldCoordinate> queue = new LinkedList<WorldCoordinate>();
     private final Set<WorldCoordinate> visitedBlocks = new HashSet<WorldCoordinate>();
@@ -68,7 +68,7 @@ public class TileFirestoneRecharge extends RailcraftTileEntity {
 
         if (charge >= ItemFirestoneRefined.item.getMaxDamage()) return;
 
-        //        if (clock % 4 == 0) {
+        // if (clock % 4 == 0) {
         if (clock % REBUILD_DELAY[rebuildDelay] == 0) {
             rebuildDelay++;
             if (rebuildDelay >= REBUILD_DELAY.length) rebuildDelay = REBUILD_DELAY.length - 1;
@@ -80,7 +80,7 @@ public class TileFirestoneRecharge extends RailcraftTileEntity {
             charge++;
             rebuildDelay = 0;
         }
-        //        }
+        // }
     }
 
     private boolean coolLava(int x, int y, int z) {
@@ -88,8 +88,8 @@ public class TileFirestoneRecharge extends RailcraftTileEntity {
         if (Fluids.LAVA.is(FluidHelper.getFluid(block))) {
             boolean placed = WorldPlugin.setBlock(worldObj, x, y, z, Blocks.obsidian);
             if (placed) {
-                EffectManager.instance.fireSparkEffect(
-                        worldObj, x + 0.5, y + 0.5, z + 0.5, xCoord + 0.5, yCoord + 0.8, zCoord + 0.5);
+                EffectManager.instance
+                        .fireSparkEffect(worldObj, x + 0.5, y + 0.5, z + 0.5, xCoord + 0.5, yCoord + 0.8, zCoord + 0.5);
                 queueAdjacent(x, y, z);
                 expandQueue();
                 return true;

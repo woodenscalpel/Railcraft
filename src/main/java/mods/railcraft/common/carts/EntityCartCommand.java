@@ -1,17 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.carts;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import io.netty.buffer.ByteBuf;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.block.Block;
 import net.minecraft.command.server.CommandBlockLogic;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,8 +17,13 @@ import net.minecraft.util.IChatComponent;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import io.netty.buffer.ByteBuf;
+
 /**
  * Credits to CovertJaguar.
+ * 
  * @author liach
  */
 public class EntityCartCommand extends CartBase {
@@ -35,8 +35,7 @@ public class EntityCartCommand extends CartBase {
         @Override
         public void func_145756_e() {
             EntityCartCommand.this.getDataWatcher().updateObject(23, this.func_145753_i());
-            EntityCartCommand.this
-                    .getDataWatcher()
+            EntityCartCommand.this.getDataWatcher()
                     .updateObject(24, IChatComponent.Serializer.func_150696_a(this.func_145749_h()));
         }
 
@@ -132,8 +131,8 @@ public class EntityCartCommand extends CartBase {
 
         if (dataValueId == 24) {
             try {
-                this.commandLogic.func_145750_b(IChatComponent.Serializer.func_150699_a(
-                        this.getDataWatcher().getWatchableObjectString(24)));
+                this.commandLogic.func_145750_b(
+                        IChatComponent.Serializer.func_150699_a(this.getDataWatcher().getWatchableObjectString(24)));
             } catch (Throwable ignored) {
 
             }

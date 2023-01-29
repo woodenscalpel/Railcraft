@@ -1,14 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.misc;
 
 import java.util.Locale;
+
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 
 /**
@@ -16,6 +14,7 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public enum EnumColor {
+
     BLACK(0x2D2D2D),
     RED(0xA33835),
     GREEN(0x394C1E),
@@ -32,43 +31,13 @@ public enum EnumColor {
     MAGENTA(0xFF64FF),
     ORANGE(0xFF6A00),
     WHITE(0xFFFFFF);
+
     public static final EnumColor[] VALUES = values();
-    public static final String[] DYES = {
-        "dyeBlack",
-        "dyeRed",
-        "dyeGreen",
-        "dyeBrown",
-        "dyeBlue",
-        "dyePurple",
-        "dyeCyan",
-        "dyeLightGray",
-        "dyeGray",
-        "dyePink",
-        "dyeLime",
-        "dyeYellow",
-        "dyeLightBlue",
-        "dyeMagenta",
-        "dyeOrange",
-        "dyeWhite"
-    };
-    public static final String[] NAMES = {
-        "Black",
-        "Red",
-        "Green",
-        "Brown",
-        "Blue",
-        "Purple",
-        "Cyan",
-        "LightGray",
-        "Gray",
-        "Pink",
-        "Lime",
-        "Yellow",
-        "LightBlue",
-        "Magenta",
-        "Orange",
-        "White"
-    };
+    public static final String[] DYES = { "dyeBlack", "dyeRed", "dyeGreen", "dyeBrown", "dyeBlue", "dyePurple",
+            "dyeCyan", "dyeLightGray", "dyeGray", "dyePink", "dyeLime", "dyeYellow", "dyeLightBlue", "dyeMagenta",
+            "dyeOrange", "dyeWhite" };
+    public static final String[] NAMES = { "Black", "Red", "Green", "Brown", "Blue", "Purple", "Cyan", "LightGray",
+            "Gray", "Pink", "Lime", "Yellow", "LightBlue", "Magenta", "Orange", "White" };
     private final int color;
 
     private EnumColor(int color) {
@@ -138,9 +107,7 @@ public enum EnumColor {
         String[] words = s.split(" ");
         StringBuilder b = new StringBuilder();
         for (String word : words) {
-            b.append(word.charAt(0))
-                    .append(word.substring(1).toLowerCase(Locale.ENGLISH))
-                    .append(" ");
+            b.append(word.charAt(0)).append(word.substring(1).toLowerCase(Locale.ENGLISH)).append(" ");
         }
         return b.toString().trim();
     }

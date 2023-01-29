@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.particles;
 
@@ -23,8 +20,8 @@ public class EntitySimpleParticleFX extends EntityFX {
         this(par1World, x, y, z, 0, 0, 0, 3f);
     }
 
-    public EntitySimpleParticleFX(
-            World par1World, double x, double y, double z, double velX, double velY, double velZ, float scale) {
+    public EntitySimpleParticleFX(World par1World, double x, double y, double z, double velX, double velY, double velZ,
+            float scale) {
         super(par1World, x, y, z, 0.0D, 0.0D, 0.0D);
         this.motionX *= 0.1;
         this.motionY *= 0.1;

@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.alpha;
 
@@ -15,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import mods.railcraft.api.core.items.IStackFilter;
 import mods.railcraft.api.crafting.IBlastFurnaceRecipe;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
@@ -32,6 +30,7 @@ import mods.railcraft.common.util.inventory.InventorySorter;
 import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.ITileFilter;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -45,13 +44,16 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 public class TileBlastFurnace extends TileMultiBlockOven implements ISidedInventory {
+
     public static final IStackFilter INPUT_FILTER = new IStackFilter() {
+
         @Override
         public boolean matches(ItemStack stack) {
             return RailcraftCraftingManager.blastFurnace.getRecipe(stack) != null;
         }
     };
     public static final IStackFilter FUEL_FILTER = new IStackFilter() {
+
         @Override
         public boolean matches(ItemStack stack) {
             return stack != null && InvTools.isItemEqual(stack, RailcraftCraftingManager.blastFurnace.getFuels());
@@ -66,64 +68,30 @@ public class TileBlastFurnace extends TileMultiBlockOven implements ISidedInvent
     private final IInventory invFuel = new InventoryMapper(this, SLOT_FUEL, 1);
     private final IInventory invInput = new InventoryMapper(this, SLOT_INPUT, 1);
     private final IInventory invOutput = new InventoryMapper(this, SLOT_OUTPUT, 1);
-    private final AdjacentInventoryCache invCache = new AdjacentInventoryCache(
-            this,
-            tileCache,
-            new ITileFilter() {
-                @Override
-                public boolean matches(TileEntity tile) {
-                    if (tile instanceof TileBlastFurnace) return false;
-                    if (tile instanceof IInventory) return ((IInventory) tile).getSizeInventory() >= 27;
-                    return false;
-                }
-            },
-            InventorySorter.SIZE_DECENDING);
+    private final AdjacentInventoryCache invCache = new AdjacentInventoryCache(this, tileCache, new ITileFilter() {
+
+        @Override
+        public boolean matches(TileEntity tile) {
+            if (tile instanceof TileBlastFurnace) return false;
+            if (tile instanceof IInventory) return ((IInventory) tile).getSizeInventory() >= 27;
+            return false;
+        }
+    }, InventorySorter.SIZE_DECENDING);
 
     static {
         char[][][] map = {
-            {
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'}
-            },
-            {
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'B', 'W', 'B', 'O'},
-                {'O', 'W', 'B', 'W', 'O'},
-                {'O', 'B', 'W', 'B', 'O'},
-                {'O', 'O', 'O', 'O', 'O'}
-            },
-            {
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'B', 'B', 'B', 'O'},
-                {'O', 'B', 'A', 'B', 'O'},
-                {'O', 'B', 'B', 'B', 'O'},
-                {'O', 'O', 'O', 'O', 'O'}
-            },
-            {
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'B', 'B', 'B', 'O'},
-                {'O', 'B', 'A', 'B', 'O'},
-                {'O', 'B', 'B', 'B', 'O'},
-                {'O', 'O', 'O', 'O', 'O'}
-            },
-            {
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'B', 'B', 'B', 'O'},
-                {'O', 'B', 'B', 'B', 'O'},
-                {'O', 'B', 'B', 'B', 'O'},
-                {'O', 'O', 'O', 'O', 'O'}
-            },
-            {
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'}
-            }
-        };
+                { { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O', 'O' },
+                        { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O', 'O' } },
+                { { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'B', 'W', 'B', 'O' }, { 'O', 'W', 'B', 'W', 'O' },
+                        { 'O', 'B', 'W', 'B', 'O' }, { 'O', 'O', 'O', 'O', 'O' } },
+                { { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'B', 'B', 'B', 'O' }, { 'O', 'B', 'A', 'B', 'O' },
+                        { 'O', 'B', 'B', 'B', 'O' }, { 'O', 'O', 'O', 'O', 'O' } },
+                { { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'B', 'B', 'B', 'O' }, { 'O', 'B', 'A', 'B', 'O' },
+                        { 'O', 'B', 'B', 'B', 'O' }, { 'O', 'O', 'O', 'O', 'O' } },
+                { { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'B', 'B', 'B', 'O' }, { 'O', 'B', 'B', 'B', 'O' },
+                        { 'O', 'B', 'B', 'B', 'O' }, { 'O', 'O', 'O', 'O', 'O' } },
+                { { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O', 'O' },
+                        { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O', 'O' } } };
         patterns.add(new MultiBlockPattern(map, 2, 1, 2));
     }
     /**
@@ -131,8 +99,7 @@ public class TileBlastFurnace extends TileMultiBlockOven implements ISidedInvent
      */
     public int burnTime = 0;
     /**
-     * The number of ticks that a fresh copy of the currently-burning item would
-     * keep the furnace burning for
+     * The number of ticks that a fresh copy of the currently-burning item would keep the furnace burning for
      */
     public int currentItemBurnTime = 0;
 
@@ -143,14 +110,14 @@ public class TileBlastFurnace extends TileMultiBlockOven implements ISidedInvent
         super("railcraft.gui.blast.furnace", 3, patterns);
     }
 
-    public static void placeBlastFurnace(
-            World world, int x, int y, int z, ItemStack input, ItemStack output, ItemStack fuel) {
+    public static void placeBlastFurnace(World world, int x, int y, int z, ItemStack input, ItemStack output,
+            ItemStack fuel) {
         for (MultiBlockPattern pattern : TileBlastFurnace.patterns) {
             Map<Character, Integer> blockMapping = new HashMap<Character, Integer>();
             blockMapping.put('B', EnumMachineAlpha.BLAST_FURNACE.ordinal());
             blockMapping.put('W', EnumMachineAlpha.BLAST_FURNACE.ordinal());
-            TileEntity tile =
-                    pattern.placeStructure(world, x, y, z, RailcraftBlocks.getBlockMachineAlpha(), blockMapping);
+            TileEntity tile = pattern
+                    .placeStructure(world, x, y, z, RailcraftBlocks.getBlockMachineAlpha(), blockMapping);
             if (tile instanceof TileBlastFurnace) {
                 TileBlastFurnace master = (TileBlastFurnace) tile;
                 master.inv.setInventorySlotContents(TileBlastFurnace.SLOT_INPUT, input);
@@ -180,12 +147,14 @@ public class TileBlastFurnace extends TileMultiBlockOven implements ISidedInvent
         switch (mapPos) {
             case 'O':
                 if (block != RailcraftBlocks.getBlockMachineAlpha()
-                        || worldObj.getBlockMetadata(i, j, k) != getBlockMetadata()) return true;
+                        || worldObj.getBlockMetadata(i, j, k) != getBlockMetadata())
+                    return true;
                 break;
             case 'B':
             case 'W':
                 if (block == RailcraftBlocks.getBlockMachineAlpha()
-                        && worldObj.getBlockMetadata(i, j, k) == getBlockMetadata()) return true;
+                        && worldObj.getBlockMetadata(i, j, k) == getBlockMetadata())
+                    return true;
                 break;
             case 'A':
                 if (block.isAir(worldObj, i, j, k) || block.getMaterial() == Material.lava) return true;
@@ -227,16 +196,16 @@ public class TileBlastFurnace extends TileMultiBlockOven implements ISidedInvent
         if (worldObj.isAirBlock(xLava, yLava, zLava)) worldObj.setBlock(xLava, yLava, zLava, Blocks.flowing_lava, 1, 3);
     }
 
-    //    private void destroyLava() {
-    //        int xLava = xCoord + 1;
-    //        int yLava = yCoord + 2;
-    //        int zLava = zCoord + 1;
-    //        if (worldObj.getBlock(xLava, yLava, zLava).getMaterial() == Material.lava)
-    //            worldObj.setBlockToAir(xLava, yLava, zLava);
-    //        yLava -= 1;
-    //        if (worldObj.getBlock(xLava, yLava, zLava).getMaterial() == Material.lava)
-    //            worldObj.setBlockToAir(xLava, yLava, zLava);
-    //    }
+    // private void destroyLava() {
+    // int xLava = xCoord + 1;
+    // int yLava = yCoord + 2;
+    // int zLava = zCoord + 1;
+    // if (worldObj.getBlock(xLava, yLava, zLava).getMaterial() == Material.lava)
+    // worldObj.setBlockToAir(xLava, yLava, zLava);
+    // yLava -= 1;
+    // if (worldObj.getBlock(xLava, yLava, zLava).getMaterial() == Material.lava)
+    // worldObj.setBlockToAir(xLava, yLava, zLava);
+    // }
     @Override
     public void updateEntity() {
         super.updateEntity();
@@ -356,9 +325,8 @@ public class TileBlastFurnace extends TileMultiBlockOven implements ISidedInvent
     @Override
     public boolean isBurning() {
         TileBlastFurnace mBlock = (TileBlastFurnace) getMasterBlock();
-        if (mBlock != null)
-            if (worldObj.isRemote) return mBlock.clientBurning;
-            else return mBlock.burnTime > 0;
+        if (mBlock != null) if (worldObj.isRemote) return mBlock.clientBurning;
+        else return mBlock.burnTime > 0;
         return false;
     }
 

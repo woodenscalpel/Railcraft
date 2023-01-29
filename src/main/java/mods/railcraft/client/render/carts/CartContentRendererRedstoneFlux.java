@@ -1,25 +1,25 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.render.carts;
 
 import mods.railcraft.client.render.RenderFakeBlock;
 import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
 import mods.railcraft.common.carts.EntityCartRF;
+
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.util.IIcon;
+
 import org.lwjgl.opengl.GL11;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class CartContentRendererRedstoneFlux extends CartContentRenderer {
+
     private static final CartContentRendererRedstoneFlux instance = new CartContentRendererRedstoneFlux();
     private final RenderInfo redBlock = new RenderInfo();
     private final RenderInfo leadFrame = new RenderInfo();

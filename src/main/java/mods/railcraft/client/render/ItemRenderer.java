@@ -1,20 +1,19 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.render;
 
 import java.util.Random;
+
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import net.minecraftforge.client.IItemRenderer.ItemRendererHelper;
+
 import org.lwjgl.opengl.GL11;
 
 public class ItemRenderer implements IItemRenderer {
@@ -74,9 +73,9 @@ public class ItemRenderer implements IItemRenderer {
 
         if (stack.stackSize > 20) num = 4;
 
-        //        float scale = 0.5F;
+        // float scale = 0.5F;
         //
-        //        GL11.glScalef(scale, scale, scale);
+        // GL11.glScalef(scale, scale, scale);
 
         if (render.useInventoryTint) {
             int color = stack.getItem().getColorFromItemStack(stack, 0);
@@ -86,18 +85,18 @@ public class ItemRenderer implements IItemRenderer {
             GL11.glColor4f(r, g, b, 1.0F);
         }
 
-        //        for (int ii = 0; ii < num; ++ii) {
-        //            GL11.glPushMatrix();
+        // for (int ii = 0; ii < num; ++ii) {
+        // GL11.glPushMatrix();
         //
-        //            if (ii > 0) {
-        //                float x = (rand.nextFloat() * 2.0F - 1.0F) * 0.2F / scale;
-        //                float y = (rand.nextFloat() * 2.0F - 1.0F) * 0.2F / scale;
-        //                float z = (rand.nextFloat() * 2.0F - 1.0F) * 0.2F / scale;
-        //                GL11.glTranslatef(x, y, z);
-        //            }
+        // if (ii > 0) {
+        // float x = (rand.nextFloat() * 2.0F - 1.0F) * 0.2F / scale;
+        // float y = (rand.nextFloat() * 2.0F - 1.0F) * 0.2F / scale;
+        // float z = (rand.nextFloat() * 2.0F - 1.0F) * 0.2F / scale;
+        // GL11.glTranslatef(x, y, z);
+        // }
 
         renderer.renderItem(render, stack, ItemRenderType.ENTITY);
-        //            GL11.glPopMatrix();
-        //        }
+        // GL11.glPopMatrix();
+        // }
     }
 }

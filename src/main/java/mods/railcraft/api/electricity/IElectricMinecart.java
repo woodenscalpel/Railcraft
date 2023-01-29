@@ -1,33 +1,29 @@
 /*
- * ******************************************************************************
- *  Copyright 2011-2015 CovertJaguar
- *
- *  This work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
+ * ****************************************************************************** Copyright 2011-2015 CovertJaguar This
+ * work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
  * ***************************************************************************
  */
 
 package mods.railcraft.api.electricity;
 
 import java.util.Random;
+
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.ILinkageManager;
 import mods.railcraft.api.tracks.RailTools;
+
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
 
 /**
- * This interface provides a simple means of using or producing Electricity
- * within a train.
+ * This interface provides a simple means of using or producing Electricity within a train.
  * <p>
- * The original Ic2 Battery Carts implement IEnergyTransfer. IEnergyTransfer was
- * a naive implementation of a Energy storage system for carts. I'll leave it in
- * place because of its Ic2 specific functions, but for all intents and purposes
- * this is the recommended and easier to implement interface for Electricity
- * related minecarts. In fact, the Railcraft Ic2 Energy Carts will be
- * redirecting to this interface. The Energy Loaders will continue to work
- * exclusively with IEnergyTransfer for the moment due to the high Ic2 coupling
- * of their design. An alternative loader block utilizing the IElectricMinecart
- * interface may be provided in the future, but no guarantee.
+ * The original Ic2 Battery Carts implement IEnergyTransfer. IEnergyTransfer was a naive implementation of a Energy
+ * storage system for carts. I'll leave it in place because of its Ic2 specific functions, but for all intents and
+ * purposes this is the recommended and easier to implement interface for Electricity related minecarts. In fact, the
+ * Railcraft Ic2 Energy Carts will be redirecting to this interface. The Energy Loaders will continue to work
+ * exclusively with IEnergyTransfer for the moment due to the high Ic2 coupling of their design. An alternative loader
+ * block utilizing the IElectricMinecart interface may be provided in the future, but no guarantee.
  * <p>
  *
  * @author CovertJaguar <http://www.railcraft.info/>
@@ -48,18 +44,14 @@ public interface IElectricMinecart {
              */
             USER,
             /**
-             * Sources provide power to users, but not storage. This interface
-             * specifies no explicit way to charge Sources, that's up to the
-             * implementer. Railcraft provides no Sources currently, and may
-             * never do so.
+             * Sources provide power to users, but not storage. This interface specifies no explicit way to charge
+             * Sources, that's up to the implementer. Railcraft provides no Sources currently, and may never do so.
              */
             SOURCE,
             /**
-             * Storage provide power to users, but can't draw from tracks or
-             * sources. This interface specifies no explicit way to charge
-             * Storage, that's up to the implementer. Railcraft may provide a
-             * trackside block in the future for charging Storage, but does not
-             * currently.
+             * Storage provide power to users, but can't draw from tracks or sources. This interface specifies no
+             * explicit way to charge Storage, that's up to the implementer. Railcraft may provide a trackside block in
+             * the future for charging Storage, but does not currently.
              */
             STORAGE
         }
@@ -113,8 +105,7 @@ public interface IElectricMinecart {
         }
 
         /**
-         * Remove up to the requested amount of charge and returns the amount
-         * removed.
+         * Remove up to the requested amount of charge and returns the amount removed.
          * <p>
          *
          * @return charge removed
@@ -133,22 +124,20 @@ public interface IElectricMinecart {
         }
 
         private void removeLosses() {
-            if (lossPerTick > 0.0)
-                if (charge >= lossPerTick) charge -= lossPerTick;
-                else charge = 0.0;
+            if (lossPerTick > 0.0) if (charge >= lossPerTick) charge -= lossPerTick;
+            else charge = 0.0;
         }
 
         /**
-         * ********************************************************************
-         * The following functions must be called from your EntityMinecart
-         * subclass
-         * ********************************************************************
+         * ******************************************************************** The following functions must be called
+         * from your EntityMinecart subclass ********************************************************************
          */
         /**
-         * Must be called once per tick while on tracks by the owning object.
-         * Server side only.
+         * Must be called once per tick while on tracks by the owning object. Server side only.
          * <p>
-         * <blockquote><pre>
+         * <blockquote>
+         * 
+         * <pre>
          * {@code
          * public void onEntityUpdate()
          *  {
@@ -157,7 +146,9 @@ public interface IElectricMinecart {
          *        chargeHandler.tick();
          *  }
          * }
-         * </pre></blockquote>
+         * </pre>
+         * 
+         * </blockquote>
          */
         public void tick() {
             clock++;
@@ -182,13 +173,13 @@ public interface IElectricMinecart {
         }
 
         /**
-         * If you want to be able to draw power from the track, this function
-         * needs to be called once per tick. Server side only. Generally this
-         * means overriding the EnityMinecart.func_145821_a() function. You
-         * don't have to call this function if you don't care about drawing from
-         * tracks.
+         * If you want to be able to draw power from the track, this function needs to be called once per tick. Server
+         * side only. Generally this means overriding the EnityMinecart.func_145821_a() function. You don't have to call
+         * this function if you don't care about drawing from tracks.
          * <p>
-         * <blockquote><pre>
+         * <blockquote>
+         * 
+         * <pre>
          * {@code
          * protected void func_145821_a(int trackX, int trackY, int trackZ, double maxSpeed, double slopeAdjustement, Block trackBlock, int trackMeta)
          *  {
@@ -196,12 +187,14 @@ public interface IElectricMinecart {
          *     chargeHandler.tickOnTrack(trackX, trackY, trackZ);
          *  }
          * }
-         * </pre></blockquote>
+         * </pre>
+         * 
+         * </blockquote>
          */
         public void tickOnTrack(int trackX, int trackY, int trackZ) {
             if (type == Type.USER && charge < capacity && clock % DRAW_INTERVAL == 0) {
-                IElectricGrid track =
-                        RailTools.getTrackObjectAt(minecart.worldObj, trackX, trackY, trackZ, IElectricGrid.class);
+                IElectricGrid track = RailTools
+                        .getTrackObjectAt(minecart.worldObj, trackX, trackY, trackZ, IElectricGrid.class);
                 if (track != null) {
                     double drawnFromTrack = track.getChargeHandler().removeCharge(capacity - charge);
                     if (drawnFromTrack > 0.0) drewFromTrack = DRAW_INTERVAL * 4;
@@ -213,7 +206,9 @@ public interface IElectricMinecart {
         /**
          * Must be called by the owning object's save function.
          * <p>
-         * <blockquote><pre>
+         * <blockquote>
+         * 
+         * <pre>
          * {@code
          * public void writeEntityToNBT(NBTTagCompound data)
          *  {
@@ -221,7 +216,9 @@ public interface IElectricMinecart {
          *     chargeHandler.writeToNBT(data);
          *  }
          * }
-         * </pre></blockquote>
+         * </pre>
+         * 
+         * </blockquote>
          * <p>
          */
         public void writeToNBT(NBTTagCompound nbt) {
@@ -233,7 +230,9 @@ public interface IElectricMinecart {
         /**
          * Must be called by the owning object's load function.
          * <p>
-         * <blockquote><pre>
+         * <blockquote>
+         * 
+         * <pre>
          * {@code
          * public void readFromNBT(NBTTagCompound data)
          *  {
@@ -241,7 +240,9 @@ public interface IElectricMinecart {
          *     chargeHandler.readFromNBT(data);
          *  }
          * }
-         * </pre></blockquote>
+         * </pre>
+         * 
+         * </blockquote>
          * <p>
          */
         public void readFromNBT(NBTTagCompound nbt) {

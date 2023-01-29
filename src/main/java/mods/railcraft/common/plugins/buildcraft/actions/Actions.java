@@ -1,26 +1,29 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in the editor.
  */
 package mods.railcraft.common.plugins.buildcraft.actions;
+
+import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import buildcraft.api.statements.IActionExternal;
 import buildcraft.api.statements.IStatementContainer;
 import buildcraft.api.statements.IStatementParameter;
 import buildcraft.api.statements.StatementManager;
-import mods.railcraft.common.plugins.forge.LocalizationPlugin;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.common.util.ForgeDirection;
 
 /**
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public enum Actions implements IActionExternal {
+
     PAUSE("pause"),
     SEND_CART("sendcart");
+
     public static final Actions[] VALUES = values();
     private final String tag;
     private IIcon icon;
@@ -62,8 +65,8 @@ public enum Actions implements IActionExternal {
     }
 
     @Override
-    public void actionActivate(
-            TileEntity tile, ForgeDirection side, IStatementContainer isc, IStatementParameter[] isps) {
+    public void actionActivate(TileEntity tile, ForgeDirection side, IStatementContainer isc,
+            IStatementParameter[] isps) {
         if (tile instanceof IActionReceptor) ((IActionReceptor) tile).actionActivated(this);
     }
 

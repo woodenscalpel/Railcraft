@@ -1,18 +1,17 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.items;
 
 import java.util.List;
 import java.util.Locale;
+
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.plugins.forge.LootPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -23,10 +22,12 @@ import net.minecraftforge.oredict.OreDictionary;
 public class ItemGear extends ItemRailcraft {
 
     public enum EnumGear implements IItemMetaEnum {
+
         GOLD_PLATE("ingotGold"),
         IRON("blockIron"),
         STEEL("blockSteel"),
         BUSHING("ingotTin");
+
         public static final EnumGear[] VALUES = values();
         private IIcon icon;
         private Object alternate;
@@ -67,8 +68,8 @@ public class ItemGear extends ItemRailcraft {
     @Override
     public void registerIcons(IIconRegister iconRegister) {
         for (EnumGear gear : EnumGear.VALUES) {
-            gear.icon = iconRegister.registerIcon("railcraft:part.gear."
-                    + gear.name().toLowerCase(Locale.ENGLISH).replace("_", "."));
+            gear.icon = iconRegister
+                    .registerIcon("railcraft:part.gear." + gear.name().toLowerCase(Locale.ENGLISH).replace("_", "."));
         }
     }
 
@@ -94,13 +95,20 @@ public class ItemGear extends ItemRailcraft {
         CraftingPlugin.addShapedRecipe(gear.getStack(2, EnumGear.BUSHING), "TT", "TT", 'T', "ingotTin");
 
         CraftingPlugin.addShapedRecipe(
-                gear.getStack(EnumGear.GOLD_PLATE), " G ", "GBG", " G ", 'G', "nuggetGold", 'B', bushing);
+                gear.getStack(EnumGear.GOLD_PLATE),
+                " G ",
+                "GBG",
+                " G ",
+                'G',
+                "nuggetGold",
+                'B',
+                bushing);
 
-        CraftingPlugin.addShapedRecipe(
-                gear.getStack(EnumGear.IRON), " I ", "IBI", " I ", 'I', "ingotIron", 'B', bushing);
+        CraftingPlugin
+                .addShapedRecipe(gear.getStack(EnumGear.IRON), " I ", "IBI", " I ", 'I', "ingotIron", 'B', bushing);
 
-        CraftingPlugin.addShapedRecipe(
-                gear.getStack(EnumGear.STEEL), " I ", "IBI", " I ", 'I', "ingotSteel", 'B', bushing);
+        CraftingPlugin
+                .addShapedRecipe(gear.getStack(EnumGear.STEEL), " I ", "IBI", " I ", 'I', "ingotSteel", 'B', bushing);
     }
 
     @Override

@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.gui.buttons;
 
@@ -13,6 +10,7 @@ package mods.railcraft.common.gui.buttons;
  * @author CovertJaguar <http://www.railcraft.info/>
  */
 public enum StandardButtonTextureSets implements IButtonTextureSet {
+
     LARGE_BUTTON(0, 88, 20, 200),
     SMALL_BUTTON(0, 168, 15, 200),
     LOCKED_BUTTON(224, 0, 16, 16),
@@ -20,6 +18,7 @@ public enum StandardButtonTextureSets implements IButtonTextureSet {
     LEFT_BUTTON(204, 0, 16, 10),
     RIGHT_BUTTON(214, 0, 16, 10),
     DICE_BUTTON(176, 0, 16, 16);
+
     private final int x, y, height, width;
 
     private StandardButtonTextureSets(int x, int y, int height, int width) {

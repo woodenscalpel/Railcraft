@@ -1,18 +1,17 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.items;
 
 import java.util.List;
+
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forestry.ForestryPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.plugins.ic2.IC2Plugin;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
@@ -27,10 +26,12 @@ import net.minecraftforge.oredict.OreDictionary;
 public class ItemDust extends ItemRailcraft {
 
     public enum EnumDust implements IItemMetaEnum {
+
         OBSIDIAN("dust.obsidian", "dustObsidian"),
         SULFUR("dust.sulfur", "dustSulfur"),
         SALTPETER("dust.saltpeter", "dustSaltpeter"),
         CHARCOAL("dust.charcoal", "dustCharcoal");
+
         public static final EnumDust[] VALUES = values();
         private final String tag;
         private final String oreTag;
@@ -71,7 +72,8 @@ public class ItemDust extends ItemRailcraft {
     public void definePostRecipes() {
         if (IC2Plugin.isModInstalled() && RailcraftConfig.getRecipeConfig("ic2.macerator.charcoal")) {
             IC2Plugin.addMaceratorRecipe(
-                    new ItemStack(Items.coal, 1, 1), new ItemStack(this, 1, EnumDust.CHARCOAL.ordinal()));
+                    new ItemStack(Items.coal, 1, 1),
+                    new ItemStack(this, 1, EnumDust.CHARCOAL.ordinal()));
         }
     }
 

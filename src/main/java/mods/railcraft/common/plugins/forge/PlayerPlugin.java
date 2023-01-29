@@ -1,17 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.plugins.forge;
 
-import com.mojang.authlib.GameProfile;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
 import java.util.UUID;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -20,14 +15,20 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.FakePlayerFactory;
 
+import com.mojang.authlib.GameProfile;
+
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
+
 /**
  *
  * @author CovertJaguar <http://www.railcraft.info/>
  */
 public class PlayerPlugin {
 
-    public static final GameProfile RAILCRAFT_USER_PROFILE =
-            new GameProfile(UUID.nameUUIDFromBytes("[Railcraft]".getBytes()), "[Railcraft]");
+    public static final GameProfile RAILCRAFT_USER_PROFILE = new GameProfile(
+            UUID.nameUUIDFromBytes("[Railcraft]".getBytes()),
+            "[Railcraft]");
 
     public static EntityPlayer getFakePlayer(final WorldServer world, final double x, final double y, final double z) {
         EntityPlayer player = FakePlayerFactory.get(world, RAILCRAFT_USER_PROFILE);
@@ -85,18 +86,12 @@ public class PlayerPlugin {
     public static boolean isPlayerOp(GameProfile player) {
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
             throw new RuntimeException("You derped up! Don't call this on the client!");
-        return FMLCommonHandler.instance()
-                .getMinecraftServerInstance()
-                .getConfigurationManager()
-                .func_152596_g(player);
+        return FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().func_152596_g(player);
     }
 
     public static boolean isPlayerConnected(GameProfile player) {
-        return FMLCommonHandler.instance()
-                        .getMinecraftServerInstance()
-                        .getConfigurationManager()
-                        .func_152612_a(player.getName())
-                != null;
+        return FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager()
+                .func_152612_a(player.getName()) != null;
     }
 
     public static void swingItem(EntityPlayer player) {

@@ -1,15 +1,13 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.render.carts;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import mods.railcraft.client.render.models.ModelSimpleCube;
 import mods.railcraft.client.render.models.ModelTextured;
 import mods.railcraft.client.render.models.carts.ModelGift;
@@ -17,6 +15,7 @@ import mods.railcraft.client.render.models.carts.ModelLowSidesMinecart;
 import mods.railcraft.client.render.models.carts.ModelMaintance;
 import mods.railcraft.common.carts.*;
 import mods.railcraft.common.core.RailcraftConstants;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelMinecart;
 import net.minecraft.entity.item.EntityMinecart;

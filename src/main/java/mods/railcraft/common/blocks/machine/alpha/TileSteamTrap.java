@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.alpha;
 
@@ -12,6 +9,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.List;
+
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.fluids.Fluids;
@@ -24,6 +22,7 @@ import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.misc.RailcraftDamageSource;
 import mods.railcraft.common.util.sounds.SoundHelper;
 import mods.railcraft.common.util.steam.ISteamUser;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -76,10 +75,9 @@ public abstract class TileSteamTrap extends TileMachineBase implements IFluidHan
             return;
         }
         triggerCheck();
-        if (isJetting())
-            for (EntityLivingBase entity : getEntitiesInSteamArea()) {
-                entity.attackEntityFrom(RailcraftDamageSource.STEAM, DAMAGE);
-            }
+        if (isJetting()) for (EntityLivingBase entity : getEntitiesInSteamArea()) {
+            entity.attackEntityFrom(RailcraftDamageSource.STEAM, DAMAGE);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -87,8 +85,8 @@ public abstract class TileSteamTrap extends TileMachineBase implements IFluidHan
         AxisAlignedBB area = AxisAlignedBB.getBoundingBox(-0.5D, -0.5D, -0.5D, 0.5D, 0.5D, 0.5D);
         MiscTools.addCoordToAABB(area, direction.offsetX * RANGE, direction.offsetY * RANGE, direction.offsetZ * RANGE);
         area.offset(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5);
-        List<EntityLivingBase> entities =
-                (List<EntityLivingBase>) worldObj.getEntitiesWithinAABB(EntityLivingBase.class, area);
+        List<EntityLivingBase> entities = (List<EntityLivingBase>) worldObj
+                .getEntitiesWithinAABB(EntityLivingBase.class, area);
         return entities;
     }
 
@@ -128,8 +126,14 @@ public abstract class TileSteamTrap extends TileMachineBase implements IFluidHan
         if (!canJet()) return;
         jet = JET_TIME;
         tank.setFluid(null);
-        SoundHelper.playSound(worldObj, xCoord, yCoord, zCoord, SoundHelper.SOUND_STEAM_HISS, 1, (float)
-                (1 + MiscTools.getRand().nextGaussian() * 0.1));
+        SoundHelper.playSound(
+                worldObj,
+                xCoord,
+                yCoord,
+                zCoord,
+                SoundHelper.SOUND_STEAM_HISS,
+                1,
+                (float) (1 + MiscTools.getRand().nextGaussian() * 0.1));
         sendUpdateToClient();
     }
 

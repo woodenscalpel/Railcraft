@@ -3,6 +3,7 @@ package mods.railcraft.common.gui.containers;
 import mods.railcraft.common.carts.EntityCartTrackLayer;
 import mods.railcraft.common.gui.slots.SlotLinked;
 import mods.railcraft.common.gui.slots.SlotTrackFilter;
+
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 

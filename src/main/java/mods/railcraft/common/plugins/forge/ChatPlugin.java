@@ -1,15 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.plugins.forge;
 
-import com.mojang.authlib.GameProfile;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
@@ -17,17 +14,20 @@ import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 
+import com.mojang.authlib.GameProfile;
+
 /**
  * Chat Plugin for sending chat messages.
  *
- * Don't use the LocalizationPlugin in conjunction with this class,
- * it will result in everything being translated to English only.
+ * Don't use the LocalizationPlugin in conjunction with this class, it will result in everything being translated to
+ * English only.
  *
  * This is because the server only knows about English, only the client can do proper translations.
  *
  * @author CovertJaguar <http://www.railcraft.info/>
  */
 public class ChatPlugin {
+
     public static IChatComponent getMessage(String msg) {
         return new ChatComponentText(msg);
     }

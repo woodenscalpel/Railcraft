@@ -1,18 +1,17 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.carts;
 
 import java.util.List;
+
 import mods.railcraft.api.carts.IItemCart;
 import mods.railcraft.common.blocks.tracks.EnumTrackMeta;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.item.EntityMinecartContainer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,6 +28,7 @@ import net.minecraftforge.event.entity.minecart.MinecartInteractEvent;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public abstract class CartContainerBase extends EntityMinecartContainer implements IRailcraftCart, IItemCart {
+
     private final ForgeDirection[] travelDirectionHistory = new ForgeDirection[2];
     protected ForgeDirection travelDirection = ForgeDirection.UNKNOWN;
     protected ForgeDirection verticalTravelDirection = ForgeDirection.UNKNOWN;
@@ -78,10 +78,9 @@ public abstract class CartContainerBase extends EntityMinecartContainer implemen
 
     @Override
     public void setDead() {
-        if (Game.isNotHost(worldObj))
-            for (int slot = 0; slot < getSizeInventory(); slot++) {
-                setInventorySlotContents(slot, null);
-            }
+        if (Game.isNotHost(worldObj)) for (int slot = 0; slot < getSizeInventory(); slot++) {
+            setInventorySlotContents(slot, null);
+        }
         super.setDead();
     }
 

@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.gui.widgets;
 
@@ -12,7 +9,9 @@ import mods.railcraft.client.gui.GuiContainerRailcraft;
 import mods.railcraft.client.render.FluidRenderer;
 import mods.railcraft.common.fluids.tanks.StandardTank;
 import mods.railcraft.common.gui.tooltips.ToolTip;
+
 import net.minecraft.util.IIcon;
+
 import org.lwjgl.opengl.GL11;
 
 /**

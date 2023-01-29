@@ -3,12 +3,14 @@ package mods.railcraft.common.blocks.machine.epsilon;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.fluids.Fluids;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -100,7 +102,7 @@ public class TileAdminSteamProducer extends TileMachineBase implements IFluidHan
     @Override
     public FluidTankInfo[] getTankInfo(ForgeDirection from) {
         FluidStack fluidStack = Fluids.STEAM.get(FluidHelper.BUCKET_VOLUME);
-        return new FluidTankInfo[] {new FluidTankInfo(fluidStack, FluidHelper.BUCKET_VOLUME)};
+        return new FluidTankInfo[] { new FluidTankInfo(fluidStack, FluidHelper.BUCKET_VOLUME) };
     }
 
     @Override

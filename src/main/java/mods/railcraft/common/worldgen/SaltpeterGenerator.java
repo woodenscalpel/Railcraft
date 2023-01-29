@@ -1,15 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.worldgen;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import java.util.Random;
+
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -19,13 +16,15 @@ import net.minecraftforge.event.terraingen.OreGenEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType;
 import net.minecraftforge.event.terraingen.TerrainGen;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class SaltpeterGenerator {
 
-    public static final EventType EVENT_TYPE =
-            EnumHelper.addEnum(EventType.class, "SALTPETER", new Class[0], new Object[0]);
+    public static final EventType EVENT_TYPE = EnumHelper
+            .addEnum(EventType.class, "SALTPETER", new Class[0], new Object[0]);
     private WorldGenerator saltpeter = new WorldGenSaltpeter();
 
     @SubscribeEvent
@@ -38,14 +37,13 @@ public class SaltpeterGenerator {
 
         if (!TerrainGen.generateOre(world, rand, saltpeter, worldX, worldZ, EVENT_TYPE)) return;
 
-        if (canGen(world, rand, worldX, worldZ))
-            for (int i = 0; i < 64; i++) {
-                int x = worldX + rand.nextInt(16);
-                int z = worldZ + rand.nextInt(16);
-                int y = world.getTopSolidOrLiquidBlock(x, z) - 1 - (rand.nextInt(100) == 0 ? 0 : 1);
-                if (y < 50 || y > 100) continue;
-                saltpeter.generate(world, rand, x, y, z);
-            }
+        if (canGen(world, rand, worldX, worldZ)) for (int i = 0; i < 64; i++) {
+            int x = worldX + rand.nextInt(16);
+            int z = worldZ + rand.nextInt(16);
+            int y = world.getTopSolidOrLiquidBlock(x, z) - 1 - (rand.nextInt(100) == 0 ? 0 : 1);
+            if (y < 50 || y > 100) continue;
+            saltpeter.generate(world, rand, x, y, z);
+        }
     }
 
     private boolean canGen(World world, Random rand, int x, int z) {

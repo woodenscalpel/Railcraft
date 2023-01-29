@@ -1,16 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2015 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2015 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.aesthetics.brick;
 
 import static mods.railcraft.common.blocks.aesthetics.brick.BrickVariant.*;
 
 import java.util.Locale;
+
 import mods.railcraft.common.blocks.BlockFactory;
 import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
 import mods.railcraft.common.blocks.aesthetics.cube.ReplacerCube;
@@ -20,6 +18,7 @@ import mods.railcraft.common.plugins.forestry.ForestryPlugin;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.plugins.misc.MicroBlockPlugin;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -29,16 +28,19 @@ import net.minecraft.item.ItemStack;
  * Created by CovertJaguar on 3/12/2015.
  */
 public enum EnumBrick {
+
     ABYSSAL {
+
         @Override
         public void initRecipes() {
             if (EnumCube.ABYSSAL_STONE.isEnabled()) {
-                CraftingPlugin.addFurnaceRecipe(
-                        EnumCube.ABYSSAL_STONE.getItem(), new ItemStack(getBlock(), 1, 2), 0.2F);
+                CraftingPlugin
+                        .addFurnaceRecipe(EnumCube.ABYSSAL_STONE.getItem(), new ItemStack(getBlock(), 1, 2), 0.2F);
             }
         }
     },
     BLEACHEDBONE {
+
         Item bleachedClay;
 
         @Override
@@ -61,6 +63,7 @@ public enum EnumBrick {
         }
     },
     BLOODSTAINED {
+
         @Override
         public void initRecipes() {
             CraftingPlugin.addShapelessRecipe(
@@ -68,10 +71,13 @@ public enum EnumBrick {
                     new ItemStack(Blocks.sandstone, 1, 2),
                     new ItemStack(Items.rotten_flesh));
             CraftingPlugin.addShapelessRecipe(
-                    new ItemStack(getBlock(), 1, 2), new ItemStack(Blocks.sandstone, 1, 2), new ItemStack(Items.beef));
+                    new ItemStack(getBlock(), 1, 2),
+                    new ItemStack(Blocks.sandstone, 1, 2),
+                    new ItemStack(Items.beef));
         }
     },
     FROSTBOUND {
+
         @Override
         public void initRecipes() {
             CraftingPlugin.addShapedRecipe(
@@ -86,6 +92,7 @@ public enum EnumBrick {
         }
     },
     INFERNAL {
+
         @Override
         public void initRecipes() {
             ((ReplacerCube) EnumCube.INFERNAL_BRICK.getBlockDef()).block = getBlock();
@@ -100,23 +107,32 @@ public enum EnumBrick {
         }
     },
     QUARRIED {
+
         @Override
         public void initRecipes() {
             if (EnumCube.QUARRIED_STONE.isEnabled()) {
-                CraftingPlugin.addFurnaceRecipe(
-                        EnumCube.QUARRIED_STONE.getItem(), new ItemStack(getBlock(), 1, 2), 0.2F);
+                CraftingPlugin
+                        .addFurnaceRecipe(EnumCube.QUARRIED_STONE.getItem(), new ItemStack(getBlock(), 1, 2), 0.2F);
             }
         }
     },
     SANDY {
+
         @Override
         public void initRecipes() {
             ((ReplacerCube) EnumCube.SANDY_BRICK.getBlockDef()).block = getBlock();
             CraftingPlugin.addShapedRecipe(
-                    new ItemStack(getBlock(), 1, 2), "BM", "MB", 'B', "ingotBrick", 'M', new ItemStack(Blocks.sand));
+                    new ItemStack(getBlock(), 1, 2),
+                    "BM",
+                    "MB",
+                    'B',
+                    "ingotBrick",
+                    'M',
+                    new ItemStack(Blocks.sand));
         }
     },
     NETHER {
+
         @Override
         public ItemStack get(BrickVariant variant, int qty) {
             if (variant == BrickVariant.BRICK) return new ItemStack(Blocks.nether_brick, qty);
@@ -132,8 +148,8 @@ public enum EnumBrick {
         protected void initVariant(BrickVariant variant) {
             if (variant != BrickVariant.BRICK) super.initVariant(variant);
         }
-    },
-    ;
+    },;
+
     public static final EnumBrick[] VALUES = values();
     private BlockBrick block;
 
@@ -164,6 +180,7 @@ public enum EnumBrick {
 
     public final BlockFactory makeFactory() {
         return new BlockFactory("brick." + themeTag()) {
+
             @Override
             protected void doBlockInit() {
                 block = new BlockBrick(EnumBrick.this);

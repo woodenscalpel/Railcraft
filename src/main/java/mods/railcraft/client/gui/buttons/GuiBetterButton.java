@@ -1,30 +1,30 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.gui.buttons;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.common.core.RailcraftConstants;
 import mods.railcraft.common.gui.buttons.IButtonTextureSet;
 import mods.railcraft.common.gui.buttons.StandardButtonTextureSets;
 import mods.railcraft.common.gui.tooltips.ToolTip;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class GuiBetterButton extends GuiButton {
 
-    private static final ResourceLocation TEXTURE =
-            new ResourceLocation(RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_basic.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation(
+            RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_basic.png");
     protected final IButtonTextureSet texture;
     private ToolTip toolTip;
 
@@ -56,8 +56,7 @@ public class GuiBetterButton extends GuiButton {
     }
 
     public boolean isMouseOverButton(int mouseX, int mouseY) {
-        return mouseX >= xPosition
-                && mouseY >= yPosition
+        return mouseX >= xPosition && mouseY >= yPosition
                 && mouseX < xPosition + width
                 && mouseY < yPosition + getHeight();
     }
@@ -80,10 +79,19 @@ public class GuiBetterButton extends GuiButton {
         int hoverState = getHoverState(mouseOver);
         drawTexturedModalRect(xPosition, yPosition, xOffset, yOffset + hoverState * h, width / 2, h);
         drawTexturedModalRect(
-                xPosition + width / 2, yPosition, xOffset + w - width / 2, yOffset + hoverState * h, width / 2, h);
+                xPosition + width / 2,
+                yPosition,
+                xOffset + w - width / 2,
+                yOffset + hoverState * h,
+                width / 2,
+                h);
         mouseDragged(minecraft, mouseX, mouseY);
         drawCenteredString(
-                fontrenderer, displayString, xPosition + width / 2, yPosition + (h - 8) / 2, getTextColor(mouseOver));
+                fontrenderer,
+                displayString,
+                xPosition + width / 2,
+                yPosition + (h - 8) / 2,
+                getTextColor(mouseOver));
     }
 
     public ToolTip getToolTip() {

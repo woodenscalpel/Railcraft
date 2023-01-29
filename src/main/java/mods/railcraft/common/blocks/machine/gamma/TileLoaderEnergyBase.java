@@ -1,22 +1,21 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.gamma;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+
 import mods.railcraft.api.carts.IEnergyTransfer;
 import mods.railcraft.common.modules.ModuleIC2;
 import mods.railcraft.common.plugins.ic2.IC2Plugin;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.inventory.ISidedInventory;
@@ -27,6 +26,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public abstract class TileLoaderEnergyBase extends TileLoaderBase implements ISidedInventory {
+
     private static final int SLOT_CHARGE = 0;
     private static final int SLOT_BATTERY = 1;
     private static final int TIER = 2;
@@ -92,11 +92,10 @@ public abstract class TileLoaderEnergyBase extends TileLoaderBase implements ISi
 
         for (int i = 2; i < 6; i++) {
             ItemStack stack = getStackInSlot(i);
-            if (stack != null)
-                if (storage != null && stack.isItemEqual(storage)) storageUpgrades += stack.stackSize;
-                else if (overclocker != null && stack.isItemEqual(overclocker)) overclockerUpgrades += stack.stackSize;
-                else if (transformer != null && stack.isItemEqual(transformer)) transformerUpgrades += stack.stackSize;
-                else if (lapotron != null && stack.getItem() == lapotron) lapotronUpgrades += stack.stackSize;
+            if (stack != null) if (storage != null && stack.isItemEqual(storage)) storageUpgrades += stack.stackSize;
+            else if (overclocker != null && stack.isItemEqual(overclocker)) overclockerUpgrades += stack.stackSize;
+            else if (transformer != null && stack.isItemEqual(transformer)) transformerUpgrades += stack.stackSize;
+            else if (lapotron != null && stack.getItem() == lapotron) lapotronUpgrades += stack.stackSize;
         }
         if (overclockerUpgrades > MAX_OVERCLOCKS) overclockerUpgrades = MAX_OVERCLOCKS;
         if (lapotronUpgrades > MAX_LAPOTRON) lapotronUpgrades = MAX_LAPOTRON;
@@ -119,12 +118,12 @@ public abstract class TileLoaderEnergyBase extends TileLoaderBase implements ISi
         if (!(cart instanceof IEnergyTransfer)) return false;
         IEnergyTransfer energyCart = (IEnergyTransfer) cart;
         if (energyCart.getTier() > getTier()) return false;
-        //        ItemStack minecartSlot1 = getCartFilters().getStackInSlot(0);
-        //        ItemStack minecartSlot2 = getCartFilters().getStackInSlot(1);
-        //        if (minecartSlot1 != null || minecartSlot2 != null)
-        //            if (!CartUtils.doesCartMatchFilter(minecartSlot1, cart) &&
+        // ItemStack minecartSlot1 = getCartFilters().getStackInSlot(0);
+        // ItemStack minecartSlot2 = getCartFilters().getStackInSlot(1);
+        // if (minecartSlot1 != null || minecartSlot2 != null)
+        // if (!CartUtils.doesCartMatchFilter(minecartSlot1, cart) &&
         // !CartUtils.doesCartMatchFilter(minecartSlot2, cart))
-        //                return false;
+        // return false;
         return true;
     }
 

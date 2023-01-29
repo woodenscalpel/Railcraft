@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.hidden;
 
@@ -12,6 +9,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
+
 import mods.railcraft.api.core.WorldCoordinate;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -19,6 +17,7 @@ import mods.railcraft.common.items.ItemGoggles;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.effects.EffectManager;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
@@ -27,9 +26,10 @@ import net.minecraft.nbt.NBTTagCompound;
  * @author CovertJaguar <http://www.railcraft.info/>
  */
 public class TileHidden extends RailcraftTileEntity {
+
     private static final int DURATION_MIINUTES = 15;
-    private static final long DURATION_MILLISECONDS =
-            TimeUnit.MILLISECONDS.convert(DURATION_MIINUTES, TimeUnit.MINUTES);
+    private static final long DURATION_MILLISECONDS = TimeUnit.MILLISECONDS
+            .convert(DURATION_MIINUTES, TimeUnit.MINUTES);
     public WorldCoordinate lastMarker;
     public long colorSeed;
     public long timestamp = -1;

@@ -1,19 +1,18 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.crafting;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import mods.railcraft.api.crafting.ICokeOvenCraftingManager;
 import mods.railcraft.api.crafting.ICokeOvenRecipe;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.common.util.inventory.InvTools;
+
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -39,13 +38,8 @@ public class CokeOvenCraftingManager implements ICokeOvenCraftingManager {
         private final int cookTime;
         private final ItemStack output;
 
-        public CokeOvenRecipe(
-                ItemStack input,
-                boolean matchDamage,
-                boolean matchNBT,
-                ItemStack output,
-                FluidStack fluidOutput,
-                int cookTime) {
+        public CokeOvenRecipe(ItemStack input, boolean matchDamage, boolean matchNBT, ItemStack output,
+                FluidStack fluidOutput, int cookTime) {
             this.input = input;
             this.matchDamage = matchDamage;
             this.matchNBT = matchNBT;
@@ -82,17 +76,12 @@ public class CokeOvenCraftingManager implements ICokeOvenCraftingManager {
     }
 
     @Override
-    public void addRecipe(
-            ItemStack input,
-            boolean matchDamage,
-            boolean matchNBT,
-            ItemStack output,
-            FluidStack fluidOutput,
-            int cookTime) {
+    public void addRecipe(ItemStack input, boolean matchDamage, boolean matchNBT, ItemStack output,
+            FluidStack fluidOutput, int cookTime) {
         if (input == null) return;
         recipes.add(new CokeOvenRecipe(input, matchDamage, matchNBT, output, fluidOutput, cookTime));
 
-        //        Game.log(Level.DEBUG, "Adding Coke Oven recipe: {0}, {1}, {2}", input.getItem().getClass().getName(),
+        // Game.log(Level.DEBUG, "Adding Coke Oven recipe: {0}, {1}, {2}", input.getItem().getClass().getName(),
         // input, input.getItemDamage());
     }
 

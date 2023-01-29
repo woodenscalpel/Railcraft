@@ -1,8 +1,6 @@
 /*
- * ******************************************************************************
- *  Copyright 2011-2015 CovertJaguar
- *
- *  This work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
+ * ****************************************************************************** Copyright 2011-2015 CovertJaguar This
+ * work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
  * ***************************************************************************
  */
 
@@ -10,7 +8,9 @@ package mods.railcraft.api.tracks;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import mods.railcraft.api.core.items.ITrackItem;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.entity.item.EntityMinecart;
@@ -27,20 +27,20 @@ import net.minecraft.world.World;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public abstract class RailTools {
+
     public static boolean isRailBlockAt(IBlockAccess world, int x, int y, int z) {
         return world.getBlock(x, y, z) instanceof BlockRailBase;
     }
 
     /**
-     * Attempts to place a rail of the type provided. There is no need to verify
-     * that the ItemStack contains a valid rail prior to calling this function.
+     * Attempts to place a rail of the type provided. There is no need to verify that the ItemStack contains a valid
+     * rail prior to calling this function.
      * <p/>
-     * The function takes care of that and will return false if the ItemStack is
-     * not a valid ITrackItem or an ItemBlock who's id will return true when
-     * passed to BlockRailBase.isRailBlock(itemID).
+     * The function takes care of that and will return false if the ItemStack is not a valid ITrackItem or an ItemBlock
+     * who's id will return true when passed to BlockRailBase.isRailBlock(itemID).
      * <p/>
-     * That means this function can place any Railcraft or vanilla rail and has
-     * at least a decent chance of being able to place most third party rails.
+     * That means this function can place any Railcraft or vanilla rail and has at least a decent chance of being able
+     * to place most third party rails.
      *
      * @param stack The ItemStack containing the rail
      * @param world The World object
@@ -58,14 +58,13 @@ public abstract class RailTools {
             Block block = ((ItemBlock) stack.getItem()).field_150939_a;
             if (BlockRailBase.func_150051_a(block)) {
                 boolean success = world.setBlock(i, j, k, block);
-                if (success)
-                    world.playSoundEffect(
-                            (float) i + 0.5F,
-                            (float) j + 0.5F,
-                            (float) k + 0.5F,
-                            block.stepSound.func_150496_b(),
-                            (block.stepSound.getVolume() + 1.0F) / 2.0F,
-                            block.stepSound.getPitch() * 0.8F);
+                if (success) world.playSoundEffect(
+                        (float) i + 0.5F,
+                        (float) j + 0.5F,
+                        (float) k + 0.5F,
+                        block.stepSound.func_150496_b(),
+                        (block.stepSound.getVolume() + 1.0F) / 2.0F,
+                        block.stepSound.getPitch() * 0.8F);
                 return success;
             }
         }
@@ -121,10 +120,8 @@ public abstract class RailTools {
     }
 
     public static boolean isTrackFuzzyAt(World world, int x, int y, int z) {
-        return BlockRailBase.func_150049_b_(world, x, y, z)
-                ? true
-                : (BlockRailBase.func_150049_b_(world, x, y + 1, z)
-                        ? true
+        return BlockRailBase.func_150049_b_(world, x, y, z) ? true
+                : (BlockRailBase.func_150049_b_(world, x, y + 1, z) ? true
                         : BlockRailBase.func_150049_b_(world, x, y - 1, z));
     }
 

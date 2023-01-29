@@ -1,20 +1,18 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.network;
 
-import cpw.mods.fml.common.network.internal.FMLProxyPacket;
-import io.netty.buffer.Unpooled;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+
 import mods.railcraft.common.util.misc.Game;
+import cpw.mods.fml.common.network.internal.FMLProxyPacket;
+import io.netty.buffer.Unpooled;
 
 public abstract class RailcraftPacket {
 

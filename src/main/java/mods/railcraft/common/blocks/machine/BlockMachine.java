@@ -1,23 +1,20 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 import mods.railcraft.api.core.IPostConnection;
 import mods.railcraft.common.plugins.forge.CreativePlugin;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -38,7 +35,11 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import org.apache.logging.log4j.Level;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockMachine extends BlockContainer implements IPostConnection {
 
@@ -68,6 +69,7 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
 
     /**
      * Returns the default ambient occlusion value based on block opacity
+     * 
      * @return
      */
     @SideOnly(Side.CLIENT)
@@ -124,8 +126,8 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
     }
 
     @Override
-    public boolean onBlockActivated(
-            World world, int i, int j, int k, EntityPlayer player, int side, float u1, float u2, float u3) {
+    public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer player, int side, float u1, float u2,
+            float u3) {
         TileEntity tile = world.getTileEntity(i, j, k);
         if (tile instanceof TileMachineBase) return ((TileMachineBase) tile).blockActivated(player, side);
         return false;
@@ -259,12 +261,12 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
     public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
         TileEntity tile = world.getTileEntity(x, y, z);
         if (tile instanceof TileMachineBase) ((TileMachineBase) tile).onBlockRemoval();
-        //        world.notifyBlocksOfNeighborChange(x + 1, y, z, blockID);
-        //        world.notifyBlocksOfNeighborChange(x - 1, y, z, blockID);
-        //        world.notifyBlocksOfNeighborChange(x, y, z + 1, blockID);
-        //        world.notifyBlocksOfNeighborChange(x, y, z - 1, blockID);
-        //        world.notifyBlocksOfNeighborChange(x, y - 1, z, blockID);
-        //        world.notifyBlocksOfNeighborChange(x, y + 1, z, blockID);
+        // world.notifyBlocksOfNeighborChange(x + 1, y, z, blockID);
+        // world.notifyBlocksOfNeighborChange(x - 1, y, z, blockID);
+        // world.notifyBlocksOfNeighborChange(x, y, z + 1, blockID);
+        // world.notifyBlocksOfNeighborChange(x, y, z - 1, blockID);
+        // world.notifyBlocksOfNeighborChange(x, y - 1, z, blockID);
+        // world.notifyBlocksOfNeighborChange(x, y + 1, z, blockID);
         super.breakBlock(world, x, y, z, block, meta);
     }
 
@@ -310,8 +312,8 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
     }
 
     @Override
-    public float getExplosionResistance(
-            Entity exploder, World world, int x, int y, int z, double srcX, double srcY, double srcZ) {
+    public float getExplosionResistance(Entity exploder, World world, int x, int y, int z, double srcX, double srcY,
+            double srcZ) {
         TileEntity tile = world.getTileEntity(x, y, z);
         if (tile instanceof TileMachineBase) return ((TileMachineBase) tile).getResistance(exploder) * 3f / 5f;
         return super.getExplosionResistance(exploder, world, x, y, z, minX, minY, minZ);

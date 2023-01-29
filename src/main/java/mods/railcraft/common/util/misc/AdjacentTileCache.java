@@ -1,15 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.misc;
 
 import java.util.*;
+
 import mods.railcraft.common.plugins.forge.WorldPlugin;
+
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
@@ -17,6 +16,7 @@ import net.minecraftforge.common.util.ForgeDirection;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public final class AdjacentTileCache {
+
     private static final int DELAY_MIN = 20;
     private static final int DELAY_MAX = 2400;
     private static final int DELAY_STEP = 2;
@@ -97,17 +97,16 @@ public final class AdjacentTileCache {
             return searchSide(side);
         }
         int s = side.ordinal();
-        if (cache[s] != null)
-            if (cache[s].isInvalid()
-                    || !MiscTools.areCoordinatesOnSide(
-                            source.xCoord,
-                            source.yCoord,
-                            source.zCoord,
-                            side,
-                            cache[s].xCoord,
-                            cache[s].yCoord,
-                            cache[s].zCoord)) setTile(side, null);
-            else return cache[s];
+        if (cache[s] != null) if (cache[s].isInvalid() || !MiscTools.areCoordinatesOnSide(
+                source.xCoord,
+                source.yCoord,
+                source.zCoord,
+                side,
+                cache[s].xCoord,
+                cache[s].yCoord,
+                cache[s].zCoord))
+            setTile(side, null);
+        else return cache[s];
 
         if (timer[s].hasTriggered(source.getWorldObj(), delay[s])) {
             setTile(side, searchSide(side));
@@ -130,6 +129,7 @@ public final class AdjacentTileCache {
     }
 
     public interface ICacheListener {
+
         void changed(ForgeDirection side);
 
         void purge();

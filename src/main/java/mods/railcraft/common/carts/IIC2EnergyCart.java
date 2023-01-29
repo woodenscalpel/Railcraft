@@ -7,6 +7,7 @@ import net.minecraft.inventory.IInventory;
  * Created by CovertJaguar on 5/3/2016.
  */
 public interface IIC2EnergyCart extends IInventory {
+
     int getCapacity();
 
     double getEnergy();

@@ -1,20 +1,19 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.carts;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.items.ItemCrowbar;
 import mods.railcraft.common.items.RailcraftToolItems;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -40,11 +39,11 @@ public class EntityCartGift extends EntityCartTNTWood {
     }
 
     static {
-        gifts.add(new Gift(null /*potion*/, 100));
-        gifts.add(new Gift(null /*potion*/, 100));
-        gifts.add(new Gift(null /*potion*/, 100));
-        gifts.add(new Gift(null /*potion*/, 100));
-        gifts.add(new Gift(null /*potion*/, 100));
+        gifts.add(new Gift(null /* potion */, 100));
+        gifts.add(new Gift(null /* potion */, 100));
+        gifts.add(new Gift(null /* potion */, 100));
+        gifts.add(new Gift(null /* potion */, 100));
+        gifts.add(new Gift(null /* potion */, 100));
 
         gifts.add(new Gift(new ItemStack(Items.snowball, 16), 50));
 

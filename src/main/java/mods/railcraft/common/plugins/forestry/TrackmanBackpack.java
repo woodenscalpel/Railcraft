@@ -1,15 +1,10 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.plugins.forestry;
 
-import cpw.mods.fml.common.Optional;
-import forestry.api.storage.IBackpackDefinition;
 import mods.railcraft.api.core.items.IMinecartItem;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.detector.BlockDetector;
@@ -26,9 +21,13 @@ import mods.railcraft.common.items.ItemGoggles;
 import mods.railcraft.common.items.ItemMagnifyingGlass;
 import mods.railcraft.common.items.ItemWhistleTuner;
 import mods.railcraft.common.items.RailcraftToolItems;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemMinecart;
+
+import cpw.mods.fml.common.Optional;
+import forestry.api.storage.IBackpackDefinition;
 
 /**
  *

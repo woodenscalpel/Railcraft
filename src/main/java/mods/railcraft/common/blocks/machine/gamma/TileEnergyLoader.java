@@ -1,16 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.gamma;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.IEnergyTransfer;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
@@ -20,6 +18,7 @@ import mods.railcraft.common.plugins.ic2.ISinkDelegate;
 import mods.railcraft.common.plugins.ic2.TileIC2SinkDelegate;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
+
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -28,7 +27,8 @@ import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileEnergyLoader extends TileLoaderEnergyBase implements ISinkDelegate, IGuiReturnHandler {
-    private static final short[] INPUT_LEVELS = {512, 2048};
+
+    private static final short[] INPUT_LEVELS = { 512, 2048 };
     private boolean waitTillFull = false;
     private boolean waitIfEmpty = true;
     private TileEntity sinkDelegate;
@@ -198,12 +198,11 @@ public class TileEnergyLoader extends TileLoaderEnergyBase implements ISinkDeleg
 
     @Override
     public TileEntity getIC2Delegate() {
-        if (sinkDelegate == null)
-            try {
-                sinkDelegate = new TileIC2SinkDelegate(this);
-            } catch (Throwable error) {
-                Game.logErrorAPI("IndustrialCraft", error);
-            }
+        if (sinkDelegate == null) try {
+            sinkDelegate = new TileIC2SinkDelegate(this);
+        } catch (Throwable error) {
+            Game.logErrorAPI("IndustrialCraft", error);
+        }
         return sinkDelegate;
     }
 

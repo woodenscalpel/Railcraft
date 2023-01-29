@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.tank;
 
@@ -12,12 +9,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Set;
+
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.beta.MetalTank;
 import mods.railcraft.common.blocks.machine.zeta.EnumMachineEta;
 import mods.railcraft.common.blocks.machine.zeta.EnumMachineZeta;
 import mods.railcraft.common.modules.ModuleAdvancedTanks;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+
 import net.minecraft.entity.Entity;
 
 /**
@@ -38,8 +37,8 @@ public class GenericMultiTankBase extends MetalTank {
     public final IEnumMachine TANK_VALVE;
     public final IEnumMachine TANK_GAUGE;
 
-    public GenericMultiTankBase(
-            String tankMat, int tankCapacity, IEnumMachine tankWall, IEnumMachine tankValve, IEnumMachine tankGauge) {
+    public GenericMultiTankBase(String tankMat, int tankCapacity, IEnumMachine tankWall, IEnumMachine tankValve,
+            IEnumMachine tankGauge) {
         tankMaterial = tankMat;
         capacity = tankCapacity;
         tankWallMeta = tankWall.ordinal();
@@ -87,10 +86,7 @@ public class GenericMultiTankBase extends MetalTank {
             try {
                 Method setTank = machine.getClass().getDeclaredMethod("setTankType", GenericMultiTankBase.class);
                 setTank.invoke(machine, this);
-            } catch (NoSuchMethodException
-                    | SecurityException
-                    | IllegalAccessException
-                    | IllegalArgumentException
+            } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
                     | InvocationTargetException e) {
                 e.printStackTrace();
             }

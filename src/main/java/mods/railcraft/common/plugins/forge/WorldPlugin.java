@@ -1,16 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.plugins.forge;
 
 import static mods.railcraft.common.util.misc.MiscTools.*;
 
 import mods.railcraft.api.core.WorldCoordinate;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
@@ -105,8 +103,8 @@ public class WorldPlugin {
         if (world != null && block != null) world.notifyBlocksOfNeighborChange(x, y, z, block);
     }
 
-    public static void notifyBlocksOfNeighborChangeOnSide(
-            World world, int x, int y, int z, Block block, ForgeDirection side) {
+    public static void notifyBlocksOfNeighborChangeOnSide(World world, int x, int y, int z, Block block,
+            ForgeDirection side) {
         world.notifyBlocksOfNeighborChange(getXOnSide(x, side), getYOnSide(y, side), getZOnSide(z, side), block);
     }
 

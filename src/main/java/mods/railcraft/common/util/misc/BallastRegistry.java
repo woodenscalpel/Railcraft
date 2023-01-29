@@ -1,24 +1,22 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.misc;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import mods.railcraft.common.util.collections.BlockKey;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
 /**
- * Register an item here to designate it as a possible ballast that can be used
- * in the Bore.
+ * Register an item here to designate it as a possible ballast that can be used in the Bore.
  *
  * It is expected that ballast is affected by gravity.
  *
@@ -37,9 +35,8 @@ public abstract class BallastRegistry {
     }
 
     public static boolean isItemBallast(ItemStack stack) {
-        if (stack.getItem() instanceof ItemBlock)
-            return ballastRegistry.contains(
-                    new BlockKey(((ItemBlock) stack.getItem()).field_150939_a, stack.getItemDamage()));
+        if (stack.getItem() instanceof ItemBlock) return ballastRegistry
+                .contains(new BlockKey(((ItemBlock) stack.getItem()).field_150939_a, stack.getItemDamage()));
         return false;
     }
 

@@ -1,19 +1,17 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.carts;
 
-import cpw.mods.fml.relauncher.ReflectionHelper;
 import java.util.ArrayList;
 import java.util.List;
+
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.FuelPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
+
 import net.minecraft.entity.item.EntityMinecartFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -21,6 +19,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+
+import cpw.mods.fml.relauncher.ReflectionHelper;
 
 public class EntityCartFurnace extends EntityMinecartFurnace {
 
@@ -71,9 +71,8 @@ public class EntityCartFurnace extends EntityMinecartFurnace {
                 int burnTime = FuelPlugin.getBurnTime(stack);
 
                 if (burnTime > 0) {
-                    if (!player.capabilities.isCreativeMode)
-                        player.inventory.setInventorySlotContents(
-                                player.inventory.currentItem, InvTools.depleteItem(stack));
+                    if (!player.capabilities.isCreativeMode) player.inventory
+                            .setInventorySlotContents(player.inventory.currentItem, InvTools.depleteItem(stack));
                     fuel += burnTime;
                     ReflectionHelper.setPrivateValue(EntityMinecartFurnace.class, this, fuel, 0);
 

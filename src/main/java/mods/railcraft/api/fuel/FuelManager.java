@@ -1,20 +1,21 @@
 /*
- * ******************************************************************************
- *  Copyright 2011-2015 CovertJaguar
- *
- *  This work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
+ * ****************************************************************************** Copyright 2011-2015 CovertJaguar This
+ * work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
  * ***************************************************************************
  */
 
 package mods.railcraft.api.fuel;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import net.minecraftforge.fluids.Fluid;
+
+import org.apache.logging.log4j.Level;
+
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.ModContainer;
-import java.util.HashMap;
-import java.util.Map;
-import net.minecraftforge.fluids.Fluid;
-import org.apache.logging.log4j.Level;
 
 /**
  *
@@ -46,7 +47,9 @@ public class FuelManager {
                 Level.DEBUG,
                 String.format(
                         "%s registered \"%s\" as a valid Boiler fuel source with %d heat.",
-                        modName, fluid.getName(), heatValuePerBucket));
+                        modName,
+                        fluid.getName(),
+                        heatValuePerBucket));
     }
 
     public static int getBoilerFuelValue(Fluid fluid) {

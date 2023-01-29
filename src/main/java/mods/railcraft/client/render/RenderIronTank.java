@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.render;
 
@@ -15,16 +12,19 @@ import mods.railcraft.common.blocks.machine.beta.TileTankIronValve;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.fluids.TankManager;
 import mods.railcraft.common.fluids.tanks.StandardTank;
+
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class RenderIronTank extends TileEntitySpecialRenderer {
+
     private static final RenderInfo fillBlock = new RenderInfo();
 
     public RenderIronTank() {
@@ -85,12 +85,10 @@ public class RenderIronTank extends TileEntitySpecialRenderer {
             StandardTank fillTank = valve.getFillTank();
             if (fillTank.renderData.fluid != null && fillTank.renderData.amount > 0) {
                 GL11.glPushMatrix();
-                if (valve.getPattern()
-                                .getPatternMarkerChecked(
-                                        valve.getPatternPositionX(),
-                                        valve.getPatternPositionY() - 1,
-                                        valve.getPatternPositionZ())
-                        == 'A') {
+                if (valve.getPattern().getPatternMarkerChecked(
+                        valve.getPatternPositionX(),
+                        valve.getPatternPositionY() - 1,
+                        valve.getPatternPositionZ()) == 'A') {
 
                     prepFillTexture(fillTank);
 
@@ -101,67 +99,74 @@ public class RenderIronTank extends TileEntitySpecialRenderer {
                     GL11.glScalef(1f, vScale, 1f);
 
                     draw(fillTank);
-                } else if (valve.getPattern()
-                                .getPatternMarkerChecked(
-                                        valve.getPatternPositionX() - 1,
-                                        valve.getPatternPositionY(),
-                                        valve.getPatternPositionZ())
-                        == 'A') {
+                } else if (valve.getPattern().getPatternMarkerChecked(
+                        valve.getPatternPositionX() - 1,
+                        valve.getPatternPositionY(),
+                        valve.getPatternPositionZ()) == 'A') {
 
-                    prepFillTexture(fillTank);
+                            prepFillTexture(fillTank);
 
-                    float vScale = getVerticalScaleSide(valve);
-                    float yOffset = 0.5f - vScale / 2f + RenderTools.PIXEL * 3;
-                    GL11.glTranslatef((float) x - 0.5F + RenderTools.PIXEL * 5, (float) y + yOffset, (float) z + 0.5F);
-                    GL11.glScalef(1f, vScale, 1f);
+                            float vScale = getVerticalScaleSide(valve);
+                            float yOffset = 0.5f - vScale / 2f + RenderTools.PIXEL * 3;
+                            GL11.glTranslatef(
+                                    (float) x - 0.5F + RenderTools.PIXEL * 5,
+                                    (float) y + yOffset,
+                                    (float) z + 0.5F);
+                            GL11.glScalef(1f, vScale, 1f);
 
-                    draw(fillTank);
-                } else if (valve.getPattern()
-                                .getPatternMarkerChecked(
-                                        valve.getPatternPositionX() + 1,
-                                        valve.getPatternPositionY(),
-                                        valve.getPatternPositionZ())
-                        == 'A') {
+                            draw(fillTank);
+                        } else
+                    if (valve.getPattern().getPatternMarkerChecked(
+                            valve.getPatternPositionX() + 1,
+                            valve.getPatternPositionY(),
+                            valve.getPatternPositionZ()) == 'A') {
 
-                    prepFillTexture(fillTank);
+                                prepFillTexture(fillTank);
 
-                    float vScale = getVerticalScaleSide(valve);
-                    float yOffset = 0.5f - vScale / 2f + RenderTools.PIXEL * 3;
-                    GL11.glTranslatef((float) x + 1.5F - RenderTools.PIXEL * 5, (float) y + yOffset, (float) z + 0.5F);
-                    GL11.glScalef(1f, vScale, 1f);
+                                float vScale = getVerticalScaleSide(valve);
+                                float yOffset = 0.5f - vScale / 2f + RenderTools.PIXEL * 3;
+                                GL11.glTranslatef(
+                                        (float) x + 1.5F - RenderTools.PIXEL * 5,
+                                        (float) y + yOffset,
+                                        (float) z + 0.5F);
+                                GL11.glScalef(1f, vScale, 1f);
 
-                    draw(fillTank);
-                } else if (valve.getPattern()
-                                .getPatternMarkerChecked(
-                                        valve.getPatternPositionX(),
-                                        valve.getPatternPositionY(),
-                                        valve.getPatternPositionZ() - 1)
-                        == 'A') {
+                                draw(fillTank);
+                            } else
+                        if (valve.getPattern().getPatternMarkerChecked(
+                                valve.getPatternPositionX(),
+                                valve.getPatternPositionY(),
+                                valve.getPatternPositionZ() - 1) == 'A') {
 
-                    prepFillTexture(fillTank);
+                                    prepFillTexture(fillTank);
 
-                    float vScale = getVerticalScaleSide(valve);
-                    float yOffset = 0.5f - vScale / 2f + RenderTools.PIXEL * 3;
-                    GL11.glTranslatef((float) x + 0.5F, (float) y + yOffset, (float) z - 0.5F + RenderTools.PIXEL * 5);
-                    GL11.glScalef(1f, vScale, 1f);
+                                    float vScale = getVerticalScaleSide(valve);
+                                    float yOffset = 0.5f - vScale / 2f + RenderTools.PIXEL * 3;
+                                    GL11.glTranslatef(
+                                            (float) x + 0.5F,
+                                            (float) y + yOffset,
+                                            (float) z - 0.5F + RenderTools.PIXEL * 5);
+                                    GL11.glScalef(1f, vScale, 1f);
 
-                    draw(fillTank);
-                } else if (valve.getPattern()
-                                .getPatternMarkerChecked(
-                                        valve.getPatternPositionX(),
-                                        valve.getPatternPositionY(),
-                                        valve.getPatternPositionZ() + 1)
-                        == 'A') {
+                                    draw(fillTank);
+                                } else
+                            if (valve.getPattern().getPatternMarkerChecked(
+                                    valve.getPatternPositionX(),
+                                    valve.getPatternPositionY(),
+                                    valve.getPatternPositionZ() + 1) == 'A') {
 
-                    prepFillTexture(fillTank);
+                                        prepFillTexture(fillTank);
 
-                    float vScale = getVerticalScaleSide(valve);
-                    float yOffset = 0.5f - vScale / 2f + RenderTools.PIXEL * 3;
-                    GL11.glTranslatef((float) x + 0.5F, (float) y + yOffset, (float) z + 1.5F - RenderTools.PIXEL * 5);
-                    GL11.glScalef(1f, vScale, 1f);
+                                        float vScale = getVerticalScaleSide(valve);
+                                        float yOffset = 0.5f - vScale / 2f + RenderTools.PIXEL * 3;
+                                        GL11.glTranslatef(
+                                                (float) x + 0.5F,
+                                                (float) y + yOffset,
+                                                (float) z + 1.5F - RenderTools.PIXEL * 5);
+                                        GL11.glScalef(1f, vScale, 1f);
 
-                    draw(fillTank);
-                }
+                                        draw(fillTank);
+                                    }
                 GL11.glPopMatrix();
             }
         }
@@ -183,7 +188,7 @@ public class RenderIronTank extends TileEntitySpecialRenderer {
             GL11.glTranslatef((float) x + 0.5F, (float) y + yOffset + 0.01f, (float) z + 0.5F);
             GL11.glScalef(hScale, vScale, hScale);
 
-            //        GL11.glScalef(0.999f, 1, 0.999f);
+            // GL11.glScalef(0.999f, 1, 0.999f);
             int[] displayLists = FluidRenderer.getLiquidDisplayLists(tank.renderData.fluid);
             if (displayLists != null) {
                 GL11.glPushMatrix();

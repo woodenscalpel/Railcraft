@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.alpha;
 
@@ -12,6 +9,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Random;
+
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.TileMachineBase;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
@@ -19,6 +17,7 @@ import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.effects.EffectManager;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
@@ -29,6 +28,7 @@ import net.minecraftforge.common.util.ForgeDirection;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class TileSmoker extends TileMachineBase {
+
     private static final int SNOW_MELT_INTERVAL = 32;
     private static final Random rand = MiscTools.getRand();
     private boolean powered;
@@ -100,8 +100,8 @@ public class TileSmoker extends TileMachineBase {
         powered = data.readBoolean();
     }
 
-    //    @Override
-    //    public int getLightValue() {
-    //        return 12;
-    //    }
+    // @Override
+    // public int getLightValue() {
+    // return 12;
+    // }
 }

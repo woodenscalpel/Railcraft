@@ -1,18 +1,18 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.util.textures;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.RasterFormatException;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
+
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -21,6 +21,7 @@ import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
+
 import org.apache.logging.log4j.Level;
 
 /**
@@ -65,13 +66,15 @@ public class TextureAtlasSheet extends TextureAtlasSprite {
     @Override
     public boolean load(IResourceManager manager, ResourceLocation location) {
         location = new ResourceLocation(
-                location.getResourceDomain(), location.getResourcePath().replace("." + index, ""));
+                location.getResourceDomain(),
+                location.getResourcePath().replace("." + index, ""));
         int split = location.getResourcePath().indexOf(':');
-        if (split != -1)
-            location = new ResourceLocation(
-                    location.getResourceDomain(), location.getResourcePath().substring(0, split));
+        if (split != -1) location = new ResourceLocation(
+                location.getResourceDomain(),
+                location.getResourcePath().substring(0, split));
         location = new ResourceLocation(
-                location.getResourceDomain(), "textures/blocks/" + location.getResourcePath() + ".png");
+                location.getResourceDomain(),
+                "textures/blocks/" + location.getResourcePath() + ".png");
 
         BufferedImage image;
         IResource resource = null;
@@ -86,11 +89,9 @@ public class TextureAtlasSheet extends TextureAtlasSprite {
                     ex.getLocalizedMessage());
             return true;
         } finally {
-            if (resource != null)
-                try {
-                    resource.getInputStream().close();
-                } catch (IOException e) {
-                }
+            if (resource != null) try {
+                resource.getInputStream().close();
+            } catch (IOException e) {}
         }
 
         int mipmapLevels = Minecraft.getMinecraft().gameSettings.mipmapLevels;

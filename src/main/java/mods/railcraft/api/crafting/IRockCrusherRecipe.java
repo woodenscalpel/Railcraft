@@ -1,8 +1,6 @@
 /*
- * ******************************************************************************
- *  Copyright 2011-2015 CovertJaguar
- *
- *  This work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
+ * ****************************************************************************** Copyright 2011-2015 CovertJaguar This
+ * work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
  * ***************************************************************************
  */
 
@@ -10,6 +8,7 @@ package mods.railcraft.api.crafting;
 
 import java.util.List;
 import java.util.Map;
+
 import net.minecraft.item.ItemStack;
 
 /**
@@ -29,16 +28,15 @@ public interface IRockCrusherRecipe {
     void addOutput(ItemStack output, float chance);
 
     /**
-     * Returns a list containing each output entry and its chance of being
-     * included.
+     * Returns a list containing each output entry and its chance of being included.
      *
      * @return
      */
     public List<Map.Entry<ItemStack, Float>> getOutputs();
 
     /**
-     * Returns a list of all possible outputs. This is basically a condensed
-     * version of getOutputs() without the chances.
+     * Returns a list of all possible outputs. This is basically a condensed version of getOutputs() without the
+     * chances.
      *
      * @return
      */

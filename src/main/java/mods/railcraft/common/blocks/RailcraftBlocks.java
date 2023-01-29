@@ -1,14 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks;
 
 import java.util.Arrays;
+
 import mods.railcraft.common.blocks.machine.BlockMachine;
 import mods.railcraft.common.blocks.machine.ItemMachine;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
@@ -37,6 +35,7 @@ import mods.railcraft.common.items.RailcraftItem;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.plugins.forge.CreativePlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
+
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -79,12 +78,10 @@ public class RailcraftBlocks {
                     "ISI",
                     "IRI",
                     'I',
-                    RailcraftConfig.useOldRecipes()
-                            ? "ingotGold"
+                    RailcraftConfig.useOldRecipes() ? "ingotGold"
                             : RailcraftItem.rail.getRecipeObject(EnumRail.ADVANCED),
                     'S',
-                    RailcraftConfig.useOldRecipes()
-                            ? "ingotIron"
+                    RailcraftConfig.useOldRecipes() ? "ingotIron"
                             : RailcraftItem.rail.getRecipeObject(EnumRail.STANDARD),
                     'R',
                     "dustRedstone");
@@ -108,16 +105,16 @@ public class RailcraftBlocks {
                     case FEED_STATION:
                     case TANK_WATER:
                         blockMachineAlpha.setHarvestLevel("axe", 1, type.ordinal());
-                        //                        blockMachineAlpha.setHarvestLevel("crowbar", 0, type.ordinal());
+                        // blockMachineAlpha.setHarvestLevel("crowbar", 0, type.ordinal());
                         break;
                     case WORLD_ANCHOR:
                     case PERSONAL_ANCHOR:
                         blockMachineAlpha.setHarvestLevel("pickaxe", 3, type.ordinal());
-                        //                        blockMachineAlpha.setHarvestLevel("crowbar", 0, type.ordinal());
+                        // blockMachineAlpha.setHarvestLevel("crowbar", 0, type.ordinal());
                         break;
                     default:
                         blockMachineAlpha.setHarvestLevel("pickaxe", 2, type.ordinal());
-                        //                        blockMachineAlpha.setHarvestLevel("crowbar", 0, type.ordinal());
+                        // blockMachineAlpha.setHarvestLevel("crowbar", 0, type.ordinal());
                 }
             }
         }
@@ -156,11 +153,11 @@ public class RailcraftBlocks {
                 switch (type) {
                     case SENTINEL:
                         blockMachineBeta.setHarvestLevel("pickaxe", 3, type.ordinal());
-                        //                        blockMachineBeta.setHarvestLevel("crowbar", 0, type.ordinal());
+                        // blockMachineBeta.setHarvestLevel("crowbar", 0, type.ordinal());
                         break;
                     default:
                         blockMachineBeta.setHarvestLevel("pickaxe", 2, type.ordinal());
-                        //                        blockMachineBeta.setHarvestLevel("crowbar", 0, type.ordinal());
+                        // blockMachineBeta.setHarvestLevel("crowbar", 0, type.ordinal());
                 }
             }
         }
@@ -187,7 +184,7 @@ public class RailcraftBlocks {
                 switch (type) {
                     default:
                         blockMachineGamma.setHarvestLevel("pickaxe", 2, type.ordinal());
-                        //                        blockMachineGamma.setHarvestLevel("crowbar", 0, type.ordinal());
+                        // blockMachineGamma.setHarvestLevel("crowbar", 0, type.ordinal());
                 }
             }
         }
@@ -214,7 +211,7 @@ public class RailcraftBlocks {
                 switch (type) {
                     default:
                         blockMachineDelta.setHarvestLevel("pickaxe", 2, type.ordinal());
-                        //                        blockMachineDelta.setHarvestLevel("crowbar", 0, type.ordinal());
+                        // blockMachineDelta.setHarvestLevel("crowbar", 0, type.ordinal());
                 }
             }
         }
@@ -237,7 +234,7 @@ public class RailcraftBlocks {
                 switch (type) {
                     default:
                         blockMachineEpsilon.setHarvestLevel("pickaxe", 2, type.ordinal());
-                        //                        blockMachineEpsilon.setHarvestLevel("crowbar", 0, type.ordinal());
+                        // blockMachineEpsilon.setHarvestLevel("crowbar", 0, type.ordinal());
                 }
             }
         }

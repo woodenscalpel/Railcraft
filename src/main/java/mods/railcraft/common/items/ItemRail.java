@@ -1,21 +1,20 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.items;
 
 import java.util.List;
 import java.util.Locale;
+
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.common.items.ItemTie.EnumTie;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.plugins.forge.LootPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.util.crafting.RollingMachineCraftingManager;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
@@ -28,12 +27,14 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 public class ItemRail extends ItemRailcraft {
 
     public enum EnumRail implements IItemMetaEnum {
+
         STANDARD("ingotIron"),
         ADVANCED("ingotGold"),
         WOOD("slabWood"),
         SPEED("ingotSteel"),
         REINFORCED("ingotSteel"),
         ELECTRIC("ingotCopper");
+
         public static final EnumRail[] VALUES = values();
         private IIcon icon;
         private Object alternate;
@@ -70,8 +71,7 @@ public class ItemRail extends ItemRailcraft {
     @Override
     public void registerIcons(IIconRegister iconRegister) {
         for (EnumRail rail : EnumRail.VALUES) {
-            rail.icon = iconRegister.registerIcon(
-                    "railcraft:part.rail." + rail.name().toLowerCase(Locale.ENGLISH));
+            rail.icon = iconRegister.registerIcon("railcraft:part.rail." + rail.name().toLowerCase(Locale.ENGLISH));
         }
     }
 
@@ -87,11 +87,16 @@ public class ItemRail extends ItemRailcraft {
         RailcraftItem item = RailcraftItem.rail;
 
         // Standard
-        RailcraftCraftingManager.rollingMachine.addRecipe(
-                item.getStack(8, EnumRail.STANDARD), "I I", "I I", "I I", 'I', Items.iron_ingot);
+        RailcraftCraftingManager.rollingMachine
+                .addRecipe(item.getStack(8, EnumRail.STANDARD), "I I", "I I", "I I", 'I', Items.iron_ingot);
 
-        IRecipe recipe =
-                new ShapedOreRecipe(item.getStack(6, EnumRail.STANDARD), "I I", "I I", "I I", 'I', "ingotBronze");
+        IRecipe recipe = new ShapedOreRecipe(
+                item.getStack(6, EnumRail.STANDARD),
+                "I I",
+                "I I",
+                "I I",
+                'I',
+                "ingotBronze");
         RollingMachineCraftingManager.getInstance().getRecipeList().add(recipe);
 
         recipe = new ShapedOreRecipe(item.getStack(16, EnumRail.STANDARD), "I I", "I I", "I I", 'I', "ingotSteel");
@@ -112,7 +117,9 @@ public class ItemRail extends ItemRailcraft {
 
         // Wooden
         CraftingPlugin.addShapelessRecipe(
-                item.getStack(6, EnumRail.WOOD), "ingotIron", RailcraftItem.tie.getRecipeObject(EnumTie.WOOD));
+                item.getStack(6, EnumRail.WOOD),
+                "ingotIron",
+                RailcraftItem.tie.getRecipeObject(EnumTie.WOOD));
 
         // Speed
         recipe = new ShapedOreRecipe(
@@ -130,7 +137,14 @@ public class ItemRail extends ItemRailcraft {
 
         // Reinforced
         recipe = new ShapedOreRecipe(
-                item.getStack(8, EnumRail.REINFORCED), "IDI", "IDI", "IDI", 'I', "ingotSteel", 'D', "dustObsidian");
+                item.getStack(8, EnumRail.REINFORCED),
+                "IDI",
+                "IDI",
+                "IDI",
+                'I',
+                "ingotSteel",
+                'D',
+                "dustObsidian");
         RollingMachineCraftingManager.getInstance().getRecipeList().add(recipe);
 
         // Electric

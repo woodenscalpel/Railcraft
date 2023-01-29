@@ -1,18 +1,17 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.carts;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.tracks.RailTools;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.item.ItemStack;
@@ -91,16 +90,15 @@ public abstract class CartMaintenanceBase extends CartContainerBase {
 
     protected boolean placeNewTrack(int x, int y, int z, int slotStock, int meta) {
         ItemStack trackStock = getStackInSlot(slotStock);
-        if (trackStock != null)
-            if (RailTools.placeRailAt(trackStock, worldObj, x, y, z)) {
-                worldObj.setBlockMetadataWithNotify(x, y, z, meta, 0x02);
-                Block block = worldObj.getBlock(x, y, z);
-                block.onNeighborBlockChange(worldObj, x, y, z, block);
-                worldObj.markBlockForUpdate(x, y, z);
-                decrStackSize(slotStock, 1);
-                blink();
-                return true;
-            }
+        if (trackStock != null) if (RailTools.placeRailAt(trackStock, worldObj, x, y, z)) {
+            worldObj.setBlockMetadataWithNotify(x, y, z, meta, 0x02);
+            Block block = worldObj.getBlock(x, y, z);
+            block.onNeighborBlockChange(worldObj, x, y, z, block);
+            worldObj.markBlockForUpdate(x, y, z);
+            decrStackSize(slotStock, 1);
+            blink();
+            return true;
+        }
         return false;
     }
 

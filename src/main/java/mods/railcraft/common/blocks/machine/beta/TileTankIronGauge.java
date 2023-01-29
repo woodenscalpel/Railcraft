@@ -1,23 +1,23 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.beta;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Random;
+
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.misc.Timer;
+
 import net.minecraft.util.IIcon;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  *
@@ -44,9 +44,10 @@ public class TileTankIronGauge extends TileTankBase {
         int pz = getPatternPositionZ();
 
         ForgeDirection s = ForgeDirection.getOrientation(side);
-        char markerSide = getPattern()
-                .getPatternMarkerChecked(
-                        MiscTools.getXOnSide(px, s), MiscTools.getYOnSide(py, s), MiscTools.getZOnSide(pz, s));
+        char markerSide = getPattern().getPatternMarkerChecked(
+                MiscTools.getXOnSide(px, s),
+                MiscTools.getYOnSide(py, s),
+                MiscTools.getZOnSide(pz, s));
 
         if (!isMapPositionOtherBlock(markerSide)) {
             return getTextureFromMachine(9);

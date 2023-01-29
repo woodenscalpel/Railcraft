@@ -1,31 +1,26 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.plugins.craftguide;
 
 import java.text.DecimalFormat;
 import java.util.List;
+
 import uristqwerty.CraftGuide.api.*;
 
 /**
- * An ItemSlot that appends probability information to the name of
- *  the item it contains. To use it, instead of putting an ItemStack
- *  or List in the data array, put an Object[] containing the item
- *  at index 0, and an Integer representing the probability at index
- *  1.
+ * An ItemSlot that appends probability information to the name of the item it contains. To use it, instead of putting
+ * an ItemStack or List in the data array, put an Object[] containing the item at index 0, and an Integer representing
+ * the probability at index 1.
  *
- * Also worth noting, this class does not require any additional support
- *  within the rest of CraftGuide. If you copy it into a different package,
- *  and use that copy, it will function just fine with older versions of
- *  CraftGuide, as well as newer ones. It also shows how the API is set up
- *  to make that sort of extension possible.
+ * Also worth noting, this class does not require any additional support within the rest of CraftGuide. If you copy it
+ * into a different package, and use that copy, it will function just fine with older versions of CraftGuide, as well as
+ * newer ones. It also shows how the API is set up to make that sort of extension possible.
  */
 public class FloatChanceSlot extends ItemSlot {
+
     private String formatString = " (###.###% chance)";
 
     public FloatChanceSlot(int x, int y, int width, int height) {

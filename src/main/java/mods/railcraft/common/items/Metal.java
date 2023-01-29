@@ -1,14 +1,10 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.items;
 
-import com.google.common.collect.EnumBiMap;
 import mods.railcraft.api.core.items.IStackFilter;
 import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
 import mods.railcraft.common.blocks.ore.EnumOre;
@@ -16,20 +12,25 @@ import mods.railcraft.common.items.ItemIngot.EnumIngot;
 import mods.railcraft.common.items.ItemNugget.EnumNugget;
 import mods.railcraft.common.plugins.forge.OreDictPlugin;
 import mods.railcraft.common.util.inventory.filters.OreStackFilter;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+
+import com.google.common.collect.EnumBiMap;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info/>
  */
 public enum Metal {
+
     STEEL("Steel"),
     IRON("Iron"),
     GOLD("Gold"),
     COPPER("Copper"),
     TIN("Tin"),
     LEAD("Lead");
+
     public static final Metal[] VALUES = values();
     private static final EnumBiMap<Metal, EnumIngot> ingotMap = EnumBiMap.create(Metal.class, EnumIngot.class);
     private static final EnumBiMap<Metal, EnumNugget> nuggetMap = EnumBiMap.create(Metal.class, EnumNugget.class);

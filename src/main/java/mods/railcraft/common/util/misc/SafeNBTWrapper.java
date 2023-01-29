@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.misc;
 
@@ -25,8 +22,7 @@ public class SafeNBTWrapper {
     }
 
     /**
-     * Retrieves a byte value using the specified key, or 0 if no such key was
-     * stored.
+     * Retrieves a byte value using the specified key, or 0 if no such key was stored.
      */
     public byte getByte(String key) {
         if (data.hasKey(key)) {
@@ -39,8 +35,7 @@ public class SafeNBTWrapper {
     }
 
     /**
-     * Retrieves a short value using the specified key, or 0 if no such key was
-     * stored.
+     * Retrieves a short value using the specified key, or 0 if no such key was stored.
      */
     public short getShort(String key) {
         if (data.hasKey(key)) {
@@ -53,8 +48,7 @@ public class SafeNBTWrapper {
     }
 
     /**
-     * Retrieves an integer value using the specified key, or 0 if no such key
-     * was stored.
+     * Retrieves an integer value using the specified key, or 0 if no such key was stored.
      */
     public int getInteger(String key) {
         if (data.hasKey(key)) {
@@ -67,8 +61,7 @@ public class SafeNBTWrapper {
     }
 
     /**
-     * Retrieves a float value using the specified key, or 0 if no such key was
-     * stored.
+     * Retrieves a float value using the specified key, or 0 if no such key was stored.
      */
     public float getFloat(String key) {
         if (data.hasKey(key)) {
@@ -80,8 +73,7 @@ public class SafeNBTWrapper {
     }
 
     /**
-     * Retrieves a double value using the specified key, or 0 if no such key was
-     * stored.
+     * Retrieves a double value using the specified key, or 0 if no such key was stored.
      */
     public double getDouble(String key) {
         if (data.hasKey(key)) {

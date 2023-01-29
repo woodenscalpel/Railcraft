@@ -1,15 +1,13 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.alpha;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import mods.railcraft.api.electricity.IElectricGrid;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
@@ -32,6 +30,7 @@ import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.inventory.StandaloneInventory;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.steam.ISteamUser;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -51,6 +50,7 @@ public class TileSteamTurbine extends TileMultiBlock
         implements IMultiEmitterDelegate, IFluidHandler, INeedsMaintenance, ISteamUser, IElectricGrid {
 
     enum Texture {
+
         END_TL(6),
         END_TR(7),
         END_BL(8),
@@ -58,6 +58,7 @@ public class TileSteamTurbine extends TileMultiBlock
         SIDE_A(0),
         SIDE_B(10),
         GUAGE(11);
+
         private final int index;
 
         private Texture(int index) {
@@ -99,63 +100,25 @@ public class TileSteamTurbine extends TileMultiBlock
 
     static {
         char[][][] map1 = {
-            {
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'}
-            },
-            {
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'B', 'B', 'B', 'O'},
-                {'O', 'B', 'B', 'B', 'O'},
-                {'O', 'O', 'O', 'O', 'O'}
-            },
-            {
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'B', 'W', 'B', 'O'},
-                {'O', 'B', 'W', 'B', 'O'},
-                {'O', 'O', 'O', 'O', 'O'}
-            },
-            {
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'}
-            }
-        };
+                { { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O', 'O' },
+                        { 'O', 'O', 'O', 'O', 'O' } },
+                { { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'B', 'B', 'B', 'O' }, { 'O', 'B', 'B', 'B', 'O' },
+                        { 'O', 'O', 'O', 'O', 'O' } },
+                { { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'B', 'W', 'B', 'O' }, { 'O', 'B', 'W', 'B', 'O' },
+                        { 'O', 'O', 'O', 'O', 'O' } },
+                { { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O', 'O' },
+                        { 'O', 'O', 'O', 'O', 'O' } } };
         patterns.add(new MultiBlockPattern(map1));
 
         char[][][] map2 = {
-            {
-                {'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O'}
-            },
-            {
-                {'O', 'O', 'O', 'O'},
-                {'O', 'B', 'B', 'O'},
-                {'O', 'B', 'B', 'O'},
-                {'O', 'B', 'B', 'O'},
-                {'O', 'O', 'O', 'O'}
-            },
-            {
-                {'O', 'O', 'O', 'O'},
-                {'O', 'B', 'B', 'O'},
-                {'O', 'W', 'W', 'O'},
-                {'O', 'B', 'B', 'O'},
-                {'O', 'O', 'O', 'O'}
-            },
-            {
-                {'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O'}
-            }
-        };
+                { { 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O' },
+                        { 'O', 'O', 'O', 'O' } },
+                { { 'O', 'O', 'O', 'O' }, { 'O', 'B', 'B', 'O' }, { 'O', 'B', 'B', 'O' }, { 'O', 'B', 'B', 'O' },
+                        { 'O', 'O', 'O', 'O' } },
+                { { 'O', 'O', 'O', 'O' }, { 'O', 'B', 'B', 'O' }, { 'O', 'W', 'W', 'O' }, { 'O', 'B', 'B', 'O' },
+                        { 'O', 'O', 'O', 'O' } },
+                { { 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O' },
+                        { 'O', 'O', 'O', 'O' } } };
         patterns.add(new MultiBlockPattern(map2));
     }
 
@@ -198,11 +161,12 @@ public class TileSteamTurbine extends TileMultiBlock
                 boolean addedEnergy = false;
                 if (energy < BC_OUTPUT * 2) {
                     FluidStack steam = tankManager.drain(TANK_STEAM, STEAM_USAGE, false);
-                    //                if(steam != null) System.out.println("steam=" + steam.amount);
+                    // if(steam != null) System.out.println("steam=" + steam.amount);
                     if (steam != null && steam.amount >= STEAM_USAGE) {
                         ItemStack rotor = inv.getStackInSlot(0);
                         if (InvTools.isItemEqual(
-                                rotor, getSampleRotor()) /*&& rotor.getItemDamage() < rotor.getMaxDamage() - 5*/) {
+                                rotor,
+                                getSampleRotor()) /* && rotor.getItemDamage() < rotor.getMaxDamage() - 5 */) {
                             addedEnergy = true;
                             energy += BC_OUTPUT;
                             tankManager.drain(TANK_STEAM, STEAM_USAGE, true);
@@ -217,8 +181,8 @@ public class TileSteamTurbine extends TileMultiBlock
 
                 output = (float) ((output * 49D + (addedEnergy ? 100D : 0D)) / 50D);
 
-                //                System.out.println("output=" + output);
-                //                System.out.println("addedEnergy=" + addedEnergy);
+                // System.out.println("output=" + output);
+                // System.out.println("addedEnergy=" + addedEnergy);
                 if (clock % 4 == 0) {
                     gaugeState = (byte) getOutput();
                     WorldPlugin.addBlockEvent(worldObj, xCoord, yCoord, zCoord, getBlockType(), 1, gaugeState);
@@ -246,13 +210,12 @@ public class TileSteamTurbine extends TileMultiBlock
     }
 
     private void addToNet() {
-        if (emitterDelegate == null)
-            try {
-                emitterDelegate = new TileIC2MultiEmitterDelegate(this);
-                IC2Plugin.addTileToNet(emitterDelegate);
-            } catch (Throwable error) {
-                Game.logErrorAPI("IndustrialCraft", error);
-            }
+        if (emitterDelegate == null) try {
+            emitterDelegate = new TileIC2MultiEmitterDelegate(this);
+            IC2Plugin.addTileToNet(emitterDelegate);
+        } catch (Throwable error) {
+            Game.logErrorAPI("IndustrialCraft", error);
+        }
     }
 
     private void dropFromNet() {
@@ -336,40 +299,38 @@ public class TileSteamTurbine extends TileMultiBlock
             }
 
             if (getPatternMarker() == 'W') return Texture.GUAGE.getIcon();
-            if (patIndex == 0)
-                switch (side) {
-                    case 2:
-                        if (getPatternPositionY() == 2) {
-                            if (getPatternPositionX() == 2) return Texture.END_TL.getIcon();
-                            return Texture.END_TR.getIcon();
-                        }
-                        if (getPatternPositionX() == 2) return Texture.END_BL.getIcon();
-                        return Texture.END_BR.getIcon();
-                    case 3:
-                        if (getPatternPositionY() == 2) {
-                            if (getPatternPositionX() == 1) return Texture.END_TL.getIcon();
-                            return Texture.END_TR.getIcon();
-                        }
-                        if (getPatternPositionX() == 1) return Texture.END_BL.getIcon();
-                        return Texture.END_BR.getIcon();
-                }
-            else
-                switch (side) {
-                    case 4:
-                        if (getPatternPositionY() == 2) {
-                            if (getPatternPositionZ() == 1) return Texture.END_TL.getIcon();
-                            return Texture.END_TR.getIcon();
-                        }
-                        if (getPatternPositionZ() == 1) return Texture.END_BL.getIcon();
-                        return Texture.END_BR.getIcon();
-                    case 5:
-                        if (getPatternPositionY() == 2) {
-                            if (getPatternPositionZ() == 2) return Texture.END_TL.getIcon();
-                            return Texture.END_TR.getIcon();
-                        }
-                        if (getPatternPositionZ() == 2) return Texture.END_BL.getIcon();
-                        return Texture.END_BR.getIcon();
-                }
+            if (patIndex == 0) switch (side) {
+                case 2:
+                    if (getPatternPositionY() == 2) {
+                        if (getPatternPositionX() == 2) return Texture.END_TL.getIcon();
+                        return Texture.END_TR.getIcon();
+                    }
+                    if (getPatternPositionX() == 2) return Texture.END_BL.getIcon();
+                    return Texture.END_BR.getIcon();
+                case 3:
+                    if (getPatternPositionY() == 2) {
+                        if (getPatternPositionX() == 1) return Texture.END_TL.getIcon();
+                        return Texture.END_TR.getIcon();
+                    }
+                    if (getPatternPositionX() == 1) return Texture.END_BL.getIcon();
+                    return Texture.END_BR.getIcon();
+            }
+            else switch (side) {
+                case 4:
+                    if (getPatternPositionY() == 2) {
+                        if (getPatternPositionZ() == 1) return Texture.END_TL.getIcon();
+                        return Texture.END_TR.getIcon();
+                    }
+                    if (getPatternPositionZ() == 1) return Texture.END_BL.getIcon();
+                    return Texture.END_BR.getIcon();
+                case 5:
+                    if (getPatternPositionY() == 2) {
+                        if (getPatternPositionZ() == 2) return Texture.END_TL.getIcon();
+                        return Texture.END_TR.getIcon();
+                    }
+                    if (getPatternPositionZ() == 2) return Texture.END_BL.getIcon();
+                    return Texture.END_BR.getIcon();
+            }
         }
         return Texture.SIDE_A.getIcon();
     }
@@ -483,22 +444,22 @@ public class TileSteamTurbine extends TileMultiBlock
         return fluid == null || Fluids.WATER.is(fluid);
     }
 
-    //    @Override
-    //    public void onDisable(int duration) {
-    //        TileSteamTurbine mBlock = (TileSteamTurbine) getMasterBlock();
-    //        if (mBlock != null) {
-    //            mBlock.disabled = duration;
-    //        }
-    //    }
+    // @Override
+    // public void onDisable(int duration) {
+    // TileSteamTurbine mBlock = (TileSteamTurbine) getMasterBlock();
+    // if (mBlock != null) {
+    // mBlock.disabled = duration;
+    // }
+    // }
     //
-    //    @Override
-    //    public boolean isDisabled() {
-    //        TileSteamTurbine mBlock = (TileSteamTurbine) getMasterBlock();
-    //        if (mBlock != null) {
-    //            return mBlock.disabled <= 0;
-    //        }
-    //        return true;
-    //    }
+    // @Override
+    // public boolean isDisabled() {
+    // TileSteamTurbine mBlock = (TileSteamTurbine) getMasterBlock();
+    // if (mBlock != null) {
+    // return mBlock.disabled <= 0;
+    // }
+    // return true;
+    // }
     @Override
     public boolean needsMaintenance() {
         TileSteamTurbine mBlock = (TileSteamTurbine) getMasterBlock();

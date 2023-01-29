@@ -1,15 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.worldgen;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import java.util.Random;
+
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -19,14 +16,16 @@ import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType;
 import net.minecraftforge.event.terraingen.TerrainGen;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+
 /**
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class FirestoneGenerator {
 
-    public static final EventType EVENT_TYPE =
-            EnumHelper.addEnum(EventType.class, "FIRESTONE", new Class[0], new Object[0]);
+    public static final EventType EVENT_TYPE = EnumHelper
+            .addEnum(EventType.class, "FIRESTONE", new Class[0], new Object[0]);
     private final WorldGenerator firestone = new WorldGenFirestone();
 
     @SubscribeEvent

@@ -1,15 +1,13 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.core;
 
 import java.io.File;
 import java.util.*;
+
 import mods.railcraft.api.signals.SignalTools;
 import mods.railcraft.common.blocks.aesthetics.EnumBlockMaterial;
 import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
@@ -40,20 +38,23 @@ import mods.railcraft.common.util.collections.ItemMap;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.steam.Steam;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+
 import org.apache.logging.log4j.Level;
 
 public class RailcraftConfig {
+
     public static final ItemMap<Float> anchorFuelWorld = new ItemMap<Float>();
     public static final ItemMap<Float> anchorFuelPersonal = new ItemMap<Float>();
     public static final ItemMap<Float> anchorFuelPassive = new ItemMap<Float>();
     private static final String COMMENT_PREFIX = "\n";
     private static final String COMMENT_SUFFIX = "\n";
-    //    private static final String COMMENT_PREFIX = "\n\n   # ";
+    // private static final String COMMENT_PREFIX = "\n\n # ";
     private static final String CAT_ANCHORS = "anchors";
     private static final String CAT_AURAS = "auras";
     private static final String CAT_ENCHANTMENTS = "enchantments";
@@ -179,25 +180,29 @@ public class RailcraftConfig {
     public static void postInit() {
         Game.log(Level.TRACE, "Railcraft Config: Doing post init configuration");
 
-        anchorFuelWorld.putAll(BlockItemListParser.<ItemKey, Float>parseDictionary(
-                anchorFuelWorldString,
-                "Adding World Anchor Fuel = {0}",
-                BlockItemListParser.ParseType.ITEM,
-                BlockItemListParser.ValueType.FLOAT));
-        anchorFuelPersonal.putAll(BlockItemListParser.<ItemKey, Float>parseDictionary(
-                anchorFuelPersonalString,
-                "Adding Personal Anchor Fuel = {0}",
-                BlockItemListParser.ParseType.ITEM,
-                BlockItemListParser.ValueType.FLOAT));
-        anchorFuelPassive.putAll(BlockItemListParser.<ItemKey, Float>parseDictionary(
-                anchorFuelPassiveString,
-                "Adding Passive Anchor Fuel = {0}",
-                BlockItemListParser.ParseType.ITEM,
-                BlockItemListParser.ValueType.FLOAT));
-        EntityTunnelBore.mineableBlocks.addAll(BlockItemListParser.<BlockKey>parseList(
-                boreMineableBlocksString,
-                "Tunnel Bore: Adding block to mineable list: {0}",
-                BlockItemListParser.ParseType.BLOCK));
+        anchorFuelWorld.putAll(
+                BlockItemListParser.<ItemKey, Float>parseDictionary(
+                        anchorFuelWorldString,
+                        "Adding World Anchor Fuel = {0}",
+                        BlockItemListParser.ParseType.ITEM,
+                        BlockItemListParser.ValueType.FLOAT));
+        anchorFuelPersonal.putAll(
+                BlockItemListParser.<ItemKey, Float>parseDictionary(
+                        anchorFuelPersonalString,
+                        "Adding Personal Anchor Fuel = {0}",
+                        BlockItemListParser.ParseType.ITEM,
+                        BlockItemListParser.ValueType.FLOAT));
+        anchorFuelPassive.putAll(
+                BlockItemListParser.<ItemKey, Float>parseDictionary(
+                        anchorFuelPassiveString,
+                        "Adding Passive Anchor Fuel = {0}",
+                        BlockItemListParser.ParseType.ITEM,
+                        BlockItemListParser.ValueType.FLOAT));
+        EntityTunnelBore.mineableBlocks.addAll(
+                BlockItemListParser.<BlockKey>parseList(
+                        boreMineableBlocksString,
+                        "Tunnel Bore: Adding block to mineable list: {0}",
+                        BlockItemListParser.ParseType.BLOCK));
     }
 
     private static void loadEnchantment() {
@@ -540,11 +545,20 @@ public class RailcraftConfig {
                 32,
                 "set the output of the coalcoke and stick recipe for torches, setting to 0 will disable'\nmin=0, default=8, max=32");
         loadRecipeProperty(
-                "railcraft.cart", "bronze", true, "change to '{t}=false' to disable the bronze recipe for minecarts");
+                "railcraft.cart",
+                "bronze",
+                true,
+                "change to '{t}=false' to disable the bronze recipe for minecarts");
         loadRecipeProperty(
-                "railcraft.cart", "steel", true, "change to '{t}=false' to disable the steel recipe for minecarts");
+                "railcraft.cart",
+                "steel",
+                true,
+                "change to '{t}=false' to disable the steel recipe for minecarts");
         loadRecipeProperty(
-                "railcraft.cart", "furnace", false, "change to '{t}=true' to enable the Furnace Minecart recipe");
+                "railcraft.cart",
+                "furnace",
+                false,
+                "change to '{t}=true' to enable the Furnace Minecart recipe");
         loadRecipeProperty(
                 "ic2.macerator",
                 "obsidian",
@@ -576,14 +590,20 @@ public class RailcraftConfig {
                 true,
                 "change to '{t}=false' to disable the IC2 Macerator recipes for Cobblestone");
         loadRecipeProperty(
-                "ic2.macerator", "dirt", true, "change to '{t}=false' to disable the IC2 Macerator recipe for Dirt");
+                "ic2.macerator",
+                "dirt",
+                true,
+                "change to '{t}=false' to disable the IC2 Macerator recipe for Dirt");
         loadRecipeProperty(
                 "forestry.misc",
                 "fertilizer",
                 true,
                 "change to '{t}=false' to disable the saltpeter recipe for Forestry Fertilizer");
         loadRecipeProperty(
-                "forestry.carpenter", "ties", true, "change to '{t}=false' to disable the Carptenter Tie recipe");
+                "forestry.carpenter",
+                "ties",
+                true,
+                "change to '{t}=false' to disable the Carptenter Tie recipe");
         loadRecipeProperty(
                 "forestry.carpenter",
                 "torches",
@@ -634,8 +654,7 @@ public class RailcraftConfig {
     private static void loadLoot() {
         configMain.addCustomCategoryComment(
                 CAT_LOOT,
-                "Loot chances are defined here.\n"
-                        + "Smaller values are rarer.\n"
+                "Loot chances are defined here.\n" + "Smaller values are rarer.\n"
                         + "Example Loot:\n"
                         + "   Bread = 100\n"
                         + "   Redstone = 50\n"
@@ -763,8 +782,8 @@ public class RailcraftConfig {
                         + "Railcraft will attemtpt to compensate for any missing component by providing alternatives (usually).");
 
         for (EnumTrack type : EnumTrack.VALUES) {
-            //            if (type.isDepreciated())
-            //                continue;
+            // if (type.isDepreciated())
+            // continue;
             loadBlockFeature(type.getTag());
         }
 
@@ -1337,7 +1356,11 @@ public class RailcraftConfig {
             parsed = Integer.parseInt(value);
         } catch (NumberFormatException ex) {
             Game.logThrowable(
-                    Level.WARN, "Failed to parse config tag, reseting to default: {0}", 3, ex, prop.getName());
+                    Level.WARN,
+                    "Failed to parse config tag, reseting to default: {0}",
+                    3,
+                    ex,
+                    prop.getName());
             prop.set(defaultValue);
             return defaultValue;
         }
@@ -1351,7 +1374,11 @@ public class RailcraftConfig {
             parsed = Double.parseDouble(value);
         } catch (NumberFormatException ex) {
             Game.logThrowable(
-                    Level.WARN, "Failed to parse config tag, reseting to default: {0}", 3, ex, prop.getName());
+                    Level.WARN,
+                    "Failed to parse config tag, reseting to default: {0}",
+                    3,
+                    ex,
+                    prop.getName());
             prop.set(defaultValue);
             return defaultValue;
         }

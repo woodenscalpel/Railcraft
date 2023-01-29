@@ -1,17 +1,13 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.Random;
+
 import mods.railcraft.api.core.IPostConnection.ConnectStyle;
 import mods.railcraft.api.core.items.ITrackItem;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
@@ -20,6 +16,7 @@ import mods.railcraft.common.items.IActivationBlockingItem;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,9 +24,14 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import org.apache.logging.log4j.Level;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public abstract class TileMachineBase extends RailcraftTileEntity {
+
     private boolean checkedBlock = false;
 
     public abstract IEnumMachine getMachineType();
@@ -136,12 +138,8 @@ public abstract class TileMachineBase extends RailcraftTileEntity {
                     updateContainingBlockInfo();
                 }
                 int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-                if (getBlockType() != null
-                        && getClass()
-                                != ((BlockMachine) getBlockType())
-                                        .getMachineProxy()
-                                        .getMachine(meta)
-                                        .getTileClass()) {
+                if (getBlockType() != null && getClass()
+                        != ((BlockMachine) getBlockType()).getMachineProxy().getMachine(meta).getTileClass()) {
                     worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, getId(), 3);
                     validate();
                     worldObj.setTileEntity(xCoord, yCoord, zCoord, this);

@@ -1,20 +1,20 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.network;
 
-import cpw.mods.fml.common.network.NetworkRegistry;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+
 import mods.railcraft.common.util.effects.EffectManager;
+
 import net.minecraft.world.World;
+
+import cpw.mods.fml.common.network.NetworkRegistry;
 
 public class PacketEffect extends RailcraftPacket {
 
@@ -45,8 +45,8 @@ public class PacketEffect extends RailcraftPacket {
     }
 
     public void sendPacket(World world, double x, double y, double z) {
-        PacketDispatcher.sendToAllAround(
-                this, new NetworkRegistry.TargetPoint(world.provider.dimensionId, x, y, z, 80));
+        PacketDispatcher
+                .sendToAllAround(this, new NetworkRegistry.TargetPoint(world.provider.dimensionId, x, y, z, 80));
     }
 
     @Override

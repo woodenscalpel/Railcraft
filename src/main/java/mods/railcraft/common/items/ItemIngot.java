@@ -1,18 +1,17 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.items;
 
 import java.util.List;
 import java.util.Locale;
+
 import mods.railcraft.common.plugins.forestry.ForestryPlugin;
 import mods.railcraft.common.plugins.forge.LootPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -26,10 +25,12 @@ import net.minecraftforge.oredict.OreDictionary;
 public class ItemIngot extends ItemRailcraft {
 
     public enum EnumIngot implements IItemMetaEnum {
+
         STEEL("ingotSteel"),
         COPPER("ingotCopper"),
         TIN("ingotTin"),
         LEAD("ingotLead");
+
         public static final EnumIngot[] VALUES = values();
         private IIcon icon;
         private String oreTag;
@@ -78,8 +79,7 @@ public class ItemIngot extends ItemRailcraft {
     @Override
     public void registerIcons(IIconRegister iconRegister) {
         for (EnumIngot ingot : EnumIngot.VALUES) {
-            ingot.icon =
-                    iconRegister.registerIcon("railcraft:ingot." + ingot.name().toLowerCase(Locale.ENGLISH));
+            ingot.icon = iconRegister.registerIcon("railcraft:ingot." + ingot.name().toLowerCase(Locale.ENGLISH));
         }
     }
 

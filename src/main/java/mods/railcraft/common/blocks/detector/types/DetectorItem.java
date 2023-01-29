@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.detector.types;
 
@@ -15,12 +12,14 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+
 import mods.railcraft.common.blocks.detector.DetectorFilter;
 import mods.railcraft.common.blocks.detector.EnumDetector;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.slots.ISlotController;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
+
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -35,6 +34,7 @@ import net.minecraft.nbt.NBTTagCompound;
 public class DetectorItem extends DetectorFilter {
 
     public enum PrimaryMode {
+
         EMPTY,
         FULL,
         ANYTHING,
@@ -49,6 +49,7 @@ public class DetectorItem extends DetectorFilter {
     };
 
     public enum FilterMode {
+
         AT_LEAST,
         AT_MOST,
         EXACTLY,
@@ -73,25 +74,24 @@ public class DetectorItem extends DetectorFilter {
         for (EntityMinecart cart : carts) {
             IInventory cartInv = null;
             if (cart instanceof IInventory) cartInv = (IInventory) cart;
-            if (cartInv != null && cartInv.getSizeInventory() > 0)
-                switch (primaryMode) {
-                    case ANYTHING:
-                        return FULL_POWER;
-                    case EMPTY:
-                        if (InvTools.isInventoryEmpty(cartInv)) return FULL_POWER;
-                        continue;
-                    case FULL:
-                        if (InvTools.isInventoryFull(cartInv)) return FULL_POWER;
-                        continue;
-                    case FILTERED:
-                        if (matchesFilter(cartInv)) return FULL_POWER;
-                        continue;
-                    case NOT_EMPTY:
-                        if (!InvTools.isInventoryEmpty(cartInv)) return FULL_POWER;
-                        continue;
-                    case ANALOG:
-                        return Container.calcRedstoneFromInventory(cartInv);
-                }
+            if (cartInv != null && cartInv.getSizeInventory() > 0) switch (primaryMode) {
+                case ANYTHING:
+                    return FULL_POWER;
+                case EMPTY:
+                    if (InvTools.isInventoryEmpty(cartInv)) return FULL_POWER;
+                    continue;
+                case FULL:
+                    if (InvTools.isInventoryFull(cartInv)) return FULL_POWER;
+                    continue;
+                case FILTERED:
+                    if (matchesFilter(cartInv)) return FULL_POWER;
+                    continue;
+                case NOT_EMPTY:
+                    if (!InvTools.isInventoryEmpty(cartInv)) return FULL_POWER;
+                    continue;
+                case ANALOG:
+                    return Container.calcRedstoneFromInventory(cartInv);
+            }
         }
         return NO_POWER;
     }
@@ -192,6 +192,7 @@ public class DetectorItem extends DetectorFilter {
 
     public ISlotController getSlotController() {
         return new ISlotController() {
+
             @Override
             public boolean isSlotEnabled() {
                 return getPrimaryMode() == PrimaryMode.FILTERED;

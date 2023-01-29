@@ -1,19 +1,17 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.hidden;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
+
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EffectRenderer;
@@ -28,6 +26,8 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  *
@@ -100,14 +100,8 @@ public class BlockHidden extends BlockContainer {
     }
 
     @Override
-    public void addCollisionBoxesToList(
-            World par1World,
-            int par2,
-            int par3,
-            int par4,
-            AxisAlignedBB par5AxisAlignedBB,
-            List par6List,
-            Entity par7Entity) {}
+    public void addCollisionBoxesToList(World par1World, int par2, int par3, int par4, AxisAlignedBB par5AxisAlignedBB,
+            List par6List, Entity par7Entity) {}
 
     @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
@@ -130,8 +124,8 @@ public class BlockHidden extends BlockContainer {
     }
 
     @Override
-    public MovingObjectPosition collisionRayTrace(
-            World par1World, int par2, int par3, int par4, Vec3 par5Vec3, Vec3 par6Vec3) {
+    public MovingObjectPosition collisionRayTrace(World par1World, int par2, int par3, int par4, Vec3 par5Vec3,
+            Vec3 par6Vec3) {
         return null;
     }
 

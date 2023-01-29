@@ -1,18 +1,16 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.gui.containers;
 
-import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import java.util.Iterator;
 import java.util.Map;
+
 import mods.railcraft.common.gui.slots.SlotRailcraft;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
+
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -25,7 +23,10 @@ import net.minecraft.inventory.InventoryCraftResult;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
+
 import org.apache.commons.lang3.StringUtils;
+
+import cpw.mods.fml.common.ObfuscationReflectionHelper;
 
 /**
  *
@@ -309,15 +310,7 @@ public class ContainerAnvil extends ContainerRepair {
         final int z;
         final ContainerAnvil repairContainer;
 
-        SlotAnvil(
-                ContainerAnvil container,
-                IInventory inv,
-                int index,
-                int slotX,
-                int slotY,
-                World world,
-                int x,
-                int y,
+        SlotAnvil(ContainerAnvil container, IInventory inv, int index, int slotX, int slotY, World world, int x, int y,
                 int z) {
             super(inv, index, slotX, slotY);
             this.repairContainer = container;
@@ -328,8 +321,7 @@ public class ContainerAnvil extends ContainerRepair {
         }
 
         /**
-         * Check if the stack is a valid item for this slot. Always true beside
-         * for the armor slots.
+         * Check if the stack is a valid item for this slot. Always true beside for the armor slots.
          */
         @Override
         public boolean isItemValid(ItemStack par1ItemStack) {
@@ -342,7 +334,7 @@ public class ContainerAnvil extends ContainerRepair {
         @Override
         public boolean canTakeStack(EntityPlayer par1EntityPlayer) {
             return (par1EntityPlayer.capabilities.isCreativeMode
-                            || par1EntityPlayer.experienceLevel >= this.repairContainer.maximumCost)
+                    || par1EntityPlayer.experienceLevel >= this.repairContainer.maximumCost)
                     && this.repairContainer.maximumCost > 0
                     && this.getHasStack();
         }
@@ -371,8 +363,7 @@ public class ContainerAnvil extends ContainerRepair {
             this.repairContainer.maximumCost = 0;
 
             // Only Railcraft change is the random chance of damage
-            if (!player.capabilities.isCreativeMode
-                    && !this.world.isRemote
+            if (!player.capabilities.isCreativeMode && !this.world.isRemote
                     && WorldPlugin.getBlock(world, x, y, z) instanceof BlockAnvil
                     && player.getRNG().nextFloat() < breakChance) {
                 int i = this.world.getBlockMetadata(this.x, this.y, this.z);

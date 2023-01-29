@@ -1,22 +1,23 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.signals;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+
 import mods.railcraft.api.signals.*;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.nbt.NBTTagCompound;
+
 import org.apache.logging.log4j.Level;
 
 public class TileSignalBlockSignal extends TileSignalBase implements IControllerTile, ISignalTile, ISignalBlockTile {
+
     private final SimpleSignalController controller = new SimpleSignalController(getLocalizationTag(), this);
     private final SignalBlock signalBlock = new SignalBlockSimple(getLocalizationTag(), this);
 
@@ -44,8 +45,7 @@ public class TileSignalBlockSignal extends TileSignalBase implements IController
         if (prevAspect != controller.getAspect()) {
             sendUpdateToClient();
         }
-        if (SignalTools.printSignalDebug
-                && prevAspect != SignalAspect.BLINK_RED
+        if (SignalTools.printSignalDebug && prevAspect != SignalAspect.BLINK_RED
                 && controller.getAspect() == SignalAspect.BLINK_RED) {
             Game.log(
                     Level.INFO,

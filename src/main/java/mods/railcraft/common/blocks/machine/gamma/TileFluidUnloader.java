@@ -1,16 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.gamma;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -25,6 +23,7 @@ import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
+
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -38,8 +37,9 @@ import net.minecraftforge.fluids.IFluidHandler;
 public class TileFluidUnloader extends TileLoaderFluidBase implements IGuiReturnHandler {
 
     private static final int TRANSFER_RATE = 400;
-    private final MultiButtonController<ButtonState> stateController =
-            new MultiButtonController<ButtonState>(ButtonState.EMPTY_COMPLETELY.ordinal(), ButtonState.values());
+    private final MultiButtonController<ButtonState> stateController = new MultiButtonController<ButtonState>(
+            ButtonState.EMPTY_COMPLETELY.ordinal(),
+            ButtonState.values());
 
     @Override
     public IEnumMachine getMachineType() {
@@ -198,9 +198,11 @@ public class TileFluidUnloader extends TileLoaderFluidBase implements IGuiReturn
     }
 
     public enum ButtonState implements IMultiButtonState {
+
         EMPTY_COMPLETELY("railcraft.gui.liquid.unloader.empty"),
         IMMEDIATE("railcraft.gui.liquid.unloader.immediate"),
         MANUAL("railcraft.gui.liquid.unloader.manual");
+
         private final String label;
         private final ToolTip tip;
 

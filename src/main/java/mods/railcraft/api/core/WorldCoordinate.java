@@ -1,8 +1,6 @@
 /*
- * ******************************************************************************
- *  Copyright 2011-2015 CovertJaguar
- *
- *  This work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
+ * ****************************************************************************** Copyright 2011-2015 CovertJaguar This
+ * work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
  * ***************************************************************************
  */
 package mods.railcraft.api.core;
@@ -11,12 +9,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
 /**
- * This immutable class represents a point in the Minecraft world, while taking
- * into account the possibility of coordinates in different dimensions.
+ * This immutable class represents a point in the Minecraft world, while taking into account the possibility of
+ * coordinates in different dimensions.
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class WorldCoordinate implements Comparable<WorldCoordinate> {
+
     /**
      * The dimension
      */

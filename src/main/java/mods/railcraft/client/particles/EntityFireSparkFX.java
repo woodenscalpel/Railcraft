@@ -1,19 +1,17 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.particles;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  *
@@ -75,8 +73,8 @@ public class EntityFireSparkFX extends EntityFX {
     }
 
     @Override
-    public void renderParticle(
-            Tessellator par1Tessellator, float par2, float par3, float par4, float par5, float par6, float par7) {
+    public void renderParticle(Tessellator par1Tessellator, float par2, float par3, float par4, float par5, float par6,
+            float par7) {
         float f6 = ((float) this.particleAge + par2) / (float) this.particleMaxAge;
         this.particleScale = this.lavaParticleScale * (1.0F - f6 * f6);
         super.renderParticle(par1Tessellator, par2, par3, par4, par5, par6, par7);

@@ -1,14 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine;
 
 import java.util.Map;
+
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -34,8 +32,8 @@ public class MultiBlockPattern {
         this(pattern, offsetX, offsetY, offsetZ, null);
     }
 
-    public MultiBlockPattern(
-            char[][][] pattern, int offsetX, int offsetY, int offsetZ, AxisAlignedBB entityCheckBounds) {
+    public MultiBlockPattern(char[][][] pattern, int offsetX, int offsetY, int offsetZ,
+            AxisAlignedBB entityCheckBounds) {
         this.pattern = pattern;
         this.offsetX = offsetX;
         this.offsetY = offsetY;
@@ -94,8 +92,8 @@ public class MultiBlockPattern {
         return (offsetZ - patternZ) + posZ;
     }
 
-    public TileEntity placeStructure(
-            World world, int xCoord, int yCoord, int zCoord, Block block, Map<Character, Integer> blockMapping) {
+    public TileEntity placeStructure(World world, int xCoord, int yCoord, int zCoord, Block block,
+            Map<Character, Integer> blockMapping) {
         if (block == null) return null;
 
         int xWidth = getPatternWidthX();

@@ -1,8 +1,6 @@
 /*
- * ******************************************************************************
- *  Copyright 2011-2015 CovertJaguar
- *
- *  This work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
+ * ****************************************************************************** Copyright 2011-2015 CovertJaguar This
+ * work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
  * ***************************************************************************
  */
 package mods.railcraft.api.core.items;
@@ -20,8 +18,8 @@ public interface IToolCrowbar {
     /**
      * Controls non-rotational interactions with blocks. Crowbar specific stuff.
      *
-     * Rotational interaction is handled by the Block.rotateBlock() function,
-     * which should be called from the Item.onUseFirst() function of your tool.
+     * Rotational interaction is handled by the Block.rotateBlock() function, which should be called from the
+     * Item.onUseFirst() function of your tool.
      *
      * @param player
      * @param crowbar
@@ -73,8 +71,7 @@ public interface IToolCrowbar {
     public boolean canBoost(EntityPlayer player, ItemStack crowbar, EntityMinecart cart);
 
     /**
-     * Callback to do damage, boosting a cart usually does more damage than
-     * normal usage.
+     * Callback to do damage, boosting a cart usually does more damage than normal usage.
      *
      * @param player
      * @param crowbar

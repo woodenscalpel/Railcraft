@@ -1,24 +1,27 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in the editor.
  */
 package mods.railcraft.common.plugins.buildcraft.triggers;
 
-import buildcraft.api.statements.*;
 import java.util.EnumSet;
+
 import mods.railcraft.api.signals.SignalAspect;
 import mods.railcraft.common.blocks.machine.beta.TileEngine.EnergyStage;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import buildcraft.api.statements.*;
 
 /**
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public enum Triggers implements ITriggerExternal {
+
     HAS_WORK("work", new TriggerHasWork()),
     HAS_CART("cart", new TriggerHasCart()),
     ENGINE_BLUE("engine.blue", new TriggerEngine(EnumSet.of(EnergyStage.BLUE))),
@@ -37,6 +40,7 @@ public enum Triggers implements ITriggerExternal {
     ASPECT_BLINK_RED("aspect.red.blink", new TriggerAspect(SignalAspect.BLINK_RED)),
     ASPECT_RED("aspect.red", new TriggerAspect(SignalAspect.RED)),
     ASPECT_OFF("aspect.off", new TriggerAspect(SignalAspect.OFF));
+
     public static final Triggers[] VALUES = values();
     private final Trigger trigger;
     private final String tag;
@@ -70,8 +74,8 @@ public enum Triggers implements ITriggerExternal {
     }
 
     @Override
-    public boolean isTriggerActive(
-            TileEntity tile, ForgeDirection side, IStatementContainer isc, IStatementParameter[] parameter) {
+    public boolean isTriggerActive(TileEntity tile, ForgeDirection side, IStatementContainer isc,
+            IStatementParameter[] parameter) {
         return trigger.isTriggerActive(side, tile, parameter);
     }
 

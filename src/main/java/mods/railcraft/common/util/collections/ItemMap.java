@@ -1,15 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.collections;
 
 import java.util.HashMap;
+
 import mods.railcraft.api.core.items.IStackFilter;
+
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -18,6 +17,7 @@ import net.minecraft.item.ItemStack;
  * @author CovertJaguar <http://www.railcraft.info/>
  */
 public class ItemMap<V> extends HashMap<ItemKey, V> {
+
     public V put(Item item, int meta, V value) {
         return put(new ItemKey(item, meta), value);
     }
@@ -52,6 +52,7 @@ public class ItemMap<V> extends HashMap<ItemKey, V> {
 
     public IStackFilter getStackFilter() {
         return new IStackFilter() {
+
             @Override
             public boolean matches(ItemStack stack) {
                 return containsKey(stack);

@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.modules;
 
@@ -19,6 +16,7 @@ import mods.railcraft.common.items.ItemPlate.EnumPlate;
 import mods.railcraft.common.items.RailcraftItem;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.plugins.ic2.IC2Plugin;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -31,7 +29,7 @@ public class ModuleSteam extends RailcraftModule {
 
     @Override
     public void initFirst() {
-        //        LiquidItems.getSteamBottle(1);
+        // LiquidItems.getSteamBottle(1);
         EnumMachineBeta beta = EnumMachineBeta.ENGINE_STEAM_HOBBY;
         if (RailcraftConfig.isSubBlockEnabled(beta.getTag())) {
             RailcraftBlocks.registerBlockMachineBeta();
@@ -152,7 +150,11 @@ public class ModuleSteam extends RailcraftModule {
             if (block != null) {
                 ItemStack stack = beta.getItem();
                 CraftingPlugin.addShapedRecipe(
-                        beta.getItem(), "P", "P", 'P', RailcraftItem.plate.getRecipeObject(EnumPlate.IRON));
+                        beta.getItem(),
+                        "P",
+                        "P",
+                        'P',
+                        RailcraftItem.plate.getRecipeObject(EnumPlate.IRON));
 
                 // RailcraftCraftingManager.blastFurnace.addRecipe(stack, true, false, 2560,
                 // RailcraftItem.ingot.getStack(2, ItemIngot.EnumIngot.STEEL));
@@ -166,7 +168,11 @@ public class ModuleSteam extends RailcraftModule {
             if (block != null) {
                 ItemStack stack = beta.getItem();
                 CraftingPlugin.addShapedRecipe(
-                        beta.getItem(), "P", "P", 'P', RailcraftItem.plate.getRecipeObject(EnumPlate.STEEL));
+                        beta.getItem(),
+                        "P",
+                        "P",
+                        'P',
+                        RailcraftItem.plate.getRecipeObject(EnumPlate.STEEL));
             }
         }
 
@@ -214,7 +220,12 @@ public class ModuleSteam extends RailcraftModule {
                     new ItemStack(Blocks.dispenser));
             if (EnumMachineAlpha.STEAM_TRAP_MANUAL.isAvaliable()) {
                 CraftingPlugin.addShapedRecipe(
-                        stack, "RTR", 'T', EnumMachineAlpha.STEAM_TRAP_MANUAL.getItem(), 'R', "dustRedstone");
+                        stack,
+                        "RTR",
+                        'T',
+                        EnumMachineAlpha.STEAM_TRAP_MANUAL.getItem(),
+                        'R',
+                        "dustRedstone");
                 CraftingPlugin.addShapelessRecipe(EnumMachineAlpha.STEAM_TRAP_MANUAL.getItem(), stack);
             }
         }

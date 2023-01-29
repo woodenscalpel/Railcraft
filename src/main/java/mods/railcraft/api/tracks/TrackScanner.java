@@ -10,8 +10,7 @@ import net.minecraft.world.World;
 public class TrackScanner {
 
     /**
-     * Verifies that two rails are connected to each other along a straight line
-     * with no gaps or wanderings.
+     * Verifies that two rails are connected to each other along a straight line with no gaps or wanderings.
      *
      * @param world The World object
      * @param x1    x-Coord of Rail #1
@@ -27,8 +26,7 @@ public class TrackScanner {
     }
 
     /**
-     * Verifies that two rails are connected to each other along a straight line
-     * with no gaps or wanderings.
+     * Verifies that two rails are connected to each other along a straight line with no gaps or wanderings.
      * <p/>
      * Also records the min and max y values along the way.
      *
@@ -59,17 +57,17 @@ public class TrackScanner {
                 yy = y2;
             }
             for (int xx = min; xx <= max; xx++) {
-                //                if (world.blockExists(xx, yy, z1))
-                if (RailTools.isRailBlockAt(world, xx, yy, z1)) {
-                } else if (RailTools.isRailBlockAt(world, xx, yy - 1, z1)) {
-                    yy--;
-                    if (yy < minY) minY = yy;
-                } else if (RailTools.isRailBlockAt(world, xx, yy + 1, z1)) {
-                    yy++;
-                    if (yy > maxY) maxY = yy;
-                } else if (!world.blockExists(xx, yy, z1)) {
-                    return new ScanResult(ScanResult.Verdict.UNKNOWN, minY, maxY);
-                } else return new ScanResult(ScanResult.Verdict.PATH_NOT_FOUND, minY, maxY);
+                // if (world.blockExists(xx, yy, z1))
+                if (RailTools.isRailBlockAt(world, xx, yy, z1)) {} else
+                    if (RailTools.isRailBlockAt(world, xx, yy - 1, z1)) {
+                        yy--;
+                        if (yy < minY) minY = yy;
+                    } else if (RailTools.isRailBlockAt(world, xx, yy + 1, z1)) {
+                        yy++;
+                        if (yy > maxY) maxY = yy;
+                    } else if (!world.blockExists(xx, yy, z1)) {
+                        return new ScanResult(ScanResult.Verdict.UNKNOWN, minY, maxY);
+                    } else return new ScanResult(ScanResult.Verdict.PATH_NOT_FOUND, minY, maxY);
             }
         } else if (z1 != z2) {
             int min;
@@ -85,23 +83,24 @@ public class TrackScanner {
                 yy = y2;
             }
             for (int zz = min; zz <= max; zz++) {
-                //                if (world.blockExists(x1, yy, zz))
-                if (RailTools.isRailBlockAt(world, x1, yy, zz)) {
-                } else if (RailTools.isRailBlockAt(world, x1, yy - 1, zz)) {
-                    yy--;
-                    if (yy < minY) minY = yy;
-                } else if (RailTools.isRailBlockAt(world, x1, yy + 1, zz)) {
-                    yy++;
-                    if (yy > maxY) maxY = yy;
-                } else if (!world.blockExists(x1, yy, zz)) {
-                    return new ScanResult(ScanResult.Verdict.UNKNOWN, minY, maxY);
-                } else return new ScanResult(ScanResult.Verdict.PATH_NOT_FOUND, minY, maxY);
+                // if (world.blockExists(x1, yy, zz))
+                if (RailTools.isRailBlockAt(world, x1, yy, zz)) {} else
+                    if (RailTools.isRailBlockAt(world, x1, yy - 1, zz)) {
+                        yy--;
+                        if (yy < minY) minY = yy;
+                    } else if (RailTools.isRailBlockAt(world, x1, yy + 1, zz)) {
+                        yy++;
+                        if (yy > maxY) maxY = yy;
+                    } else if (!world.blockExists(x1, yy, zz)) {
+                        return new ScanResult(ScanResult.Verdict.UNKNOWN, minY, maxY);
+                    } else return new ScanResult(ScanResult.Verdict.PATH_NOT_FOUND, minY, maxY);
             }
         }
         return new ScanResult(ScanResult.Verdict.VALID, minY, maxY);
     }
 
     public static class ScanResult {
+
         public final Verdict verdict;
         public final boolean areConnected;
         public final int minY, maxY;

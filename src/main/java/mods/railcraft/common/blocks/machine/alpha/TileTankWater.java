@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.alpha;
 
@@ -12,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
@@ -30,6 +28,7 @@ import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.ITileFilter;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -49,6 +48,7 @@ import net.minecraftforge.fluids.IFluidHandler;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class TileTankWater extends TileTank implements ISidedInventory {
+
     private static final int OUTPUT_RATE = 40;
     private static final int TANK_CAPACITY = FluidHelper.BUCKET_VOLUME * 400;
     private static final int REFILL_INTERVAL = 8;
@@ -60,10 +60,10 @@ public class TileTankWater extends TileTank implements ISidedInventory {
     private static final int SLOT_INPUT = 0;
     private static final int SLOT_OUTPUT = 1;
     private static final int[] SLOTS = InvTools.buildSlotArray(0, 2);
-    private static final ForgeDirection[] LIQUID_OUTPUTS = {
-        ForgeDirection.DOWN, ForgeDirection.EAST, ForgeDirection.WEST, ForgeDirection.NORTH, ForgeDirection.SOUTH
-    };
+    private static final ForgeDirection[] LIQUID_OUTPUTS = { ForgeDirection.DOWN, ForgeDirection.EAST,
+            ForgeDirection.WEST, ForgeDirection.NORTH, ForgeDirection.SOUTH };
     private static final ITileFilter LIQUID_OUTPUT_FILTER = new ITileFilter() {
+
         @Override
         public boolean matches(TileEntity tile) {
             if (tile instanceof TileTank) return false;
@@ -76,42 +76,16 @@ public class TileTankWater extends TileTank implements ISidedInventory {
 
     static {
         char[][][] map = {
-            {
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'}
-            },
-            {
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'B', 'B', 'B', 'O'},
-                {'O', 'B', 'B', 'B', 'O'},
-                {'O', 'B', 'B', 'B', 'O'},
-                {'O', 'O', 'O', 'O', 'O'}
-            },
-            {
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'B', 'B', 'B', 'O'},
-                {'O', 'B', 'A', 'B', 'O'},
-                {'O', 'B', 'B', 'B', 'O'},
-                {'O', 'O', 'O', 'O', 'O'}
-            },
-            {
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'B', 'B', 'B', 'O'},
-                {'O', 'B', 'B', 'B', 'O'},
-                {'O', 'B', 'B', 'B', 'O'},
-                {'O', 'O', 'O', 'O', 'O'}
-            },
-            {
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'}
-            },
-        };
+                { { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O', 'O' },
+                        { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O', 'O' } },
+                { { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'B', 'B', 'B', 'O' }, { 'O', 'B', 'B', 'B', 'O' },
+                        { 'O', 'B', 'B', 'B', 'O' }, { 'O', 'O', 'O', 'O', 'O' } },
+                { { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'B', 'B', 'B', 'O' }, { 'O', 'B', 'A', 'B', 'O' },
+                        { 'O', 'B', 'B', 'B', 'O' }, { 'O', 'O', 'O', 'O', 'O' } },
+                { { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'B', 'B', 'B', 'O' }, { 'O', 'B', 'B', 'B', 'O' },
+                        { 'O', 'B', 'B', 'B', 'O' }, { 'O', 'O', 'O', 'O', 'O' } },
+                { { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O', 'O' },
+                        { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O', 'O' } }, };
         patterns.add(new MultiBlockPattern(map, 2, 1, 2));
     }
 
@@ -128,8 +102,8 @@ public class TileTankWater extends TileTank implements ISidedInventory {
         for (MultiBlockPattern pattern : TileTankWater.patterns) {
             Map<Character, Integer> blockMapping = new HashMap<Character, Integer>();
             blockMapping.put('B', EnumMachineAlpha.TANK_WATER.ordinal());
-            TileEntity tile =
-                    pattern.placeStructure(world, x, y, z, RailcraftBlocks.getBlockMachineAlpha(), blockMapping);
+            TileEntity tile = pattern
+                    .placeStructure(world, x, y, z, RailcraftBlocks.getBlockMachineAlpha(), blockMapping);
             if (tile instanceof TileTankWater) {
                 TileTankWater master = (TileTankWater) tile;
                 master.tank.setFluid(Fluids.WATER.get(water));
@@ -156,9 +130,9 @@ public class TileTankWater extends TileTank implements ISidedInventory {
     @Override
     public boolean blockActivated(EntityPlayer player, int side) {
         if (Game.isHost(worldObj)) {
-            if (isStructureValid()
-                    && FluidHelper.handleRightClick(
-                            getTankManager(), ForgeDirection.getOrientation(side), player, true, true)) return true;
+            if (isStructureValid() && FluidHelper
+                    .handleRightClick(getTankManager(), ForgeDirection.getOrientation(side), player, true, true))
+                return true;
         } else if (FluidItemHelper.isContainer(player.inventory.getCurrentItem())) return true;
         return super.blockActivated(player, side);
     }
@@ -174,13 +148,12 @@ public class TileTankWater extends TileTank implements ISidedInventory {
                     BiomeGenBase biome = worldObj.getBiomeGenForCoords(xCoord, zCoord);
                     float humidity = biome.rainfall;
                     rate *= humidity;
-                    //                    String debug = "Biome=" + biome.biomeName + ", Humidity=" + humidity;
+                    // String debug = "Biome=" + biome.biomeName + ", Humidity=" + humidity;
 
                     boolean outside = false;
-                    outer:
-                    for (int x = xCoord - 1; x <= xCoord + 1; x++) {
+                    outer: for (int x = xCoord - 1; x <= xCoord + 1; x++) {
                         for (int z = zCoord - 1; z <= zCoord + 1; z++) {
-                            //                            System.out.println(x + ", " + (yCoord + 3) + ", " + z);
+                            // System.out.println(x + ", " + (yCoord + 3) + ", " + z);
                             if (worldObj.canBlockSeeTheSky(x, yCoord + 3, z)) {
                                 outside = true;
                                 break outer;
@@ -188,16 +161,16 @@ public class TileTankWater extends TileTank implements ISidedInventory {
                         }
                     }
 
-                    //                    debug += ", Outside=" + outside;
+                    // debug += ", Outside=" + outside;
                     if (!outside) rate *= REFILL_PENALTY_INSIDE;
-                    else if (worldObj.isRaining())
-                        if (biome.getEnableSnow())
-                            rate *= REFILL_PENALTY_SNOW; //                            debug += ", Snow=true";
-                        else rate *= REFILL_BOOST_RAIN; //                            debug += ", Rain=true";
+                    else if (worldObj.isRaining()) if (biome.getEnableSnow()) rate *= REFILL_PENALTY_SNOW; // debug +=
+                                                                                                           // ",
+                                                                                                           // Snow=true";
+                    else rate *= REFILL_BOOST_RAIN; // debug += ", Rain=true";
                     int rateFinal = MathHelper.floor_float(rate);
                     if (rateFinal < REFILL_RATE_MIN) rateFinal = REFILL_RATE_MIN;
-                    //                    debug += ", Refill=" + rateFinal;
-                    //                    System.out.println(debug);
+                    // debug += ", Refill=" + rateFinal;
+                    // System.out.println(debug);
 
                     FluidStack fillStack = Fluids.WATER.get(rateFinal);
                     fill(ForgeDirection.UP, fillStack, true);

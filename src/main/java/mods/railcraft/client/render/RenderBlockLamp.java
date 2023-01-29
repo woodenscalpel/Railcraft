@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.render;
 
@@ -13,6 +10,7 @@ import mods.railcraft.common.blocks.aesthetics.lantern.BlockLantern;
 import mods.railcraft.common.blocks.aesthetics.post.BlockPostBase;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.MiscTools;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -56,8 +54,8 @@ public class RenderBlockLamp extends BlockRenderer {
     }
 
     @Override
-    public boolean renderWorldBlock(
-            IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderblocks) {
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+            RenderBlocks renderblocks) {
         if (canConnect(world, x, y, z, ForgeDirection.DOWN))
             renderCenteredCube(x, y, z, block, renderblocks, PILLAR_BORDER, PILLAR_HEIGHT, PILLAR_THICKNESS);
 
@@ -112,8 +110,8 @@ public class RenderBlockLamp extends BlockRenderer {
         return true;
     }
 
-    private void renderCenteredCube(
-            int x, int y, int z, Block block, RenderBlocks renderblocks, int border, int height, int thinkness) {
+    private void renderCenteredCube(int x, int y, int z, Block block, RenderBlocks renderblocks, int border, int height,
+            int thinkness) {
         block.setBlockBounds(
                 border * PIX,
                 height * PIX,
@@ -135,8 +133,8 @@ public class RenderBlockLamp extends BlockRenderer {
         RenderTools.renderStandardBlock(renderblocks, block, x, y, z);
     }
 
-    private void renderConnector(
-            int x, int y, int z, Block block, RenderBlocks renderblocks, int xMin, int zMin, int xMax, int zMax) {
+    private void renderConnector(int x, int y, int z, Block block, RenderBlocks renderblocks, int xMin, int zMin,
+            int xMax, int zMax) {
         block.setBlockBounds(xMin * PIX, CANDLE_HEIGHT * PIX, zMin * PIX, xMax * PIX, CAPBASE_HEIGHT * PIX, zMax * PIX);
         RenderTools.renderStandardBlock(renderblocks, block, x, y, z);
     }
@@ -177,8 +175,8 @@ public class RenderBlockLamp extends BlockRenderer {
         renderCornerPostItem(info, renderblocks, one, one);
     }
 
-    private void renderCenteredCubeItem(
-            RenderInfo info, RenderBlocks renderblocks, int border, int height, int thinkness) {
+    private void renderCenteredCubeItem(RenderInfo info, RenderBlocks renderblocks, int border, int height,
+            int thinkness) {
         info.setBlockBounds(
                 border * PIX,
                 height * PIX,

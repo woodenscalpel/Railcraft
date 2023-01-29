@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.tracks;
 
@@ -14,6 +11,7 @@ import static net.minecraftforge.common.util.ForgeDirection.UP;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+
 import mods.railcraft.api.core.IPostConnection;
 import mods.railcraft.api.tracks.ITrackBlocksMovement;
 import mods.railcraft.api.tracks.ITrackCustomShape;
@@ -22,6 +20,7 @@ import mods.railcraft.api.tracks.ITrackReversable;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.sounds.SoundHelper;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
@@ -31,7 +30,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.util.ForgeDirection;
 
 // Referenced classes of package net.minecraft.src:
-//            TileEntity, NBTTagCompound, World
+// TileEntity, NBTTagCompound, World
 public class TrackGated extends TrackBaseRailcraft
         implements ITrackReversable, ITrackPowered, ITrackCustomShape, IPostConnection, ITrackBlocksMovement {
 
@@ -70,22 +69,20 @@ public class TrackGated extends TrackBaseRailcraft
     public AxisAlignedBB getCollisionBoundingBoxFromPool() {
         int meta = tileEntity.getBlockMetadata();
         if (isGateOpen()) return null;
-        if (meta == 0)
-            return AxisAlignedBB.getBoundingBox(
-                    tileEntity.xCoord,
-                    tileEntity.yCoord,
-                    (float) tileEntity.zCoord + 0.375F,
-                    tileEntity.xCoord + 1,
-                    (float) tileEntity.yCoord + 1.5F,
-                    (float) tileEntity.zCoord + 0.625F);
-        else
-            return AxisAlignedBB.getBoundingBox(
-                    (float) tileEntity.xCoord + 0.375F,
-                    tileEntity.yCoord,
-                    tileEntity.zCoord,
-                    (float) tileEntity.xCoord + 0.625F,
-                    (float) tileEntity.yCoord + 1.5F,
-                    tileEntity.zCoord + 1);
+        if (meta == 0) return AxisAlignedBB.getBoundingBox(
+                tileEntity.xCoord,
+                tileEntity.yCoord,
+                (float) tileEntity.zCoord + 0.375F,
+                tileEntity.xCoord + 1,
+                (float) tileEntity.yCoord + 1.5F,
+                (float) tileEntity.zCoord + 0.625F);
+        else return AxisAlignedBB.getBoundingBox(
+                (float) tileEntity.xCoord + 0.375F,
+                tileEntity.yCoord,
+                tileEntity.zCoord,
+                (float) tileEntity.xCoord + 0.625F,
+                (float) tileEntity.yCoord + 1.5F,
+                tileEntity.zCoord + 1);
     }
 
     @Override

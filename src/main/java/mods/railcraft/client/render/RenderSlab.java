@@ -1,16 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.render;
 
 import mods.railcraft.common.blocks.aesthetics.EnumBlockMaterial;
 import mods.railcraft.common.blocks.aesthetics.slab.BlockRailcraftSlab;
 import mods.railcraft.common.blocks.aesthetics.slab.TileSlab;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.item.ItemStack;
@@ -29,8 +27,8 @@ public class RenderSlab extends BlockRenderer {
     }
 
     @Override
-    public boolean renderWorldBlock(
-            IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderBlocks) {
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+            RenderBlocks renderBlocks) {
         boolean rendered = false;
         TileEntity tile = world.getTileEntity(x, y, z);
         if (tile instanceof TileSlab) {
@@ -44,22 +42,20 @@ public class RenderSlab extends BlockRenderer {
                     rendered = true;
                 }
             } else {
-                if (slab.getTopSlab() != null)
-                    if (canRenderInPass(renderBlocks, slab.getTopSlab())) {
-                        BlockRailcraftSlab.textureSlab = slab.getTopSlab();
-                        renderBlocks.setRenderBounds(0.0F, 0.5F, 0.0F, 1.0F, 1.0F, 1.0F);
-                        renderBlocks.renderStandardBlock(block, x, y, z);
-                        BlockRailcraftSlab.textureSlab = null;
-                        rendered = true;
-                    }
-                if (slab.getBottomSlab() != null)
-                    if (canRenderInPass(renderBlocks, slab.getBottomSlab())) {
-                        BlockRailcraftSlab.textureSlab = slab.getBottomSlab();
-                        renderBlocks.setRenderBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
-                        renderBlocks.renderStandardBlock(block, x, y, z);
-                        BlockRailcraftSlab.textureSlab = null;
-                        rendered = true;
-                    }
+                if (slab.getTopSlab() != null) if (canRenderInPass(renderBlocks, slab.getTopSlab())) {
+                    BlockRailcraftSlab.textureSlab = slab.getTopSlab();
+                    renderBlocks.setRenderBounds(0.0F, 0.5F, 0.0F, 1.0F, 1.0F, 1.0F);
+                    renderBlocks.renderStandardBlock(block, x, y, z);
+                    BlockRailcraftSlab.textureSlab = null;
+                    rendered = true;
+                }
+                if (slab.getBottomSlab() != null) if (canRenderInPass(renderBlocks, slab.getBottomSlab())) {
+                    BlockRailcraftSlab.textureSlab = slab.getBottomSlab();
+                    renderBlocks.setRenderBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
+                    renderBlocks.renderStandardBlock(block, x, y, z);
+                    BlockRailcraftSlab.textureSlab = null;
+                    rendered = true;
+                }
             }
         }
         return rendered;

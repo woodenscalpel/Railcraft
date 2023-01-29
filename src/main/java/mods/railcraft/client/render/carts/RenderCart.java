@@ -1,20 +1,19 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.render.carts;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+
 import mods.railcraft.api.carts.IRoutableCart;
 import mods.railcraft.api.carts.locomotive.IRenderer;
 import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
 import mods.railcraft.common.carts.*;
+
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -24,6 +23,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
+
 import org.lwjgl.opengl.GL11;
 
 public class RenderCart extends Render implements IRenderer {
@@ -121,7 +121,7 @@ public class RenderCart extends Render implements IRenderer {
             GL11.glRotatef(angle, 1.0F, 0.0F, 0.0F);
         }
         float light = cart.getBrightness(time);
-        //        light = light + ((1.0f - light) * 0.4f);
+        // light = light + ((1.0f - light) * 0.4f);
 
         boolean renderContents = renderCore(cart, light, time);
 
@@ -186,8 +186,8 @@ public class RenderCart extends Render implements IRenderer {
         return null;
     }
 
-    public void renderHaloText(
-            Entity entity, String text, double xOffset, double yOffset, double zOffset, int viewDist) {
+    public void renderHaloText(Entity entity, String text, double xOffset, double yOffset, double zOffset,
+            int viewDist) {
         func_147906_a(entity, text, xOffset, yOffset, zOffset, viewDist);
     }
 }

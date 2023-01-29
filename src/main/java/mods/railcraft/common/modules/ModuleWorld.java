@@ -1,14 +1,10 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.modules;
 
-import cpw.mods.fml.common.registry.VillagerRegistry;
 import mods.railcraft.common.blocks.aesthetics.cube.BlockCube;
 import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
 import mods.railcraft.common.blocks.ore.BlockOre;
@@ -23,6 +19,7 @@ import mods.railcraft.common.worldgen.SaltpeterGenerator;
 import mods.railcraft.common.worldgen.SulfurGenerator;
 import mods.railcraft.common.worldgen.VillagerTradeHandler;
 import mods.railcraft.common.worldgen.WorkshopCreationHandeler;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -33,14 +30,16 @@ import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
+import cpw.mods.fml.common.registry.VillagerRegistry;
+
 /**
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class ModuleWorld extends RailcraftModule {
 
-    public static final ResourceLocation VILLAGER_TEXTURE =
-            new ResourceLocation("railcraft:textures/entities/villager/trackman.png");
+    public static final ResourceLocation VILLAGER_TEXTURE = new ResourceLocation(
+            "railcraft:textures/entities/villager/trackman.png");
 
     @Override
     public void preInit() {
@@ -51,8 +50,7 @@ public class ModuleWorld extends RailcraftModule {
             VillagerRegistry.instance().registerVillageCreationHandler(new WorkshopCreationHandeler());
             try {
                 MapGenStructureIO.func_143031_a(ComponentWorkshop.class, "railcraft:workshop");
-            } catch (Throwable e) {
-            }
+            } catch (Throwable e) {}
         }
     }
 
@@ -75,8 +73,7 @@ public class ModuleWorld extends RailcraftModule {
             MinecraftForge.ORE_GEN_BUS.register(new SaltpeterGenerator());
         if (RailcraftConfig.isWorldGenEnabled("sulfur") && EnumOre.SULFUR.isEnabled())
             MinecraftForge.ORE_GEN_BUS.register(new SulfurGenerator());
-        if (RailcraftConfig.isWorldGenEnabled("firestone")
-                && EnumOre.FIRESTONE.isEnabled()
+        if (RailcraftConfig.isWorldGenEnabled("firestone") && EnumOre.FIRESTONE.isEnabled()
                 && ModuleManager.isModuleLoaded(ModuleManager.Module.MAGIC))
             MinecraftForge.EVENT_BUS.register(new FirestoneGenerator());
         if (RailcraftConfig.isWorldGenEnabled("abyssal") && EnumCube.ABYSSAL_STONE.isEnabled())
@@ -97,7 +94,11 @@ public class ModuleWorld extends RailcraftModule {
 
         if (RailcraftConfig.getRecipeConfig("railcraft.misc.gunpowder")) {
             IRecipe recipe = new ShapelessOreRecipe(
-                    new ItemStack(Items.gunpowder, 2), "dustSaltpeter", "dustSaltpeter", "dustSulfur", "dustCharcoal");
+                    new ItemStack(Items.gunpowder, 2),
+                    "dustSaltpeter",
+                    "dustSaltpeter",
+                    "dustSulfur",
+                    "dustCharcoal");
             CraftingManager.getInstance().getRecipeList().add(recipe);
         }
 
@@ -108,7 +109,12 @@ public class ModuleWorld extends RailcraftModule {
                 fert = fert.copy();
                 fert.stackSize = 2;
                 CraftingPlugin.addShapelessRecipe(
-                        fert, "dustSaltpeter", "sand", "sand", new ItemStack(Blocks.dirt), new ItemStack(Blocks.dirt));
+                        fert,
+                        "dustSaltpeter",
+                        "sand",
+                        "sand",
+                        new ItemStack(Blocks.dirt),
+                        new ItemStack(Blocks.dirt));
             }
         }
     }

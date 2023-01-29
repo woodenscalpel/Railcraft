@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.modules;
 
@@ -16,6 +13,7 @@ import mods.railcraft.common.blocks.tracks.EnumTrack;
 import mods.railcraft.common.items.ItemCrowbar;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.util.misc.MiscTools;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
@@ -36,9 +34,9 @@ public class ModuleTrain extends RailcraftModule {
         MiscTools.registerTrack(EnumTrack.COUPLER);
 
         if (BlockDetector.getBlock() != null) {
-            CraftingPlugin.addShapedRecipe(EnumDetector.TRAIN.getItem(), new Object[] {
-                "XXX", "XPX", "XXX", 'X', Blocks.nether_brick, 'P', Blocks.stone_pressure_plate,
-            });
+            CraftingPlugin.addShapedRecipe(
+                    EnumDetector.TRAIN.getItem(),
+                    new Object[] { "XXX", "XPX", "XXX", 'X', Blocks.nether_brick, 'P', Blocks.stone_pressure_plate, });
         }
 
         EnumMachineGamma.DISPENSER_TRAIN.register();

@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.network;
 
@@ -13,9 +10,11 @@ import static mods.railcraft.common.util.network.PacketKeyPress.EnumKeyBinding.*
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+
 import mods.railcraft.common.carts.EntityLocomotive;
 import mods.railcraft.common.carts.EntityLocomotive.LocoMode;
 import mods.railcraft.common.carts.Train;
+
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -23,10 +22,12 @@ import net.minecraft.entity.player.EntityPlayerMP;
 public class PacketKeyPress extends RailcraftPacket {
 
     public enum EnumKeyBinding {
+
         LOCOMOTIVE_INCREASE_SPEED,
         LOCOMOTIVE_DECREASE_SPEED,
         LOCOMOTIVE_MODE_CHANGE,
         LOCOMOTIVE_WHISTLE;
+
         public static final EnumKeyBinding[] VALUES = values();
     }
 
@@ -50,13 +51,13 @@ public class PacketKeyPress extends RailcraftPacket {
     @Override
     public void readData(DataInputStream data) throws IOException {
         int type = data.readByte();
-        //        if(type < 0 || type >= VALUES.length){
-        //            return;
-        //        }
+        // if(type < 0 || type >= VALUES.length){
+        // return;
+        // }
         binding = VALUES[type];
-        //        if(!(player instanceof EntityPlayer)){
-        //            return;
-        //        }
+        // if(!(player instanceof EntityPlayer)){
+        // return;
+        // }
         EntityPlayer entityPlayer = (EntityPlayer) player;
         if (entityPlayer == null) return;
         if (!(entityPlayer.ridingEntity instanceof EntityMinecart)) return;
@@ -86,14 +87,13 @@ public class PacketKeyPress extends RailcraftPacket {
                     }
                 }
             }
-        } else if (binding == LOCOMOTIVE_WHISTLE)
-            for (EntityMinecart cart : train) {
-                if (cart instanceof EntityLocomotive) {
-                    EntityLocomotive loco = (EntityLocomotive) cart;
-                    loco.whistle();
-                    break;
-                }
+        } else if (binding == LOCOMOTIVE_WHISTLE) for (EntityMinecart cart : train) {
+            if (cart instanceof EntityLocomotive) {
+                EntityLocomotive loco = (EntityLocomotive) cart;
+                loco.whistle();
+                break;
             }
+        }
     }
 
     @Override

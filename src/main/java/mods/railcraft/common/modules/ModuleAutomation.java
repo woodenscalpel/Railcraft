@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.modules;
 
@@ -24,6 +21,7 @@ import mods.railcraft.common.items.RailcraftItem;
 import mods.railcraft.common.modules.orehandlers.BoreOreHandler;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -32,6 +30,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 
 public class ModuleAutomation extends RailcraftModule {
+
     @Override
     public void preInit() {
         MinecraftForge.EVENT_BUS.register(new BoreOreHandler());
@@ -239,7 +238,14 @@ public class ModuleAutomation extends RailcraftModule {
                 Item item = new ItemBoreHeadDiamond();
                 RailcraftRegistry.register(item);
                 CraftingPlugin.addShapedRecipe(
-                        new ItemStack(item), "III", "IDI", "III", 'I', "ingotSteel", 'D', "blockDiamond");
+                        new ItemStack(item),
+                        "III",
+                        "IDI",
+                        "III",
+                        'I',
+                        "ingotSteel",
+                        'D',
+                        "blockDiamond");
             }
 
             tag = "tool.bore.head.steel";
@@ -247,115 +253,116 @@ public class ModuleAutomation extends RailcraftModule {
                 Item item = new ItemBoreHeadSteel();
                 RailcraftRegistry.register(item);
                 CraftingPlugin.addShapedRecipe(
-                        new ItemStack(item), "III", "IDI", "III", 'I', "ingotSteel", 'D', "blockSteel");
+                        new ItemStack(item),
+                        "III",
+                        "IDI",
+                        "III",
+                        'I',
+                        "ingotSteel",
+                        'D',
+                        "blockSteel");
             }
 
             tag = "tool.bore.head.iron";
             if (RailcraftConfig.isItemEnabled(tag)) {
                 Item item = new ItemBoreHeadIron();
                 RailcraftRegistry.register(item);
-                CraftingPlugin.addShapedRecipe(
-                        new ItemStack(item), "III", "IDI", "III", 'I', "ingotSteel", 'D', "blockIron");
+                CraftingPlugin
+                        .addShapedRecipe(new ItemStack(item), "III", "IDI", "III", 'I', "ingotSteel", 'D', "blockIron");
             }
         }
 
         // Define Track Relayer Cart
         cart = EnumCart.TRACK_RELAYER;
-        if (cart.setup())
-            CraftingPlugin.addShapedRecipe(
-                    cart.getCartItem(),
-                    "YLY",
-                    "RSR",
-                    "DMD",
-                    'L',
-                    new ItemStack(Blocks.redstone_lamp),
-                    'Y',
-                    "dyeYellow",
-                    'R',
-                    new ItemStack(Items.blaze_rod),
-                    'D',
-                    new ItemStack(Items.diamond_pickaxe),
-                    'S',
-                    "blockSteel",
-                    'M',
-                    new ItemStack(Items.minecart));
+        if (cart.setup()) CraftingPlugin.addShapedRecipe(
+                cart.getCartItem(),
+                "YLY",
+                "RSR",
+                "DMD",
+                'L',
+                new ItemStack(Blocks.redstone_lamp),
+                'Y',
+                "dyeYellow",
+                'R',
+                new ItemStack(Items.blaze_rod),
+                'D',
+                new ItemStack(Items.diamond_pickaxe),
+                'S',
+                "blockSteel",
+                'M',
+                new ItemStack(Items.minecart));
 
         // Define Undercutter Cart
         cart = EnumCart.UNDERCUTTER;
-        if (cart.setup())
-            CraftingPlugin.addShapedRecipe(
-                    cart.getCartItem(),
-                    "YLY",
-                    "RSR",
-                    "DMD",
-                    'L',
-                    new ItemStack(Blocks.redstone_lamp),
-                    'Y',
-                    "dyeYellow",
-                    'R',
-                    new ItemStack(Blocks.piston),
-                    'D',
-                    new ItemStack(Items.diamond_shovel),
-                    'S',
-                    "blockSteel",
-                    'M',
-                    new ItemStack(Items.minecart));
+        if (cart.setup()) CraftingPlugin.addShapedRecipe(
+                cart.getCartItem(),
+                "YLY",
+                "RSR",
+                "DMD",
+                'L',
+                new ItemStack(Blocks.redstone_lamp),
+                'Y',
+                "dyeYellow",
+                'R',
+                new ItemStack(Blocks.piston),
+                'D',
+                new ItemStack(Items.diamond_shovel),
+                'S',
+                "blockSteel",
+                'M',
+                new ItemStack(Items.minecart));
 
         cart = EnumCart.TRACK_LAYER;
-        if (cart.setup())
-            CraftingPlugin.addShapedRecipe(
-                    cart.getCartItem(),
-                    "YLY",
-                    "ESE",
-                    "DMD",
-                    'Y',
-                    "dyeYellow",
-                    'L',
-                    new ItemStack(Blocks.redstone_lamp),
-                    'E',
-                    new ItemStack(Blocks.anvil),
-                    'S',
-                    "blockSteel",
-                    'D',
-                    new ItemStack(Blocks.dispenser),
-                    'M',
-                    new ItemStack(Items.minecart));
+        if (cart.setup()) CraftingPlugin.addShapedRecipe(
+                cart.getCartItem(),
+                "YLY",
+                "ESE",
+                "DMD",
+                'Y',
+                "dyeYellow",
+                'L',
+                new ItemStack(Blocks.redstone_lamp),
+                'E',
+                new ItemStack(Blocks.anvil),
+                'S',
+                "blockSteel",
+                'D',
+                new ItemStack(Blocks.dispenser),
+                'M',
+                new ItemStack(Items.minecart));
 
         cart = EnumCart.TRACK_REMOVER;
-        if (cart.setup())
-            CraftingPlugin.addShapedRecipe(
-                    cart.getCartItem(),
-                    "YLY",
-                    "PSP",
-                    "CMC",
-                    'Y',
-                    "dyeYellow",
-                    'L',
-                    new ItemStack(Blocks.redstone_lamp),
-                    'P',
-                    new ItemStack(Blocks.sticky_piston),
-                    'S',
-                    "blockSteel",
-                    'C',
-                    ItemCrowbarReinforced.getItem(),
-                    'M',
-                    new ItemStack(Items.minecart));
+        if (cart.setup()) CraftingPlugin.addShapedRecipe(
+                cart.getCartItem(),
+                "YLY",
+                "PSP",
+                "CMC",
+                'Y',
+                "dyeYellow",
+                'L',
+                new ItemStack(Blocks.redstone_lamp),
+                'P',
+                new ItemStack(Blocks.sticky_piston),
+                'S',
+                "blockSteel",
+                'C',
+                ItemCrowbarReinforced.getItem(),
+                'M',
+                new ItemStack(Items.minecart));
     }
 
     @Override
     public void initSecond() {
         Block blockDetector = BlockDetector.getBlock();
 
-        if (blockDetector != null)
-            if (EnumBrick.INFERNAL.getBlock() != null)
-                CraftingPlugin.addShapedRecipe(
-                        new ItemStack(blockDetector, 1, EnumDetector.LOCOMOTIVE.ordinal()),
-                        "XXX",
-                        "XPX",
-                        "XXX",
-                        'X',
-                        EnumBrick.INFERNAL.get(BrickVariant.BRICK, 1),
-                        'P',
-                        Blocks.stone_pressure_plate);
+        if (blockDetector != null) if (EnumBrick.INFERNAL.getBlock() != null) CraftingPlugin.addShapedRecipe(
+                new ItemStack(blockDetector, 1, EnumDetector.LOCOMOTIVE.ordinal()),
+                "XXX",
+                "XPX",
+                "XXX",
+                'X',
+                EnumBrick.INFERNAL.get(BrickVariant.BRICK, 1),
+                'P',
+                Blocks.stone_pressure_plate);
     }
 }

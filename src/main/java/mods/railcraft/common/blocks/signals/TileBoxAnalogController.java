@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.BitSet;
 import java.util.EnumMap;
 import java.util.Map;
+
 import mods.railcraft.api.signals.IControllerTile;
 import mods.railcraft.api.signals.SignalAspect;
 import mods.railcraft.api.signals.SimpleSignalController;
@@ -15,6 +16,7 @@ import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.DataTools;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -119,8 +121,7 @@ public class TileBoxAnalogController extends TileBoxBase implements IControllerT
                 byte[] bytes = data.getByteArray("aspect_" + n);
                 DataTools.byteArray2BitSet(entry.getValue(), bytes);
             }
-        } catch (Exception ex) {
-        }
+        } catch (Exception ex) {}
 
         controller.readFromNBT(data);
 

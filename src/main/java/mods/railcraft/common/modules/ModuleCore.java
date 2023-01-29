@@ -1,22 +1,15 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.modules;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
 import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.api.fuel.FuelManager;
@@ -54,6 +47,7 @@ import mods.railcraft.common.util.crafting.*;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.RailcraftDamageSource;
 import mods.railcraft.common.util.network.PacketBuilder;
+
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -72,9 +66,17 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+
 import org.apache.logging.log4j.Level;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
+
 public class ModuleCore extends RailcraftModule {
+
     public static void addLiquidFuels() {
         int bioheat = (int) (16000 * RailcraftConfig.boilerBiofuelMultiplier());
         Fluid ethanol = Fluids.BIOETHANOL.get();
@@ -84,18 +86,16 @@ public class ModuleCore extends RailcraftModule {
         if (biofuel != null) FuelManager.addBoilerFuel(biofuel, bioheat); // Biofuel
 
         Fluid fuel = Fluids.FUEL.get();
-        if (fuel != null)
-            FuelManager.addBoilerFuel(fuel, (int) (48000 * RailcraftConfig.boilerFuelMultiplier())); // Fuel
+        if (fuel != null) FuelManager.addBoilerFuel(fuel, (int) (48000 * RailcraftConfig.boilerFuelMultiplier())); // Fuel
 
         Fluid coal = Fluids.COAL.get();
-        if (coal != null)
-            FuelManager.addBoilerFuel(
-                    coal, (int) (32000 * RailcraftConfig.boilerFuelMultiplier())); // Liquefaction Coal
+        if (coal != null) FuelManager.addBoilerFuel(coal, (int) (32000 * RailcraftConfig.boilerFuelMultiplier())); // Liquefaction
+                                                                                                                   // Coal
 
         Fluid pyrotheum = Fluids.PYROTHEUM.get();
         if (pyrotheum != null)
-            FuelManager.addBoilerFuel(
-                    pyrotheum, (int) (64000 * RailcraftConfig.boilerFuelMultiplier())); // Blazing Pyrotheum
+            FuelManager.addBoilerFuel(pyrotheum, (int) (64000 * RailcraftConfig.boilerFuelMultiplier())); // Blazing
+                                                                                                          // Pyrotheum
 
         Fluid creosote = Fluids.CREOSOTE.get();
         if (creosote != null) FuelManager.addBoilerFuel(creosote, 4800); // Creosote
@@ -186,10 +186,9 @@ public class ModuleCore extends RailcraftModule {
         FMLCommonHandler.instance().bus().register(this);
 
         if (RailcraftConfig.useCollisionHandler()) {
-            if (EntityMinecart.getCollisionHandler() != null)
-                Game.log(
-                        Level.WARN,
-                        "Existing Minecart Collision Handler detected, overwriting. Please check your configs to ensure this is desired behavior.");
+            if (EntityMinecart.getCollisionHandler() != null) Game.log(
+                    Level.WARN,
+                    "Existing Minecart Collision Handler detected, overwriting. Please check your configs to ensure this is desired behavior.");
             EntityMinecart.setCollisionHandler(MinecartHooks.getInstance());
         }
 
@@ -203,15 +202,14 @@ public class ModuleCore extends RailcraftModule {
 
         if (RailcraftConfig.getRecipeConfig("railcraft.cart.furnace")) testSet.add(Items.furnace_minecart);
 
-        //        MiscTools.addShapelessRecipe(new ItemStack(Item.coal, 20), Block.dirt);
+        // MiscTools.addShapelessRecipe(new ItemStack(Item.coal, 20), Block.dirt);
         Iterator it = CraftingManager.getInstance().getRecipeList().iterator();
         while (it.hasNext()) {
             IRecipe r = (IRecipe) it.next();
             ItemStack output = null;
             try {
                 output = r.getRecipeOutput();
-            } catch (Exception ex) {
-            }
+            } catch (Exception ex) {}
             if (output != null) if (testSet.contains(output.getItem())) it.remove();
         }
 
@@ -243,16 +241,18 @@ public class ModuleCore extends RailcraftModule {
 
         // Define Recipes
         if (RailcraftConfig.getRecipeConfig("railcraft.cart.bronze")) {
-            IRecipe recipe = new ShapedOreRecipe(new ItemStack(Items.minecart), false, new Object[] {
-                "I I", "III", 'I', "ingotBronze",
-            });
+            IRecipe recipe = new ShapedOreRecipe(
+                    new ItemStack(Items.minecart),
+                    false,
+                    new Object[] { "I I", "III", 'I', "ingotBronze", });
             CraftingPlugin.addRecipe(recipe);
         }
 
         if (RailcraftConfig.getRecipeConfig("railcraft.cart.steel")) {
-            IRecipe recipe = new ShapedOreRecipe(new ItemStack(Items.minecart, 2), false, new Object[] {
-                "I I", "III", 'I', "ingotSteel",
-            });
+            IRecipe recipe = new ShapedOreRecipe(
+                    new ItemStack(Items.minecart, 2),
+                    false,
+                    new Object[] { "I I", "III", 'I', "ingotSteel", });
             CraftingPlugin.addRecipe(recipe);
         }
 
@@ -327,8 +327,8 @@ public class ModuleCore extends RailcraftModule {
     private void replaceVanillaCart(EnumCart cartType, Item original, String entityTag, int entityId) {
         cartType.registerEntity();
 
-        Class<? extends EntityMinecart> minecartClass =
-                (Class<? extends EntityMinecart>) EntityList.stringToClassMapping.remove(entityTag);
+        Class<? extends EntityMinecart> minecartClass = (Class<? extends EntityMinecart>) EntityList.stringToClassMapping
+                .remove(entityTag);
 
         CartUtils.classReplacements.put(minecartClass, cartType);
         CartUtils.vanillaCartItemMap.put(original, cartType);
@@ -386,39 +386,39 @@ public class ModuleCore extends RailcraftModule {
         // ----------------------------------------------
         // Boiler Test Setup
         // ---------------------------------------------
-        //        StandardTank tankWater = new StandardTank(FluidHelper.BUCKET_VOLUME * 1000);
-        //        StandardTank tankSteam = new StandardTank(FluidHelper.BUCKET_VOLUME * 1000);
-        //        tankWater.setFluid(Fluids.WATER.get(tankWater.getCapacity()));
-        //        SteamBoiler boiler = new SteamBoiler(tankWater, tankSteam);
-        //        class TestProvider implements IFuelProvider {
+        // StandardTank tankWater = new StandardTank(FluidHelper.BUCKET_VOLUME * 1000);
+        // StandardTank tankSteam = new StandardTank(FluidHelper.BUCKET_VOLUME * 1000);
+        // tankWater.setFluid(Fluids.WATER.get(tankWater.getCapacity()));
+        // SteamBoiler boiler = new SteamBoiler(tankWater, tankSteam);
+        // class TestProvider implements IFuelProvider {
         //
-        //            public int fuel = 3200;
+        // public int fuel = 3200;
         //
-        //            @Override
-        //            public double getMoreFuel() {
-        //                if (fuel > 0) {
-        //                    fuel--;
-        //                    return 1;
-        //                }
-        //                return 0;
-        //            }
+        // @Override
+        // public double getMoreFuel() {
+        // if (fuel > 0) {
+        // fuel--;
+        // return 1;
+        // }
+        // return 0;
+        // }
         //
-        //            @Override
-        //            public double getHeatStep() {
-        //                return Steam.HEAT_STEP;
-        //            }
+        // @Override
+        // public double getHeatStep() {
+        // return Steam.HEAT_STEP;
+        // }
         //
-        //        }
-        //        TestProvider provider = new TestProvider();
-        //        boiler.setFuelProvider(provider);
-        //        int ticks = 0;
-        //        while (provider.fuel > 0 || boiler.burnTime > boiler.getFuelPerCycle(1) || boiler.getHeat() > 20) {
-        //            boiler.tick(1);
-        //            ticks++;
-        //        }
-        //        System.out.printf("Ran for %d ticks.%n", ticks);
-        //        System.out.printf("Steam Produced=%s%n", tankSteam.getFluidAmount());
-        //        System.exit(0);
+        // }
+        // TestProvider provider = new TestProvider();
+        // boiler.setFuelProvider(provider);
+        // int ticks = 0;
+        // while (provider.fuel > 0 || boiler.burnTime > boiler.getFuelPerCycle(1) || boiler.getHeat() > 20) {
+        // boiler.tick(1);
+        // ticks++;
+        // }
+        // System.out.printf("Ran for %d ticks.%n", ticks);
+        // System.out.printf("Steam Produced=%s%n", tankSteam.getFluidAmount());
+        // System.exit(0);
     }
 
     @SubscribeEvent

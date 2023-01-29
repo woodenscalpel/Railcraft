@@ -8,6 +8,7 @@ import mods.railcraft.common.carts.EnumCart;
 import mods.railcraft.common.items.ItemIngot;
 import mods.railcraft.common.items.RailcraftItem;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -18,6 +19,7 @@ import net.minecraft.item.ItemStack;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class ModuleRF extends RailcraftModule {
+
     @Override
     public void initFirst() {
         BlockDetector.registerBlock();
@@ -44,7 +46,16 @@ public class ModuleRF extends RailcraftModule {
             ItemStack detector = EnumDetector.ADVANCED.getItem();
             if (detector == null) detector = new ItemStack(Blocks.stone_pressure_plate);
             CraftingPlugin.addShapedRecipe(
-                    gamma.getItem(), "RLR", "LRL", "RDR", 'D', detector, 'R', "blockRedstone", 'L', "blockLead");
+                    gamma.getItem(),
+                    "RLR",
+                    "LRL",
+                    "RDR",
+                    'D',
+                    detector,
+                    'R',
+                    "blockRedstone",
+                    'L',
+                    "blockLead");
         }
 
         gamma = EnumMachineGamma.RF_UNLOADER;
@@ -52,7 +63,16 @@ public class ModuleRF extends RailcraftModule {
             ItemStack detector = EnumDetector.ADVANCED.getItem();
             if (detector == null) detector = new ItemStack(Blocks.stone_pressure_plate);
             CraftingPlugin.addShapedRecipe(
-                    gamma.getItem(), "RDR", "LRL", "RLR", 'D', detector, 'R', "blockRedstone", 'L', "blockLead");
+                    gamma.getItem(),
+                    "RDR",
+                    "LRL",
+                    "RLR",
+                    'D',
+                    detector,
+                    'R',
+                    "blockRedstone",
+                    'L',
+                    "blockLead");
         }
     }
 }

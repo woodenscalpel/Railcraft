@@ -1,17 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.util.effects;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.Set;
+
 import mods.railcraft.api.core.WorldCoordinate;
 import mods.railcraft.api.signals.SignalTools;
 import mods.railcraft.client.core.AuraKeyHandler;
@@ -29,6 +26,7 @@ import mods.railcraft.common.util.effects.EffectManager.IEffectSource;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.network.PacketEffect.Effect;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.item.ItemStack;
@@ -36,10 +34,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
 
+import cpw.mods.fml.client.FMLClientHandler;
+
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class ClientEffectProxy extends CommonEffectProxy {
+
     public static final short TELEPORT_PARTICLES = 64;
     public static final short TRACKING_DISTANCE = 32 * 32;
 
@@ -56,12 +57,12 @@ public class ClientEffectProxy extends CommonEffectProxy {
         double destY = data.readDouble();
         double destZ = data.readDouble();
 
-        //        for(int i = 0; i < TELEPORT_PARTICLES / 4; i++) {
-        //            float vX = (rand.nextFloat() - 0.5F) * 0.2F;
-        //            float vY = (rand.nextFloat() - 0.5F) * 0.2F;
-        //            float vZ = (rand.nextFloat() - 0.5F) * 0.2F;
-        //            Game.getWorld().spawnParticle("portal", startX, startY, startZ, vX, vY, vZ);
-        //        }
+        // for(int i = 0; i < TELEPORT_PARTICLES / 4; i++) {
+        // float vX = (rand.nextFloat() - 0.5F) * 0.2F;
+        // float vY = (rand.nextFloat() - 0.5F) * 0.2F;
+        // float vZ = (rand.nextFloat() - 0.5F) * 0.2F;
+        // Game.getWorld().spawnParticle("portal", startX, startY, startZ, vX, vY, vZ);
+        // }
         for (int i = 0; i < TELEPORT_PARTICLES; i++) {
             double travel = (double) i / ((double) TELEPORT_PARTICLES - 1.0D);
             float vX = (rand.nextFloat() - 0.5F) * 0.2F;
@@ -80,9 +81,9 @@ public class ClientEffectProxy extends CommonEffectProxy {
         int x = data.readInt();
         int y = data.readInt();
         int z = data.readInt();
-        //        double vx = rand.nextGaussian() * 0.1;
-        //        double vy = rand.nextDouble() * 0.01;
-        //        double vz = rand.nextGaussian() * 0.1;
+        // double vx = rand.nextGaussian() * 0.1;
+        // double vy = rand.nextDouble() * 0.01;
+        // double vz = rand.nextGaussian() * 0.1;
         double vx = 0.0;
         double vy = 0.0;
         double vz = 0.0;
@@ -119,8 +120,13 @@ public class ClientEffectProxy extends CommonEffectProxy {
 
             int color = colorProfile.getColor(start, new WorldCoordinate(start), new WorldCoordinate(dest));
 
-            EntityFX particle =
-                    new EntityTuningFX(start.getWorldObj(), px, py, pz, EffectManager.getEffectSource(dest), color);
+            EntityFX particle = new EntityTuningFX(
+                    start.getWorldObj(),
+                    px,
+                    py,
+                    pz,
+                    EffectManager.getEffectSource(dest),
+                    color);
             spawnParticle(particle);
         }
     }
@@ -134,14 +140,19 @@ public class ClientEffectProxy extends CommonEffectProxy {
             double py = startY + 0.5 + rand.nextGaussian() * 0.1;
             double pz = startZ + 0.5 + rand.nextGaussian() * 0.1;
             EntityFX particle = new EntityHeatTrailFX(
-                    dest.getWorldObj(), px, py, pz, colorSeed, EffectManager.getEffectSource(dest));
+                    dest.getWorldObj(),
+                    px,
+                    py,
+                    pz,
+                    colorSeed,
+                    EffectManager.getEffectSource(dest));
             spawnParticle(particle);
         }
     }
 
     @Override
-    public void fireSparkEffect(
-            World world, double startX, double startY, double startZ, double endX, double endY, double endZ) {
+    public void fireSparkEffect(World world, double startX, double startY, double startZ, double endX, double endY,
+            double endZ) {
         if (!shouldSpawnParticle(false)) return;
 
         EntityFX particle = new EntityFireSparkFX(world, startX, startY, startZ, endX, endY, endZ);
@@ -190,7 +201,7 @@ public class ClientEffectProxy extends CommonEffectProxy {
             int zCorner = chunk.chunkZPos * 16;
             double yCorner = es.getY() - 8;
 
-            //            System.out.println(xCorner + ", " + zCorner);
+            // System.out.println(xCorner + ", " + zCorner);
             if (rand.nextInt(3) == 0) {
                 if (!shouldSpawnParticle(false)) continue;
                 double xParticle = xCorner + rand.nextFloat() * 16;

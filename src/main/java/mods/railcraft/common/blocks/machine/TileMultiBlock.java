@@ -1,21 +1,15 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine;
 
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.ListMultimap;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.*;
+
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
@@ -24,6 +18,7 @@ import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.misc.Timer;
 import mods.railcraft.common.util.network.PacketDispatcher;
 import mods.railcraft.common.util.network.PacketTileRequest;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureType;
@@ -33,7 +28,14 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.ListMultimap;
+
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
+
 public abstract class TileMultiBlock extends TileMachineBase {
+
     private static final int UNKNOWN_STATE_RECHECK = 256;
     private static final int NETWORK_RECHECK = 64;
     private final Timer netTimer = new Timer();
@@ -138,7 +140,7 @@ public abstract class TileMultiBlock extends TileMachineBase {
         super.updateEntity();
         if (Game.isHost(worldObj)) {
             if (!tested && (state != MultiBlockState.UNKNOWN || clock % UNKNOWN_STATE_RECHECK == 0))
-                testIfMasterBlock(); //                ClientProxy.getMod().totalMultiBlockUpdates++;
+                testIfMasterBlock(); // ClientProxy.getMod().totalMultiBlockUpdates++;
         } else if (requestPacket && netTimer.hasTriggered(worldObj, NETWORK_RECHECK)) {
             PacketDispatcher.sendToServer(new PacketTileRequest(this));
             requestPacket = false;
@@ -146,7 +148,7 @@ public abstract class TileMultiBlock extends TileMachineBase {
     }
 
     private void testIfMasterBlock() {
-        //        System.out.println("testing structure");
+        // System.out.println("testing structure");
         state = getMasterBlockState();
         tested = true;
         components.clear();
@@ -154,7 +156,7 @@ public abstract class TileMultiBlock extends TileMachineBase {
         if (state == MultiBlockState.UNKNOWN) tested = false;
         else if (state == MultiBlockState.VALID) {
             isMaster = true;
-            //             System.out.println("structure complete");
+            // System.out.println("structure complete");
 
             int xWidth = currentPattern.getPatternWidthX();
             int zWidth = currentPattern.getPatternWidthZ();
@@ -271,12 +273,12 @@ public abstract class TileMultiBlock extends TileMachineBase {
         }
 
         AxisAlignedBB entityCheckBounds = map.getEntityCheckBounds(xCoord, yCoord, zCoord);
-        //                if(entityCheckBounds != null) {
-        //                    System.out.println("test entitys: " + entityCheckBounds.toString());
-        //                }
+        // if(entityCheckBounds != null) {
+        // System.out.println("test entitys: " + entityCheckBounds.toString());
+        // }
         if (entityCheckBounds != null
-                && !worldObj.getEntitiesWithinAABB(EntityLivingBase.class, entityCheckBounds)
-                        .isEmpty()) return MultiBlockStateReturn.ENTITY_IN_WAY;
+                && !worldObj.getEntitiesWithinAABB(EntityLivingBase.class, entityCheckBounds).isEmpty())
+            return MultiBlockStateReturn.ENTITY_IN_WAY;
         return MultiBlockStateReturn.VALID;
     }
 
@@ -425,11 +427,10 @@ public abstract class TileMultiBlock extends TileMachineBase {
 
             TileEntity tile = null;
             if (worldObj != null) tile = worldObj.getTileEntity(masterX, masterY, masterZ);
-            if (tile != null)
-                if (masterBlock != tile && isStructureTile(tile)) {
-                    needsRenderUpdate = true;
-                    masterBlock = (TileMultiBlock) tile;
-                }
+            if (tile != null) if (masterBlock != tile && isStructureTile(tile)) {
+                needsRenderUpdate = true;
+                masterBlock = (TileMultiBlock) tile;
+            }
             if (getMasterBlock() == null) requestPacket = true;
         } else if (masterBlock != null) {
             needsRenderUpdate = true;
@@ -439,11 +440,11 @@ public abstract class TileMultiBlock extends TileMachineBase {
 
         if (needsRenderUpdate) markBlockForUpdate();
 
-        //        System.out.printf("marker=%c, pattern=%d, x=%d, y=%d, z=%d%n",
+        // System.out.printf("marker=%c, pattern=%d, x=%d, y=%d, z=%d%n",
         // currentPattern.getPatternMarkerChecked(patternX, patternY, patternZ), patternIndex, patternX, patternY,
         // patternZ);
-        //        if(masterBlock != null)
-        //        System.out.printf("tested=%b, invalid=%b, isMaster=%b%n" ,masterBlock.tested, masterBlock.isInvalid(),
+        // if(masterBlock != null)
+        // System.out.printf("tested=%b, invalid=%b, isMaster=%b%n" ,masterBlock.tested, masterBlock.isInvalid(),
         // masterBlock.isMaster());
     }
 
@@ -484,10 +485,12 @@ public abstract class TileMultiBlock extends TileMachineBase {
     }
 
     public enum MultiBlockStateReturn {
+
         VALID(MultiBlockState.VALID, "railcraft.multiblock.state.valid"),
         ENTITY_IN_WAY(MultiBlockState.INVALID, "railcraft.multiblock.state.invalid.entity"),
         PATTERN_DOES_NOT_MATCH(MultiBlockState.INVALID, "railcraft.multiblock.state.invalid.pattern"),
         NOT_LOADED(MultiBlockState.UNKNOWN, "railcraft.multiblock.state.unknown.unloaded");
+
         public final MultiBlockState type;
         public final String message;
 

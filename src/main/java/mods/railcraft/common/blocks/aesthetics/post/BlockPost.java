@@ -1,19 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.aesthetics.post;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 import mods.railcraft.api.core.IPostConnection;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -23,6 +18,7 @@ import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.EnumColor;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -35,6 +31,10 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockPost extends BlockPostBase implements IPostConnection {
 
@@ -60,7 +60,7 @@ public class BlockPost extends BlockPostBase implements IPostConnection {
                 RailcraftRegistry.register(stack);
             }
 
-            //            HarvestPlugin.setHarvestLevel(block, "crowbar", 0);
+            // HarvestPlugin.setHarvestLevel(block, "crowbar", 0);
             HarvestPlugin.setHarvestLevel(block, EnumPost.WOOD.ordinal(), "axe", 0);
             HarvestPlugin.setHarvestLevel(block, EnumPost.STONE.ordinal(), "pickaxe", 1);
             HarvestPlugin.setHarvestLevel(block, EnumPost.METAL_UNPAINTED.ordinal(), "pickaxe", 2);
@@ -204,11 +204,10 @@ public class BlockPost extends BlockPostBase implements IPostConnection {
     @Override
     public boolean recolourBlock(World world, int x, int y, int z, ForgeDirection side, int colour) {
         int meta = world.getBlockMetadata(x, y, z);
-        if (meta == EnumPost.METAL_UNPAINTED.ordinal())
-            if (BlockPostMetal.post != null) {
-                world.setBlock(x, y, z, BlockPostMetal.post, 15 - colour, 3);
-                return true;
-            }
+        if (meta == EnumPost.METAL_UNPAINTED.ordinal()) if (BlockPostMetal.post != null) {
+            world.setBlock(x, y, z, BlockPostMetal.post, 15 - colour, 3);
+            return true;
+        }
         if (meta == EnumPost.EMBLEM.ordinal()) {
             TileEntity tile = world.getTileEntity(x, y, z);
             if (tile instanceof TilePostEmblem) {

@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.signals;
 
@@ -16,10 +13,12 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
+
 import mods.railcraft.api.signals.SignalAspect;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.MiscTools;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.init.Blocks;
@@ -98,8 +97,8 @@ public class TileBoxSequencer extends TileBoxBase {
         Block block = WorldPlugin.getBlockOnSide(worldObj, xCoord, yCoord, zCoord, side);
         if (block == Blocks.redstone_wire) return true;
         if (block == Blocks.unpowered_repeater || block == Blocks.powered_repeater) {
-            int facing = BlockDirectional.getDirection(
-                    WorldPlugin.getBlockMetadataOnSide(worldObj, xCoord, yCoord, zCoord, side));
+            int facing = BlockDirectional
+                    .getDirection(WorldPlugin.getBlockMetadataOnSide(worldObj, xCoord, yCoord, zCoord, side));
             switch (side) {
                 case NORTH:
                     return facing == 0;

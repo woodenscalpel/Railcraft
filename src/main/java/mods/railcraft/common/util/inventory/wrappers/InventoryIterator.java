@@ -1,16 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.inventory.wrappers;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -44,6 +42,7 @@ public class InventoryIterator implements Iterable<IInvSlot> {
     @Override
     public Iterator<IInvSlot> iterator() {
         return new Iterator<IInvSlot>() {
+
             int slot = 0;
 
             @Override
@@ -104,8 +103,7 @@ public class InventoryIterator implements Iterable<IInvSlot> {
         @Override
         public String toString() {
             ItemStack stack = getStackInSlot();
-            return "SlotNum = " + slot + " Stack = "
-                    + (stack == null ? "null" : getStackInSlot().toString());
+            return "SlotNum = " + slot + " Stack = " + (stack == null ? "null" : getStackInSlot().toString());
         }
     }
 }

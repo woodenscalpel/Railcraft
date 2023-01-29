@@ -1,16 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.carts;
 
-import cpw.mods.fml.common.eventhandler.Event;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import java.util.List;
+
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.ILinkageManager;
 import mods.railcraft.api.tracks.RailTools;
@@ -21,6 +17,7 @@ import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.misc.Vec2D;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -41,11 +38,15 @@ import net.minecraftforge.event.entity.minecart.MinecartInteractEvent;
 import net.minecraftforge.event.entity.minecart.MinecartUpdateEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
+import cpw.mods.fml.common.eventhandler.Event;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+
 public final class MinecartHooks implements IMinecartCollisionHandler {
+
     // --Commented out by Inspection (3/13/2016 2:18 PM):protected static float DRAG_FACTOR_GROUND = 0.5f;
     // --Commented out by Inspection (3/13/2016 2:18 PM):protected static float DRAG_FACTOR_AIR = 0.99999f;
     private static final float OPTIMAL_DISTANCE = 1.28f;
-    //    protected static float OPTIMAL_DISTANCE_PLAYER = 1.8f;
+    // protected static float OPTIMAL_DISTANCE_PLAYER = 1.8f;
     private static final float COEF_SPRING = 0.2f;
     private static final float COEF_SPRING_PLAYER = 0.5f;
     private static final float COEF_RESTITUTION = 0.2f;
@@ -91,10 +92,10 @@ public final class MinecartHooks implements IMinecartCollisionHandler {
 
     @Override
     public void onEntityCollision(EntityMinecart cart, Entity other) {
-        if (Game.isNotHost(cart.worldObj)
-                || other == cart.riddenByEntity
+        if (Game.isNotHost(cart.worldObj) || other == cart.riddenByEntity
                 || !other.isEntityAlive()
-                || !cart.isEntityAlive()) return;
+                || !cart.isEntityAlive())
+            return;
 
         ILinkageManager lm = LinkageManager.instance();
         EntityMinecart link = lm.getLinkedCartA(cart);
@@ -105,8 +106,7 @@ public final class MinecartHooks implements IMinecartCollisionHandler {
         boolean isLiving = other instanceof EntityLivingBase;
         boolean isPlayer = other instanceof EntityPlayer;
 
-        if (isLiving
-                && !isPlayer
+        if (isLiving && !isPlayer
                 && cart.canBeRidden()
                 && !(other instanceof EntityIronGolem)
                 && cart.motionX * cart.motionX + cart.motionZ * cart.motionZ > 0.001D
@@ -123,7 +123,7 @@ public final class MinecartHooks implements IMinecartCollisionHandler {
         if (isLiving && RailcraftBlocks.getBlockElevator() != null && block == RailcraftBlocks.getBlockElevator())
             return;
 
-        //        System.out.println(cart.getClass().getSimpleName() + ": " + cart.entityId + " collided with " +
+        // System.out.println(cart.getClass().getSimpleName() + ": " + cart.entityId + " collided with " +
         // other.getClass().getSimpleName() + ": " + other.entityId);
         Vec2D cartPos = new Vec2D(cart.posX, cart.posZ);
         Vec2D otherPos = new Vec2D(other.posX, other.posZ);
@@ -173,11 +173,11 @@ public final class MinecartHooks implements IMinecartCollisionHandler {
             if (!otherCart.isPoweredCart() || cart.isPoweredCart())
                 if (!RailTools.isCartLockedDown(otherCart)) other.addVelocity(-forceX, 0, -forceZ);
         } else {
-            //            if(isPlayer) {
-            //                forceX += Math.abs(cart.motionX - other.motionX) / 2;
-            //                forceZ += Math.abs(cart.motionZ - other.motionZ) / 2;
-            //            }
-            //            System.out.printf("forceX=%f, forceZ=%f%n", forceX, forceZ);
+            // if(isPlayer) {
+            // forceX += Math.abs(cart.motionX - other.motionX) / 2;
+            // forceZ += Math.abs(cart.motionZ - other.motionZ) / 2;
+            // }
+            // System.out.printf("forceX=%f, forceZ=%f%n", forceX, forceZ);
             Vec2D cartVel = new Vec2D(cart.motionX + forceX, cart.motionZ + forceZ);
             Vec2D otherVel = new Vec2D(other.motionX - forceX, other.motionZ - forceZ);
 
@@ -189,7 +189,7 @@ public final class MinecartHooks implements IMinecartCollisionHandler {
             forceX += dampX;
             forceZ += dampZ;
 
-            //            System.out.printf("dampX=%f, dampZ=%f%n", dampX, dampZ);
+            // System.out.printf("dampX=%f, dampZ=%f%n", dampX, dampZ);
             if (!isPlayer) other.addVelocity(-forceX, 0.0D, -forceZ);
             if (!RailTools.isCartLockedDown(cart)) cart.addVelocity(forceX, 0, forceZ);
         }
@@ -198,10 +198,9 @@ public final class MinecartHooks implements IMinecartCollisionHandler {
     @Override
     public AxisAlignedBB getCollisionBox(EntityMinecart cart, Entity other) {
         if (other instanceof EntityItem && RailcraftConfig.doCartsCollideWithItems()) return other.boundingBox;
-        if (other instanceof EntityPlayer)
-            return other.canBePushed()
-                    ? other.boundingBox
-                    : null; //            return other.boundingBox.contract(COLLISION_EXPANSION, 0,
+        if (other instanceof EntityPlayer) return other.canBePushed() ? other.boundingBox : null; // return
+                                                                                                  // other.boundingBox.contract(COLLISION_EXPANSION,
+                                                                                                  // 0,
         // COLLISION_EXPANSION);
         return null;
     }
@@ -236,18 +235,18 @@ public final class MinecartHooks implements IMinecartCollisionHandler {
         NBTTagCompound data = cart.getEntityData();
 
         // Code Added by Yopu to replace vanilla carts, deemed incomplete and unnecessary, pursuing other solutions
-        //        if (classReplacements.containsKey(cart.getClass())) {
-        //            cart.setDead();
-        //            if (Game.isHost(cart.worldObj)) {
-        //                EnumCart enumCart = classReplacements.get(cart.getClass());
-        //                GameProfile cartOwner = CartTools.getCartOwner(cart);
-        //                int x = MathHelper.floor_double(cart.posX);
-        //                int y = MathHelper.floor_double(cart.posY);
-        //                int z = MathHelper.floor_double(cart.posZ);
-        //                CartUtils.placeCart(enumCart, cartOwner, enumCart.getCartItem(), cart.worldObj, x, y, z);
-        //            }
-        //            return;
-        //        }
+        // if (classReplacements.containsKey(cart.getClass())) {
+        // cart.setDead();
+        // if (Game.isHost(cart.worldObj)) {
+        // EnumCart enumCart = classReplacements.get(cart.getClass());
+        // GameProfile cartOwner = CartTools.getCartOwner(cart);
+        // int x = MathHelper.floor_double(cart.posX);
+        // int y = MathHelper.floor_double(cart.posY);
+        // int z = MathHelper.floor_double(cart.posZ);
+        // CartUtils.placeCart(enumCart, cartOwner, enumCart.getCartItem(), cart.worldObj, x, y, z);
+        // }
+        // return;
+        // }
         int x = (int) event.x;
         int y = (int) event.y;
         int z = (int) event.z;
@@ -287,16 +286,16 @@ public final class MinecartHooks implements IMinecartCollisionHandler {
         cart.motionY = Math.copySign(Math.min(Math.abs(cart.motionY), 9.5), cart.motionY);
         cart.motionZ = Math.copySign(Math.min(Math.abs(cart.motionZ), 9.5), cart.motionZ);
 
-        //        List entities = cart.worldObj.getEntitiesWithinAABB(EntityLiving.class, getMinecartCollisionBox(cart,
+        // List entities = cart.worldObj.getEntitiesWithinAABB(EntityLiving.class, getMinecartCollisionBox(cart,
         // COLLISION_EXPANSION));
         //
-        //        if (entities != null) {
-        //            for (Entity entity : (List<Entity>) entities) {
-        //                if (entity != cart.riddenByEntity && entity.canBePushed()) {
-        //                    cart.applyEntityCollision(entity);
-        //                }
-        //            }
-        //        }
+        // if (entities != null) {
+        // for (Entity entity : (List<Entity>) entities) {
+        // if (entity != cart.riddenByEntity && entity.canBePushed()) {
+        // cart.applyEntityCollision(entity);
+        // }
+        // }
+        // }
     }
 
     @SuppressWarnings("unused")
@@ -315,8 +314,7 @@ public final class MinecartHooks implements IMinecartCollisionHandler {
         int k = MathHelper.floor_double(cart.posZ);
 
         if (EntityMinecart.getCollisionHandler() != this)
-            if (other instanceof EntityLivingBase
-                    && RailcraftBlocks.getBlockElevator() != null
+            if (other instanceof EntityLivingBase && RailcraftBlocks.getBlockElevator() != null
                     && cart.worldObj.getBlock(i, j, k) == RailcraftBlocks.getBlockElevator())
                 if (other.boundingBox.minY < cart.boundingBox.maxY) {
                     other.moveEntity(0, cart.boundingBox.maxY - other.boundingBox.minY, 0);
@@ -339,8 +337,7 @@ public final class MinecartHooks implements IMinecartCollisionHandler {
 
             if (other instanceof EntityMinecart) {
                 boolean otherHighSpeed = other.getEntityData().getBoolean("HighSpeed");
-                if (!otherHighSpeed
-                        || (cart.motionX > 0 ^ other.motionX > 0)
+                if (!otherHighSpeed || (cart.motionX > 0 ^ other.motionX > 0)
                         || (cart.motionZ > 0 ^ other.motionZ > 0)) {
                     primeToExplode(cart);
                     return;

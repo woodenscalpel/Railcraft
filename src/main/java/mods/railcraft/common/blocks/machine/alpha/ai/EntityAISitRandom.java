@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.alpha.ai;
 
@@ -30,8 +27,7 @@ public class EntityAISitRandom extends EntityAIBase {
      */
     @Override
     public boolean shouldExecute() {
-        return this.theAnimal.isTamed()
-                && !theAnimal.isInLove()
+        return this.theAnimal.isTamed() && !theAnimal.isInLove()
                 && !this.theAnimal.isSitting()
                 && this.theAnimal.getRNG().nextDouble() <= 0.015D;
     }
@@ -50,8 +46,8 @@ public class EntityAISitRandom extends EntityAIBase {
     @Override
     public void startExecuting() {
         this.currentTick = 0;
-        this.maxSittingTicks =
-                this.theAnimal.getRNG().nextInt(this.theAnimal.getRNG().nextInt(SIT_TICKS) + SIT_TICKS) + SIT_TICKS;
+        this.maxSittingTicks = this.theAnimal.getRNG().nextInt(this.theAnimal.getRNG().nextInt(SIT_TICKS) + SIT_TICKS)
+                + SIT_TICKS;
         this.theAnimal.func_70907_r().setSitting(false);
     }
 

@@ -1,23 +1,22 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.gui.containers;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.common.blocks.machine.gamma.TileLoaderEnergyBase;
 import mods.railcraft.common.gui.slots.SlotEnergy;
 import mods.railcraft.common.gui.slots.SlotUpgrade;
 import mods.railcraft.common.util.network.PacketBuilder;
+
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ContainerEnergyLoader extends RailcraftContainer {
 
@@ -66,9 +65,8 @@ public class ContainerEnergyLoader extends RailcraftContainer {
         for (int i = 0; i < crafters.size(); ++i) {
             ICrafting player = (ICrafting) crafters.get(i);
 
-            if (lastEnergy != device.getEnergy())
-                PacketBuilder.instance()
-                        .sendGuiIntegerPacket((EntityPlayerMP) player, windowId, 0, (int) device.getEnergy());
+            if (lastEnergy != device.getEnergy()) PacketBuilder.instance()
+                    .sendGuiIntegerPacket((EntityPlayerMP) player, windowId, 0, (int) device.getEnergy());
 
             if (lastStorage != device.storageUpgrades) player.sendProgressBarUpdate(this, 1, device.storageUpgrades);
 

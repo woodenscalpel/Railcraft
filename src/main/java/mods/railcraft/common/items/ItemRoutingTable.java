@@ -1,19 +1,15 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.items;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
+
 import mods.railcraft.api.core.items.IStackFilter;
 import mods.railcraft.client.gui.GuiRoutingTable;
 import mods.railcraft.common.blocks.signals.RoutingLogic;
@@ -23,6 +19,7 @@ import mods.railcraft.common.plugins.forge.NBTPlugin.NBTList;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.IEditableItem;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -34,12 +31,16 @@ import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class ItemRoutingTable extends ItemRailcraft implements IEditableItem {
 
     public static final IStackFilter FILTER = new IStackFilter() {
+
         @Override
         public boolean matches(ItemStack stack) {
             if (stack == null || item == null) return false;
@@ -206,8 +207,7 @@ public class ItemRoutingTable extends ItemRailcraft implements IEditableItem {
     }
 
     /**
-     * allows items to add custom lines of information to the mouseover
-     * description
+     * allows items to add custom lines of information to the mouseover description
      */
     @SideOnly(Side.CLIENT)
     @Override
@@ -216,11 +216,10 @@ public class ItemRoutingTable extends ItemRailcraft implements IEditableItem {
             NBTTagCompound nbt = stack.getTagCompound();
             NBTTagString author = (NBTTagString) nbt.getTag("author");
 
-            if (author != null)
-                list.add(EnumChatFormatting.GRAY
-                        + String.format(
-                                LocalizationPlugin.translate("railcraft.gui.routing.table.editor"),
-                                author.func_150285_a_()));
+            if (author != null) list.add(
+                    EnumChatFormatting.GRAY + String.format(
+                            LocalizationPlugin.translate("railcraft.gui.routing.table.editor"),
+                            author.func_150285_a_()));
         }
     }
 

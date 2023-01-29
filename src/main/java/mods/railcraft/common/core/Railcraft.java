@@ -1,23 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.core;
 
-import com.google.common.base.Splitter;
-import com.google.common.collect.Iterables;
-import com.google.common.primitives.Ints;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.*;
-import cpw.mods.fml.common.registry.GameRegistry;
 import java.io.File;
+
 import mods.railcraft.api.fuel.FuelManager;
 import mods.railcraft.common.blocks.aesthetics.lantern.BlockLantern;
 import mods.railcraft.common.blocks.anvil.BlockRCAnvil;
@@ -34,21 +23,33 @@ import mods.railcraft.common.util.misc.BlinkTick;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.network.PacketHandler;
+
 import net.minecraft.block.Block;
 import net.minecraft.command.CommandHandler;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+
 import org.apache.logging.log4j.Level;
+
+import com.google.common.base.Splitter;
+import com.google.common.collect.Iterables;
+import com.google.common.primitives.Ints;
+
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.*;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(
         modid = Railcraft.MOD_ID,
         name = "Railcraft",
         version = Railcraft.VERSION,
         acceptedMinecraftVersions = "[1.7.10,1.8)",
-        dependencies = "required-after:Forge@[10.13.4.1614,);"
-                + "after:BuildCraft|Core[6.1.7,);"
+        dependencies = "required-after:Forge@[10.13.4.1614,);" + "after:BuildCraft|Core[6.1.7,);"
                 + "after:BuildCraft|Energy;"
                 + "after:BuildCraft|Builders;"
                 + "after:BuildCraft|Factory;"
@@ -58,6 +59,7 @@ import org.apache.logging.log4j.Level;
                 + "after:Thaumcraft;"
                 + "after:IC2@[2.2,)")
 public final class Railcraft {
+
     public static final String MOD_ID = "Railcraft";
     public static final String VERSION = "GRADLETOKEN_VERSION";
     public static final String MC_VERSION = "[1.7.10,1.8)";
@@ -65,8 +67,8 @@ public final class Railcraft {
 
     @Instance("Railcraft")
     public static Railcraft instance;
-    //    public int totalMultiBlockUpdates = 0;
-    //    public int ticksSinceLastMultiBlockPrint = 0;
+    // public int totalMultiBlockUpdates = 0;
+    // public int ticksSinceLastMultiBlockPrint = 0;
     @SidedProxy(
             clientSide = "mods.railcraft.client.core.ClientProxy",
             serverSide = "mods.railcraft.common.core.CommonProxy")
@@ -105,7 +107,8 @@ public final class Railcraft {
                             Level.WARN,
                             String.format(
                                     "Mod %s attempted to register a ballast, but failed: %s",
-                                    mess.getSender(), mess.getStringValue()));
+                                    mess.getSender(),
+                                    mess.getStringValue()));
                     continue;
                 }
                 String blockName = tokens[0];
@@ -115,14 +118,17 @@ public final class Railcraft {
                             Level.WARN,
                             String.format(
                                     "Mod %s attempted to register a ballast, but failed: %s",
-                                    mess.getSender(), mess.getStringValue()));
+                                    mess.getSender(),
+                                    mess.getStringValue()));
                     continue;
                 }
                 BallastRegistry.registerBallast(Block.getBlockFromName(blockName), metadata);
                 Game.log(
                         Level.DEBUG,
                         String.format(
-                                "Mod %s registered %s as a valid ballast", mess.getSender(), mess.getStringValue()));
+                                "Mod %s registered %s as a valid ballast",
+                                mess.getSender(),
+                                mess.getStringValue()));
             } else if (mess.key.equals("boiler-fuel-liquid")) {
                 String[] tokens = Iterables.toArray(splitter.split(mess.getStringValue()), String.class);
                 if (tokens.length != 2) {
@@ -130,7 +136,8 @@ public final class Railcraft {
                             Level.WARN,
                             String.format(
                                     "Mod %s attempted to register a liquid Boiler fuel, but failed: %s",
-                                    mess.getSender(), mess.getStringValue()));
+                                    mess.getSender(),
+                                    mess.getStringValue()));
                     continue;
                 }
                 Fluid fluid = FluidRegistry.getFluid(tokens[0]);
@@ -140,7 +147,8 @@ public final class Railcraft {
                             Level.WARN,
                             String.format(
                                     "Mod %s attempted to register a liquid Boiler fuel, but failed: %s",
-                                    mess.getSender(), mess.getStringValue()));
+                                    mess.getSender(),
+                                    mess.getStringValue()));
                     continue;
                 }
                 FuelManager.addBoilerFuel(fluid, fuel);
@@ -148,7 +156,8 @@ public final class Railcraft {
                         Level.DEBUG,
                         String.format(
                                 "Mod %s registered %s as a valid liquid Boiler fuel",
-                                mess.getSender(), mess.getStringValue()));
+                                mess.getSender(),
+                                mess.getStringValue()));
             } else if (mess.key.equals("rock-crusher")) {
                 // Ignore it
             } else if (mess.key.equals("high-speed-explosion-excluded-entities")) {
@@ -172,14 +181,14 @@ public final class Railcraft {
     public void fingerprintError(FMLFingerprintViolationEvent event) {
         if (Game.isObfuscated()) {
             Game.logErrorFingerprint(MOD_ID);
-            //            FMLCommonHandler.instance().exitJava(1, false);
+            // FMLCommonHandler.instance().exitJava(1, false);
             throw new RuntimeException("Invalid Fingerprint");
         }
     }
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        //        Game.log(Level.FINE, "Pre-Init Phase");
+        // Game.log(Level.FINE, "Pre-Init Phase");
 
         configFolder = new File(event.getModConfigurationDirectory(), "railcraft");
         RailcraftConfig.preInit();
@@ -197,7 +206,7 @@ public final class Railcraft {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
-        //        Game.log(Level.FINE, "Init Phase");
+        // Game.log(Level.FINE, "Init Phase");
 
         ModuleManager.init();
 
@@ -206,7 +215,7 @@ public final class Railcraft {
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        //        Game.log(Level.FINE, "Post-Init Phase");
+        // Game.log(Level.FINE, "Post-Init Phase");
         ModuleManager.postInit();
 
         proxy.initClient();
@@ -237,9 +246,11 @@ public final class Railcraft {
                         && RailcraftFluids.CREOSOTE.getBlock() != null)
                     remap(RailcraftFluids.CREOSOTE.getBlock(), mapping);
                 else if (mapping.name.equals("Railcraft:tile.railcraft.block.fluid.steam")
-                        && RailcraftFluids.STEAM.getBlock() != null) remap(RailcraftFluids.STEAM.getBlock(), mapping);
+                        && RailcraftFluids.STEAM.getBlock() != null)
+                    remap(RailcraftFluids.STEAM.getBlock(), mapping);
                 else if (mapping.name.equals("Railcraft:tile.block.firestone.recharge")
-                        && BlockFirestoneRecharge.getBlock() != null) remap(BlockFirestoneRecharge.getBlock(), mapping);
+                        && BlockFirestoneRecharge.getBlock() != null)
+                    remap(BlockFirestoneRecharge.getBlock(), mapping);
                 else if (mapping.name.equals("Railcraft:tile.railcraft.block.anvil") && BlockRCAnvil.getBlock() != null)
                     remap(BlockRCAnvil.getBlock(), mapping);
                 else if (mapping.name.equals("Railcraft:tile.railcraft.hidden")) mapping.ignore();
@@ -272,7 +283,10 @@ public final class Railcraft {
         mapping.remap(block);
         Game.log(
                 Level.WARN,
-                "Remapping block " + mapping.name + " to " + getModId() + ":"
+                "Remapping block " + mapping.name
+                        + " to "
+                        + getModId()
+                        + ":"
                         + MiscTools.cleanTag(block.getUnlocalizedName()));
     }
 
@@ -280,7 +294,10 @@ public final class Railcraft {
         mapping.remap(item);
         Game.log(
                 Level.WARN,
-                "Remapping item " + mapping.name + " to " + getModId() + ":"
+                "Remapping item " + mapping.name
+                        + " to "
+                        + getModId()
+                        + ":"
                         + MiscTools.cleanTag(item.getUnlocalizedName()));
     }
 }

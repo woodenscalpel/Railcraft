@@ -1,16 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.beta;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Random;
+
 import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.fluids.Fluids;
 import mods.railcraft.common.fluids.TankManager;
@@ -22,6 +18,7 @@ import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.sounds.SoundHelper;
 import mods.railcraft.common.util.steam.ISteamUser;
 import mods.railcraft.common.util.steam.Steam;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -29,6 +26,9 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  *
@@ -49,14 +49,26 @@ public abstract class TileEngineSteam extends TileEngine implements IFluidHandle
 
     @Override
     protected void playSoundOut() {
-        SoundHelper.playSoundClient(worldObj, xCoord, yCoord, zCoord, SoundHelper.SOUND_STEAM_BURST, 0.15F, (float)
-                (0.5F + MiscTools.getRand().nextGaussian() * 0.1));
+        SoundHelper.playSoundClient(
+                worldObj,
+                xCoord,
+                yCoord,
+                zCoord,
+                SoundHelper.SOUND_STEAM_BURST,
+                0.15F,
+                (float) (0.5F + MiscTools.getRand().nextGaussian() * 0.1));
     }
 
     @Override
     protected void playSoundIn() {
-        SoundHelper.playSoundClient(worldObj, xCoord, yCoord, zCoord, SoundHelper.SOUND_STEAM_BURST, 0.15F, (float)
-                (1 + MiscTools.getRand().nextGaussian() * 0.1));
+        SoundHelper.playSoundClient(
+                worldObj,
+                xCoord,
+                yCoord,
+                zCoord,
+                SoundHelper.SOUND_STEAM_BURST,
+                0.15F,
+                (float) (1 + MiscTools.getRand().nextGaussian() * 0.1));
     }
 
     private int getParticleRate() {

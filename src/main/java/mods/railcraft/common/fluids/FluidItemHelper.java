@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2015 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2015 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.fluids;
 
@@ -18,6 +15,7 @@ import net.minecraftforge.fluids.IFluidContainerItem;
  * Created by CovertJaguar on 4/2/2015.
  */
 public class FluidItemHelper {
+
     /**
      * Fill a liquid container.
      *
@@ -187,6 +185,7 @@ public class FluidItemHelper {
     }
 
     public static class FillReturn {
+
         public final ItemStack container;
         public final int amount;
 
@@ -197,6 +196,7 @@ public class FluidItemHelper {
     }
 
     public static class DrainReturn {
+
         public final ItemStack container;
         public final FluidStack fluidDrained;
         public final boolean isAtomic;

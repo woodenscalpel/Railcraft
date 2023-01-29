@@ -1,27 +1,26 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.plugins.forestry;
 
-import cpw.mods.fml.common.Optional;
-import forestry.api.storage.IBackpackDefinition;
 import mods.railcraft.common.plugins.thaumcraft.ResearchItemRC;
 import mods.railcraft.common.plugins.thaumcraft.ThaumcraftPlugin;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.crafting.IArcaneRecipe;
 import thaumcraft.api.research.ResearchItem;
 import thaumcraft.api.research.ResearchPage;
+import cpw.mods.fml.common.Optional;
+import forestry.api.storage.IBackpackDefinition;
 
 /**
  *
@@ -88,11 +87,10 @@ public class ApothecariesBackpack extends BaseBackpack implements IBackpackDefin
                     0,
                     6,
                     new ItemStack(ForestryPlugin.apothecariesBackpackT1));
-            backpack.setPages(new ResearchPage[] {
-                        ThaumcraftPlugin.getResearchPage("RC_ApothecariesBackpack"), new ResearchPage(recipe)
-                    })
-                    .setParentsHidden(new String[] {"ENCHFABRIC"})
-                    .registerResearchItem();
+            backpack.setPages(
+                    new ResearchPage[] { ThaumcraftPlugin.getResearchPage("RC_ApothecariesBackpack"),
+                            new ResearchPage(recipe) })
+                    .setParentsHidden(new String[] { "ENCHFABRIC" }).registerResearchItem();
 
         } catch (Throwable error) {
             Game.logErrorAPI("Thaumcraft", error, ResearchItem.class);

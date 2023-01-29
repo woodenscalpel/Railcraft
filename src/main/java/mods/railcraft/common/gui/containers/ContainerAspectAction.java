@@ -1,21 +1,20 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.gui.containers;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.common.blocks.signals.IAspectActionManager;
 import mods.railcraft.common.plugins.forge.PlayerPlugin;
 import mods.railcraft.common.util.network.PacketBuilder;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.ICrafting;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ContainerAspectAction extends RailcraftContainer {
 
@@ -35,8 +34,7 @@ public class ContainerAspectAction extends RailcraftContainer {
     public void addCraftingToCrafters(ICrafting icrafting) {
         super.addCraftingToCrafters(icrafting);
 
-        icrafting.sendProgressBarUpdate(
-                this, 0, actionManager.getLockController().getCurrentState());
+        icrafting.sendProgressBarUpdate(this, 0, actionManager.getLockController().getCurrentState());
         icrafting.sendProgressBarUpdate(this, 1, PlayerPlugin.isOwnerOrOp(actionManager.getOwner(), player) ? 1 : 0);
 
         String username = actionManager.getOwner().getName();
@@ -78,8 +76,7 @@ public class ContainerAspectAction extends RailcraftContainer {
             case 0:
                 try {
                     ownerName = data;
-                } catch (IllegalArgumentException ex) {
-                }
+                } catch (IllegalArgumentException ex) {}
                 break;
         }
     }

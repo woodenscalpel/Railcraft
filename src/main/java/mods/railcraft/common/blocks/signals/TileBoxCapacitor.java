@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.signals;
 
@@ -13,6 +10,7 @@ import static mods.railcraft.common.plugins.forge.PowerPlugin.*;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+
 import mods.railcraft.api.signals.SignalAspect;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
@@ -26,6 +24,7 @@ import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -37,14 +36,17 @@ public class TileBoxCapacitor extends TileBoxBase implements IGuiReturnHandler {
     private short ticksPowered;
     public short ticksToPower = 200;
     private SignalAspect aspect = SignalAspect.OFF;
-    private final MultiButtonController<EnumStateMode> stateModeController =
-            new MultiButtonController(EnumStateMode.IMMEDIATE.ordinal(), EnumStateMode.values());
+    private final MultiButtonController<EnumStateMode> stateModeController = new MultiButtonController(
+            EnumStateMode.IMMEDIATE.ordinal(),
+            EnumStateMode.values());
 
     public TileBoxCapacitor() {}
 
     public enum EnumStateMode implements IMultiButtonState {
+
         IMMEDIATE("railcraft.gui.box.capacitor.immediate"),
         DELAYED("railcraft.gui.box.capacitor.delayed");
+
         private final String label;
         private final ToolTip tip;
 
@@ -104,8 +106,8 @@ public class TileBoxCapacitor extends TileBoxBase implements IGuiReturnHandler {
                         TileBoxBase box = (TileBoxBase) tile;
                         if (box.isEmittingRedstone(forgeSide.getOpposite())) {
                             hasInput = true;
-                            tmpaspect = SignalAspect.mostRestrictive(
-                                    tmpaspect, box.getBoxSignalAspect(forgeSide.getOpposite()));
+                            tmpaspect = SignalAspect
+                                    .mostRestrictive(tmpaspect, box.getBoxSignalAspect(forgeSide.getOpposite()));
                         }
                     }
                 }
@@ -176,7 +178,7 @@ public class TileBoxCapacitor extends TileBoxBase implements IGuiReturnHandler {
         aspect = SignalAspect.values()[data.getByte("aspect")];
         if (data.hasKey("mode")) stateModeController.readFromNBT(data, "mode");
         else // set old boxes to immediate mode to retain old behavior
-        stateModeController.setCurrentState(EnumStateMode.IMMEDIATE.ordinal());
+            stateModeController.setCurrentState(EnumStateMode.IMMEDIATE.ordinal());
     }
 
     @Override

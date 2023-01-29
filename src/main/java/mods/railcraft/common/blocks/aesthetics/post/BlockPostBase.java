@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.aesthetics.post;
 
@@ -12,6 +9,7 @@ import mods.railcraft.client.sounds.RailcraftSound;
 import mods.railcraft.common.blocks.signals.*;
 import mods.railcraft.common.blocks.tracks.TrackTools;
 import mods.railcraft.common.plugins.forge.CreativePlugin;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.AxisAlignedBB;
@@ -54,8 +52,7 @@ public abstract class BlockPostBase extends Block {
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
         if (isPlatform(world.getBlockMetadata(x, y, z)))
             return AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1, z + 1);
-        if (!world.isAirBlock(x, y - 1, z)
-                && !(world.getBlock(x, y - 1, z) instanceof BlockPostBase)
+        if (!world.isAirBlock(x, y - 1, z) && !(world.getBlock(x, y - 1, z) instanceof BlockPostBase)
                 && !TrackTools.isRailBlockAt(world, x, y + 1, z))
             return AxisAlignedBB.getBoundingBox(x + SIZE, y, z + SIZE, x + 1 - SIZE, y + 1.5, z + 1 - SIZE);
         return AxisAlignedBB.getBoundingBox(x + SIZE, y, z + SIZE, x + 1 - SIZE, y + 1, z + 1 - SIZE);

@@ -9,23 +9,19 @@ import net.minecraft.util.DamageSource;
  * Created by CovertJaguar on 11/19/2015.
  */
 public class EntityTunnelBorePart extends Entity {
+
     public final EntityTunnelBore parent;
     public final String partName;
     public final float forwardOffset;
     public final float sideOffset;
 
-    public EntityTunnelBorePart(
-            EntityTunnelBore parent, String partName, float width, float height, float forwardOffset) {
+    public EntityTunnelBorePart(EntityTunnelBore parent, String partName, float width, float height,
+            float forwardOffset) {
         this(parent, partName, width, height, forwardOffset, 0.0F);
     }
 
-    public EntityTunnelBorePart(
-            EntityTunnelBore parent,
-            String partName,
-            float width,
-            float height,
-            float forwardOffset,
-            float sideOffset) {
+    public EntityTunnelBorePart(EntityTunnelBore parent, String partName, float width, float height,
+            float forwardOffset, float sideOffset) {
         super(parent.worldObj);
         this.setSize(width, height);
         this.parent = parent;

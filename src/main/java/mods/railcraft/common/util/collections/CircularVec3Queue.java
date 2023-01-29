@@ -1,18 +1,17 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.collections;
 
-import com.google.common.collect.ForwardingQueue;
 import java.util.ArrayDeque;
 import java.util.Iterator;
 import java.util.Queue;
+
 import net.minecraft.util.Vec3;
+
+import com.google.common.collect.ForwardingQueue;
 
 /**
  *
@@ -60,6 +59,7 @@ public class CircularVec3Queue extends ForwardingQueue<Vec3> {
 
     public Iterable<Vec3> descendingIterable() {
         return new Iterable<Vec3>() {
+
             @Override
             public Iterator<Vec3> iterator() {
                 return queue.descendingIterator();

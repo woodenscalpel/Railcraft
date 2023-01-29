@@ -1,18 +1,17 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.worldgen;
 
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
+
 import mods.railcraft.common.plugins.forge.OreDictPlugin;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.init.Blocks;
@@ -55,29 +54,27 @@ public class WorldGenQuarry extends WorldGenerator {
 
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z) {
-        //        Game.log(Level.INFO, "Generating Quarry at {0}, {1}, {2}", x, y, z);
+        // Game.log(Level.INFO, "Generating Quarry at {0}, {1}, {2}", x, y, z);
         boolean clearTop = true;
         for (int i = -8; i < 8; i++) {
             for (int k = -8; k < 8; k++) {
                 for (int j = 1; j < 4 && j + y < world.getActualHeight() - 1; j++) {
                     int distSq = i * i + k * k;
-                    if (distSq <= DISTANCE_OUTER_SQ)
-                        if (isLiquid(world, x + i, y + j, z + k)) {
-                            clearTop = false;
-                            break;
-                        }
-                }
-            }
-        }
-        if (clearTop)
-            for (int i = -8; i < 8; i++) {
-                for (int k = -8; k < 8; k++) {
-                    for (int j = 1; j < 4 && j + y < world.getActualHeight() - 1; j++) {
-                        int distSq = i * i + k * k;
-                        if (distSq <= DISTANCE_OUTER_SQ) if (!placeAir(world, rand, x + i, y + j, z + k)) break;
+                    if (distSq <= DISTANCE_OUTER_SQ) if (isLiquid(world, x + i, y + j, z + k)) {
+                        clearTop = false;
+                        break;
                     }
                 }
             }
+        }
+        if (clearTop) for (int i = -8; i < 8; i++) {
+            for (int k = -8; k < 8; k++) {
+                for (int j = 1; j < 4 && j + y < world.getActualHeight() - 1; j++) {
+                    int distSq = i * i + k * k;
+                    if (distSq <= DISTANCE_OUTER_SQ) if (!placeAir(world, rand, x + i, y + j, z + k)) break;
+                }
+            }
+        }
         for (int i = -8; i < 8; i++) {
             for (int k = -8; k < 8; k++) {
                 for (int j = -8; j < 1 && j + y < world.getActualHeight() - 1; j++) {
@@ -96,9 +93,9 @@ public class WorldGenQuarry extends WorldGenerator {
     }
 
     private boolean placeAir(World world, Random rand, int x, int y, int z) {
-        //        if (!world.blockExists(x, y, z)) {
-        //            return false;
-        //        }
+        // if (!world.blockExists(x, y, z)) {
+        // return false;
+        // }
         if (WorldPlugin.getBlock(world, x, y + 1, z) != Blocks.air) return false;
         if (isLiquid(world, x, y, z)) return false;
 
@@ -112,9 +109,9 @@ public class WorldGenQuarry extends WorldGenerator {
     }
 
     private void placeStone(World world, Random rand, int x, int y, int z) {
-        //        if (!world.blockExists(x, y, z)) {
-        //            return;
-        //        }
+        // if (!world.blockExists(x, y, z)) {
+        // return;
+        // }
         // Removes tallgrass
         if (WorldPlugin.getBlock(world, x, y + 1, z) == Blocks.tallgrass) world.setBlock(x, y + 1, z, Blocks.air, 0, 2);
 

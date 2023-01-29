@@ -1,23 +1,23 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.render;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
 import mods.railcraft.common.fluids.tanks.StandardTank;
+
 import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
+
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -93,7 +93,7 @@ public class FluidRenderer {
         GL11.glDisable(GL11.GL_CULL_FACE);
         for (int s = 0; s < DISPLAY_STAGES; ++s) {
             diplayLists[s] = GLAllocation.generateDisplayLists(1);
-            GL11.glNewList(diplayLists[s], 4864 /*GL_COMPILE*/);
+            GL11.glNewList(diplayLists[s], 4864 /* GL_COMPILE */);
 
             liquidBlock.minX = 0.01f;
             liquidBlock.minY = 0;

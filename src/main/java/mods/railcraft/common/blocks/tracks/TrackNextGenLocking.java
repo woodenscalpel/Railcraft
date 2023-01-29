@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.tracks;
 
@@ -14,6 +11,7 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.util.List;
 import java.util.UUID;
+
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.api.events.CartLockdownEvent;
@@ -28,6 +26,7 @@ import mods.railcraft.common.carts.Train;
 import mods.railcraft.common.plugins.forge.ChatPlugin;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -39,6 +38,7 @@ import net.minecraftforge.common.MinecraftForge;
  * @author CovertJaguar <http://www.railcraft.info/>
  */
 public class TrackNextGenLocking extends TrackBaseRailcraft implements ITrackLockdown, ITrackPowered {
+
     public static double START_BOOST = 0.04;
     public static double BOOST_FACTOR = 0.06;
     private LockingProfileType profile = LockingProfileType.LOCKDOWN;
@@ -82,17 +82,16 @@ public class TrackNextGenLocking extends TrackBaseRailcraft implements ITrackLoc
     }
 
     /**
-     * We try to calculate all the logic here so we can isolate it on the server side.
-     * Its a bit tricky to determine whether a cart or train is on top of us, but we can do it
-     * if we maintain a record of the last cart that was on us and the next cart that triggers
-     * an onMinecartPass() event.
+     * We try to calculate all the logic here so we can isolate it on the server side. Its a bit tricky to determine
+     * whether a cart or train is on top of us, but we can do it if we maintain a record of the last cart that was on us
+     * and the next cart that triggers an onMinecartPass() event.
      */
     @Override
     public void updateEntity() {
 
         if (Game.isHost(getWorld())) {
-            boolean updateClient =
-                    false; // flag determines whether we send an update to the client, only update when visible changes
+            boolean updateClient = false; // flag determines whether we send an update to the client, only update when
+                                          // visible changes
             // occur
 
             // At the time we read from NBT, LinkageManager has not been initialized so we cannot
@@ -140,11 +139,10 @@ public class TrackNextGenLocking extends TrackBaseRailcraft implements ITrackLoc
                 else p = profile.next();
                 crowbar.onWhack(player, current, getX(), getY(), getZ());
                 if (Game.isHost(getWorld())) setProfile(p);
-                else
-                    ChatPlugin.sendLocalizedChat(
-                            player,
-                            "railcraft.gui.track.mode.change",
-                            "\u00A75" + LocalizationPlugin.translate("railcraft.gui.track.locking.mode." + p.tag));
+                else ChatPlugin.sendLocalizedChat(
+                        player,
+                        "railcraft.gui.track.mode.change",
+                        "\u00A75" + LocalizationPlugin.translate("railcraft.gui.track.locking.mode." + p.tag));
                 return true;
             }
         }
@@ -202,18 +200,17 @@ public class TrackNextGenLocking extends TrackBaseRailcraft implements ITrackLoc
     }
 
     /**
-     * Determines if the current train is the same train or cart (depending on track type)
-     * as the train or cart in previous ticks. The <code>trainDelay</code> is needed because there are
-     * gaps between carts in a train where onMinecartPass() doesn't get called even though
-     * the train is still passing over us.
+     * Determines if the current train is the same train or cart (depending on track type) as the train or cart in
+     * previous ticks. The <code>trainDelay</code> is needed because there are gaps between carts in a train where
+     * onMinecartPass() doesn't get called even though the train is still passing over us.
      *
      * @return whether the current cart or train (depending on LockType) is the same as previous cart or trains
      */
     private boolean isSameTrainOrCart() {
         if (profile.lockType == LockType.TRAIN) {
             if (currentCart != null) {
-                if (Train.areInSameTrain(currentCart, prevCart))
-                    trainDelay = TrackTools.TRAIN_LOCKDOWN_DELAY; // reset trainDelay
+                if (Train.areInSameTrain(currentCart, prevCart)) trainDelay = TrackTools.TRAIN_LOCKDOWN_DELAY; // reset
+                                                                                                               // trainDelay
                 else trainDelay = 0; // We've encountered a new train, force the delay to 0 so we return false
             } else if (trainLeaving) {
                 List<EntityMinecart> carts = CartTools.getMinecartsAt(getWorld(), getX(), getY(), getZ(), 0.0f);
@@ -234,21 +231,18 @@ public class TrackNextGenLocking extends TrackBaseRailcraft implements ITrackLoc
     }
 
     /**
-     * The heart of the logic for this class is done here. If you understand what's going
-     * on here, the rest will make much more sense to you. Basically, we're trying to determine
-     * whether this track should be trying to lock the current or next cart that passes over it.
-     * First of all we must realize that we only have 2 inputs: 1) whether a train/cart
-     * is passing over us and 2) whether our track is receiving a redstone signal. If we try to
-     * create a truth table with 2 boolean inputs to calculate "locked", we find that we can't quite
-     * express the correct value for "locked". When we analyze the situation, we notice that when
-     * a train is passing over the track, we need both the redstone to be off and the last cart to be
-     * off the track in order to lock the track. However after the train has already left the track,
-     * then we want the track to be "locked" when the redstone is off, regardless of whether a
-     * new or old cart starts moving onto the track. In the end, what we're really after is
-     * having 2 truth tables and a way to decide which of the 2 tables to use. To do this, we
-     * use the boolean <code>trainLeaving</code> to indicate which table to use. As the name
-     * implies, <code>trainLeaving</code> indicates whether the train or cart is in the process
-     * of leaving the track.
+     * The heart of the logic for this class is done here. If you understand what's going on here, the rest will make
+     * much more sense to you. Basically, we're trying to determine whether this track should be trying to lock the
+     * current or next cart that passes over it. First of all we must realize that we only have 2 inputs: 1) whether a
+     * train/cart is passing over us and 2) whether our track is receiving a redstone signal. If we try to create a
+     * truth table with 2 boolean inputs to calculate "locked", we find that we can't quite express the correct value
+     * for "locked". When we analyze the situation, we notice that when a train is passing over the track, we need both
+     * the redstone to be off and the last cart to be off the track in order to lock the track. However after the train
+     * has already left the track, then we want the track to be "locked" when the redstone is off, regardless of whether
+     * a new or old cart starts moving onto the track. In the end, what we're really after is having 2 truth tables and
+     * a way to decide which of the 2 tables to use. To do this, we use the boolean <code>trainLeaving</code> to
+     * indicate which table to use. As the name implies, <code>trainLeaving</code> indicates whether the train or cart
+     * is in the process of leaving the track.
      */
     private void calculateLocked() {
         boolean isSameCart = isSameTrainOrCart();
@@ -260,8 +254,8 @@ public class TrackNextGenLocking extends TrackBaseRailcraft implements ITrackLoc
             }
             locked = !(isSameCart || redstone);
         } else {
-            if (isSameCart
-                    && redstone) { // When we get both signals we know a train is leaving, so we set the state as so
+            if (isSameCart && redstone) { // When we get both signals we know a train is leaving, so we set the state as
+                                          // so
                 trainLeaving = true;
             }
             locked = !redstone;
@@ -374,6 +368,7 @@ public class TrackNextGenLocking extends TrackBaseRailcraft implements ITrackLoc
     }
 
     public enum LockingProfileType {
+
         LOCKDOWN(LockdownLockingProfile.class, LockType.CART, "lockdown"),
         LOCKDOWN_TRAIN(LockdownLockingProfile.class, LockType.TRAIN, "lockdown.train"),
         HOLDING(HoldingLockingProfile.class, LockType.CART, "holding"),
@@ -382,6 +377,7 @@ public class TrackNextGenLocking extends TrackBaseRailcraft implements ITrackLoc
         BOARDING_B(BoardingLockingProfile.class, LockType.CART, "boarding"),
         BOARDING_A_TRAIN(BoardingLockingProfile.class, LockType.TRAIN, "boarding.train"),
         BOARDING_B_TRAIN(BoardingLockingProfile.class, LockType.TRAIN, "boarding.train");
+
         public static final LockingProfileType[] VALUES = values();
         public final LockType lockType;
         public final String tag;

@@ -1,6 +1,7 @@
 package mods.railcraft.common.modules;
 
 import java.util.HashMap;
+
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.tank.GenericMultiTankBase;
 import mods.railcraft.common.blocks.machine.zeta.EnumMachineEta;
@@ -9,6 +10,7 @@ import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.EnumColor;
+
 import net.minecraft.item.ItemStack;
 
 public class ModuleAdvancedTanks extends RailcraftModule {
@@ -32,8 +34,7 @@ public class ModuleAdvancedTanks extends RailcraftModule {
     public static final int CAPACITY_PER_BLOCK_NEUTRONIUM = 3072 * FluidHelper.BUCKET_VOLUME;
 
     public static final HashMap<String, IEnumMachine> cacheTankType = new HashMap<String, IEnumMachine>();
-    public static final HashMap<String, GenericMultiTankBase> cacheTankMaterial =
-            new HashMap<String, GenericMultiTankBase>();
+    public static final HashMap<String, GenericMultiTankBase> cacheTankMaterial = new HashMap<String, GenericMultiTankBase>();
 
     public static void initTanks() {
         ALUMINIUM = createTank(
@@ -132,8 +133,8 @@ public class ModuleAdvancedTanks extends RailcraftModule {
         return InvTools.setItemColor(stack, color);
     }
 
-    private static GenericMultiTankBase createTank(
-            String material, int capacity, IEnumMachine tankWall, IEnumMachine tankGauge, IEnumMachine tankValve) {
+    private static GenericMultiTankBase createTank(String material, int capacity, IEnumMachine tankWall,
+            IEnumMachine tankGauge, IEnumMachine tankValve) {
         GenericMultiTankBase tank = new GenericMultiTankBase(material, capacity, tankWall, tankValve, tankGauge);
         cacheTankMaterial.put(tankWall.getTag(), tank);
         cacheTankMaterial.put(tankGauge.getTag(), tank);

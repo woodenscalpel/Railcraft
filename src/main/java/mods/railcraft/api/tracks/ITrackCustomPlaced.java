@@ -1,8 +1,6 @@
 /*
- * ******************************************************************************
- *  Copyright 2011-2015 CovertJaguar
- *
- *  This work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
+ * ****************************************************************************** Copyright 2011-2015 CovertJaguar This
+ * work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
  * ***************************************************************************
  */
 
@@ -27,9 +25,9 @@ public interface ITrackCustomPlaced extends ITrackInstance {
      * Warning: This is called before the TileEntity is set.
      *
      * @param world The World
-     * @param i x-Coord
-     * @param j y-Coord
-     * @param k z-Coord
+     * @param i     x-Coord
+     * @param j     y-Coord
+     * @param k     z-Coord
      * @return true if the rail can placed at the specified location, false to prevent placement
      */
     public boolean canPlaceRailAt(World world, int i, int j, int k);

@@ -1,12 +1,26 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.plugins.ic2;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import mods.railcraft.common.util.inventory.InvTools;
+import mods.railcraft.common.util.misc.Game;
+
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.MinecraftForge;
 
 import cpw.mods.fml.common.Loader;
 import ic2.api.energy.event.EnergyTileLoadEvent;
@@ -19,27 +33,13 @@ import ic2.api.recipe.IRecipeInput;
 import ic2.api.recipe.RecipeInputItemStack;
 import ic2.api.recipe.RecipeOutput;
 import ic2.api.recipe.Recipes;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import mods.railcraft.common.util.inventory.InvTools;
-import mods.railcraft.common.util.misc.Game;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.MinecraftForge;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class IC2Plugin {
 
-    public static final int[] POWER_TIERS = {1, 6, 32, 512, 2048, 8192};
+    public static final int[] POWER_TIERS = { 1, 6, 32, 512, 2048, 8192 };
     private static final Map<String, ItemStack> itemCache = new HashMap<String, ItemStack>();
     private static final Map<String, Boolean> itemCacheFlag = new HashMap<String, Boolean>();
     private static Boolean modLoaded = null;
@@ -108,8 +108,7 @@ public class IC2Plugin {
      */
     public static double dischargeItem(ItemStack stack, double energyNeeded, int tier) {
         try {
-            if (stack != null
-                    && stack.getItem() instanceof IElectricItem
+            if (stack != null && stack.getItem() instanceof IElectricItem
                     && ((IElectricItem) stack.getItem()).canProvideEnergy(stack))
                 return ElectricItem.manager.discharge(stack, energyNeeded, tier, false, true, false);
         } catch (Throwable error) {
@@ -204,8 +203,7 @@ public class IC2Plugin {
             try {
                 ItemStack output = recipe.getRecipeOutput();
                 if (output != null) if (output.getItem() == Items.coal && output.stackSize == 20) output.stackSize = 5;
-            } catch (Throwable error) {
-            }
+            } catch (Throwable error) {}
         }
     }
 

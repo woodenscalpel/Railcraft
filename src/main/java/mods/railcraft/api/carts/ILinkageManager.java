@@ -1,24 +1,22 @@
 /*
- * ******************************************************************************
- *  Copyright 2011-2015 CovertJaguar
- *
- *  This work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
+ * ****************************************************************************** Copyright 2011-2015 CovertJaguar This
+ * work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
  * ***************************************************************************
  */
 
 package mods.railcraft.api.carts;
 
 import java.util.UUID;
+
 import net.minecraft.entity.item.EntityMinecart;
 
 /**
- * The LinkageManager contains all the functions needed to link and interact
- * with linked carts.
+ * The LinkageManager contains all the functions needed to link and interact with linked carts.
  * <p/>
  * To obtain an instance of this interface, call CartTools.getLinkageManager().
  * <p/>
- * Each cart can up to two links. They are called Link A and Link B. Some carts
- * will have only Link A, for example the Tunnel Bore.
+ * Each cart can up to two links. They are called Link A and Link B. Some carts will have only Link A, for example the
+ * Tunnel Bore.
  *
  * @author CovertJaguar <http://www.railcraft.info>
  * @see CartTools, ILinkableCart
@@ -41,8 +39,7 @@ public interface ILinkageManager {
     boolean tryAutoLink(EntityMinecart cart1, EntityMinecart cart2);
 
     /**
-     * Creates a link between two carts, but only if there is nothing preventing
-     * such a link.
+     * Creates a link between two carts, but only if there is nothing preventing such a link.
      *
      * @param cart1
      * @param cart2
@@ -53,8 +50,7 @@ public interface ILinkageManager {
     boolean hasFreeLink(EntityMinecart cart);
 
     /**
-     * Returns the cart linked to Link A or null if nothing is currently
-     * occupying Link A.
+     * Returns the cart linked to Link A or null if nothing is currently occupying Link A.
      *
      * @param cart The cart for which to get the link
      * @return The linked cart or null
@@ -62,8 +58,7 @@ public interface ILinkageManager {
     EntityMinecart getLinkedCartA(EntityMinecart cart);
 
     /**
-     * Returns the cart linked to Link B or null if nothing is currently
-     * occupying Link B.
+     * Returns the cart linked to Link B or null if nothing is currently occupying Link B.
      *
      * @param cart The cart for which to get the link
      * @return The linked cart or null
@@ -119,13 +114,11 @@ public interface ILinkageManager {
     Iterable<EntityMinecart> getCartsInTrain(EntityMinecart cart);
 
     /**
-     * Given a persistent Entity UUID, it will return a matching minecart,
-     * assuming one is loaded in the world.
+     * Given a persistent Entity UUID, it will return a matching minecart, assuming one is loaded in the world.
      * <p/>
      * The Mapping is stored in a Map<UUID, EntityMinecart> so its fairly fast.
      * <p/>
-     * This would probably be better in CartTools, but
-     * Railcraft really only uses it for linking and this was the
+     * This would probably be better in CartTools, but Railcraft really only uses it for linking and this was the
      * easiest way to expose it.
      *
      * @param id Persistent Entity UUID

@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.modules;
 
@@ -16,6 +13,7 @@ import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.items.ItemCircuit;
 import mods.railcraft.common.items.RailcraftItem;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -243,7 +241,15 @@ public class ModuleSignals extends RailcraftModule {
             if (RailcraftConfig.isSubBlockEnabled(structure.getTag())) {
                 ItemStack stack = structure.getItem();
                 CraftingPlugin.addShapedRecipe(
-                        stack, "ICI", "IRI", 'I', "ingotIron", 'R', "dustRedstone", 'C', Items.repeater);
+                        stack,
+                        "ICI",
+                        "IRI",
+                        'I',
+                        "ingotIron",
+                        'R',
+                        "dustRedstone",
+                        'C',
+                        Items.repeater);
             }
 
             // Define Signal Block Box
@@ -268,7 +274,15 @@ public class ModuleSignals extends RailcraftModule {
             if (RailcraftConfig.isSubBlockEnabled(structure.getTag())) {
                 ItemStack stack = structure.getItem();
                 CraftingPlugin.addShapedRecipe(
-                        stack, "ICI", "IRI", 'I', "ingotIron", 'R', "dustRedstone", 'C', Items.comparator);
+                        stack,
+                        "ICI",
+                        "IRI",
+                        'I',
+                        "ingotIron",
+                        'R',
+                        "dustRedstone",
+                        'C',
+                        Items.comparator);
             }
             // Define Signal Interlock Box
             structure = EnumSignal.BOX_INTERLOCK;

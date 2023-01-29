@@ -1,14 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.gui;
 
 import java.awt.Color;
+
 import mods.railcraft.client.gui.buttons.GuiButtonSmall;
 import mods.railcraft.common.blocks.detector.TileDetector;
 import mods.railcraft.common.blocks.detector.types.DetectorItem;
@@ -17,9 +15,11 @@ import mods.railcraft.common.gui.containers.ContainerDetectorItem;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.PacketDispatcher;
 import mods.railcraft.common.util.network.PacketGuiReturn;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
+
 import org.lwjgl.opengl.GL11;
 
 public class GuiDetectorItem extends TileGui {
@@ -119,8 +119,6 @@ public class GuiDetectorItem extends TileGui {
             }
             GL11.glEnable(GL11.GL_LIGHTING);
             GL11.glEnable(GL11.GL_DEPTH_TEST);
-        } else
-            GuiTools.drawCenteredString(
-                    fontRendererObj, detector.getFilterMode().toString(), 45);
+        } else GuiTools.drawCenteredString(fontRendererObj, detector.getFilterMode().toString(), 45);
     }
 }

@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.modules;
 
@@ -20,6 +17,7 @@ import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.util.crafting.CartFilterRecipe;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.EnumColor;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -49,24 +47,31 @@ public class ModuleTransport extends RailcraftModule {
         }
 
         EnumMachineAlpha alpha = EnumMachineAlpha.TANK_WATER;
-        if (alpha.register())
-            CraftingPlugin.addShapedRecipe(
-                    alpha.getItem(6), "WWW", "ISI", "WWW", 'I', "ingotIron", 'S', "slimeball", 'W', "plankWood");
+        if (alpha.register()) CraftingPlugin.addShapedRecipe(
+                alpha.getItem(6),
+                "WWW",
+                "ISI",
+                "WWW",
+                'I',
+                "ingotIron",
+                'S',
+                "slimeball",
+                'W',
+                "plankWood");
 
         // initIronTank();
         // initSteelTank();
 
         EnumMachineBeta voidChest = EnumMachineBeta.VOID_CHEST;
-        if (voidChest.register())
-            CraftingPlugin.addShapedRecipe(
-                    voidChest.getItem(),
-                    "OOO",
-                    "OPO",
-                    "OOO",
-                    'O',
-                    new ItemStack(Blocks.obsidian),
-                    'P',
-                    new ItemStack(Items.ender_pearl));
+        if (voidChest.register()) CraftingPlugin.addShapedRecipe(
+                voidChest.getItem(),
+                "OOO",
+                "OPO",
+                "OOO",
+                'O',
+                new ItemStack(Blocks.obsidian),
+                'P',
+                new ItemStack(Items.ender_pearl));
 
         EnumMachineGamma itemLoader = EnumMachineGamma.ITEM_LOADER;
         if (itemLoader.register()) {
@@ -74,23 +79,31 @@ public class ModuleTransport extends RailcraftModule {
             ItemStack detector = EnumDetector.ITEM.getItem();
             if (detector == null) detector = new ItemStack(Blocks.stone_pressure_plate);
             CraftingPlugin.addShapedRecipe(
-                    stack, "SSS", "SLS", "SDS", 'S', "cobblestone", 'D', detector, 'L', new ItemStack(Blocks.hopper));
+                    stack,
+                    "SSS",
+                    "SLS",
+                    "SDS",
+                    'S',
+                    "cobblestone",
+                    'D',
+                    detector,
+                    'L',
+                    new ItemStack(Blocks.hopper));
 
             itemLoader = EnumMachineGamma.ITEM_LOADER_ADVANCED;
-            if (itemLoader.register())
-                CraftingPlugin.addShapedRecipe(
-                        itemLoader.getItem(),
-                        "IRI",
-                        "RLR",
-                        "ISI",
-                        'I',
-                        "ingotSteel",
-                        'R',
-                        "dustRedstone",
-                        'S',
-                        RailcraftToolItems.getSteelShovel(),
-                        'L',
-                        stack);
+            if (itemLoader.register()) CraftingPlugin.addShapedRecipe(
+                    itemLoader.getItem(),
+                    "IRI",
+                    "RLR",
+                    "ISI",
+                    'I',
+                    "ingotSteel",
+                    'R',
+                    "dustRedstone",
+                    'S',
+                    RailcraftToolItems.getSteelShovel(),
+                    'L',
+                    stack);
         }
 
         EnumMachineGamma itemUnloader = EnumMachineGamma.ITEM_UNLOADER;
@@ -99,23 +112,31 @@ public class ModuleTransport extends RailcraftModule {
             ItemStack detector = EnumDetector.ITEM.getItem();
             if (detector == null) detector = new ItemStack(Blocks.stone_pressure_plate);
             CraftingPlugin.addShapedRecipe(
-                    stack, "SSS", "SDS", "SLS", 'S', "cobblestone", 'D', detector, 'L', new ItemStack(Blocks.hopper));
+                    stack,
+                    "SSS",
+                    "SDS",
+                    "SLS",
+                    'S',
+                    "cobblestone",
+                    'D',
+                    detector,
+                    'L',
+                    new ItemStack(Blocks.hopper));
 
             itemUnloader = EnumMachineGamma.ITEM_UNLOADER_ADVANCED;
-            if (itemUnloader.register())
-                CraftingPlugin.addShapedRecipe(
-                        itemUnloader.getItem(),
-                        "IRI",
-                        "RLR",
-                        "ISI",
-                        'I',
-                        "ingotSteel",
-                        'R',
-                        "dustRedstone",
-                        'S',
-                        RailcraftToolItems.getSteelShovel(),
-                        'L',
-                        stack);
+            if (itemUnloader.register()) CraftingPlugin.addShapedRecipe(
+                    itemUnloader.getItem(),
+                    "IRI",
+                    "RLR",
+                    "ISI",
+                    'I',
+                    "ingotSteel",
+                    'R',
+                    "dustRedstone",
+                    'S',
+                    RailcraftToolItems.getSteelShovel(),
+                    'L',
+                    stack);
         }
 
         EnumMachineGamma liquidLoader = EnumMachineGamma.FLUID_LOADER;
@@ -153,15 +174,15 @@ public class ModuleTransport extends RailcraftModule {
                     Blocks.hopper);
         }
 
-        //        EnumMachineDelta delta = EnumMachineDelta.CAGE;
-        //        if (delta.register())
-        //            CraftingPlugin.addShapedOreRecipe(alpha.getItem(6),
-        //                "III",
-        //                "IWI",
-        //                "PPP",
-        //                'I', new ItemStack(Block.fenceIron),
-        //                'W', new ItemStack(Item.wheat),
-        //                'P', ItemPlate.getPlate(ItemPlate.EnumPlate.STEEL));
+        // EnumMachineDelta delta = EnumMachineDelta.CAGE;
+        // if (delta.register())
+        // CraftingPlugin.addShapedOreRecipe(alpha.getItem(6),
+        // "III",
+        // "IWI",
+        // "PPP",
+        // 'I', new ItemStack(Block.fenceIron),
+        // 'W', new ItemStack(Item.wheat),
+        // 'P', ItemPlate.getPlate(ItemPlate.EnumPlate.STEEL));
         EnumCart cart = EnumCart.TANK;
 
         if (cart.setup()) {
@@ -177,7 +198,14 @@ public class ModuleTransport extends RailcraftModule {
                 cart.setContents(getColorTank(EnumMachineBeta.TANK_IRON_GAUGE, EnumColor.WHITE, 1));
             } else {
                 CraftingPlugin.addShapedRecipe(
-                        cart.getCartItem(), "GGG", "GMG", "GGG", 'G', "blockGlassColorless", 'M', Items.minecart);
+                        cart.getCartItem(),
+                        "GGG",
+                        "GMG",
+                        "GGG",
+                        'G',
+                        "blockGlassColorless",
+                        'M',
+                        Items.minecart);
                 cart.setContents(new ItemStack(Blocks.glass, 8));
             }
             CraftingPlugin.addShapelessRecipe(new ItemStack(Items.minecart), cart.getCartItem());
@@ -187,8 +215,8 @@ public class ModuleTransport extends RailcraftModule {
         cart = EnumCart.CARGO;
 
         if (cart.setup()) {
-            CraftingPlugin.addShapedRecipe(
-                    cart.getCartItem(), "B", "M", 'B', Blocks.trapped_chest, 'M', Items.minecart);
+            CraftingPlugin
+                    .addShapedRecipe(cart.getCartItem(), "B", "M", 'B', Blocks.trapped_chest, 'M', Items.minecart);
             CraftingPlugin.addShapelessRecipe(new ItemStack(Items.minecart), cart.getCartItem());
             CraftingPlugin.addRecipe(new CartFilterRecipe());
         }
@@ -215,56 +243,20 @@ public class ModuleTransport extends RailcraftModule {
         return false;
     }
 
-    /* private boolean defineIronTank(EnumMachineBeta type, Object... recipe) {
-            if (defineTank(type, recipe)) {
-                RailcraftCraftingManager.blastFurnace.addRecipe(type.getItem(), true, false, 640, RailcraftItem.nugget.getStack(4, ItemNugget.EnumNugget.STEEL));
-                return true;
-            }
-            return false;
-        }
-
-         private void initIronTank() {
-            defineIronTank(EnumMachineBeta.TANK_IRON_WALL,
-                    "PP",
-                    "PP",
-                    'P', RailcraftItem.plate.getRecipeObject(EnumPlate.IRON));
-
-            defineIronTank(EnumMachineBeta.TANK_IRON_GAUGE,
-                    "GPG",
-                    "PGP",
-                    "GPG",
-                    'P', RailcraftItem.plate.getRecipeObject(EnumPlate.IRON),
-                    'G', "paneGlassColorless");
-
-            defineIronTank(EnumMachineBeta.TANK_IRON_VALVE,
-                    "GPG",
-                    "PLP",
-                    "GPG",
-                    'P', RailcraftItem.plate.getRecipeObject(EnumPlate.IRON),
-                    'L', new ItemStack(Blocks.lever),
-                    'G', new ItemStack(Blocks.iron_bars));
-        }
-
-        private void initSteelTank() {
-            defineTank(EnumMachineBeta.TANK_STEEL_WALL,
-                    "PP",
-                    "PP",
-                    'P', RailcraftItem.plate.getRecipeObject(EnumPlate.STEEL));
-
-            defineTank(EnumMachineBeta.TANK_STEEL_GAUGE,
-                    "GPG",
-                    "PGP",
-                    "GPG",
-                    'P', RailcraftItem.plate.getRecipeObject(EnumPlate.STEEL),
-                    'G', "paneGlassColorless");
-
-            defineTank(EnumMachineBeta.TANK_STEEL_VALVE,
-                    "GPG",
-                    "PLP",
-                    "GPG",
-                    'P', RailcraftItem.plate.getRecipeObject(EnumPlate.STEEL),
-                    'L', new ItemStack(Blocks.lever),
-                    'G', new ItemStack(Blocks.iron_bars));
-        }
-    */
+    /*
+     * private boolean defineIronTank(EnumMachineBeta type, Object... recipe) { if (defineTank(type, recipe)) {
+     * RailcraftCraftingManager.blastFurnace.addRecipe(type.getItem(), true, false, 640,
+     * RailcraftItem.nugget.getStack(4, ItemNugget.EnumNugget.STEEL)); return true; } return false; } private void
+     * initIronTank() { defineIronTank(EnumMachineBeta.TANK_IRON_WALL, "PP", "PP", 'P',
+     * RailcraftItem.plate.getRecipeObject(EnumPlate.IRON)); defineIronTank(EnumMachineBeta.TANK_IRON_GAUGE, "GPG",
+     * "PGP", "GPG", 'P', RailcraftItem.plate.getRecipeObject(EnumPlate.IRON), 'G', "paneGlassColorless");
+     * defineIronTank(EnumMachineBeta.TANK_IRON_VALVE, "GPG", "PLP", "GPG", 'P',
+     * RailcraftItem.plate.getRecipeObject(EnumPlate.IRON), 'L', new ItemStack(Blocks.lever), 'G', new
+     * ItemStack(Blocks.iron_bars)); } private void initSteelTank() { defineTank(EnumMachineBeta.TANK_STEEL_WALL, "PP",
+     * "PP", 'P', RailcraftItem.plate.getRecipeObject(EnumPlate.STEEL)); defineTank(EnumMachineBeta.TANK_STEEL_GAUGE,
+     * "GPG", "PGP", "GPG", 'P', RailcraftItem.plate.getRecipeObject(EnumPlate.STEEL), 'G', "paneGlassColorless");
+     * defineTank(EnumMachineBeta.TANK_STEEL_VALVE, "GPG", "PLP", "GPG", 'P',
+     * RailcraftItem.plate.getRecipeObject(EnumPlate.STEEL), 'L', new ItemStack(Blocks.lever), 'G', new
+     * ItemStack(Blocks.iron_bars)); }
+     */
 }

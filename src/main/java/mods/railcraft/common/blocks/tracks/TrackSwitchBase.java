@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.tracks;
 
@@ -12,6 +9,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.*;
+
 import mods.railcraft.api.tracks.ISwitchDevice;
 import mods.railcraft.api.tracks.ISwitchDevice.ArrowDirection;
 import mods.railcraft.api.tracks.ITrackSwitch;
@@ -21,6 +19,7 @@ import mods.railcraft.common.carts.LinkageManager;
 import mods.railcraft.common.carts.Train;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
@@ -31,6 +30,7 @@ import net.minecraftforge.common.util.ForgeDirection;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public abstract class TrackSwitchBase extends TrackBaseRailcraft implements ITrackSwitch {
+
     private static final int SPRING_DURATION = 30;
     protected boolean mirrored;
     protected boolean shouldSwitch;
@@ -70,20 +70,18 @@ public abstract class TrackSwitchBase extends TrackBaseRailcraft implements ITra
     }
 
     /**
-     * This is a method provided to the subclasses to determine more accurately for
-     * the passed in cart whether the switch is sprung or not. It caches the server
-     * responses for the clients to use.
-     * Note: This method should not modify any variables except the cache, we leave
-     * that to updateEntity().
+     * This is a method provided to the subclasses to determine more accurately for the passed in cart whether the
+     * switch is sprung or not. It caches the server responses for the clients to use. Note: This method should not
+     * modify any variables except the cache, we leave that to updateEntity().
      */
     protected boolean shouldSwitchForCart(EntityMinecart cart) {
         if (cart == null || Game.isNotHost(getWorld())) return isVisuallySwitched();
 
-        if (springingCarts.contains(cart.getPersistentID()))
-            return true; // Carts at the spring entrance always are on switched tracks
+        if (springingCarts.contains(cart.getPersistentID())) return true; // Carts at the spring entrance always are on
+                                                                          // switched tracks
 
-        if (lockingCarts.contains(cart.getPersistentID()))
-            return false; // Carts at the locking entrance always are on locked tracks
+        if (lockingCarts.contains(cart.getPersistentID())) return false; // Carts at the locking entrance always are on
+                                                                         // locked tracks
 
         boolean sameTrain = Train.areInSameTrain(LinkageManager.instance().getCartFromUUID(currentCart), cart);
 
@@ -157,10 +155,11 @@ public abstract class TrackSwitchBase extends TrackBaseRailcraft implements ITra
                 getWorld().setBlockMetadataWithNotify(x, y, z, EnumTrackMeta.EAST_WEST.ordinal(), 3);
         } else if (TrackTools.isRailBlockAt(getWorld(), x, y, z + 1)
                 && TrackTools.isRailBlockAt(getWorld(), x, y, z - 1)) {
+                    if (meta != EnumTrackMeta.NORTH_SOUTH.ordinal())
+                        getWorld().setBlockMetadataWithNotify(x, y, z, EnumTrackMeta.NORTH_SOUTH.ordinal(), 3);
+                } else
             if (meta != EnumTrackMeta.NORTH_SOUTH.ordinal())
                 getWorld().setBlockMetadataWithNotify(x, y, z, EnumTrackMeta.NORTH_SOUTH.ordinal(), 3);
-        } else if (meta != EnumTrackMeta.NORTH_SOUTH.ordinal())
-            getWorld().setBlockMetadataWithNotify(x, y, z, EnumTrackMeta.NORTH_SOUTH.ordinal(), 3);
     }
 
     protected void determineMirror() {
@@ -183,8 +182,8 @@ public abstract class TrackSwitchBase extends TrackBaseRailcraft implements ITra
                 if (otherMeta == EnumTrackMeta.NORTH_SOUTH.ordinal())
                     getWorld().setBlockMetadataWithNotify(ii, y, z, EnumTrackMeta.EAST_WEST.ordinal(), 3);
             }
-        } else if (meta == EnumTrackMeta.EAST_WEST.ordinal())
-            mirrored = TrackTools.isRailBlockAt(getWorld(), x, y, z - 1);
+        } else
+            if (meta == EnumTrackMeta.EAST_WEST.ordinal()) mirrored = TrackTools.isRailBlockAt(getWorld(), x, y, z - 1);
 
         if (prevValue != isMirrored()) sendUpdateToClient();
     }
@@ -305,8 +304,8 @@ public abstract class TrackSwitchBase extends TrackBaseRailcraft implements ITra
         // We only set sprung/locked when a cart enters our track, this is
         // mainly for visual purposes as the subclass's getBasicRailMetadata()
         // determines which direction the carts actually take.
-        List<UUID> cartsOnTrack =
-                CartUtils.getMinecartUUIDsAt(getWorld(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, 0.3f);
+        List<UUID> cartsOnTrack = CartUtils
+                .getMinecartUUIDsAt(getWorld(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, 0.3f);
 
         EntityMinecart bestCart = getBestCartForVisualState(cartsOnTrack);
 
@@ -384,8 +383,7 @@ public abstract class TrackSwitchBase extends TrackBaseRailcraft implements ITra
     public abstract ArrowDirection getWhiteSignDirection();
 
     public ISwitchDevice getSwitchDevice() {
-        TileEntity entity =
-                ((RailcraftTileEntity) this.tileEntity).getTileCache().getTileOnSide(getActuatorLocation());
+        TileEntity entity = ((RailcraftTileEntity) this.tileEntity).getTileCache().getTileOnSide(getActuatorLocation());
         if (entity instanceof ISwitchDevice) {
             return (ISwitchDevice) entity;
         }

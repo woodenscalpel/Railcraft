@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.render.carts;
 
@@ -13,6 +10,7 @@ import mods.railcraft.api.carts.locomotive.LocomotiveRenderType;
 import mods.railcraft.client.emblems.EmblemToolsClient;
 import mods.railcraft.common.carts.EntityLocomotive;
 import mods.railcraft.common.util.misc.EnumColor;
+
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.util.ResourceLocation;
 
@@ -37,8 +35,8 @@ public class LocomotiveRenderer extends CartModelRenderer {
             emblemTexture = EmblemToolsClient.packageManager.getEmblemTextureLocation(emblem);
 
         LocomotiveRenderType renderType = loco.getRenderType();
-        mods.railcraft.api.carts.locomotive.LocomotiveModelRenderer locoRenderer =
-                renderType.getRenderer(loco.getModel());
+        mods.railcraft.api.carts.locomotive.LocomotiveModelRenderer locoRenderer = renderType
+                .getRenderer(loco.getModel());
 
         locoRenderer.renderLocomotive(renderer, cart, primaryColor, secondaryColor, emblemTexture, light, time);
         return false;

@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.detector;
 
@@ -39,18 +36,15 @@ public class ItemDetector extends ItemBlock {
     }
 
     /**
-     * Called to actually place the block, after the location is determined and
-     * all permission checks have been made.
+     * Called to actually place the block, after the location is determined and all permission checks have been made.
      *
-     * @param stack The item stack that was used to place the block. This can be
-     * changed inside the method.
-     * @param player The player who is placing the block. Can be null if the
-     * block is not being placed by a player.
+     * @param stack    The item stack that was used to place the block. This can be changed inside the method.
+     * @param player   The player who is placing the block. Can be null if the block is not being placed by a player.
      * @param world
      * @param x
      * @param y
      * @param z
-     * @param side The side the player (or machine) right-clicked on.
+     * @param side     The side the player (or machine) right-clicked on.
      * @param hitX
      * @param hitY
      * @param hitZ
@@ -58,18 +52,8 @@ public class ItemDetector extends ItemBlock {
      * @return
      */
     @Override
-    public boolean placeBlockAt(
-            ItemStack stack,
-            EntityPlayer player,
-            World world,
-            int x,
-            int y,
-            int z,
-            int side,
-            float hitX,
-            float hitY,
-            float hitZ,
-            int metadata) {
+    public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side,
+            float hitX, float hitY, float hitZ, int metadata) {
         if (!world.setBlock(x, y, z, blockDetector, metadata, 3)) return false;
 
         TileEntity tile = world.getTileEntity(x, y, z);

@@ -1,20 +1,19 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine;
 
 import java.util.List;
+
 import mods.railcraft.api.helpers.StructureHelper;
 import mods.railcraft.common.blocks.machine.alpha.*;
 import mods.railcraft.common.blocks.machine.beta.TileBoilerFireboxFluid;
 import mods.railcraft.common.blocks.machine.beta.TileBoilerFireboxSolid;
 import mods.railcraft.common.blocks.machine.beta.TileTankBase;
 import mods.railcraft.common.blocks.machine.epsilon.TileFluxTransformer;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
@@ -26,22 +25,14 @@ import net.minecraftforge.fluids.FluidStack;
 public class MultiBlockHelper implements StructureHelper {
 
     @Override
-    public void placeSolidBoiler(
-            World world,
-            int x,
-            int y,
-            int z,
-            int width,
-            int height,
-            boolean highPressure,
-            int water,
-            List<ItemStack> fuel) {
+    public void placeSolidBoiler(World world, int x, int y, int z, int width, int height, boolean highPressure,
+            int water, List<ItemStack> fuel) {
         TileBoilerFireboxSolid.placeSolidBoiler(world, x, y, z, width, height, highPressure, water, fuel);
     }
 
     @Override
-    public void placeFluidBoiler(
-            World world, int x, int y, int z, int width, int height, boolean highPressure, int water, FluidStack fuel) {
+    public void placeFluidBoiler(World world, int x, int y, int z, int width, int height, boolean highPressure,
+            int water, FluidStack fuel) {
         TileBoilerFireboxFluid.placeFluidBoiler(world, x, y, z, width, height, highPressure, water, fuel);
     }
 
@@ -66,8 +57,8 @@ public class MultiBlockHelper implements StructureHelper {
     }
 
     @Override
-    public void placeRockCrusher(
-            World world, int x, int y, int z, int patternIndex, List<ItemStack> input, List<ItemStack> output) {
+    public void placeRockCrusher(World world, int x, int y, int z, int patternIndex, List<ItemStack> input,
+            List<ItemStack> output) {
         TileRockCrusher.placeRockCrusher(world, x, y, z, patternIndex, input, output);
     }
 

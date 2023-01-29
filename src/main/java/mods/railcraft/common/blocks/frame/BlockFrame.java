@@ -1,15 +1,10 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.frame;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.api.core.IPostConnection;
 import mods.railcraft.client.util.textures.TextureAtlasSheet;
 import mods.railcraft.common.blocks.ItemBlockRailcraft;
@@ -23,6 +18,7 @@ import mods.railcraft.common.items.RailcraftItem;
 import mods.railcraft.common.plugins.forestry.ForestryPlugin;
 import mods.railcraft.common.plugins.forge.*;
 import mods.railcraft.common.util.inventory.InvTools;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -33,6 +29,9 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info/>
@@ -46,27 +45,26 @@ public class BlockFrame extends Block implements IPostConnection {
     }
 
     public static void registerBlock() {
-        if (instance == null)
-            if (RailcraftConfig.isBlockEnabled("frame")) {
-                instance = new BlockFrame(Railcraft.proxy.getRenderId());
-                RailcraftRegistry.register(instance, ItemBlockRailcraft.class);
+        if (instance == null) if (RailcraftConfig.isBlockEnabled("frame")) {
+            instance = new BlockFrame(Railcraft.proxy.getRenderId());
+            RailcraftRegistry.register(instance, ItemBlockRailcraft.class);
 
-                //                HarvestPlugin.setHarvestLevel(instance, "crowbar", 0);
-                HarvestPlugin.setHarvestLevel(instance, "pickaxe", 1);
+            // HarvestPlugin.setHarvestLevel(instance, "crowbar", 0);
+            HarvestPlugin.setHarvestLevel(instance, "pickaxe", 1);
 
-                ForestryPlugin.addBackpackItem("builder", instance);
+            ForestryPlugin.addBackpackItem("builder", instance);
 
-                CraftingPlugin.addShapedRecipe(
-                        getItem(6),
-                        "PPP",
-                        "I I",
-                        "III",
-                        'P',
-                        RailcraftItem.plate,
-                        EnumPlate.IRON,
-                        'I',
-                        RailcraftItem.rebar);
-            }
+            CraftingPlugin.addShapedRecipe(
+                    getItem(6),
+                    "PPP",
+                    "I I",
+                    "III",
+                    'P',
+                    RailcraftItem.plate,
+                    EnumPlate.IRON,
+                    'I',
+                    RailcraftItem.rebar);
+        }
     }
 
     public static ItemStack getItem() {
@@ -145,20 +143,20 @@ public class BlockFrame extends Block implements IPostConnection {
     }
 
     @Override
-    public boolean onBlockActivated(
-            World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX,
+            float hitY, float hitZ) {
         ItemStack current = player.getCurrentEquippedItem();
-        if (current != null && InvTools.isItemEqualIgnoreNBT(current, EnumMachineDelta.WIRE.getItem()))
-            if (WorldPlugin.setBlock(
-                    world, x, y, z, EnumMachineDelta.WIRE.getBlock(), EnumMachineDelta.WIRE.ordinal(), 2)) {
-                TileEntity tile = WorldPlugin.getBlockTile(world, x, y, z);
-                if (tile instanceof TileWire) {
-                    TileWire wire = (TileWire) tile;
-                    wire.setAddon(AddonType.FRAME);
+        if (current != null && InvTools.isItemEqualIgnoreNBT(current, EnumMachineDelta.WIRE.getItem())) if (WorldPlugin
+                .setBlock(world, x, y, z, EnumMachineDelta.WIRE.getBlock(), EnumMachineDelta.WIRE.ordinal(), 2)) {
+                    TileEntity tile = WorldPlugin.getBlockTile(world, x, y, z);
+                    if (tile instanceof TileWire) {
+                        TileWire wire = (TileWire) tile;
+                        wire.setAddon(AddonType.FRAME);
+                    }
+                    if (!player.capabilities.isCreativeMode)
+                        player.setCurrentItemOrArmor(0, InvTools.depleteItem(current));
+                    return true;
                 }
-                if (!player.capabilities.isCreativeMode) player.setCurrentItemOrArmor(0, InvTools.depleteItem(current));
-                return true;
-            }
         return false;
     }
 

@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.beta;
 
@@ -15,10 +12,12 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
+
 import mods.railcraft.common.blocks.machine.TileMachineItem;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.player.EntityPlayer;
@@ -34,7 +33,7 @@ import net.minecraftforge.common.util.ForgeDirection;
  */
 public abstract class TileChestRailcraft extends TileMachineItem {
 
-    private static final ForgeDirection[] UP_DOWN_AXES = new ForgeDirection[] {UP, DOWN};
+    private static final ForgeDirection[] UP_DOWN_AXES = new ForgeDirection[] { UP, DOWN };
     private static final int TICK_PER_SYNC = 64;
     private ForgeDirection facing = ForgeDirection.EAST;
     public float lidAngle;
@@ -82,8 +81,8 @@ public abstract class TileChestRailcraft extends TileMachineItem {
         int y = yCoord;
         int z = zCoord;
         Iterator it = worldObj.getEntitiesWithinAABB(
-                        EntityOcelot.class, AxisAlignedBB.getBoundingBox(x, (y + 1), z, (x + 1), (y + 2), (z + 1)))
-                .iterator();
+                EntityOcelot.class,
+                AxisAlignedBB.getBoundingBox(x, (y + 1), z, (x + 1), (y + 2), (z + 1))).iterator();
         EntityOcelot cat;
         do {
             if (!it.hasNext()) return false;
@@ -103,14 +102,13 @@ public abstract class TileChestRailcraft extends TileMachineItem {
         this.prevLidAngle = this.lidAngle;
         float angleChange = 0.1F;
 
-        if (this.numUsingPlayers > 0 && this.lidAngle == 0.0F)
-            this.worldObj.playSoundEffect(
-                    xCoord + 0.5D,
-                    yCoord + 0.5D,
-                    zCoord + 0.5D,
-                    "random.chestopen",
-                    0.5F,
-                    this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
+        if (this.numUsingPlayers > 0 && this.lidAngle == 0.0F) this.worldObj.playSoundEffect(
+                xCoord + 0.5D,
+                yCoord + 0.5D,
+                zCoord + 0.5D,
+                "random.chestopen",
+                0.5F,
+                this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
 
         if (this.numUsingPlayers == 0 && this.lidAngle > 0.0F || this.numUsingPlayers > 0 && this.lidAngle < 1.0F) {
             float angle = this.lidAngle;
@@ -122,14 +120,13 @@ public abstract class TileChestRailcraft extends TileMachineItem {
 
             float openAngle = 0.5F;
 
-            if (this.lidAngle < openAngle && angle >= openAngle)
-                this.worldObj.playSoundEffect(
-                        xCoord + 0.5D,
-                        yCoord + 0.5D,
-                        zCoord + 0.5D,
-                        "random.chestclosed",
-                        0.5F,
-                        this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
+            if (this.lidAngle < openAngle && angle >= openAngle) this.worldObj.playSoundEffect(
+                    xCoord + 0.5D,
+                    yCoord + 0.5D,
+                    zCoord + 0.5D,
+                    "random.chestclosed",
+                    0.5F,
+                    this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
 
             if (this.lidAngle < 0.0F) this.lidAngle = 0.0F;
         }

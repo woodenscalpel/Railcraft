@@ -1,17 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.alpha;
 
-import buildcraft.api.statements.IActionExternal;
-import cofh.api.energy.EnergyStorage;
-import cofh.api.energy.IEnergyHandler;
 import java.util.*;
+
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.MultiBlockPattern;
@@ -21,6 +16,7 @@ import mods.railcraft.common.plugins.buildcraft.triggers.IHasWork;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -32,10 +28,15 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import buildcraft.api.statements.IActionExternal;
+import cofh.api.energy.EnergyStorage;
+import cofh.api.energy.IEnergyHandler;
+
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyHandler, IHasWork, ISidedInventory {
+
     public static final int SLOT_INPUT = 0;
     public static final int SLOT_OUTPUT = 9;
     private static final int PROCESS_TIME = 100;
@@ -53,63 +54,25 @@ public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyH
 
     static {
         char[][][] map1 = {
-            {
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'}
-            },
-            {
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'B', 'D', 'B', 'O'},
-                {'O', 'B', 'D', 'B', 'O'},
-                {'O', 'O', 'O', 'O', 'O'}
-            },
-            {
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'a', 'd', 'f', 'O'},
-                {'O', 'c', 'e', 'h', 'O'},
-                {'O', 'O', 'O', 'O', 'O'}
-            },
-            {
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O', 'O'}
-            }
-        };
+                { { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O', 'O' },
+                        { 'O', 'O', 'O', 'O', 'O' } },
+                { { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'B', 'D', 'B', 'O' }, { 'O', 'B', 'D', 'B', 'O' },
+                        { 'O', 'O', 'O', 'O', 'O' } },
+                { { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'a', 'd', 'f', 'O' }, { 'O', 'c', 'e', 'h', 'O' },
+                        { 'O', 'O', 'O', 'O', 'O' } },
+                { { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O', 'O' },
+                        { 'O', 'O', 'O', 'O', 'O' } } };
         patterns.add(new MultiBlockPattern(map1));
 
         char[][][] map2 = {
-            {
-                {'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O'}
-            },
-            {
-                {'O', 'O', 'O', 'O'},
-                {'O', 'B', 'B', 'O'},
-                {'O', 'D', 'D', 'O'},
-                {'O', 'B', 'B', 'O'},
-                {'O', 'O', 'O', 'O'}
-            },
-            {
-                {'O', 'O', 'O', 'O'},
-                {'O', 'a', 'f', 'O'},
-                {'O', 'b', 'g', 'O'},
-                {'O', 'c', 'h', 'O'},
-                {'O', 'O', 'O', 'O'}
-            },
-            {
-                {'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O'},
-                {'O', 'O', 'O', 'O'}
-            }
-        };
+                { { 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O' },
+                        { 'O', 'O', 'O', 'O' } },
+                { { 'O', 'O', 'O', 'O' }, { 'O', 'B', 'B', 'O' }, { 'O', 'D', 'D', 'O' }, { 'O', 'B', 'B', 'O' },
+                        { 'O', 'O', 'O', 'O' } },
+                { { 'O', 'O', 'O', 'O' }, { 'O', 'a', 'f', 'O' }, { 'O', 'b', 'g', 'O' }, { 'O', 'c', 'h', 'O' },
+                        { 'O', 'O', 'O', 'O' } },
+                { { 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O' }, { 'O', 'O', 'O', 'O' },
+                        { 'O', 'O', 'O', 'O' } } };
         patterns.add(new MultiBlockPattern(map2));
     }
 
@@ -125,8 +88,8 @@ public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyH
             energyStorage = new EnergyStorage(MAX_ENERGY, MAX_RECEIVE, KILLING_POWER_COST);
     }
 
-    public static void placeRockCrusher(
-            World world, int x, int y, int z, int patternIndex, List<ItemStack> input, List<ItemStack> output) {
+    public static void placeRockCrusher(World world, int x, int y, int z, int patternIndex, List<ItemStack> input,
+            List<ItemStack> output) {
         MultiBlockPattern pattern = TileRockCrusher.patterns.get(patternIndex);
         Map<Character, Integer> blockMapping = new HashMap<Character, Integer>();
         blockMapping.put('B', EnumMachineAlpha.ROCK_CRUSHER.ordinal());
@@ -183,9 +146,8 @@ public class TileRockCrusher extends TileMultiBlockInventory implements IEnergyH
 
     private boolean useMasterEnergy(int amount, boolean doRemove) {
         TileRockCrusher mBlock = (TileRockCrusher) getMasterBlock();
-        if (mBlock != null)
-            if (mBlock.energyStorage == null) return true;
-            else return mBlock.energyStorage.extractEnergy(amount, !doRemove) == amount;
+        if (mBlock != null) if (mBlock.energyStorage == null) return true;
+        else return mBlock.energyStorage.extractEnergy(amount, !doRemove) == amount;
         return false;
     }
 

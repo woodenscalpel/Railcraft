@@ -1,16 +1,13 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.detector;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import java.util.ArrayList;
 import java.util.List;
+
 import mods.railcraft.client.util.textures.TextureAtlasSheet;
 import mods.railcraft.common.blocks.tracks.TrackTools;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -21,6 +18,7 @@ import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -38,6 +36,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import cpw.mods.fml.common.registry.GameRegistry;
+
 public class BlockDetector extends BlockContainer {
 
     private static BlockDetector block;
@@ -47,7 +47,7 @@ public class BlockDetector extends BlockContainer {
             block = new BlockDetector();
             RailcraftRegistry.register(block, ItemDetector.class);
 
-            //            HarvestPlugin.setHarvestLevel(block, "pickaxe", 2);
+            // HarvestPlugin.setHarvestLevel(block, "pickaxe", 2);
             HarvestPlugin.setHarvestLevel(block, "crowbar", 0);
 
             for (EnumDetector d : EnumDetector.VALUES) {
@@ -103,8 +103,7 @@ public class BlockDetector extends BlockContainer {
     public ArrayList<ItemStack> getDrops(World world, int i, int j, int k, int md, int fortune) {
         TileEntity tile = world.getTileEntity(i, j, k);
         ArrayList<ItemStack> items = new ArrayList<ItemStack>();
-        if (tile instanceof TileDetector)
-            items.add(((TileDetector) tile).getDetector().getType().getItem());
+        if (tile instanceof TileDetector) items.add(((TileDetector) tile).getDetector().getType().getItem());
         return items;
     }
 
@@ -142,8 +141,8 @@ public class BlockDetector extends BlockContainer {
     }
 
     @Override
-    public boolean onBlockActivated(
-            World world, int x, int y, int z, EntityPlayer player, int side, float u1, float u2, float u3) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float u1, float u2,
+            float u3) {
         if (player.isSneaking()) return false;
         ItemStack current = player.getCurrentEquippedItem();
         if (current != null) {
@@ -217,8 +216,7 @@ public class BlockDetector extends BlockContainer {
     @Override
     public float getBlockHardness(World world, int x, int y, int z) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileDetector)
-            return ((TileDetector) tile).getDetector().getHardness();
+        if (tile instanceof TileDetector) return ((TileDetector) tile).getDetector().getHardness();
         return super.getBlockHardness(world, x, y, z);
     }
 
@@ -228,11 +226,9 @@ public class BlockDetector extends BlockContainer {
     }
 
     /**
-     * Returns true if the block is emitting indirect/weak redstone power on the
-     * specified side. If isBlockNormalCube returns true, standard redstone
-     * propagation rules will apply instead and this will not be called. Args:
-     * World, X, Y, Z, side. Note that the side is reversed - eg it is 1 (up)
-     * when checking the bottom of the block.
+     * Returns true if the block is emitting indirect/weak redstone power on the specified side. If isBlockNormalCube
+     * returns true, standard redstone propagation rules will apply instead and this will not be called. Args: World, X,
+     * Y, Z, side. Note that the side is reversed - eg it is 1 (up) when checking the bottom of the block.
      */
     @Override
     public int isProvidingWeakPower(IBlockAccess world, int x, int y, int z, int side) {
@@ -245,9 +241,8 @@ public class BlockDetector extends BlockContainer {
     }
 
     /**
-     * Returns true if the block is emitting direct/strong redstone power on the
-     * specified side. Args: World, X, Y, Z, side. Note that the side is
-     * reversed - eg it is 1 (up) when checking the bottom of the block.
+     * Returns true if the block is emitting direct/strong redstone power on the specified side. Args: World, X, Y, Z,
+     * side. Note that the side is reversed - eg it is 1 (up) when checking the bottom of the block.
      */
     @Override
     public int isProvidingStrongPower(IBlockAccess world, int x, int y, int z, int side) {

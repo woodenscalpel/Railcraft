@@ -1,17 +1,13 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.delta;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
+
 import mods.railcraft.client.util.textures.TextureAtlasSheet;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.BoundingBoxManager;
@@ -22,19 +18,25 @@ import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.modules.ModuleManager.Module;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 /**
  *
  * @author CovertJaguar
  */
 public enum EnumMachineDelta implements IEnumMachine {
+
     WIRE(Module.ELECTRICITY, "wire", TileWire.class, 1, 1, 0, 0, 0, 0, 0, 0),
     CAGE(Module.TRANSPORT, "cage", TileCage.class, 4, 1, 0, 1, 2, 2, 2, 2, 3);
+
     private final Module module;
     private final String tag;
     private final Class<? extends TileMachineBase> tile;
@@ -46,7 +48,7 @@ public enum EnumMachineDelta implements IEnumMachine {
 
     static {
         creativeList.add(WIRE);
-        //        creativeList.add(SAWMILL);
+        // creativeList.add(SAWMILL);
 
         BoundingBoxManager.registerBoundingBox(WIRE, new TileWire.WireBoundingBox());
     }
@@ -121,8 +123,7 @@ public enum EnumMachineDelta implements IEnumMachine {
     public TileMachineBase getTileEntity() {
         try {
             return tile.newInstance();
-        } catch (Exception ex) {
-        }
+        } catch (Exception ex) {}
         return null;
     }
 

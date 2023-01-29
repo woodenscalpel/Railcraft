@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.effects;
 
@@ -13,11 +10,13 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Random;
 import java.util.Set;
+
 import mods.railcraft.common.items.ItemGoggles;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.PacketEffect;
 import mods.railcraft.common.util.network.PacketEffect.Effect;
 import mods.railcraft.common.util.sounds.SoundHelper;
+
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
@@ -28,6 +27,7 @@ import net.minecraft.world.World;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class CommonEffectProxy implements IEffectManager {
+
     protected static final Random rand = new Random();
 
     @Override
@@ -44,8 +44,7 @@ public class CommonEffectProxy implements IEffectManager {
             data.writeDouble(destY);
             data.writeDouble(destZ);
             pkt.sendPacket(entity.worldObj, entity.posX, entity.posY, entity.posZ);
-        } catch (IOException ex) {
-        }
+        } catch (IOException ex) {}
 
         SoundHelper.playSoundAtEntity(entity, "mob.endermen.portal", 0.25F, 1.0F);
     }
@@ -61,15 +60,14 @@ public class CommonEffectProxy implements IEffectManager {
             data.writeInt(y);
             data.writeInt(z);
             pkt.sendPacket(world, x, y, z);
-        } catch (IOException ex) {
-        }
+        } catch (IOException ex) {}
 
         SoundHelper.playSound(world, x, y, z, "mob.endermen.portal", 0.25F, 1.0F);
     }
 
     @Override
-    public void fireSparkEffect(
-            World world, double startX, double startY, double startZ, double endX, double endY, double endZ) {
+    public void fireSparkEffect(World world, double startX, double startY, double startZ, double endX, double endY,
+            double endZ) {
         if (Game.isNotHost(world)) return;
 
         try {
@@ -82,8 +80,7 @@ public class CommonEffectProxy implements IEffectManager {
             data.writeDouble(endY);
             data.writeDouble(endZ);
             pkt.sendPacket(world, startX, startY, startZ);
-        } catch (IOException ex) {
-        }
+        } catch (IOException ex) {}
     }
 
     @Override

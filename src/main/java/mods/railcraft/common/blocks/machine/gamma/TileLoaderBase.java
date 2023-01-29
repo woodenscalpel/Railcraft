@@ -1,14 +1,10 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.gamma;
 
-import buildcraft.api.statements.IActionExternal;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.common.blocks.machine.TileMachineItem;
 import mods.railcraft.common.blocks.tracks.TrackTools;
@@ -19,16 +15,20 @@ import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.inventory.PhantomInventory;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import buildcraft.api.statements.IActionExternal;
+
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public abstract class TileLoaderBase extends TileMachineItem implements IHasCart, IHasWork {
+
     public static final float STOP_VELOCITY = 0.02f;
     public static final int PAUSE_DELAY = 4;
     private final PhantomInventory invCarts = new PhantomInventory(2, this);
@@ -119,8 +119,7 @@ public abstract class TileLoaderBase extends TileMachineItem implements IHasCart
         if (!isPowered()) return false;
         ForgeDirection opSide = MiscTools.getOppositeSide(side);
         Block block = WorldPlugin.getBlockOnSide(worldObj, xCoord, yCoord, zCoord, opSide);
-        return TrackTools.isRailBlock(block)
-                || block == Blocks.redstone_wire
+        return TrackTools.isRailBlock(block) || block == Blocks.redstone_wire
                 || block == Blocks.powered_repeater
                 || block == Blocks.unpowered_repeater;
     }

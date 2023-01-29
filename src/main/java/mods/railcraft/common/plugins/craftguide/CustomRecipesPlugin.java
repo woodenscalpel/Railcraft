@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.plugins.craftguide;
 
@@ -15,9 +12,11 @@ import mods.railcraft.common.items.ItemTicketGold;
 import mods.railcraft.common.items.RailcraftPartItems;
 import mods.railcraft.common.modules.ModuleManager.Module;
 import mods.railcraft.common.util.inventory.InvTools;
+
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+
 import uristqwerty.CraftGuide.api.ItemSlot;
 import uristqwerty.CraftGuide.api.RecipeGenerator;
 import uristqwerty.CraftGuide.api.RecipeProvider;
@@ -38,8 +37,8 @@ public class CustomRecipesPlugin implements RecipeProvider {
 
         for (int x = 0; x < 3; x++) {
             for (int y = 0; y < 3; y++) {
-                slots[1 + x + y * 3] =
-                        new ItemSlot(3 + x * 18, 3 + y * 18, 16, 16, true).setSlotType(SlotType.INPUT_SLOT);
+                slots[1 + x + y * 3] = new ItemSlot(3 + x * 18, 3 + y * 18, 16, 16, true)
+                        .setSlotType(SlotType.INPUT_SLOT);
             }
         }
     }

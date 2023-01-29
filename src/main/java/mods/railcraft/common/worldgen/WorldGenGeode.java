@@ -1,20 +1,19 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.worldgen;
 
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
+
 import mods.railcraft.common.blocks.ore.BlockOre;
 import mods.railcraft.common.blocks.ore.EnumOre;
 import mods.railcraft.common.plugins.forge.OreDictPlugin;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -72,23 +71,23 @@ public class WorldGenGeode extends WorldGenerator {
     }
 
     private void placeAir(World world, Random rand, int x, int y, int z) {
-        //        if (!world.blockExists(x, y, z)) {
-        //            return;
-        //        }
+        // if (!world.blockExists(x, y, z)) {
+        // return;
+        // }
         if (isReplaceable(world, x, y, z)) world.setBlock(x, y, z, Blocks.air, 0, 2);
     }
 
     private void placeStone(World world, Random rand, int x, int y, int z) {
-        //        if (!world.blockExists(x, y, z)) {
-        //            return;
-        //        }
+        // if (!world.blockExists(x, y, z)) {
+        // return;
+        // }
         if (isReplaceable(world, x, y, z)) world.setBlock(x, y, z, blockStone, meta, 2);
     }
 
     private void placeOre(World world, Random rand, int x, int y, int z) {
-        //        if (!world.blockExists(x, y, z)) {
-        //            return;
-        //        }
+        // if (!world.blockExists(x, y, z)) {
+        // return;
+        // }
         if (WorldPlugin.getBlock(world, x, y, z) == blockStone) {
             double chance = rand.nextDouble();
             if (chance <= 0.002 && EnumOre.DARK_DIAMOND.isEnabled())

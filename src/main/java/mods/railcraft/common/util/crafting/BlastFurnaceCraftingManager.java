@@ -1,16 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.crafting;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 import mods.railcraft.api.crafting.IBlastFurnaceCraftingManager;
 import mods.railcraft.api.crafting.IBlastFurnaceRecipe;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
@@ -20,6 +18,7 @@ import mods.railcraft.common.items.firestone.ItemFirestoneCracked;
 import mods.railcraft.common.items.firestone.ItemFirestoneRefined;
 import mods.railcraft.common.plugins.thaumcraft.ThaumcraftPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -38,6 +37,7 @@ public class BlastFurnaceCraftingManager implements IBlastFurnaceCraftingManager
     public List<ItemStack> getFuels() {
         if (fuels == null) {
             List<ItemStack> fuel = new ArrayList<ItemStack>() {
+
                 @Override
                 public boolean add(ItemStack e) {
                     if (e == null) return false;
@@ -70,8 +70,8 @@ public class BlastFurnaceCraftingManager implements IBlastFurnaceCraftingManager
         private final int cookTime;
         private final ItemStack output;
 
-        public BlastFurnaceRecipe(
-                ItemStack input, boolean matchDamage, boolean matchNBT, int cookTime, ItemStack output) {
+        public BlastFurnaceRecipe(ItemStack input, boolean matchDamage, boolean matchNBT, int cookTime,
+                ItemStack output) {
             this.input = input.copy();
             this.matchDamage = matchDamage;
             this.matchNBT = matchNBT;
@@ -81,10 +81,10 @@ public class BlastFurnaceCraftingManager implements IBlastFurnaceCraftingManager
 
         @Override
         public boolean isRoomForOutput(ItemStack outputSlot) {
-            if ((outputSlot == null
-                    || output == null
+            if ((outputSlot == null || output == null
                     || (InvTools.isItemEqual(outputSlot, output)
-                            && outputSlot.stackSize + output.stackSize <= output.getMaxStackSize()))) return true;
+                            && outputSlot.stackSize + output.stackSize <= output.getMaxStackSize())))
+                return true;
             return false;
         }
 

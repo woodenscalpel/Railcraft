@@ -1,29 +1,30 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.network;
+
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.util.Arrays;
+
+import mods.railcraft.common.util.misc.Game;
+import mods.railcraft.common.util.network.RailcraftPacket.PacketType;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.network.NetHandlerPlayServer;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.network.FMLEventChannel;
 import cpw.mods.fml.common.network.FMLNetworkEvent.ClientCustomPacketEvent;
 import cpw.mods.fml.common.network.FMLNetworkEvent.ServerCustomPacketEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.util.Arrays;
-import mods.railcraft.common.util.misc.Game;
-import mods.railcraft.common.util.network.RailcraftPacket.PacketType;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.network.NetHandlerPlayServer;
 
 public class PacketHandler {
+
     public static final PacketHandler INSTANCE = new PacketHandler();
     private static final PacketType[] packetTypes = PacketType.values();
     final FMLEventChannel channel;
@@ -50,7 +51,7 @@ public class PacketHandler {
         byte[] data = new byte[event.packet.payload().readableBytes()];
         event.packet.payload().readBytes(data);
 
-        //        System.out.println("Packet Received!");
+        // System.out.println("Packet Received!");
 
         onPacketData(data, null);
     }
@@ -64,7 +65,7 @@ public class PacketHandler {
 
             if (packetID < 0) return;
 
-            //            System.out.println("Packet Received: " + packetID);
+            // System.out.println("Packet Received: " + packetID);
             PacketType type = packetTypes[packetID];
             switch (type) {
                 case TILE_ENTITY:
@@ -103,7 +104,8 @@ public class PacketHandler {
                     break;
                 case ITEM_NBT:
                     pkt = new PacketCurrentItemNBT(
-                            (EntityPlayer) player, ((EntityPlayer) player).getCurrentEquippedItem());
+                            (EntityPlayer) player,
+                            ((EntityPlayer) player).getCurrentEquippedItem());
                     break;
                 case KEY_PRESS:
                     pkt = new PacketKeyPress(player);

@@ -1,16 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.aesthetics.wall;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
 import java.util.List;
+
 import mods.railcraft.client.sounds.RailcraftSound;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -19,6 +15,7 @@ import mods.railcraft.common.plugins.forge.CreativePlugin;
 import mods.railcraft.common.plugins.forge.HarvestPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
+
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -28,6 +25,9 @@ import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
 
 public class BlockRailcraftWall extends BlockWall {
 
@@ -118,6 +118,7 @@ public class BlockRailcraftWall extends BlockWall {
 
     /**
      * The type of render function that is called for this block
+     * 
      * @return
      */
     @Override
@@ -159,14 +160,13 @@ public class BlockRailcraftWall extends BlockWall {
     }
 
     /**
-     * Determines if a torch can be placed on the top surface of this block.
-     * Useful for creating your own block that torches can be on, such as
-     * fences.
+     * Determines if a torch can be placed on the top surface of this block. Useful for creating your own block that
+     * torches can be on, such as fences.
      *
      * @param world The current world
-     * @param x X Position
-     * @param y Y Position
-     * @param z Z Position
+     * @param x     X Position
+     * @param y     Y Position
+     * @param z     Z Position
      * @return True to allow the torch to be placed
      */
     @Override
@@ -189,8 +189,8 @@ public class BlockRailcraftWall extends BlockWall {
     }
 
     @Override
-    public float getExplosionResistance(
-            Entity entity, World world, int x, int y, int z, double explosionX, double explosionY, double explosionZ) {
+    public float getExplosionResistance(Entity entity, World world, int x, int y, int z, double explosionX,
+            double explosionY, double explosionZ) {
         int meta = world.getBlockMetadata(x, y, z);
         WallInfo wall = proxy.fromMeta(meta);
         return wall.getExplosionResistance(entity);

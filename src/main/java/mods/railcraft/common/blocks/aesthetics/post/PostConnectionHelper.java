@@ -1,15 +1,13 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.aesthetics.post;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import mods.railcraft.api.core.IPostConnection;
 import mods.railcraft.api.core.IPostConnection.ConnectStyle;
 import mods.railcraft.common.blocks.aesthetics.lantern.BlockLantern;
@@ -17,6 +15,7 @@ import mods.railcraft.common.blocks.signals.ISignalTile;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSign;
 import net.minecraft.init.Blocks;
@@ -107,10 +106,10 @@ public class PostConnectionHelper {
         if (world.isSideSolid(x2, y2, z2, oppositeSide, false)) return ConnectStyle.TWO_THIN;
 
         // RedPower 2 compat
-        //        if (Blocks.blocksList[id] != null &&
+        // if (Blocks.blocksList[id] != null &&
         // Blocks.blocksList[id].getClass().getSimpleName().equals("BlockShapedLamp")) {
-        //            return true;
-        //        }
+        // return true;
+        // }
 
         return ConnectStyle.NONE;
     }

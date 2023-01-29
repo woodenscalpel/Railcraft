@@ -1,22 +1,23 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.collections;
 
-import cpw.mods.fml.common.registry.GameData;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+
 import org.apache.logging.log4j.Level;
+
+import cpw.mods.fml.common.registry.GameData;
 
 /**
  *
@@ -25,7 +26,9 @@ import org.apache.logging.log4j.Level;
 public class BlockItemListParser {
 
     public enum ParseType {
+
         ITEM {
+
             @Override
             public ItemKey makeKey(String entry) throws IllegalArgumentException {
                 String[] tokens = entry.split("#");
@@ -37,6 +40,7 @@ public class BlockItemListParser {
             }
         },
         BLOCK {
+
             @Override
             public BlockKey makeKey(String entry) throws IllegalArgumentException {
                 String[] tokens = entry.split("#");
@@ -52,6 +56,7 @@ public class BlockItemListParser {
     };
 
     public enum ValueType {
+
         INT {
 
             @Override
@@ -86,8 +91,8 @@ public class BlockItemListParser {
         }
     }
 
-    public static <T, V> Map<T, V> parseDictionary(
-            String list, String logMessage, ParseType type, ValueType valueType) {
+    public static <T, V> Map<T, V> parseDictionary(String list, String logMessage, ParseType type,
+            ValueType valueType) {
         try {
             Map<T, V> map = new HashMap<T, V>();
             for (String segment : list.replaceAll("[{} ]", "").split("[,;]+")) {

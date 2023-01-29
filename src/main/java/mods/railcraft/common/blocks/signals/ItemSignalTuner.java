@@ -1,15 +1,10 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.signals;
 
-import cpw.mods.fml.common.Optional;
-import ic2.api.item.IBoxable;
 import mods.railcraft.api.core.WorldCoordinate;
 import mods.railcraft.api.signals.IControllerTile;
 import mods.railcraft.api.signals.IReceiverTile;
@@ -22,6 +17,7 @@ import mods.railcraft.common.items.ItemRailcraft;
 import mods.railcraft.common.items.RailcraftItem;
 import mods.railcraft.common.plugins.forge.*;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -31,8 +27,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 
+import cpw.mods.fml.common.Optional;
+import ic2.api.item.IBoxable;
+
 @Optional.Interface(iface = "ic2.api.item.IBoxable", modid = "IC2")
 public class ItemSignalTuner extends ItemRailcraft implements IBoxable, IActivationBlockingItem {
+
     private static Item item;
 
     private ItemSignalTuner() {
@@ -75,17 +75,8 @@ public class ItemSignalTuner extends ItemRailcraft implements IBoxable, IActivat
     }
 
     @Override
-    public boolean onItemUse(
-            ItemStack item,
-            EntityPlayer player,
-            World world,
-            int i,
-            int j,
-            int k,
-            int side,
-            float par8,
-            float par9,
-            float par10) {
+    public boolean onItemUse(ItemStack item, EntityPlayer player, World world, int i, int j, int k, int side,
+            float par8, float par9, float par10) {
         if (Game.isHost(world) && item.hasTagCompound() && player.isSneaking()) {
             WorldCoordinate cPos = getControllerData(item);
             if (cPos != null) {
@@ -133,12 +124,16 @@ public class ItemSignalTuner extends ItemRailcraft implements IBoxable, IActivat
                     SignalController controller = ((IControllerTile) tile).getController();
                     if (cPos == null || (i != cPos.x || j != cPos.y || k != cPos.z)) {
                         ChatPlugin.sendLocalizedChatFromServer(
-                                player, "railcraft.gui.tuner.start", controller.getLocalizationTag());
+                                player,
+                                "railcraft.gui.tuner.start",
+                                controller.getLocalizationTag());
                         setControllerData(item, tile);
                         controller.startPairing();
                     } else {
                         ChatPlugin.sendLocalizedChatFromServer(
-                                player, "railcraft.gui.tuner.stop", controller.getLocalizationTag());
+                                player,
+                                "railcraft.gui.tuner.stop",
+                                controller.getLocalizationTag());
                         controller.endPairing();
                         item.setTagCompound(null);
                     }

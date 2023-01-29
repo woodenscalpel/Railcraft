@@ -1,26 +1,24 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.fluids;
 
-import com.google.common.collect.ForwardingList;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import mods.railcraft.common.fluids.tanks.StandardTank;
 import mods.railcraft.common.plugins.forge.NBTPlugin;
 import mods.railcraft.common.plugins.forge.NBTPlugin.NBTList;
 import mods.railcraft.common.util.misc.AdjacentTileCache;
 import mods.railcraft.common.util.misc.ITileFilter;
 import mods.railcraft.common.util.network.PacketBuilder;
+
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
@@ -30,11 +28,15 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 
+import com.google.common.collect.ForwardingList;
+
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class TankManager extends ForwardingList<StandardTank> implements IFluidHandler, List<StandardTank> {
+
     public static final ITileFilter TANK_FILTER = new ITileFilter() {
+
         @Override
         public boolean matches(TileEntity tile) {
             return tile instanceof IFluidHandler;
@@ -137,9 +139,11 @@ public class TankManager extends ForwardingList<StandardTank> implements IFluidH
         }
 
         player.sendProgressBarUpdate(container, tankIndex * NETWORK_DATA + 0, fluidId);
-        PacketBuilder.instance()
-                .sendGuiIntegerPacket(
-                        (EntityPlayerMP) player, container.windowId, tankIndex * NETWORK_DATA + 1, fluidAmount);
+        PacketBuilder.instance().sendGuiIntegerPacket(
+                (EntityPlayerMP) player,
+                container.windowId,
+                tankIndex * NETWORK_DATA + 1,
+                fluidAmount);
         PacketBuilder.instance()
                 .sendGuiIntegerPacket((EntityPlayerMP) player, container.windowId, tankIndex * NETWORK_DATA + 2, color);
 
@@ -168,16 +172,17 @@ public class TankManager extends ForwardingList<StandardTank> implements IFluidH
                 PacketBuilder.instance()
                         .sendGuiIntegerPacket(player, container.windowId, tankIndex * NETWORK_DATA + 1, fluidAmount);
             } else if (fluidStack != null && tank.renderData.fluid != null) {
-                if (fluidStack.getFluid() != tank.renderData.fluid)
-                    crafter.sendProgressBarUpdate(
-                            container, tankIndex * NETWORK_DATA + 0, FluidHelper.getFluidId(fluidStack));
-                if (fluidStack.amount != tank.renderData.amount)
-                    PacketBuilder.instance()
-                            .sendGuiIntegerPacket(
-                                    player, container.windowId, tankIndex * NETWORK_DATA + 1, fluidStack.amount);
-                if (color != pColor)
-                    PacketBuilder.instance()
-                            .sendGuiIntegerPacket(player, container.windowId, tankIndex * NETWORK_DATA + 2, color);
+                if (fluidStack.getFluid() != tank.renderData.fluid) crafter.sendProgressBarUpdate(
+                        container,
+                        tankIndex * NETWORK_DATA + 0,
+                        FluidHelper.getFluidId(fluidStack));
+                if (fluidStack.amount != tank.renderData.amount) PacketBuilder.instance().sendGuiIntegerPacket(
+                        player,
+                        container.windowId,
+                        tankIndex * NETWORK_DATA + 1,
+                        fluidStack.amount);
+                if (color != pColor) PacketBuilder.instance()
+                        .sendGuiIntegerPacket(player, container.windowId, tankIndex * NETWORK_DATA + 2, color);
             }
         }
 
@@ -270,8 +275,8 @@ public class TankManager extends ForwardingList<StandardTank> implements IFluidH
         if (fluidStack != null && fluidStack.amount > capacity) fluidStack.amount = capacity;
     }
 
-    public void outputLiquid(
-            AdjacentTileCache cache, ITileFilter filter, ForgeDirection[] sides, int tankIndex, int amount) {
+    public void outputLiquid(AdjacentTileCache cache, ITileFilter filter, ForgeDirection[] sides, int tankIndex,
+            int amount) {
         for (ForgeDirection side : sides) {
             TileEntity tile = cache.getTileOnSide(side);
             if (!filter.matches(tile)) continue;

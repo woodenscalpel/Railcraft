@@ -1,15 +1,13 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.beta;
 
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.item.ItemStack;
 
 /**
@@ -29,13 +27,12 @@ public class TileChestVoid extends TileChestRailcraft {
     public void updateEntity() {
         super.updateEntity();
 
-        if (clock % TICK_PER_VOID == 0 && Game.isHost(worldObj))
-            for (int slot = 0; slot < getSizeInventory(); slot++) {
-                ItemStack stack = getStackInSlot(slot);
-                if (stack != null) {
-                    decrStackSize(slot, 1);
-                    break;
-                }
+        if (clock % TICK_PER_VOID == 0 && Game.isHost(worldObj)) for (int slot = 0; slot < getSizeInventory(); slot++) {
+            ItemStack stack = getStackInSlot(slot);
+            if (stack != null) {
+                decrStackSize(slot, 1);
+                break;
             }
+        }
     }
 }

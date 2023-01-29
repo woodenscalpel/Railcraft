@@ -1,18 +1,17 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.aesthetics.cube;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.modules.ModuleManager.Module;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
@@ -21,6 +20,7 @@ import net.minecraft.util.IIcon;
  * @author CovertJaguar
  */
 public enum EnumCube {
+
     COKE_BLOCK(Module.FACTORY, "coke", new FlammableCube(5, 10), 2f, 10f),
     CONCRETE_BLOCK(Module.STRUCTURES, "concrete", new SimpleCube(), 3f, 15f),
     STEEL_BLOCK(Module.FACTORY, "steel", new SimpleCube(), 5f, 15f),
@@ -34,8 +34,8 @@ public enum EnumCube {
     CREOSOTE_BLOCK(Module.STRUCTURES, "creosote", new FlammableCube(5, 300), 3f, 10f),
     COPPER_BLOCK(Module.FACTORY, "copper", new SimpleCube(), 3f, 10f),
     TIN_BLOCK(Module.FACTORY, "tin", new SimpleCube(), 3f, 10f),
-    LEAD_BLOCK(Module.FACTORY, "lead", new SimpleCube(), 2f, 20f),
-    ;
+    LEAD_BLOCK(Module.FACTORY, "lead", new SimpleCube(), 2f, 20f),;
+
     public static final EnumCube[] VALUES = values();
     private final Module module;
     private final String tag;
@@ -91,8 +91,7 @@ public enum EnumCube {
     }
 
     public boolean isEnabled() {
-        return getModule() != null
-                && ModuleManager.isModuleLoaded(getModule())
+        return getModule() != null && ModuleManager.isModuleLoaded(getModule())
                 && RailcraftConfig.isSubBlockEnabled(getTag())
                 && BlockCube.getBlock() != null;
     }

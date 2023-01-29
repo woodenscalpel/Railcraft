@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.render.carts;
 
@@ -13,12 +10,14 @@ import mods.railcraft.api.carts.locomotive.LocomotiveModelRenderer;
 import mods.railcraft.common.core.RailcraftConstants;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.MiscTools;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -38,15 +37,20 @@ public class LocomotiveRendererDefault extends LocomotiveModelRenderer {
     private float emblemOffsetZ = -0.515F;
 
     public LocomotiveRendererDefault(String rendererTag, String modelTag, ModelBase model) {
-        this(rendererTag, modelTag, model, new ResourceLocation[] {
-            new ResourceLocation(RailcraftConstants.LOCOMOTIVE_TEXTURE_FOLDER + modelTag + ".primary.png"),
-            new ResourceLocation(RailcraftConstants.LOCOMOTIVE_TEXTURE_FOLDER + modelTag + ".secondary.png"),
-            new ResourceLocation(RailcraftConstants.LOCOMOTIVE_TEXTURE_FOLDER + modelTag + ".nocolor.png")
-        });
+        this(
+                rendererTag,
+                modelTag,
+                model,
+                new ResourceLocation[] {
+                        new ResourceLocation(RailcraftConstants.LOCOMOTIVE_TEXTURE_FOLDER + modelTag + ".primary.png"),
+                        new ResourceLocation(
+                                RailcraftConstants.LOCOMOTIVE_TEXTURE_FOLDER + modelTag + ".secondary.png"),
+                        new ResourceLocation(
+                                RailcraftConstants.LOCOMOTIVE_TEXTURE_FOLDER + modelTag + ".nocolor.png") });
     }
 
-    public LocomotiveRendererDefault(
-            String rendererTag, String modelTag, ModelBase model, ResourceLocation[] textures) {
+    public LocomotiveRendererDefault(String rendererTag, String modelTag, ModelBase model,
+            ResourceLocation[] textures) {
         super(rendererTag);
         this.modelTag = modelTag;
         this.model = model;
@@ -81,14 +85,8 @@ public class LocomotiveRendererDefault extends LocomotiveModelRenderer {
     }
 
     @Override
-    public void renderLocomotive(
-            IRenderer renderer,
-            EntityMinecart cart,
-            int primaryColor,
-            int secondaryColor,
-            ResourceLocation emblemTexture,
-            float light,
-            float time) {
+    public void renderLocomotive(IRenderer renderer, EntityMinecart cart, int primaryColor, int secondaryColor,
+            ResourceLocation emblemTexture, float light, float time) {
         GL11.glPushMatrix();
         GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
         GL11.glEnable(GL11.GL_BLEND);
@@ -116,10 +114,10 @@ public class LocomotiveRendererDefault extends LocomotiveModelRenderer {
             renderer.bindTex(emblemTexture);
             Tessellator tess = Tessellator.instance;
 
-            //            float size = 0.22F;
-            //            float offsetX = -0.25F;
-            //            float offsetY = -0.25F;
-            //            float offsetZ = -0.46F;
+            // float size = 0.22F;
+            // float offsetX = -0.25F;
+            // float offsetY = -0.25F;
+            // float offsetZ = -0.46F;
             tess.startDrawingQuads();
             tess.addVertexWithUV(emblemOffsetX - emblemSize, emblemOffsetY - emblemSize, emblemOffsetZ, 0, 0);
             tess.addVertexWithUV(emblemOffsetX - emblemSize, emblemOffsetY + emblemSize, emblemOffsetZ, 0, 1);

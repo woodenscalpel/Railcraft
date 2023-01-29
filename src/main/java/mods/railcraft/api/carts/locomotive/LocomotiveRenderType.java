@@ -1,36 +1,37 @@
 /*
- * ******************************************************************************
- *  Copyright 2011-2015 CovertJaguar
- *
- *  This work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
+ * ****************************************************************************** Copyright 2011-2015 CovertJaguar This
+ * work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
  * ***************************************************************************
  */
 
 package mods.railcraft.api.carts.locomotive;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
+import cpw.mods.fml.common.registry.GameRegistry;
+
 /**
  * This class is used to register new Locomotive Skins with Railcraft.
  *
- * Usage example: LocomotiveRenderType.STEAM_SOLID.registerRenderer(new
- * MyRenderer());
+ * Usage example: LocomotiveRenderType.STEAM_SOLID.registerRenderer(new MyRenderer());
  *
  * Registration must be done in the Client side initialization.
  *
  * @author CovertJaguar <http://www.railcraft.info/>
  */
 public enum LocomotiveRenderType {
+
     STEAM_SOLID("cart.loco.steam.solid"),
     STEAM_MAGIC("cart.loco.steam.magic"),
     ELECTRIC("cart.loco.electric");
+
     private final Map<String, LocomotiveModelRenderer> renderers = new HashMap<String, LocomotiveModelRenderer>();
     private final String cartTag;
 
@@ -39,9 +40,8 @@ public enum LocomotiveRenderType {
     }
 
     /**
-     * This is how you register a new renderer. It can be a model renderer, an
-     * obj renderer, or anything else you want. It just needs to extend
-     * LocomotiveModelRenderer.
+     * This is how you register a new renderer. It can be a model renderer, an obj renderer, or anything else you want.
+     * It just needs to extend LocomotiveModelRenderer.
      *
      * @param renderer
      */
@@ -74,8 +74,8 @@ public enum LocomotiveRenderType {
     }
 
     /**
-     * This function will return a Locomotive item with the skin identifier
-     * saved in the NBT. Use it to create a recipe for your skin.
+     * This function will return a Locomotive item with the skin identifier saved in the NBT. Use it to create a recipe
+     * for your skin.
      *
      * @param rendererTag
      * @return
@@ -86,8 +86,8 @@ public enum LocomotiveRenderType {
     }
 
     /**
-     * This function will return a Locomotive item with the skin identifier
-     * saved in the NBT. Use it to create a recipe for your skin.
+     * This function will return a Locomotive item with the skin identifier saved in the NBT. Use it to create a recipe
+     * for your skin.
      *
      * @param rendererTag
      * @param stack

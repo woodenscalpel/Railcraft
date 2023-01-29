@@ -1,14 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.aesthetics.post;
 
 import java.util.Locale;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
@@ -17,6 +15,7 @@ import net.minecraft.util.IIcon;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public enum EnumPost {
+
     WOOD,
     STONE,
     METAL_UNPAINTED,
@@ -24,6 +23,7 @@ public enum EnumPost {
     WOOD_PLATFORM,
     STONE_PLATFORM,
     METAL_PLATFORM_UNPAINTED;
+
     public static final EnumPost[] VALUES = values();
     private IIcon texture;
 

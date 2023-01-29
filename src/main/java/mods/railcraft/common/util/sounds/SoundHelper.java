@@ -1,23 +1,23 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.sounds;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
 import java.util.HashMap;
 import java.util.Map;
+
 import mods.railcraft.common.core.RailcraftConfig;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.Block.SoundType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
 
 /**
  *
@@ -81,14 +81,13 @@ public class SoundHelper {
         }
     }
 
-    public static void playBlockSound(
-            World world, int x, int y, int z, String soundName, float volume, float pitch, Block block, int meta) {
+    public static void playBlockSound(World world, int x, int y, int z, String soundName, float volume, float pitch,
+            Block block, int meta) {
         if (world != null && soundName != null) {
             if (soundName.contains("railcraft")) {
                 SoundType sound = SoundRegistry.getSound(block, meta);
                 if (sound != null) {
-                    String newName = soundName.contains("dig")
-                            ? sound.getBreakSound()
+                    String newName = soundName.contains("dig") ? sound.getBreakSound()
                             : soundName.contains("step") ? sound.getStepResourcePath() : sound.func_150496_b();
                     world.playSoundEffect(x, y, z, newName, volume, pitch * sound.getPitch());
                 }

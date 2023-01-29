@@ -8,6 +8,7 @@ import net.minecraft.world.World;
  * Created by CovertJaguar on 9/19/2015.
  */
 public interface ICartType {
+
     byte getId();
 
     String getTag();

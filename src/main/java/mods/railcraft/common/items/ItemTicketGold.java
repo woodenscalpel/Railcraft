@@ -1,18 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.items;
 
 import static mods.railcraft.common.items.ItemTicket.getOwner;
 
-import com.mojang.authlib.GameProfile;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.api.core.items.IStackFilter;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
@@ -21,6 +15,7 @@ import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.IEditableItem;
 import mods.railcraft.common.util.network.PacketBuilder;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -28,12 +23,18 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import com.mojang.authlib.GameProfile;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class ItemTicketGold extends ItemTicket implements IEditableItem {
 
     public static final IStackFilter FILTER = new IStackFilter() {
+
         @Override
         public boolean matches(ItemStack stack) {
             return stack != null && stack.getItem() instanceof ItemTicketGold;
@@ -86,9 +87,8 @@ public class ItemTicketGold extends ItemTicket implements IEditableItem {
 
     @Override
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-        if (Game.isHost(world))
-            if (canPlayerEdit(player, stack))
-                PacketBuilder.instance().sendGoldenTicketGuiPacket((EntityPlayerMP) player);
+        if (Game.isHost(world)) if (canPlayerEdit(player, stack))
+            PacketBuilder.instance().sendGoldenTicketGuiPacket((EntityPlayerMP) player);
         return stack;
     }
 

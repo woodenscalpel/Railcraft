@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.alpha.ai;
 
@@ -36,9 +33,9 @@ public class EntityAISitBred extends EntityAISit {
             String ownerId = theEntity.func_152113_b();
             if ((ownerId != null && ownerId.trim().length() > 0) && owner == null) return true;
 
-            if (owner instanceof EntityLivingBase
-                    && theEntity.getDistanceSqToEntity(owner) > 144.0D
-                    && ((EntityLivingBase) owner).getAITarget() != null) return false;
+            if (owner instanceof EntityLivingBase && theEntity.getDistanceSqToEntity(owner) > 144.0D
+                    && ((EntityLivingBase) owner).getAITarget() != null)
+                return false;
 
             return isSitting;
         }

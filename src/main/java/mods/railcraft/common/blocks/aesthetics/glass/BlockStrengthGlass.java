@@ -1,16 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.aesthetics.glass;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.*;
+
 import mods.railcraft.client.util.textures.TextureAtlasSheet;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -20,6 +16,7 @@ import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.plugins.misc.MicroBlockPlugin;
 import mods.railcraft.common.util.misc.EnumColor;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockGlass;
 import net.minecraft.block.material.Material;
@@ -31,6 +28,9 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  *
@@ -46,17 +46,16 @@ public class BlockStrengthGlass extends BlockGlass {
     }
 
     public static void registerBlock() {
-        if (instance == null)
-            if (RailcraftConfig.isBlockEnabled("glass")) {
-                instance = new BlockStrengthGlass(Railcraft.proxy.getRenderId());
-                RailcraftRegistry.register(instance, ItemStrengthGlass.class);
+        if (instance == null) if (RailcraftConfig.isBlockEnabled("glass")) {
+            instance = new BlockStrengthGlass(Railcraft.proxy.getRenderId());
+            RailcraftRegistry.register(instance, ItemStrengthGlass.class);
 
-                ForestryPlugin.addBackpackItem("builder", instance);
+            ForestryPlugin.addBackpackItem("builder", instance);
 
-                for (int meta = 0; meta < 16; meta++) {
-                    MicroBlockPlugin.addMicroBlockCandidate(instance, meta);
-                }
+            for (int meta = 0; meta < 16; meta++) {
+                MicroBlockPlugin.addMicroBlockCandidate(instance, meta);
             }
+        }
     }
 
     public static ItemStack getItem(int meta) {

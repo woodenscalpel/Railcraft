@@ -1,16 +1,13 @@
 /*
- * ******************************************************************************
- *  Copyright 2011-2015 CovertJaguar
- *
- *  This work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
+ * ****************************************************************************** Copyright 2011-2015 CovertJaguar This
+ * work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
  * ***************************************************************************
  */
 
 package mods.railcraft.api.tracks;
 
 /**
- * Tracks that can emit a redstone signal should implement
- * this interface.
+ * Tracks that can emit a redstone signal should implement this interface.
  *
  * For example a detector track.
  *

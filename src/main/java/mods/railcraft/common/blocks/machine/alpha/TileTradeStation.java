@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.alpha;
 
@@ -12,6 +9,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.List;
+
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.machine.TileMachineItem;
 import mods.railcraft.common.blocks.machine.alpha.ai.EntityAIMoveToBlock;
@@ -24,6 +22,7 @@ import mods.railcraft.common.util.inventory.PhantomInventory;
 import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
 import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IMerchant;
 import net.minecraft.entity.passive.EntityVillager;
@@ -94,16 +93,16 @@ public class TileTradeStation extends TileMachineItem implements IGuiReturnHandl
 
         if (clock % 256 == 0) modifyNearbyAI();
 
-        List<EntityVillager> villagers = MiscTools.getNearbyEntities(
-                worldObj, EntityVillager.class, xCoord, yCoord - 1, yCoord + 3, zCoord, AREA);
+        List<EntityVillager> villagers = MiscTools
+                .getNearbyEntities(worldObj, EntityVillager.class, xCoord, yCoord - 1, yCoord + 3, zCoord, AREA);
         attemptTrade(villagers, 0);
         attemptTrade(villagers, 1);
         attemptTrade(villagers, 2);
     }
 
     private void modifyNearbyAI() {
-        List<EntityVillager> villagers =
-                MiscTools.getNearbyEntities(worldObj, EntityVillager.class, xCoord, yCoord - 1, yCoord + 3, zCoord, 20);
+        List<EntityVillager> villagers = MiscTools
+                .getNearbyEntities(worldObj, EntityVillager.class, xCoord, yCoord - 1, yCoord + 3, zCoord, 20);
         for (EntityVillager villager : villagers) {
             AIPlugin.addAITask(
                     villager,
@@ -137,12 +136,13 @@ public class TileTradeStation extends TileMachineItem implements IGuiReturnHandl
                 if (recipe.getItemToBuy() != null && !InvTools.isItemLessThanOrEqualTo(recipe.getItemToBuy(), buy1))
                     continue;
                 if (recipe.getSecondItemToBuy() != null
-                        && !InvTools.isItemLessThanOrEqualTo(recipe.getSecondItemToBuy(), buy2)) continue;
+                        && !InvTools.isItemLessThanOrEqualTo(recipe.getSecondItemToBuy(), buy2))
+                    continue;
                 if (!InvTools.isItemGreaterOrEqualThan(recipe.getItemToSell(), sell)) continue;
-                //                System.out.printf("Buying: %d %s Found: %d%n", recipe.getItemToBuy().stackSize,
+                // System.out.printf("Buying: %d %s Found: %d%n", recipe.getItemToBuy().stackSize,
                 // recipe.getItemToBuy().getDisplayName(), InvTools.countItems(invInput, recipe.getItemToBuy()));
                 if (canDoTrade(recipe)) {
-                    //                    System.out.println("Can do trade");
+                    // System.out.println("Can do trade");
                     doTrade(villager, recipe);
                     return true;
                 }
@@ -153,7 +153,8 @@ public class TileTradeStation extends TileMachineItem implements IGuiReturnHandl
 
     private boolean canDoTrade(MerchantRecipe recipe) {
         if (recipe.getItemToBuy() != null
-                && InvTools.countItems(invInput, recipe.getItemToBuy()) < recipe.getItemToBuy().stackSize) return false;
+                && InvTools.countItems(invInput, recipe.getItemToBuy()) < recipe.getItemToBuy().stackSize)
+            return false;
         if (recipe.getSecondItemToBuy() != null
                 && InvTools.countItems(invInput, recipe.getSecondItemToBuy()) < recipe.getSecondItemToBuy().stackSize)
             return false;

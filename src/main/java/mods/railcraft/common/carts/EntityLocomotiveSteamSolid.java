@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.carts;
 
@@ -22,6 +19,7 @@ import mods.railcraft.common.util.inventory.filters.StackFilter;
 import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.steam.SolidFuelProvider;
+
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -35,6 +33,7 @@ import net.minecraftforge.fluids.FluidStack;
  * @author CovertJaguar <http://www.railcraft.info/>
  */
 public class EntityLocomotiveSteamSolid extends EntityLocomotiveSteam implements ISidedInventory, IItemCart {
+
     private static final int SLOT_BURN = 2;
     private static final int SLOT_FUEL_A = 3;
     private static final int SLOT_FUEL_B = 4;
@@ -46,7 +45,7 @@ public class EntityLocomotiveSteamSolid extends EntityLocomotiveSteam implements
     private final IInventory invStock = new InventoryMapper(this, SLOT_FUEL_A, 3);
     private final IInventory invFuel = new InventoryMapper(this, SLOT_BURN, 4);
     private final IInventory invTicket = new InventoryMapper(this, SLOT_TICKET, 2, false);
-    //    private boolean outOfWater = true;
+    // private boolean outOfWater = true;
 
     public EntityLocomotiveSteamSolid(World world) {
         super(world);
@@ -70,6 +69,7 @@ public class EntityLocomotiveSteamSolid extends EntityLocomotiveSteam implements
     protected void entityInit() {
         super.entityInit();
         boiler.setFuelProvider(new SolidFuelProvider(this, SLOT_BURN) {
+
             @Override
             public double getMoreFuel() {
                 if (isShutdown()) return 0;
@@ -80,18 +80,18 @@ public class EntityLocomotiveSteamSolid extends EntityLocomotiveSteam implements
 
     @Override
     public void onUpdate() {
-        //        if (Game.isHost(worldObj)) {
-        //            if (RailcraftConfig.printSignalDebug()) {
-        //                if (outOfWater && !tankWater.isEmpty())
-        //                    outOfWater = false;
-        //                else if (!outOfWater && tankWater.isEmpty()) {
-        //                    outOfWater = true;
-        //                    Game.log(Level.INFO, "Solid Steam Locomotive ran out of water! [{0}, {1}, {2}]
+        // if (Game.isHost(worldObj)) {
+        // if (RailcraftConfig.printSignalDebug()) {
+        // if (outOfWater && !tankWater.isEmpty())
+        // outOfWater = false;
+        // else if (!outOfWater && tankWater.isEmpty()) {
+        // outOfWater = true;
+        // Game.log(Level.INFO, "Solid Steam Locomotive ran out of water! [{0}, {1}, {2}]
         // [locked:{3}] [idle:{4}] [mode:{5}]", posX, posY, posZ, Train.getTrain(this).isTrainLockedDown(), isIdle(),
         // getMode().name());
-        //                }
-        //            }
-        //        }
+        // }
+        // }
+        // }
         super.onUpdate();
 
         if (Game.isHost(worldObj)) {

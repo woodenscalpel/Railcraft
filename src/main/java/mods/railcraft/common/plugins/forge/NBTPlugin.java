@@ -1,18 +1,17 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.plugins.forge;
 
-import com.google.common.collect.ForwardingList;
-import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import java.util.ArrayList;
 import java.util.List;
+
 import net.minecraft.nbt.*;
+
+import com.google.common.collect.ForwardingList;
+import cpw.mods.fml.common.ObfuscationReflectionHelper;
 
 /**
  *
@@ -21,6 +20,7 @@ import net.minecraft.nbt.*;
 public class NBTPlugin {
 
     public enum EnumNBTType {
+
         END(NBTTagEnd.class),
         BYTE(NBTTagByte.class),
         SHORT(NBTTagShort.class),
@@ -33,6 +33,7 @@ public class NBTPlugin {
         LIST(NBTTagList.class),
         COMPOUND(NBTTagCompound.class),
         INT_ARRAY(NBTTagIntArray.class);
+
         public static final EnumNBTType[] VALUES = values();
         public final Class<? extends NBTBase> classObject;
 

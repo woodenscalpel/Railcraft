@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.inventory.wrappers;
 
@@ -15,8 +12,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
 
 /**
- * Wrapper class used to bake the side variable into the object itself instead
- * of passing it around to all the inventory tools.
+ * Wrapper class used to bake the side variable into the object itself instead of passing it around to all the inventory
+ * tools.
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */

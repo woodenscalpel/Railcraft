@@ -1,15 +1,10 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.gui.containers;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.common.blocks.machine.alpha.TileCokeOven;
 import mods.railcraft.common.fluids.TankManager;
@@ -18,11 +13,15 @@ import mods.railcraft.common.gui.slots.SlotOutput;
 import mods.railcraft.common.gui.slots.SlotRailcraft;
 import mods.railcraft.common.gui.widgets.FluidGaugeWidget;
 import mods.railcraft.common.util.inventory.InvTools;
+
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ContainerCokeOven extends RailcraftContainer {
 
@@ -106,9 +105,9 @@ public class ContainerCokeOven extends RailcraftContainer {
 
         @Override
         public boolean isItemValid(ItemStack stack) {
-            if (stack != null
-                    && !InvTools.isSynthetic(stack)
-                    && RailcraftCraftingManager.cokeOven.getRecipe(stack) != null) return true;
+            if (stack != null && !InvTools.isSynthetic(stack)
+                    && RailcraftCraftingManager.cokeOven.getRecipe(stack) != null)
+                return true;
             return false;
         }
     }

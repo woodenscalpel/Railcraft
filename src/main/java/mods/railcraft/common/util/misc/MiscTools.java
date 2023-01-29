@@ -1,21 +1,20 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.misc;
 
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
+
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.tracks.EnumTrack;
 import mods.railcraft.common.blocks.tracks.TrackTools;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
+
 import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -52,19 +51,16 @@ public abstract class MiscTools {
 
     public static void registerTrack(EnumTrack rail) {
         RailcraftBlocks.registerBlockTrack();
-        if (RailcraftBlocks.getBlockTrack() != null)
-            if (RailcraftConfig.isSubBlockEnabled(rail.getTag())) {
-                rail.initialize();
-                ItemStack stack = rail.getTrackSpec().getItem();
+        if (RailcraftBlocks.getBlockTrack() != null) if (RailcraftConfig.isSubBlockEnabled(rail.getTag())) {
+            rail.initialize();
+            ItemStack stack = rail.getTrackSpec().getItem();
 
-                RailcraftRegistry.register(stack);
-            }
+            RailcraftRegistry.register(stack);
+        }
     }
 
     public static String cleanTag(String tag) {
-        return tag.replaceAll("[Rr]ailcraft\\p{Punct}", "")
-                .replaceFirst("^tile\\.", "")
-                .replaceFirst("^item\\.", "");
+        return tag.replaceAll("[Rr]ailcraft\\p{Punct}", "").replaceFirst("^tile\\.", "").replaceFirst("^item\\.", "");
     }
 
     public static void writeUUID(NBTTagCompound data, String tag, UUID uuid) {
@@ -95,8 +91,8 @@ public abstract class MiscTools {
         return box;
     }
 
-    public static <T extends Entity> List<T> getNearbyEntities(
-            World world, Class<T> entityClass, float x, float minY, float maxY, float z, float radius) {
+    public static <T extends Entity> List<T> getNearbyEntities(World world, Class<T> entityClass, float x, float minY,
+            float maxY, float z, float radius) {
         AxisAlignedBB box = AxisAlignedBB.getBoundingBox(x, minY, z, x + 1, maxY, z + 1);
         box = box.expand(radius, 0, radius);
         return (List<T>) world.getEntitiesWithinAABB(entityClass, box);
@@ -172,8 +168,7 @@ public abstract class MiscTools {
     }
 
     /**
-     * Performs a ray trace to determine which side of the block is under the
-     * cursor.
+     * Performs a ray trace to determine which side of the block is under the cursor.
      *
      * @param player EntityPlayer
      * @return a side value 0-5
@@ -185,8 +180,7 @@ public abstract class MiscTools {
     }
 
     /**
-     * Returns the side closest to the player. Used in placement logic for
-     * blocks.
+     * Returns the side closest to the player. Used in placement logic for blocks.
      *
      * @param world
      * @param i
@@ -195,8 +189,8 @@ public abstract class MiscTools {
      * @param entityplayer
      * @return a side
      */
-    public static ForgeDirection getSideClosestToPlayer(
-            World world, int i, int j, int k, EntityLivingBase entityplayer) {
+    public static ForgeDirection getSideClosestToPlayer(World world, int i, int j, int k,
+            EntityLivingBase entityplayer) {
         if (MathHelper.abs((float) entityplayer.posX - (float) i) < 2.0F
                 && MathHelper.abs((float) entityplayer.posZ - (float) k) < 2.0F) {
             double d = (entityplayer.posY + 1.82D) - (double) entityplayer.yOffset;
@@ -218,15 +212,17 @@ public abstract class MiscTools {
     public static ForgeDirection getSideFacingTrack(World world, int x, int y, int z) {
         for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
             if (TrackTools.isRailBlockAt(
-                    world, MiscTools.getXOnSide(x, dir), MiscTools.getYOnSide(y, dir), MiscTools.getZOnSide(z, dir)))
+                    world,
+                    MiscTools.getXOnSide(x, dir),
+                    MiscTools.getYOnSide(y, dir),
+                    MiscTools.getZOnSide(z, dir)))
                 return dir;
         }
         return ForgeDirection.UNKNOWN;
     }
 
     /**
-     * This function unlike getSideClosestToPlayer can only return north, south,
-     * east, west.
+     * This function unlike getSideClosestToPlayer can only return north, south, east, west.
      *
      * @param world
      * @param x
@@ -235,8 +231,8 @@ public abstract class MiscTools {
      * @param player
      * @return a side
      */
-    public static ForgeDirection getHorizontalSideClosestToPlayer(
-            World world, int x, int y, int z, EntityLivingBase player) {
+    public static ForgeDirection getHorizontalSideClosestToPlayer(World world, int x, int y, int z,
+            EntityLivingBase player) {
         int dir = MathHelper.floor_double((double) ((player.rotationYaw * 4.0F) / 360.0F) + 0.5) & 3;
         switch (dir) {
             case 0:
@@ -269,8 +265,8 @@ public abstract class MiscTools {
         return z + side.offsetZ;
     }
 
-    public static boolean areCoordinatesOnSide(
-            int x, int y, int z, ForgeDirection side, int xCoord, int yCoord, int zCoord) {
+    public static boolean areCoordinatesOnSide(int x, int y, int z, ForgeDirection side, int xCoord, int yCoord,
+            int zCoord) {
         return x + side.offsetX == xCoord && y + side.offsetY == yCoord && z + side.offsetZ == zCoord;
     }
 

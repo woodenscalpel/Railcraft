@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.gui;
 
@@ -17,6 +14,7 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.PacketDispatcher;
 import mods.railcraft.common.util.network.PacketGuiReturn;
+
 import net.minecraft.entity.player.InventoryPlayer;
 
 public class GuiDetectorTank extends TileGui {
@@ -48,9 +46,7 @@ public class GuiDetectorTank extends TileGui {
         buttonList.clear();
         int w = (width - xSize) / 2;
         int h = (height - ySize) / 2;
-        buttonList.add(
-                button = new GuiMultiButton(
-                        0, w + 95, h + 22, 60, detector.getButtonController().copy()));
+        buttonList.add(button = new GuiMultiButton(0, w + 95, h + 22, 60, detector.getButtonController().copy()));
     }
 
     @Override
@@ -66,8 +62,7 @@ public class GuiDetectorTank extends TileGui {
         super.onGuiClosed();
 
         if (Game.isNotHost(tile.getWorld())) {
-            detector.getButtonController()
-                    .setCurrentState(button.getController().getCurrentState());
+            detector.getButtonController().setCurrentState(button.getController().getCurrentState());
             PacketGuiReturn pkt = new PacketGuiReturn(tile);
             PacketDispatcher.sendToServer(pkt);
         }

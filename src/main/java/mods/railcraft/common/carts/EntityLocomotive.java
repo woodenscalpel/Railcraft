@@ -1,24 +1,16 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.carts;
 
-import com.mojang.authlib.GameProfile;
-import cpw.mods.fml.common.ObfuscationReflectionHelper;
-import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.ByteBufInputStream;
-import io.netty.buffer.ByteBufOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import mods.railcraft.api.carts.*;
 import mods.railcraft.api.carts.locomotive.LocomotiveRenderType;
 import mods.railcraft.common.blocks.signals.ISecure;
@@ -42,6 +34,7 @@ import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.misc.RailcraftDamageSource;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
 import mods.railcraft.common.util.sounds.SoundHelper;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityMinecart;
@@ -55,18 +48,21 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.IFluidHandler;
 
+import com.mojang.authlib.GameProfile;
+
+import cpw.mods.fml.common.ObfuscationReflectionHelper;
+import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufInputStream;
+import io.netty.buffer.ByteBufOutputStream;
+
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public abstract class EntityLocomotive extends CartContainerBase
-        implements IDirectionalCart,
-                IGuiReturnHandler,
-                ILinkableCart,
-                IMinecart,
-                ISecure<LocoLockButtonState>,
-                IPaintedCart,
-                IRoutableCart,
-                IEntityAdditionalSpawnData {
+        implements IDirectionalCart, IGuiReturnHandler, ILinkableCart, IMinecart, ISecure<LocoLockButtonState>,
+        IPaintedCart, IRoutableCart, IEntityAdditionalSpawnData {
+
     private static final byte HAS_FUEL_DATA_ID = 16;
     private static final byte PRIMARY_COLOR_DATA_ID = 25;
     private static final byte SECONDARY_COLOR_DATA_ID = 26;
@@ -81,8 +77,9 @@ public abstract class EntityLocomotive extends CartContainerBase
     private static final int WHISTLE_INTERVAL = 256;
     private static final int WHISTLE_DELAY = 160;
     private static final int WHISTLE_CHANCE = 4;
-    private final MultiButtonController<LocoLockButtonState> lockController =
-            new MultiButtonController(0, LocoLockButtonState.VALUES);
+    private final MultiButtonController<LocoLockButtonState> lockController = new MultiButtonController(
+            0,
+            LocoLockButtonState.VALUES);
     public LocoMode clientMode = LocoMode.SHUTDOWN;
     public LocoSpeed clientSpeed = LocoSpeed.MAX;
     public boolean clientCanLock;
@@ -295,9 +292,7 @@ public abstract class EntityLocomotive extends CartContainerBase
 
     public boolean isIdle() {
         if (isShutdown()) return false;
-        return tempIdle > 0
-                || getMode() == LocoMode.IDLE
-                || Train.getTrain(this).isIdle();
+        return tempIdle > 0 || getMode() == LocoMode.IDLE || Train.getTrain(this).isIdle();
     }
 
     public boolean isShutdown() {
@@ -339,8 +334,8 @@ public abstract class EntityLocomotive extends CartContainerBase
         processTicket();
         updateFuel();
 
-        //        if (getEntityData().getBoolean("HighSpeed"))
-        //            System.out.println(CartTools.getCartSpeedUncapped(this));
+        // if (getEntityData().getBoolean("HighSpeed"))
+        // System.out.println(CartTools.getCartSpeedUncapped(this));
         if (whistleDelay > 0) whistleDelay--;
 
         if (tempIdle > 0) tempIdle--;
@@ -378,10 +373,9 @@ public abstract class EntityLocomotive extends CartContainerBase
     private void processTicket() {
         IInventory invTicket = getTicketInventory();
         ItemStack stack = invTicket.getStackInSlot(0);
-        if (stack != null)
-            if (stack.getItem() instanceof ItemTicket) {
-                if (setDestination(stack)) invTicket.setInventorySlotContents(0, InvTools.depleteItem(stack));
-            } else invTicket.setInventorySlotContents(0, null);
+        if (stack != null) if (stack.getItem() instanceof ItemTicket) {
+            if (setDestination(stack)) invTicket.setInventorySlotContents(0, InvTools.depleteItem(stack));
+        } else invTicket.setInventorySlotContents(0, null);
     }
 
     @Override
@@ -466,13 +460,12 @@ public abstract class EntityLocomotive extends CartContainerBase
     }
 
     public int getDamageToRoadKill(EntityLivingBase entity) {
-        if (entity instanceof EntityPlayer)
-            if (ItemOveralls.isPlayerWearing((EntityPlayer) entity)) {
-                ItemStack pants = ((EntityPlayer) entity).getCurrentArmor(MiscTools.ArmorSlots.LEGS.ordinal());
-                ((EntityPlayer) entity)
-                        .setCurrentItemOrArmor(MiscTools.ArmorSlots.LEGS.ordinal() + 1, InvTools.damageItem(pants, 5));
-                return 4;
-            }
+        if (entity instanceof EntityPlayer) if (ItemOveralls.isPlayerWearing((EntityPlayer) entity)) {
+            ItemStack pants = ((EntityPlayer) entity).getCurrentArmor(MiscTools.ArmorSlots.LEGS.ordinal());
+            ((EntityPlayer) entity)
+                    .setCurrentItemOrArmor(MiscTools.ArmorSlots.LEGS.ordinal() + 1, InvTools.damageItem(pants, 5));
+            return 4;
+        }
         return 25;
     }
 
@@ -489,7 +482,9 @@ public abstract class EntityLocomotive extends CartContainerBase
                 if (living.getHealth() > 0) {
                     float yaw = (rotationYaw - 90) * (float) Math.PI / 180.0F;
                     living.addVelocity(
-                            -MathHelper.sin(yaw) * KNOCKBACK * 0.5F, 0.2D, MathHelper.cos(yaw) * KNOCKBACK * 0.5F);
+                            -MathHelper.sin(yaw) * KNOCKBACK * 0.5F,
+                            0.2D,
+                            MathHelper.cos(yaw) * KNOCKBACK * 0.5F);
                 }
                 return;
             }
@@ -509,8 +504,7 @@ public abstract class EntityLocomotive extends CartContainerBase
         if (getUniqueID() == entity.getUniqueID()) return false;
         LinkageManager lm = LinkageManager.instance();
         if (Train.areInSameTrain(this, otherLoco)) return false;
-        return cartVelocityIsGreaterThan(0.2f)
-                && otherLoco.cartVelocityIsGreaterThan(0.2f)
+        return cartVelocityIsGreaterThan(0.2f) && otherLoco.cartVelocityIsGreaterThan(0.2f)
                 && (Math.abs(motionX - entity.motionX) > 0.3f || Math.abs(motionZ - entity.motionZ) > 0.3f);
     }
 
@@ -611,8 +605,7 @@ public abstract class EntityLocomotive extends CartContainerBase
             DataOutputStream byteStream = new DataOutputStream(new ByteBufOutputStream(data));
             byteStream.writeUTF(func_95999_t() != null ? func_95999_t() : "");
             byteStream.writeUTF(model);
-        } catch (IOException ex) {
-        }
+        } catch (IOException ex) {}
     }
 
     @Override
@@ -622,8 +615,7 @@ public abstract class EntityLocomotive extends CartContainerBase
             String name = byteSteam.readUTF();
             if (!name.equals("")) setMinecartName(name);
             model = byteSteam.readUTF();
-        } catch (IOException ex) {
-        }
+        } catch (IOException ex) {}
     }
 
     @Override
@@ -719,25 +711,31 @@ public abstract class EntityLocomotive extends CartContainerBase
     }
 
     public enum LocoMode {
+
         RUNNING,
         IDLE,
         SHUTDOWN;
+
         public static final LocoMode[] VALUES = values();
     }
 
     public enum LocoSpeed {
+
         MAX,
         SLOW,
         SLOWER,
         SLOWEST,
         REVERSE;
+
         public static final LocoSpeed[] VALUES = values();
     }
 
     public enum LocoLockButtonState implements IMultiButtonState {
+
         UNLOCKED(new ButtonTextureSet(224, 0, 16, 16)),
         LOCKED(new ButtonTextureSet(240, 0, 16, 16)),
         PRIVATE(new ButtonTextureSet(240, 48, 16, 16));
+
         public static final LocoLockButtonState[] VALUES = values();
         private final IButtonTextureSet texture;
 

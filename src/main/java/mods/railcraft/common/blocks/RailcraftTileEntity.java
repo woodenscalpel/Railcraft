@@ -1,21 +1,17 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks;
 
-import com.mojang.authlib.GameProfile;
-import cpw.mods.fml.common.network.internal.FMLProxyPacket;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
 import mods.railcraft.api.core.INetworkedObject;
 import mods.railcraft.api.core.IOwnable;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
@@ -26,6 +22,7 @@ import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.network.PacketBuilder;
 import mods.railcraft.common.util.network.PacketTileEntity;
 import mods.railcraft.common.util.network.RailcraftPacket;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -34,7 +31,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import com.mojang.authlib.GameProfile;
+import cpw.mods.fml.common.network.internal.FMLProxyPacket;
+
 public abstract class RailcraftTileEntity extends TileEntity implements INetworkedObject, IOwnable {
+
     protected final AdjacentTileCache tileCache = new AdjacentTileCache(this);
     protected int clock = MiscTools.getRand().nextInt();
     private GameProfile owner = new GameProfile(null, "[Railcraft]");
@@ -69,23 +70,23 @@ public abstract class RailcraftTileEntity extends TileEntity implements INetwork
 
     @Override
     public FMLProxyPacket getDescriptionPacket() {
-        //        System.out.println("Sending Tile Packet");
+        // System.out.println("Sending Tile Packet");
         RailcraftPacket packet = new PacketTileEntity(this);
         return packet.getPacket();
     }
 
     @Override
     public void writePacketData(DataOutputStream data) throws IOException {
-        //        data.writeUTF(owner);
+        // data.writeUTF(owner);
     }
 
     @Override
     public void readPacketData(DataInputStream data) throws IOException {
-        //        owner = data.readUTF();
+        // owner = data.readUTF();
     }
 
     public void markBlockForUpdate() {
-        //        System.out.println("updating");
+        // System.out.println("updating");
         if (worldObj != null) worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
     }
 

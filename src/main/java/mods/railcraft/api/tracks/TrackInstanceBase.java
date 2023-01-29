@@ -1,8 +1,6 @@
 /*
- * ******************************************************************************
- *  Copyright 2011-2015 CovertJaguar
- *
- *  This work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
+ * ****************************************************************************** Copyright 2011-2015 CovertJaguar This
+ * work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
  * ***************************************************************************
  */
 
@@ -13,7 +11,9 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import mods.railcraft.api.core.items.IToolCrowbar;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.entity.Entity;
@@ -29,9 +29,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 /**
- * All ITrackInstances should extend this class. It contains a number of default
- * functions and standard behavior for Tracks that should greatly simplify
- * implementing new Tracks when using this API.
+ * All ITrackInstances should extend this class. It contains a number of default functions and standard behavior for
+ * Tracks that should greatly simplify implementing new Tracks when using this API.
  *
  * @author CovertJaguar <http://www.railcraft.info>
  * @see ITrackInstance
@@ -140,11 +139,11 @@ public abstract class TrackInstanceBase implements ITrackInstance {
             return;
         }
 
-        if (blockChanged != null
-                && blockChanged.canProvidePower()
+        if (blockChanged != null && blockChanged.canProvidePower()
                 && isFlexibleRail()
                 && RailTools.countAdjecentTracks(getWorld(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord)
-                        == 3) switchTrack(false);
+                        == 3)
+            switchTrack(false);
         testPower();
     }
 
@@ -183,8 +182,8 @@ public abstract class TrackInstanceBase implements ITrackInstance {
                 || isConnectedRailPowered(world, i, j, k, spec, meta, false, 0, maxDist);
     }
 
-    protected boolean isConnectedRailPowered(
-            World world, int i, int j, int k, TrackSpec spec, int meta, boolean dir, int dist, int maxDist) {
+    protected boolean isConnectedRailPowered(World world, int i, int j, int k, TrackSpec spec, int meta, boolean dir,
+            int dist, int maxDist) {
         if (dist >= maxDist) return false;
         boolean powered = true;
         switch (meta) {
@@ -240,8 +239,8 @@ public abstract class TrackInstanceBase implements ITrackInstance {
         return powered && testPowered(world, i, j - 1, k, spec, dir, dist, maxDist, meta);
     }
 
-    protected boolean testPowered(
-            World world, int i, int j, int k, TrackSpec spec, boolean dir, int dist, int maxDist, int orientation) {
+    protected boolean testPowered(World world, int i, int j, int k, TrackSpec spec, boolean dir, int dist, int maxDist,
+            int orientation) {
         // System.out.println("Testing Power at <" + i + ", " + j + ", " + k + ">");
         Block blockToTest = world.getBlock(i, j, k);
         Block blockTrack = getBlock();
@@ -254,10 +253,10 @@ public abstract class TrackInstanceBase implements ITrackInstance {
                     return false;
                 if (orientation == 1 && (meta == 0 || meta == 4 || meta == 5)) return false;
                 if (orientation == 0 && (meta == 1 || meta == 2 || meta == 3)) return false;
-                if (((ITrackPowered) track).isPowered())
-                    if (world.isBlockIndirectlyGettingPowered(i, j, k)
-                            || world.isBlockIndirectlyGettingPowered(i, j + 1, k)) return true;
-                    else return isConnectedRailPowered(world, i, j, k, spec, meta, dir, dist + 1, maxDist);
+                if (((ITrackPowered) track).isPowered()) if (world.isBlockIndirectlyGettingPowered(i, j, k)
+                        || world.isBlockIndirectlyGettingPowered(i, j + 1, k))
+                    return true;
+                else return isConnectedRailPowered(world, i, j, k, spec, meta, dir, dist + 1, maxDist);
             }
         }
         return false;
@@ -334,8 +333,7 @@ public abstract class TrackInstanceBase implements ITrackInstance {
     }
 
     /**
-     * Returns true if the rail can make up and down slopes. Used by placement
-     * logic.
+     * Returns true if the rail can make up and down slopes. Used by placement logic.
      *
      * @return true if the rail can make slopes.
      */

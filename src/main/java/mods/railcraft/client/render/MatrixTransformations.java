@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.render;
 
@@ -33,9 +30,8 @@ public final class MatrixTransformations {
     }
 
     /**
-     * Shifts the coordinates around effectively rotating something. Zero state
-     * is DOWN then -> NORTH -> WEST Note - To obtain Position, do a mirrorY()
-     * before rotating
+     * Shifts the coordinates around effectively rotating something. Zero state is DOWN then -> NORTH -> WEST Note - To
+     * obtain Position, do a mirrorY() before rotating
      *
      * @param targetArray the array that should be rotated
      */

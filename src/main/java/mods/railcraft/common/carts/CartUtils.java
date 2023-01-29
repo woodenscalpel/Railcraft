@@ -1,19 +1,16 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.carts;
 
-import com.mojang.authlib.GameProfile;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.api.core.items.IMinecartItem;
@@ -21,6 +18,7 @@ import mods.railcraft.common.blocks.tracks.TrackTools;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
@@ -32,26 +30,25 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 
+import com.mojang.authlib.GameProfile;
+
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class CartUtils {
 
     public static Map<Item, ICartType> vanillaCartItemMap = new HashMap<Item, ICartType>();
-    public static Map<Class<? extends EntityMinecart>, ICartType> classReplacements =
-            new HashMap<Class<? extends EntityMinecart>, ICartType>();
+    public static Map<Class<? extends EntityMinecart>, ICartType> classReplacements = new HashMap<Class<? extends EntityMinecart>, ICartType>();
 
     /**
      * Spawns a new cart entity using the provided item.
      * <p/>
-     * The backing item must implement <code>IMinecartItem</code> and/or extend
-     * <code>ItemMinecart</code>.
+     * The backing item must implement <code>IMinecartItem</code> and/or extend <code>ItemMinecart</code>.
      * <p/>
      * Generally Forge requires all cart items to extend ItemMinecart.
      *
      * @param owner The player name that should used as the owner
-     * @param cart  An ItemStack containing a cart item, will not be changed by
-     *              the function
+     * @param cart  An ItemStack containing a cart item, will not be changed by the function
      * @param world The World object
      * @param x     x-Coord
      * @param y     y-Coord
@@ -69,17 +66,16 @@ public class CartUtils {
         return CartTools.placeCart(owner, cart, world, x, y, z);
     }
 
-    public static EntityMinecart placeCart(
-            ICartType cartType, GameProfile owner, ItemStack cartStack, World world, int i, int j, int k) {
+    public static EntityMinecart placeCart(ICartType cartType, GameProfile owner, ItemStack cartStack, World world,
+            int i, int j, int k) {
         Block block = world.getBlock(i, j, k);
-        if (TrackTools.isRailBlock(block))
-            if (!CartTools.isMinecartAt(world, i, j, k, 0)) {
-                EntityMinecart cart =
-                        cartType.makeCart(cartStack, world, (float) i + 0.5F, (float) j + 0.5F, (float) k + 0.5F);
-                if (cartStack.hasDisplayName()) cart.setMinecartName(cartStack.getDisplayName());
-                CartTools.setCartOwner(cart, owner);
-                if (world.spawnEntityInWorld(cart)) return cart;
-            }
+        if (TrackTools.isRailBlock(block)) if (!CartTools.isMinecartAt(world, i, j, k, 0)) {
+            EntityMinecart cart = cartType
+                    .makeCart(cartStack, world, (float) i + 0.5F, (float) j + 0.5F, (float) k + 0.5F);
+            if (cartStack.hasDisplayName()) cart.setMinecartName(cartStack.getDisplayName());
+            CartTools.setCartOwner(cart, owner);
+            if (world.spawnEntityInWorld(cart)) return cart;
+        }
         return null;
     }
 
@@ -94,9 +90,8 @@ public class CartUtils {
     public static boolean doesCartMatchFilter(ItemStack stack, EntityMinecart cart) {
         if (stack == null) return false;
         if (cart instanceof IMinecart) {
-            if (stack.hasDisplayName())
-                return ((IMinecart) cart).doesCartMatchFilter(stack, cart)
-                        && stack.getDisplayName().equals(cart.getCartItem().getDisplayName());
+            if (stack.hasDisplayName()) return ((IMinecart) cart).doesCartMatchFilter(stack, cart)
+                    && stack.getDisplayName().equals(cart.getCartItem().getDisplayName());
             return ((IMinecart) cart).doesCartMatchFilter(stack, cart);
         }
         ItemStack cartItem = cart.getCartItem();

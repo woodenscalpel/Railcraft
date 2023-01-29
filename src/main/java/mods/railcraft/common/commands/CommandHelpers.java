@@ -1,15 +1,13 @@
 /*
- * Copyright (c) CovertJaguar, 2015 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2015 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 
 package mods.railcraft.common.commands;
 
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,14 +25,13 @@ public class CommandHelpers {
 
     public static World getWorld(ICommandSender sender, IModCommand command, String[] args, int worldArgIndex) {
         // Handle passed in world argument
-        if (worldArgIndex < args.length)
-            try {
-                int dim = Integer.parseInt(args[worldArgIndex]);
-                World world = MinecraftServer.getServer().worldServerForDimension(dim);
-                if (world != null) return world;
-            } catch (Exception ex) {
-                throwWrongUsage(sender, command);
-            }
+        if (worldArgIndex < args.length) try {
+            int dim = Integer.parseInt(args[worldArgIndex]);
+            World world = MinecraftServer.getServer().worldServerForDimension(dim);
+            if (world != null) return world;
+        } catch (Exception ex) {
+            throwWrongUsage(sender, command);
+        }
         return getWorld(sender, command);
     }
 
@@ -54,19 +51,19 @@ public class CommandHelpers {
         sender.addChatMessage(new ChatComponentTranslation(locTag, args));
     }
 
-    public static void sendLocalizedChatMessage(
-            ICommandSender sender, ChatStyle chatStyle, String locTag, Object... args) {
+    public static void sendLocalizedChatMessage(ICommandSender sender, ChatStyle chatStyle, String locTag,
+            Object... args) {
         ChatComponentTranslation chat = new ChatComponentTranslation(locTag, args);
         chat.setChatStyle(chatStyle);
         sender.addChatMessage(chat);
     }
 
     /**
-     * Avoid using this function if at all possible. Commands are processed on the server,
-     * which has no localization information.
+     * Avoid using this function if at all possible. Commands are processed on the server, which has no localization
+     * information.
      *
-     * StringUtil.localize() is NOT a valid alternative for sendLocalizedChatMessage().
-     * Messages will not be localized properly if you use StringUtil.localize().
+     * StringUtil.localize() is NOT a valid alternative for sendLocalizedChatMessage(). Messages will not be localized
+     * properly if you use StringUtil.localize().
      *
      * @param sender
      * @param message
@@ -137,10 +134,9 @@ public class CommandHelpers {
 
     public static boolean matches(String commandName, IModCommand command) {
         if (commandName.equals(command.getCommandName())) return true;
-        else if (command.getCommandAliases() != null)
-            for (String alias : command.getCommandAliases()) {
-                if (commandName.equals(alias)) return true;
-            }
+        else if (command.getCommandAliases() != null) for (String alias : command.getCommandAliases()) {
+            if (commandName.equals(alias)) return true;
+        }
         return false;
     }
 }

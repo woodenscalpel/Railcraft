@@ -1,21 +1,19 @@
 /*
- * ******************************************************************************
- *  Copyright 2011-2015 CovertJaguar
- *
- *  This work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
+ * ****************************************************************************** Copyright 2011-2015 CovertJaguar This
+ * work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
  * ***************************************************************************
  */
 
 package mods.railcraft.api.core.items;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import java.util.Collections;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import cpw.mods.fml.common.registry.GameRegistry;
+
 /**
- * This is a collection of ItemStack tags than can be used with
- * GameRegistry.findItemStack().
+ * This is a collection of ItemStack tags than can be used with GameRegistry.findItemStack().
  *
  * @author CovertJaguar <http://www.railcraft.info>
  * @see GameRegistry#findItemStack(java.lang.String, java.lang.String, int)

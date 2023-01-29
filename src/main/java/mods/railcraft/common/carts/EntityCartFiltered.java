@@ -1,24 +1,24 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.carts;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.inventory.PhantomInventory;
+
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 public abstract class EntityCartFiltered extends CartContainerBase implements IMinecart {
+
     private static final byte FILTER_DATA_ID = 29;
     private final PhantomInventory invFilter = new PhantomInventory(1, this);
 
@@ -121,7 +121,7 @@ public abstract class EntityCartFiltered extends CartContainerBase implements IM
     }
 
     public void setFilter(ItemStack filter) {
-        //        dataWatcher.updateObject(FILTER_DATA_ID, filter);
+        // dataWatcher.updateObject(FILTER_DATA_ID, filter);
         getFilterInv().setInventorySlotContents(0, filter);
     }
 

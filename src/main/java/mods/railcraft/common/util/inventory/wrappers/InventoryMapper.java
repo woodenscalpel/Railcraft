@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.inventory.wrappers;
 
@@ -14,9 +11,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
 
 /**
- * Wrapper class used to specify part of an existing inventory to be treated as
- * a complete inventory. Used primarily to map a side of an ISidedInventory, but
- * it is also helpful for complex inventories such as the Tunnel Bore.
+ * Wrapper class used to specify part of an existing inventory to be treated as a complete inventory. Used primarily to
+ * map a side of an ISidedInventory, but it is also helpful for complex inventories such as the Tunnel Bore.
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
@@ -43,10 +39,9 @@ public class InventoryMapper implements IInventory {
     /**
      * Creates a new InventoryMapper
      *
-     * @param inv The backing inventory
+     * @param inv   The backing inventory
      * @param start The starting index
-     * @param size The size of the new inventory, take care not to exceed the
-     * end of the backing inventory
+     * @param size  The size of the new inventory, take care not to exceed the end of the backing inventory
      */
     public InventoryMapper(IInventory inv, int start, int size) {
         this(inv, start, size, true);

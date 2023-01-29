@@ -1,19 +1,17 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.items.firestone;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import java.util.ArrayList;
 import java.util.Random;
+
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -30,6 +28,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  *
@@ -128,24 +128,24 @@ public class BlockFirestoneRecharge extends BlockContainer {
         return null;
     }
 
-    //    @Override
-    //    public void addCollisionBoxesToList(World par1World, int par2, int par3, int par4, AxisAlignedBB
+    // @Override
+    // public void addCollisionBoxesToList(World par1World, int par2, int par3, int par4, AxisAlignedBB
     // par5AxisAlignedBB, List par6List, Entity par7Entity) {
-    //    }
+    // }
     //
-    //    @Override
-    //    public boolean canCollideCheck(int par1, boolean par2) {
-    //        return false;
-    //    }
-    //    @Override
-    //    public boolean isCollidable() {
-    //        return false;
-    //    }
+    // @Override
+    // public boolean canCollideCheck(int par1, boolean par2) {
+    // return false;
+    // }
+    // @Override
+    // public boolean isCollidable() {
+    // return false;
+    // }
     //
-    //    @Override
-    //    public int getMobilityFlag() {
-    //        return 1;
-    //    }
+    // @Override
+    // public int getMobilityFlag() {
+    // return 1;
+    // }
     @Override
     public TileEntity createNewTileEntity(World world, int meta) {
         return new TileFirestoneRecharge();

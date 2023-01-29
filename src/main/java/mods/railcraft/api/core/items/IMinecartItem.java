@@ -1,21 +1,19 @@
 /*
- * ******************************************************************************
- *  Copyright 2011-2015 CovertJaguar
- *
- *  This work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
+ * ****************************************************************************** Copyright 2011-2015 CovertJaguar This
+ * work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
  * ***************************************************************************
  */
 
 package mods.railcraft.api.core.items;
 
-import com.mojang.authlib.GameProfile;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import com.mojang.authlib.GameProfile;
+
 /**
- * This interface should be implemented by any cart item,
- * but it is generally optional.
+ * This interface should be implemented by any cart item, but it is generally optional.
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
@@ -37,11 +35,11 @@ public interface IMinecartItem {
      * Implementing this function is optional.
      *
      * @param owner the name of the player placing the cart or "[MyMod]" with the brackets
-     * @param cart An ItemStack that contains the cart
+     * @param cart  An ItemStack that contains the cart
      * @param world The World
-     * @param i x-Coord
-     * @param j y-Coord
-     * @param k z-Coord
+     * @param i     x-Coord
+     * @param j     y-Coord
+     * @param k     z-Coord
      * @return the cart placed or null if failed
      */
     public EntityMinecart placeCart(GameProfile owner, ItemStack cart, World world, int i, int j, int k);

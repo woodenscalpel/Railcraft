@@ -1,15 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.misc;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import mods.railcraft.common.plugins.forge.ChatPlugin;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
@@ -17,6 +14,8 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IChatComponent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 /**
  *
@@ -49,8 +48,7 @@ public class RailcraftDamageSource extends DamageSource {
 
     @Override
     public IChatComponent func_151519_b(EntityLivingBase entity) {
-        String locTag =
-                "death.railcraft." + damageType + "." + (MiscTools.getRand().nextInt(numMessages) + 1);
+        String locTag = "death.railcraft." + damageType + "." + (MiscTools.getRand().nextInt(numMessages) + 1);
         return ChatPlugin.chatComp(locTag, entity.getCommandSenderName());
     }
 
@@ -60,16 +58,15 @@ public class RailcraftDamageSource extends DamageSource {
 
         @SubscribeEvent
         public void modifyDrops(LivingDropsEvent event) {
-            if (event.source == STEAM)
-                for (EntityItem entityItem : event.drops) {
-                    ItemStack drop = entityItem.getEntityItem();
-                    ItemStack cooked = FurnaceRecipes.smelting().getSmeltingResult(drop);
-                    if (cooked != null && MiscTools.RANDOM.nextDouble() < 0.5) {
-                        cooked = cooked.copy();
-                        cooked.stackSize = drop.stackSize;
-                        entityItem.setEntityItemStack(cooked);
-                    }
+            if (event.source == STEAM) for (EntityItem entityItem : event.drops) {
+                ItemStack drop = entityItem.getEntityItem();
+                ItemStack cooked = FurnaceRecipes.smelting().getSmeltingResult(drop);
+                if (cooked != null && MiscTools.RANDOM.nextDouble() < 0.5) {
+                    cooked = cooked.copy();
+                    cooked.stackSize = drop.stackSize;
+                    entityItem.setEntityItemStack(cooked);
                 }
+            }
         }
     }
 }

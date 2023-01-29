@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.carts;
 
@@ -17,6 +14,7 @@ import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.sounds.SoundHelper;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -112,14 +110,8 @@ public class EntityLocomotiveElectric extends EntityLocomotive implements ISided
     }
 
     @Override
-    protected void func_145821_a(
-            int trackX,
-            int trackY,
-            int trackZ,
-            double maxSpeed,
-            double slopeAdjustement,
-            Block trackBlock,
-            int trackMeta) {
+    protected void func_145821_a(int trackX, int trackY, int trackZ, double maxSpeed, double slopeAdjustement,
+            Block trackBlock, int trackMeta) {
         super.func_145821_a(trackX, trackY, trackZ, maxSpeed, slopeAdjustement, trackBlock, trackMeta);
         if (Game.isNotHost(worldObj)) return;
         chargeHandler.tickOnTrack(trackX, trackY, trackZ);

@@ -1,20 +1,18 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.particles;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.*;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class EntityDropParticleFX extends EntityFX {
@@ -24,8 +22,8 @@ public class EntityDropParticleFX extends EntityFX {
      */
     private int bobTimer;
 
-    public EntityDropParticleFX(
-            World world, double x, double y, double z, float particleRed, float particleGreen, float particleBlue) {
+    public EntityDropParticleFX(World world, double x, double y, double z, float particleRed, float particleGreen,
+            float particleBlue) {
         super(world, x, y, z, 0.0D, 0.0D, 0.0D);
         this.motionX = this.motionY = this.motionZ = 0.0D;
 
@@ -73,16 +71,14 @@ public class EntityDropParticleFX extends EntityFX {
             this.motionZ *= 0.699999988079071D;
         }
 
-        Material material = this.worldObj
-                .getBlock(
-                        MathHelper.floor_double(this.posX),
-                        MathHelper.floor_double(this.posY),
-                        MathHelper.floor_double(this.posZ))
-                .getMaterial();
+        Material material = this.worldObj.getBlock(
+                MathHelper.floor_double(this.posX),
+                MathHelper.floor_double(this.posY),
+                MathHelper.floor_double(this.posZ)).getMaterial();
 
         if (material.isLiquid() || material.isSolid()) {
-            double d0 = (double) ((float) (MathHelper.floor_double(this.posY) + 1)
-                    - BlockLiquid.getLiquidHeightPercent(this.worldObj.getBlockMetadata(
+            double d0 = (double) ((float) (MathHelper.floor_double(this.posY) + 1) - BlockLiquid.getLiquidHeightPercent(
+                    this.worldObj.getBlockMetadata(
                             MathHelper.floor_double(this.posX),
                             MathHelper.floor_double(this.posY),
                             MathHelper.floor_double(this.posZ))));

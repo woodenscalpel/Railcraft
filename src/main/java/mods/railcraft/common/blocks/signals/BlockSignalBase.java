@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.signals;
 
@@ -13,6 +10,7 @@ import mods.railcraft.api.signals.SignalTools;
 import mods.railcraft.common.items.IActivationBlockingItem;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.creativetab.CreativeTabs;
@@ -26,9 +24,11 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import org.apache.logging.log4j.Level;
 
 public abstract class BlockSignalBase extends BlockContainer implements IPostConnection {
+
     private final int renderType;
 
     public BlockSignalBase(int renderType) {
@@ -37,7 +37,7 @@ public abstract class BlockSignalBase extends BlockContainer implements IPostCon
         setStepSound(Block.soundTypeMetal);
         setResistance(50);
         setCreativeTab(CreativeTabs.tabTransport);
-        //        setHarvestLevel("pickaxe", 2);
+        // setHarvestLevel("pickaxe", 2);
         setHarvestLevel("crowbar", 0);
     }
 
@@ -52,8 +52,8 @@ public abstract class BlockSignalBase extends BlockContainer implements IPostCon
     }
 
     @Override
-    public boolean onBlockActivated(
-            World world, int i, int j, int k, EntityPlayer player, int side, float u1, float u2, float u3) {
+    public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer player, int side, float u1, float u2,
+            float u3) {
         ItemStack current = player.getCurrentEquippedItem();
         if (current != null) if (current.getItem() instanceof IActivationBlockingItem) return false;
         TileEntity tile = world.getTileEntity(i, j, k);
@@ -174,13 +174,13 @@ public abstract class BlockSignalBase extends BlockContainer implements IPostCon
         return false;
     }
 
-    //    @Override
-    //    public boolean canPlaceBlockOnSide(World world, int x, int y, int z, int side) {
-    //        int md = world.getBlockMetadata(x, y, z);
-    //        EnumSignal type = EnumSignal.fromId(md);
-    //        return super.canPlaceBlockOnSide(world, x, y, z, side) && (!type.needsSupport() || world.isSideSolid(x, y
+    // @Override
+    // public boolean canPlaceBlockOnSide(World world, int x, int y, int z, int side) {
+    // int md = world.getBlockMetadata(x, y, z);
+    // EnumSignal type = EnumSignal.fromId(md);
+    // return super.canPlaceBlockOnSide(world, x, y, z, side) && (!type.needsSupport() || world.isSideSolid(x, y
     // - 1, z, ForgeDirection.UP));
-    //    }
+    // }
     @Override
     public boolean isOpaqueCube() {
         return false;

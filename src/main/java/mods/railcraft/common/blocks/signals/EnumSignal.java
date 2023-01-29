@@ -1,20 +1,19 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.signals;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import mods.railcraft.client.render.IIconProvider;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.modules.ModuleManager.Module;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -35,8 +34,8 @@ public enum EnumSignal implements IIconProvider, ISignalTileDefinition {
     BOX_ANALOG_CONTROLLER(Module.SIGNALS, 3, true, "box.analog", TileBoxAnalogController.class),
     DISTANT_SIGNAL(Module.SIGNALS, 8, false, "distant", TileSignalDistantSignal.class),
     DUAL_HEAD_DISTANT_SIGNAL(Module.SIGNALS, 8, false, "distant.dual", TileSignalDualHeadDistantSignal.class),
-    BOX_BLOCK_RELAY(Module.SIGNALS, 3, true, "box.block.relay", TileBoxBlockRelay.class),
-    ;
+    BOX_BLOCK_RELAY(Module.SIGNALS, 3, true, "box.block.relay", TileBoxBlockRelay.class),;
+
     private final Module module;
     private final float hardness;
     private final boolean needsSupport;
@@ -63,11 +62,7 @@ public enum EnumSignal implements IIconProvider, ISignalTileDefinition {
         creativeList.add(BOX_INTERLOCK);
     }
 
-    private EnumSignal(
-            Module module,
-            float hardness,
-            boolean needsSupport,
-            String tag,
+    private EnumSignal(Module module, float hardness, boolean needsSupport, String tag,
             Class<? extends TileSignalFoundation> tile) {
         this.module = module;
         this.hardness = hardness;
@@ -102,8 +97,7 @@ public enum EnumSignal implements IIconProvider, ISignalTileDefinition {
         if (tile == null) return null;
         try {
             return tile.newInstance();
-        } catch (Exception ex) {
-        }
+        } catch (Exception ex) {}
         return null;
     }
 
@@ -138,8 +132,7 @@ public enum EnumSignal implements IIconProvider, ISignalTileDefinition {
     @Override
     public boolean isEnabled() {
         if (module == null) return false;
-        return ModuleManager.isModuleLoaded(getModule())
-                && getBlock() != null
+        return ModuleManager.isModuleLoaded(getModule()) && getBlock() != null
                 && RailcraftConfig.isSubBlockEnabled(getTag());
     }
 

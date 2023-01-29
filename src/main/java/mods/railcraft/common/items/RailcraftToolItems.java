@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.items;
 
@@ -13,6 +10,7 @@ import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.plugins.forge.HarvestPlugin;
 import mods.railcraft.common.plugins.forge.LootPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -64,7 +62,12 @@ public class RailcraftToolItems {
                 RailcraftRegistry.register(item);
 
                 CraftingPlugin.addShapedRecipe(
-                        new ItemStack(item), "III", "I I", "I I", 'I', new ItemStack(Blocks.wool, 1, 3));
+                        new ItemStack(item),
+                        "III",
+                        "I I",
+                        "I I",
+                        'I',
+                        new ItemStack(Blocks.wool, 1, 3));
 
                 LootPlugin.addLootWorkshop(new ItemStack(item), 1, 1, tag);
             }
@@ -106,7 +109,15 @@ public class RailcraftToolItems {
                 RailcraftRegistry.register(item);
 
                 CraftingPlugin.addShapedRecipe(
-                        new ItemStack(item), false, " I ", " I ", " S ", 'I', "ingotSteel", 'S', "stickWood");
+                        new ItemStack(item),
+                        false,
+                        " I ",
+                        " I ",
+                        " S ",
+                        'I',
+                        "ingotSteel",
+                        'S',
+                        "stickWood");
 
                 LootPlugin.addLootWarrior(new ItemStack(item), 1, 1, tag);
             }
@@ -127,9 +138,10 @@ public class RailcraftToolItems {
                 RailcraftRegistry.register(item);
                 HarvestPlugin.setToolClass(item, "shovel", 2);
 
-                IRecipe recipe = new ShapedOreRecipe(new ItemStack(item), false, new Object[] {
-                    " I ", " S ", " S ", 'I', "ingotSteel", 'S', "stickWood"
-                });
+                IRecipe recipe = new ShapedOreRecipe(
+                        new ItemStack(item),
+                        false,
+                        new Object[] { " I ", " S ", " S ", 'I', "ingotSteel", 'S', "stickWood" });
                 CraftingManager.getInstance().getRecipeList().add(recipe);
 
                 LootPlugin.addLootTool(new ItemStack(item), 1, 1, tag);
@@ -152,9 +164,10 @@ public class RailcraftToolItems {
                 RailcraftRegistry.register(item);
                 HarvestPlugin.setToolClass(item, "pickaxe", 2);
 
-                IRecipe recipe = new ShapedOreRecipe(new ItemStack(item), false, new Object[] {
-                    "III", " S ", " S ", 'I', "ingotSteel", 'S', "stickWood"
-                });
+                IRecipe recipe = new ShapedOreRecipe(
+                        new ItemStack(item),
+                        false,
+                        new Object[] { "III", " S ", " S ", 'I', "ingotSteel", 'S', "stickWood" });
                 CraftingManager.getInstance().getRecipeList().add(recipe);
 
                 LootPlugin.addLootTool(new ItemStack(item), 1, 1, tag);
@@ -178,7 +191,15 @@ public class RailcraftToolItems {
                 HarvestPlugin.setToolClass(item, "axe", 2);
 
                 CraftingPlugin.addShapedRecipe(
-                        new ItemStack(item), true, "II ", "IS ", " S ", 'I', "ingotSteel", 'S', "stickWood");
+                        new ItemStack(item),
+                        true,
+                        "II ",
+                        "IS ",
+                        " S ",
+                        'I',
+                        "ingotSteel",
+                        'S',
+                        "stickWood");
 
                 LootPlugin.addLootTool(new ItemStack(item), 1, 1, tag);
             }
@@ -199,9 +220,10 @@ public class RailcraftToolItems {
                 item = itemSteelHoe = new ItemSteelHoe();
                 RailcraftRegistry.register(item);
 
-                IRecipe recipe = new ShapedOreRecipe(new ItemStack(item), true, new Object[] {
-                    "II ", " S ", " S ", 'I', "ingotSteel", 'S', "stickWood"
-                });
+                IRecipe recipe = new ShapedOreRecipe(
+                        new ItemStack(item),
+                        true,
+                        new Object[] { "II ", " S ", " S ", 'I', "ingotSteel", 'S', "stickWood" });
                 CraftingManager.getInstance().getRecipeList().add(recipe);
             }
         }
@@ -222,9 +244,8 @@ public class RailcraftToolItems {
                 item.setUnlocalizedName(tag);
                 RailcraftRegistry.register(item);
 
-                CraftingPlugin.addShapedRecipe(new ItemStack(item), true, new Object[] {
-                    "III", "I I", 'I', "ingotSteel",
-                });
+                CraftingPlugin
+                        .addShapedRecipe(new ItemStack(item), true, new Object[] { "III", "I I", 'I', "ingotSteel", });
 
                 LootPlugin.addLootWarrior(new ItemStack(item), 1, 1, tag);
             }
@@ -246,9 +267,10 @@ public class RailcraftToolItems {
                 item.setUnlocalizedName(tag);
                 RailcraftRegistry.register(item);
 
-                CraftingPlugin.addShapedRecipe(new ItemStack(item), true, new Object[] {
-                    "I I", "III", "III", 'I', "ingotSteel",
-                });
+                CraftingPlugin.addShapedRecipe(
+                        new ItemStack(item),
+                        true,
+                        new Object[] { "I I", "III", "III", 'I', "ingotSteel", });
 
                 LootPlugin.addLootWarrior(new ItemStack(item), 1, 1, tag);
             }
@@ -270,9 +292,10 @@ public class RailcraftToolItems {
                 item.setUnlocalizedName(tag);
                 RailcraftRegistry.register(item);
 
-                CraftingPlugin.addShapedRecipe(new ItemStack(item), true, new Object[] {
-                    "III", "I I", "I I", 'I', "ingotSteel",
-                });
+                CraftingPlugin.addShapedRecipe(
+                        new ItemStack(item),
+                        true,
+                        new Object[] { "III", "I I", "I I", 'I', "ingotSteel", });
 
                 LootPlugin.addLootWarrior(new ItemStack(item), 1, 1, tag);
             }
@@ -294,9 +317,8 @@ public class RailcraftToolItems {
                 item.setUnlocalizedName(tag);
                 RailcraftRegistry.register(item);
 
-                CraftingPlugin.addShapedRecipe(new ItemStack(item), true, new Object[] {
-                    "I I", "I I", 'I', "ingotSteel",
-                });
+                CraftingPlugin
+                        .addShapedRecipe(new ItemStack(item), true, new Object[] { "I I", "I I", 'I', "ingotSteel", });
 
                 LootPlugin.addLootWarrior(new ItemStack(item), 1, 1, tag);
             }

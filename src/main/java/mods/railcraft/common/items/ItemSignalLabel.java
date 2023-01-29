@@ -2,6 +2,7 @@ package mods.railcraft.common.items;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import mods.railcraft.api.signals.AbstractPair;
 import mods.railcraft.api.signals.IControllerTile;
 import mods.railcraft.api.signals.IReceiverTile;
@@ -9,6 +10,7 @@ import mods.railcraft.api.signals.ISignalBlockTile;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.plugins.forge.PlayerPlugin;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -26,17 +28,8 @@ public class ItemSignalLabel extends ItemRailcraft {
     }
 
     @Override
-    public boolean onItemUse(
-            ItemStack stack,
-            EntityPlayer player,
-            World world,
-            int x,
-            int y,
-            int z,
-            int side,
-            float hitX,
-            float hitY,
-            float hitZ) {
+    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side,
+            float hitX, float hitY, float hitZ) {
         if (Game.isHost(world) && player.isSneaking() && stack.hasDisplayName()) {
             TileEntity tile = world.getTileEntity(x, y, z);
             Set<AbstractPair> pairs = new HashSet<AbstractPair>();

@@ -1,14 +1,13 @@
 /*
- * ******************************************************************************
- *  Copyright 2011-2015 CovertJaguar
- *
- *  This work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
+ * ****************************************************************************** Copyright 2011-2015 CovertJaguar This
+ * work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
  * ***************************************************************************
  */
 
 package mods.railcraft.api.signals;
 
 import java.util.Locale;
+
 import net.minecraft.nbt.NBTTagCompound;
 
 /**
@@ -39,10 +38,10 @@ public enum SignalAspect {
      */
     RED(2, "railcraft.gui.aspect.red.name"),
     /**
-     * Can't happen, really it can't (or shouldn't). Only used when rendering
-     * blink states (for the texture offset).
+     * Can't happen, really it can't (or shouldn't). Only used when rendering blink states (for the texture offset).
      */
     OFF(3, "railcraft.gui.aspect.off.name");
+
     private final int textureIndex;
     private final String localizationTag;
     private static boolean blinkState;
@@ -83,8 +82,7 @@ public enum SignalAspect {
     }
 
     /**
-     * Returns true if the aspect should emit light. The return value varies for
-     * Blink states.
+     * Returns true if the aspect should emit light. The return value varies for Blink states.
      *
      * @return true if emitting light.
      */
@@ -135,9 +133,8 @@ public enum SignalAspect {
     }
 
     /**
-     * Tests two Aspects and determines which is more restrictive. The concept
-     * of "most restrictive" refers to which aspect enforces the most
-     * limitations of movement to a train.
+     * Tests two Aspects and determines which is more restrictive. The concept of "most restrictive" refers to which
+     * aspect enforces the most limitations of movement to a train.
      * <p/>
      * In Railcraft the primary use is in Signal Box logic.
      *

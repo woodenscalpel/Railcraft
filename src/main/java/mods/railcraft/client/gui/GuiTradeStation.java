@@ -1,19 +1,16 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.gui;
 
 import static mods.railcraft.common.blocks.machine.alpha.TileTradeStation.GuiPacketType.*;
 
-import cpw.mods.fml.common.registry.VillagerRegistry;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+
 import mods.railcraft.client.gui.buttons.GuiBetterButton;
 import mods.railcraft.common.blocks.machine.alpha.TileTradeStation;
 import mods.railcraft.common.blocks.machine.alpha.TileTradeStation.GuiPacketType;
@@ -23,10 +20,13 @@ import mods.railcraft.common.gui.containers.ContainerTradeStation;
 import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.util.collections.RevolvingList;
 import mods.railcraft.common.util.network.PacketBuilder;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.EnumChatFormatting;
+
+import cpw.mods.fml.common.registry.VillagerRegistry;
 
 public class GuiTradeStation extends TileGui {
 
@@ -74,8 +74,13 @@ public class GuiTradeStation extends TileGui {
         tip.get(0).format = EnumChatFormatting.YELLOW;
 
         for (int b = 0; b < 3; b++) {
-            dice[b] =
-                    new GuiBetterButton(2 + b, w + 93, h + 24 + 21 * b, 16, StandardButtonTextureSets.DICE_BUTTON, "");
+            dice[b] = new GuiBetterButton(
+                    2 + b,
+                    w + 93,
+                    h + 24 + 21 * b,
+                    16,
+                    StandardButtonTextureSets.DICE_BUTTON,
+                    "");
             dice[b].setToolTip(tip);
             buttonList.add(dice[b]);
         }
@@ -117,8 +122,7 @@ public class GuiTradeStation extends TileGui {
                 if (arg instanceof Integer) data.writeInt((Integer) arg);
                 else if (arg instanceof Byte) data.writeByte((Byte) arg);
             }
-        } catch (IOException ex) {
-        }
+        } catch (IOException ex) {}
         PacketBuilder.instance().sendGuiReturnPacket(tile, bytes.toByteArray());
     }
 
@@ -127,9 +131,14 @@ public class GuiTradeStation extends TileGui {
         int sWidth = fontRendererObj.getStringWidth(label);
         int sPos = xSize / 4 - sWidth / 2;
         fontRendererObj.drawString(label, sPos, 6, 0x404040);
-        //        fontRendererObj.drawString(feed, 85, 29, 0x404040);
+        // fontRendererObj.drawString(feed, 85, 29, 0x404040);
 
         GuiTools.drawVillager(
-                villager, 141, 79, 30, (float) (guiLeft + 87) - mouseX, (float) (guiTop + 91 - 50) - mouseY);
+                villager,
+                141,
+                79,
+                30,
+                (float) (guiLeft + 87) - mouseX,
+                (float) (guiTop + 91 - 50) - mouseY);
     }
 }

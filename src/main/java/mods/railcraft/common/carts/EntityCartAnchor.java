@@ -1,16 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.carts;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.ICartContentsTextureProvider;
 import mods.railcraft.api.carts.IMinecart;
@@ -31,6 +29,7 @@ import mods.railcraft.common.util.misc.ChunkManager;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.IAnchor;
 import mods.railcraft.common.util.misc.MiscTools;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -43,9 +42,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import net.minecraftforge.common.ForgeChunkManager.Type;
+
 import org.apache.logging.log4j.Level;
 
 public class EntityCartAnchor extends CartContainerBase implements ICartContentsTextureProvider, IAnchor, IMinecart {
+
     public static final byte TICKET_FLAG = 6;
     private static final byte ANCHOR_RADIUS = 2;
     private static final byte MAX_CHUNKS = 25;
@@ -153,8 +154,7 @@ public class EntityCartAnchor extends CartContainerBase implements ICartContents
         }
         stack = getStackInSlot(0);
         if (stack == null) {
-            ItemStack found =
-                    CartTools.transferHelper.pullStack(this, getFuelMap().getStackFilter());
+            ItemStack found = CartTools.transferHelper.pullStack(this, getFuelMap().getStackFilter());
             if (found != null) InvTools.moveItemStack(found, this);
         }
     }
@@ -186,7 +186,7 @@ public class EntityCartAnchor extends CartContainerBase implements ICartContents
         if (meetsTicketRequirements()) {
             Ticket chunkTicket = getTicketFromForge();
             if (chunkTicket != null) {
-                //                System.out.println("Request Ticket: " + worldObj.getClass().getSimpleName());
+                // System.out.println("Request Ticket: " + worldObj.getClass().getSimpleName());
                 chunkTicket.getModData();
                 chunkTicket.setChunkListDepth(MAX_CHUNKS);
                 chunkTicket.bindEntity(this);
@@ -211,7 +211,7 @@ public class EntityCartAnchor extends CartContainerBase implements ICartContents
 
         Set<ChunkCoordIntPair> innerChunks = ChunkManager.getInstance().getChunksAround(xChunk, zChunk, 1);
 
-        //        System.out.println("Chunks Loaded = " + Arrays.toString(chunks.toArray()));
+        // System.out.println("Chunks Loaded = " + Arrays.toString(chunks.toArray()));
         for (ChunkCoordIntPair chunk : chunks) {
             ForgeChunkManager.forceChunk(ticket, chunk);
             ForgeChunkManager.reorderChunk(ticket, chunk);

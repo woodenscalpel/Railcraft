@@ -1,25 +1,25 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.core;
 
-import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.util.network.PacketBuilder;
 import mods.railcraft.common.util.network.PacketKeyPress;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
+
 import org.lwjgl.input.Keyboard;
+
+import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
 
 /**
  *
@@ -28,14 +28,22 @@ import org.lwjgl.input.Keyboard;
 public class LocomotiveKeyHandler {
 
     public static final LocomotiveKeyHandler INSTANCE = new LocomotiveKeyHandler();
-    private final KeyBinding fasterKey =
-            new KeyBinding("railcraft.keybind.loco.faster", Keyboard.KEY_NONE, Railcraft.MOD_ID);
-    private final KeyBinding slowerKey =
-            new KeyBinding("railcraft.keybind.loco.slower", Keyboard.KEY_NONE, Railcraft.MOD_ID);
-    private final KeyBinding modeChange =
-            new KeyBinding("railcraft.keybind.loco.mode", Keyboard.KEY_NONE, Railcraft.MOD_ID);
-    private final KeyBinding whistle =
-            new KeyBinding("railcraft.keybind.loco.whistle", Keyboard.KEY_NONE, Railcraft.MOD_ID);
+    private final KeyBinding fasterKey = new KeyBinding(
+            "railcraft.keybind.loco.faster",
+            Keyboard.KEY_NONE,
+            Railcraft.MOD_ID);
+    private final KeyBinding slowerKey = new KeyBinding(
+            "railcraft.keybind.loco.slower",
+            Keyboard.KEY_NONE,
+            Railcraft.MOD_ID);
+    private final KeyBinding modeChange = new KeyBinding(
+            "railcraft.keybind.loco.mode",
+            Keyboard.KEY_NONE,
+            Railcraft.MOD_ID);
+    private final KeyBinding whistle = new KeyBinding(
+            "railcraft.keybind.loco.whistle",
+            Keyboard.KEY_NONE,
+            Railcraft.MOD_ID);
 
     private LocomotiveKeyHandler() {
         ClientRegistry.registerKeyBinding(fasterKey);

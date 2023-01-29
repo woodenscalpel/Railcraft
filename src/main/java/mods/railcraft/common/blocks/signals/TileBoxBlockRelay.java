@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.signals;
 
@@ -13,6 +10,7 @@ import static mods.railcraft.common.plugins.forge.PowerPlugin.*;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+
 import mods.railcraft.api.signals.*;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
@@ -21,6 +19,7 @@ import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -82,8 +81,8 @@ public class TileBoxBlockRelay extends TileBoxActionManager
 
     @Override
     public int getPowerOutput(int side) {
-        TileEntity tile =
-                WorldPlugin.getTileEntityOnSide(worldObj, xCoord, yCoord, zCoord, MiscTools.getOppositeSide(side));
+        TileEntity tile = WorldPlugin
+                .getTileEntityOnSide(worldObj, xCoord, yCoord, zCoord, MiscTools.getOppositeSide(side));
         if (tile instanceof TileBoxBase) return NO_POWER;
         return isEmittingRedstone(ForgeDirection.getOrientation(side)) ? FULL_POWER : NO_POWER;
     }
@@ -135,10 +134,10 @@ public class TileBoxBlockRelay extends TileBoxActionManager
         updateNeighbors();
     }
 
-    //    @Override
-    //    public SimpleSignalController getController() {
-    //        return controller;
-    //    }
+    // @Override
+    // public SimpleSignalController getController() {
+    // return controller;
+    // }
 
     @Override
     public SignalBlock getSignalBlock() {

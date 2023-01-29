@@ -1,16 +1,15 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.fluids.tanks;
 
 import java.util.Locale;
+
 import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.gui.tooltips.ToolTipLine;
+
 import net.minecraft.item.EnumRarity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fluids.Fluid;
@@ -21,9 +20,11 @@ import net.minecraftforge.fluids.FluidTank;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class StandardTank extends FluidTank {
+
     public static final int DEFAULT_COLOR = 0xFFFFFF;
     public final TankRenderData renderData = new TankRenderData();
     protected final ToolTip toolTip = new ToolTip() {
+
         @Override
         public void refresh() {
             refreshTooltip();
@@ -113,6 +114,7 @@ public class StandardTank extends FluidTank {
     }
 
     public static class TankRenderData {
+
         public Fluid fluid = null;
         public int amount = 0;
         public int color = DEFAULT_COLOR;

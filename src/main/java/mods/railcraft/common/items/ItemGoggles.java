@@ -1,15 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.items;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import java.util.List;
+
 import mods.railcraft.common.blocks.hidden.BlockHidden;
 import mods.railcraft.common.blocks.hidden.TrailTicker;
 import mods.railcraft.common.core.RailcraftConfig;
@@ -17,6 +14,7 @@ import mods.railcraft.common.core.RailcraftConstants;
 import mods.railcraft.common.plugins.forge.*;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,10 +24,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class ItemGoggles extends ItemArmor {
+
     private static final String TEXTURE = RailcraftConstants.ARMOR_TEXTURE_FOLDER + "goggles.png";
     private static ItemGoggles item;
 
@@ -156,12 +157,14 @@ public class ItemGoggles extends ItemArmor {
     }
 
     public enum GoggleAura {
+
         NONE("railcraft.gui.goggles.aura.none"),
         ANCHOR("railcraft.gui.goggles.aura.anchor"),
         TRACKING("railcraft.gui.goggles.aura.tracking"),
         TUNING("railcraft.gui.goggles.aura.tuning"),
         SURVEYING("railcraft.gui.goggles.aura.surveying"),
         SIGNALLING("railcraft.gui.goggles.aura.signalling");
+
         public static final GoggleAura[] VALUES = values();
         private final String locTag;
 

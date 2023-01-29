@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.signals;
 
@@ -16,6 +13,7 @@ import mods.railcraft.common.gui.buttons.StandardButtonTextureSets;
 import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
+
 import net.minecraft.inventory.IInventory;
 
 /**
@@ -25,8 +23,10 @@ import net.minecraft.inventory.IInventory;
 public interface IRouter extends ISecure<LockButtonState>, IGuiReturnHandler {
 
     public enum RoutingButtonState implements IMultiButtonState {
+
         PUBLIC("railcraft.gui.routing.type.public"),
         PRIVATE("railcraft.gui.routing.type.private");
+
         private final String labelTag;
 
         private RoutingButtonState(String labelTag) {

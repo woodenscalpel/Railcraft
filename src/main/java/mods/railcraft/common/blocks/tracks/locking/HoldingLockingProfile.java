@@ -1,18 +1,17 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.tracks.locking;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.common.blocks.tracks.TrackNextGenLocking;
+
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -46,12 +45,10 @@ public class HoldingLockingProfile extends LockingProfile {
             boostX = (Math.abs(cart.motionX) / speed) * TrackNextGenLocking.BOOST_FACTOR;
             boostZ = (Math.abs(cart.motionZ) / speed) * TrackNextGenLocking.BOOST_FACTOR;
         }
-        if (meta == 0 || meta == 4 || meta == 5)
-            if (launchForward) cart.motionZ += boostZ;
-            else cart.motionZ -= boostZ;
-        else if (meta == 1 || meta == 2 || meta == 3)
-            if (launchForward) cart.motionX += boostX;
-            else cart.motionX -= boostX;
+        if (meta == 0 || meta == 4 || meta == 5) if (launchForward) cart.motionZ += boostZ;
+        else cart.motionZ -= boostZ;
+        else if (meta == 1 || meta == 2 || meta == 3) if (launchForward) cart.motionX += boostX;
+        else cart.motionX -= boostX;
     }
 
     protected void setLaunchDirection(EntityMinecart cart) {

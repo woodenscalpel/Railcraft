@@ -1,10 +1,10 @@
 package mods.railcraft.common.items;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.*;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
 import mods.railcraft.common.blocks.RailcraftTileEntity;
 import mods.railcraft.common.blocks.machine.gamma.TileLoaderBase;
 import mods.railcraft.common.blocks.machine.gamma.TileLoaderFluidBase;
@@ -16,6 +16,7 @@ import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.inventory.PhantomInventory;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -24,7 +25,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
 import org.apache.commons.lang3.StringUtils;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * An item for copying settings from one block to another.
@@ -34,6 +39,7 @@ import org.apache.commons.lang3.StringUtils;
  * Created by Forecaster on 09/05/2016 for the Railcraft project.
  */
 public class ItemNotepad extends ItemRailcraft {
+
     public static ItemNotepad item;
     private static IIcon itemIconFull;
 
@@ -131,8 +137,10 @@ public class ItemNotepad extends ItemRailcraft {
         info.add(LocalizationPlugin.translate("item.railcraft.tool.notepad.tip.contents", contentString));
 
         PasteMode pasteMode = getPasteMode(stack);
-        info.add(LocalizationPlugin.translate(
-                "item.railcraft.tool.notepad.tip.mode", EnumChatFormatting.DARK_PURPLE + pasteMode.toString()));
+        info.add(
+                LocalizationPlugin.translate(
+                        "item.railcraft.tool.notepad.tip.mode",
+                        EnumChatFormatting.DARK_PURPLE + pasteMode.toString()));
 
         super.addInformation(stack, player, info, adv);
     }
@@ -145,43 +153,24 @@ public class ItemNotepad extends ItemRailcraft {
             nbt.removeTag("contents");
         } else {
             PasteMode pasteMode = nextPasteMode(stack);
-            if (Game.isNotHost(world))
-                ChatPlugin.sendLocalizedChatFromClient(
-                        player,
-                        "item.railcraft.tool.notepad.tip.mode",
-                        EnumChatFormatting.DARK_PURPLE + pasteMode.toString());
+            if (Game.isNotHost(world)) ChatPlugin.sendLocalizedChatFromClient(
+                    player,
+                    "item.railcraft.tool.notepad.tip.mode",
+                    EnumChatFormatting.DARK_PURPLE + pasteMode.toString());
         }
         return stack;
     }
 
     @Override
-    public boolean onItemUse(
-            ItemStack stack,
-            EntityPlayer player,
-            World world,
-            int x,
-            int y,
-            int z,
-            int side,
-            float hitX,
-            float hitY,
-            float hitZ) {
+    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side,
+            float hitX, float hitY, float hitZ) {
         // Dunno why this is needed, but without this override it stops working properly.
         return true;
     }
 
     @Override
-    public boolean onItemUseFirst(
-            ItemStack stack,
-            EntityPlayer player,
-            World world,
-            int x,
-            int y,
-            int z,
-            int side,
-            float hitX,
-            float hitY,
-            float hitZ) {
+    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side,
+            float hitX, float hitY, float hitZ) {
         TileEntity tileEntity = world.getTileEntity(x, y, z);
         if (Game.isHost(world)) {
             if (player.isSneaking()) // COPY
@@ -197,11 +186,10 @@ public class ItemNotepad extends ItemRailcraft {
                 } else {
                     setContents(stack, contents);
                     // TODO: Fix in 1.8 to use getDisplayName
-                    if (tileEntity instanceof RailcraftTileEntity)
-                        ChatPlugin.sendLocalizedChatFromServer(
-                                player,
-                                "item.railcraft.tool.notepad.action.copy",
-                                ((RailcraftTileEntity) tileEntity).getLocalizationTag());
+                    if (tileEntity instanceof RailcraftTileEntity) ChatPlugin.sendLocalizedChatFromServer(
+                            player,
+                            "item.railcraft.tool.notepad.action.copy",
+                            ((RailcraftTileEntity) tileEntity).getLocalizationTag());
                     player.getCurrentEquippedItem().damageItem(1, player);
                 }
             } else // PASTE
@@ -212,18 +200,16 @@ public class ItemNotepad extends ItemRailcraft {
                 } else {
                     PasteMode pasteMode = getPasteMode(stack);
                     boolean pasted = false;
-                    for (Map.Entry<Contents, NBTTagCompound> entry :
-                            getContents(stack).entrySet()) {
+                    for (Map.Entry<Contents, NBTTagCompound> entry : getContents(stack).entrySet()) {
                         if (pasteMode.allows(entry.getKey()))
                             pasted |= entry.getKey().paste(tileEntity, entry.getValue());
                     }
                     if (pasted) {
                         // TODO: Fix in 1.8 to use getDisplayName
-                        if (tileEntity instanceof RailcraftTileEntity)
-                            ChatPlugin.sendLocalizedChatFromServer(
-                                    player,
-                                    "item.railcraft.tool.notepad.action.paste",
-                                    ((RailcraftTileEntity) tileEntity).getLocalizationTag());
+                        if (tileEntity instanceof RailcraftTileEntity) ChatPlugin.sendLocalizedChatFromServer(
+                                player,
+                                "item.railcraft.tool.notepad.action.paste",
+                                ((RailcraftTileEntity) tileEntity).getLocalizationTag());
                     } else
                         // TODO: Fix in 1.8 to use getDisplayName
                         ChatPlugin.sendLocalizedChatFromServer(player, "item.railcraft.tool.notepad.action.paste.fail");
@@ -258,7 +244,9 @@ public class ItemNotepad extends ItemRailcraft {
     }
 
     private enum Contents {
+
         FILTER_CART("filter.cart", "item.railcraft.tool.notepad.tip.contents.filter.cart") {
+
             @Override
             NBTTagCompound copy(Object target) {
                 if (target instanceof TileLoaderBase) {
@@ -280,6 +268,7 @@ public class ItemNotepad extends ItemRailcraft {
             }
         },
         FILTER_ITEMS("filter.items", "item.railcraft.tool.notepad.tip.contents.filter.items") {
+
             @Override
             NBTTagCompound copy(Object target) {
                 if (target instanceof TileLoaderItemBase) {
@@ -301,6 +290,7 @@ public class ItemNotepad extends ItemRailcraft {
             }
         },
         FILTER_FLUID("filter.fluid", "item.railcraft.tool.notepad.tip.contents.filter.fluid") {
+
             @Override
             NBTTagCompound copy(Object target) {
                 if (target instanceof TileLoaderFluidBase) {
@@ -321,6 +311,7 @@ public class ItemNotepad extends ItemRailcraft {
                 return false;
             }
         };
+
         public static final Contents[] VALUES = values();
         private final String nbtTag;
         private final String locTag;
@@ -337,10 +328,12 @@ public class ItemNotepad extends ItemRailcraft {
     }
 
     private enum PasteMode {
+
         ALL("item.railcraft.tool.notepad.tip.mode.all", Contents.VALUES),
         CART_FILTER("item.railcraft.tool.notepad.tip.mode.cart.filter", Contents.FILTER_CART),
-        LOADER_FILTERS(
-                "item.railcraft.tool.notepad.tip.mode.loader.filters", Contents.FILTER_ITEMS, Contents.FILTER_ITEMS);
+        LOADER_FILTERS("item.railcraft.tool.notepad.tip.mode.loader.filters", Contents.FILTER_ITEMS,
+                Contents.FILTER_ITEMS);
+
         public static final PasteMode[] VALUES = values();
         private final String locTag;
         private final EnumSet<Contents> allows;
@@ -368,9 +361,9 @@ public class ItemNotepad extends ItemRailcraft {
             return VALUES[(ordinal() + 1) % VALUES.length];
         }
 
-        //        public PasteMode previous() {
-        //            return VALUES[(ordinal() + VALUES.length - 1) % VALUES.length];
-        //        }
+        // public PasteMode previous() {
+        // return VALUES[(ordinal() + VALUES.length - 1) % VALUES.length];
+        // }
 
     }
 }

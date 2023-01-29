@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.carts;
 
@@ -12,6 +9,7 @@ import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.inventory.StandaloneInventory;
 import mods.railcraft.common.util.inventory.filters.ArrayStackFilter;
+
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -22,6 +20,7 @@ import net.minecraft.world.World;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public abstract class CartMaintenancePatternBase extends CartMaintenanceBase implements ISidedInventory {
+
     protected final StandaloneInventory patternInv = new StandaloneInventory(6, this);
 
     public CartMaintenancePatternBase(World world) {
@@ -61,9 +60,9 @@ public abstract class CartMaintenancePatternBase extends CartMaintenanceBase imp
 
         stackStock = getStackInSlot(slotStock);
 
-        if (stackStock == null)
-            setInventorySlotContents(
-                    slotStock, CartTools.transferHelper.pullStack(this, new ArrayStackFilter(stackReplace)));
+        if (stackStock == null) setInventorySlotContents(
+                slotStock,
+                CartTools.transferHelper.pullStack(this, new ArrayStackFilter(stackReplace)));
     }
 
     @Override

@@ -1,24 +1,24 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.gui;
 
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.network.IGuiHandler;
 import mods.railcraft.client.gui.FactoryGui;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.gui.containers.FactoryContainer;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
 import org.apache.logging.log4j.Level;
+
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.network.IGuiHandler;
 
 public class GuiHandler implements IGuiHandler {
 
@@ -40,10 +40,9 @@ public class GuiHandler implements IGuiHandler {
                 player.openGui(Railcraft.getMod(), gui.ordinal(), world, entity.getEntityId(), -1, 0);
             }
         } else if (!gui.hasContainer()) {
-            FMLClientHandler.instance()
-                    .displayGuiScreen(
-                            player,
-                            FactoryGui.build(gui, player.inventory, entity, world, entity.getEntityId(), -1, 0));
+            FMLClientHandler.instance().displayGuiScreen(
+                    player,
+                    FactoryGui.build(gui, player.inventory, entity, world, entity.getEntityId(), -1, 0));
         }
     }
 

@@ -1,18 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.ore;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 import mods.railcraft.client.particles.ParticleHelper;
 import mods.railcraft.client.particles.ParticleHelperCallback;
 import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
@@ -28,6 +24,7 @@ import mods.railcraft.common.plugins.forge.CreativePlugin;
 import mods.railcraft.common.plugins.forge.HarvestPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.util.misc.MiscTools;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EffectRenderer;
@@ -47,10 +44,14 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.oredict.OreDictionary;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class BlockOre extends Block {
+
     private static final ParticleHelperCallback callback = new ParticleCallback();
     public static int renderPass;
     private static BlockOre instance;
@@ -221,20 +222,19 @@ public class BlockOre extends Block {
 
     @Override
     public IIcon getIcon(int side, int meta) {
-        if (renderPass == 0)
-            switch (EnumOre.fromMeta(meta)) {
-                case SALTPETER:
-                    return Blocks.sandstone.getIcon(ForgeDirection.DOWN.ordinal(), 0);
-                case FIRESTONE:
-                    return Blocks.netherrack.getIcon(0, 0);
-                case DARK_DIAMOND:
-                case DARK_EMERALD:
-                case DARK_LAPIS:
-                    IIcon icon = EnumCube.ABYSSAL_STONE.getIcon();
-                    if (icon != null) return icon;
-                default:
-                    return Blocks.stone.getIcon(side, 0);
-            }
+        if (renderPass == 0) switch (EnumOre.fromMeta(meta)) {
+            case SALTPETER:
+                return Blocks.sandstone.getIcon(ForgeDirection.DOWN.ordinal(), 0);
+            case FIRESTONE:
+                return Blocks.netherrack.getIcon(0, 0);
+            case DARK_DIAMOND:
+            case DARK_EMERALD:
+            case DARK_LAPIS:
+                IIcon icon = EnumCube.ABYSSAL_STONE.getIcon();
+                if (icon != null) return icon;
+            default:
+                return Blocks.stone.getIcon(side, 0);
+        }
         return EnumOre.fromMeta(meta).getTexture(side);
     }
 
@@ -263,6 +263,7 @@ public class BlockOre extends Block {
     }
 
     private static class ParticleCallback implements ParticleHelperCallback {
+
         @Override
         @SideOnly(Side.CLIENT)
         public void addHitEffects(EntityDiggingFX fx, World world, int x, int y, int z, int meta) {

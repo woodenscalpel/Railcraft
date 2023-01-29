@@ -1,14 +1,10 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.alpha;
 
-import com.google.common.collect.MapMaker;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -16,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+
 import mods.railcraft.api.core.WorldCoordinate;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
@@ -36,6 +33,7 @@ import mods.railcraft.common.util.effects.EffectManager;
 import mods.railcraft.common.util.misc.ChunkManager;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.IAnchor;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -49,7 +47,10 @@ import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import net.minecraftforge.common.ForgeChunkManager.Type;
+
 import org.apache.logging.log4j.Level;
+
+import com.google.common.collect.MapMaker;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
@@ -57,13 +58,12 @@ import org.apache.logging.log4j.Level;
 public class TileAnchorWorld extends TileMachineItem implements IAnchor, ISidedInventory {
 
     private static final Map<UUID, Ticket> tickets = new MapMaker().makeMap();
-    private static final Map<EntityPlayer, WorldCoordinate> sentinelPairingMap =
-            new MapMaker().weakKeys().makeMap();
+    private static final Map<EntityPlayer, WorldCoordinate> sentinelPairingMap = new MapMaker().weakKeys().makeMap();
     private static final int SENTINEL_CHECK = 128;
     private static final byte MAX_CHUNKS = 25;
     private static final byte FUEL_CYCLE = 9;
     private static final byte ANCHOR_RADIUS = 1;
-    private static final int[] SLOTS = new int[] {0};
+    private static final int[] SLOTS = new int[] { 0 };
     private static final int[] SLOTS_NO_ACCESS = new int[] {};
     private int xSentinel = -1;
     private int ySentinel = -1;
@@ -105,13 +105,16 @@ public class TileAnchorWorld extends TileMachineItem implements IAnchor, ISidedI
                 if (Game.isHost(worldObj)) {
                     WorldCoordinate target = sentinelPairingMap.get(player);
                     if (target == null) setTarget(this, player);
-                    else if (worldObj.provider.dimensionId != target.dimension)
-                        ChatPlugin.sendLocalizedChatFromServer(
-                                player, "railcraft.gui.anchor.pair.fail.dimension", getLocalizationTag());
+                    else if (worldObj.provider.dimensionId != target.dimension) ChatPlugin.sendLocalizedChatFromServer(
+                            player,
+                            "railcraft.gui.anchor.pair.fail.dimension",
+                            getLocalizationTag());
                     else if (new WorldCoordinate(this).equals(target)) {
                         removeTarget(player);
                         ChatPlugin.sendLocalizedChatFromServer(
-                                player, "railcraft.gui.anchor.pair.cancel", getLocalizationTag());
+                                player,
+                                "railcraft.gui.anchor.pair.cancel",
+                                getLocalizationTag());
                     } else setSentinel(player, target);
                     crowbar.onWhack(player, current, xCoord, yCoord, zCoord);
                 }
@@ -152,7 +155,9 @@ public class TileAnchorWorld extends TileMachineItem implements IAnchor, ISidedI
     public static TileEntity getTargetAt(EntityPlayer player, RailcraftTileEntity searcher, WorldCoordinate coord) {
         if (!WorldPlugin.blockExists(searcher.getWorldObj(), coord.x, coord.y, coord.z)) {
             ChatPlugin.sendLocalizedChatFromServer(
-                    player, "railcraft.gui.anchor.pair.fail.unloaded", searcher.getLocalizationTag());
+                    player,
+                    "railcraft.gui.anchor.pair.fail.unloaded",
+                    searcher.getLocalizationTag());
             return null;
         }
         return WorldPlugin.getBlockTile(searcher.getWorldObj(), coord.x, coord.y, coord.z);
@@ -287,30 +292,29 @@ public class TileAnchorWorld extends TileMachineItem implements IAnchor, ISidedI
 
         if (!hasActiveTicket()) requestTicket();
 
-        if (RailcraftConfig.printAnchorDebug() && hasActiveTicket())
-            if (clock % 64 == 0) {
-                int numChunks = chunks == null ? 0 : chunks.size();
-                ChatPlugin.sendLocalizedChatToAllFromServer(
-                        worldObj,
-                        "%s has loaded %d chunks and is ticking at <x%d y%d z%d> in dim:%d - logged on tick %d",
-                        getName(),
-                        numChunks,
-                        xCoord,
-                        yCoord,
-                        zCoord,
-                        worldObj.provider.dimensionId,
-                        worldObj.getWorldTime());
-                Game.log(
-                        Level.DEBUG,
-                        "{0} has loaded {1} chunks and is ticking at <x{2} y{3} z{4}> in dim:{5} - logged on tick {6}",
-                        getName(),
-                        numChunks,
-                        xCoord,
-                        yCoord,
-                        zCoord,
-                        worldObj.provider.dimensionId,
-                        worldObj.getWorldTime());
-            }
+        if (RailcraftConfig.printAnchorDebug() && hasActiveTicket()) if (clock % 64 == 0) {
+            int numChunks = chunks == null ? 0 : chunks.size();
+            ChatPlugin.sendLocalizedChatToAllFromServer(
+                    worldObj,
+                    "%s has loaded %d chunks and is ticking at <x%d y%d z%d> in dim:%d - logged on tick %d",
+                    getName(),
+                    numChunks,
+                    xCoord,
+                    yCoord,
+                    zCoord,
+                    worldObj.provider.dimensionId,
+                    worldObj.getWorldTime());
+            Game.log(
+                    Level.DEBUG,
+                    "{0} has loaded {1} chunks and is ticking at <x{2} y{3} z{4}> in dim:{5} - logged on tick {6}",
+                    getName(),
+                    numChunks,
+                    xCoord,
+                    yCoord,
+                    zCoord,
+                    worldObj.provider.dimensionId,
+                    worldObj.getWorldTime());
+        }
     }
 
     @Override
@@ -385,9 +389,8 @@ public class TileAnchorWorld extends TileMachineItem implements IAnchor, ISidedI
             if (ticket != null) {
                 if (ticket.world == worldObj) {
                     for (ChunkCoordIntPair chunk : ticket.getChunkList()) {
-                        if (ForgeChunkManager.getPersistentChunksFor(worldObj)
-                                .keys()
-                                .contains(chunk)) ForgeChunkManager.unforceChunk(ticket, chunk);
+                        if (ForgeChunkManager.getPersistentChunksFor(worldObj).keys().contains(chunk))
+                            ForgeChunkManager.unforceChunk(ticket, chunk);
                     }
                     ForgeChunkManager.releaseTicket(ticket);
                 }
@@ -405,17 +408,15 @@ public class TileAnchorWorld extends TileMachineItem implements IAnchor, ISidedI
 
         setupChunks();
 
-        if (chunks != null)
-            for (ChunkCoordIntPair chunk : chunks) {
-                ForgeChunkManager.forceChunk(ticket, chunk);
-            }
+        if (chunks != null) for (ChunkCoordIntPair chunk : chunks) {
+            ForgeChunkManager.forceChunk(ticket, chunk);
+        }
     }
 
     public void setupChunks() {
         if (!hasTicket) chunks = null;
-        else if (hasSentinel())
-            chunks = ChunkManager.getInstance()
-                    .getChunksBetween(xCoord >> 4, zCoord >> 4, xSentinel >> 4, zSentinel >> 4, getMaxSentinelChunks());
+        else if (hasSentinel()) chunks = ChunkManager.getInstance()
+                .getChunksBetween(xCoord >> 4, zCoord >> 4, xSentinel >> 4, zSentinel >> 4, getMaxSentinelChunks());
         else chunks = ChunkManager.getInstance().getChunksAround(xCoord >> 4, zCoord >> 4, ANCHOR_RADIUS);
     }
 

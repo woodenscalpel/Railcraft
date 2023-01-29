@@ -1,16 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.gamma;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.IFluidCart;
 import mods.railcraft.api.carts.ILiquidTransfer;
@@ -35,6 +33,7 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.SafeNBTWrapper;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
+
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -49,12 +48,14 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidHandler;
 
 public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHandler {
+
     private static final int RESET_WAIT = 200;
     private static final int TRANSFER_RATE = 200;
     private static final float MAX_PIPE_LENGTH = 16 * 0.0625f;
     private static final float PIPE_INCREMENT = 0.01f;
-    private final MultiButtonController<ButtonState> stateController =
-            new MultiButtonController<ButtonState>(ButtonState.FORCE_FULL.ordinal(), ButtonState.values());
+    private final MultiButtonController<ButtonState> stateController = new MultiButtonController<ButtonState>(
+            ButtonState.FORCE_FULL.ordinal(),
+            ButtonState.values());
     private int waitForReset = 0;
     private float pipeLenght = 0;
 
@@ -226,10 +227,10 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
 
         if (tankCart.isTankFull(loaderTank.getFluidType())) waitForReset = RESET_WAIT;
 
-        if (stateController.getButtonState() != ButtonState.MANUAL
-                && pipeIsRetracted()
+        if (stateController.getButtonState() != ButtonState.MANUAL && pipeIsRetracted()
                 && flow <= 0
-                && shouldSendCart(cart)) sendCart(cart);
+                && shouldSendCart(cart))
+            sendCart(cart);
     }
 
     private boolean cartNeedsFilling(TankToolkit tankCart) {
@@ -384,10 +385,12 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
     }
 
     public enum ButtonState implements IMultiButtonState {
+
         HOLD_EMPTY("railcraft.gui.liquid.loader.empty"),
         FORCE_FULL("railcraft.gui.liquid.loader.fill"),
         IMMEDIATE("railcraft.gui.liquid.loader.immediate"),
         MANUAL("railcraft.gui.liquid.loader.manual");
+
         private final String label;
         private final ToolTip tip;
 

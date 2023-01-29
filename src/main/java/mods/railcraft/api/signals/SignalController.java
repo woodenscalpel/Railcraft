@@ -1,20 +1,21 @@
 /*
- * ******************************************************************************
- *  Copyright 2011-2015 CovertJaguar
- *
- *  This work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
+ * ****************************************************************************** Copyright 2011-2015 CovertJaguar This
+ * work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
  * ***************************************************************************
  */
 package mods.railcraft.api.signals;
 
 import javax.annotation.Nonnull;
+
 import mods.railcraft.api.core.WorldCoordinate;
+
 import net.minecraft.tileentity.TileEntity;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public abstract class SignalController extends AbstractPair {
+
     public SignalController(String locTag, TileEntity tile, int maxPairings) {
         super(locTag, tile, maxPairings);
     }

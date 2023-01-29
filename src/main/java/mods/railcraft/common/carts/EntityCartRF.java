@@ -1,19 +1,18 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.carts;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import mods.railcraft.api.carts.ICartContentsTextureProvider;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -21,6 +20,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 public final class EntityCartRF extends CartBase implements ICartContentsTextureProvider {
+
     private static final int DATA_ID_RF = 25;
     private static final int RF_CAP = 2000000;
 
@@ -126,10 +126,10 @@ public final class EntityCartRF extends CartBase implements ICartContentsTexture
         nbt.setInteger("rf", getRF());
     }
 
-    //    @Override
-    //    public Block func_145820_n() {
-    //        return Blocks.redstone_block;
-    //    }
+    // @Override
+    // public Block func_145820_n() {
+    // return Blocks.redstone_block;
+    // }
 
     @Override
     public double getDrag() {

@@ -1,21 +1,18 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.worldgen;
 
-import cpw.mods.fml.common.ObfuscationReflectionHelper;
-import cpw.mods.fml.common.registry.VillagerRegistry.IVillageTradeHandler;
 import java.util.Random;
+
 import mods.railcraft.common.blocks.signals.ItemSignalBlockSurveyor;
 import mods.railcraft.common.blocks.signals.ItemSignalTuner;
 import mods.railcraft.common.blocks.tracks.EnumTrack;
 import mods.railcraft.common.carts.EnumCart;
 import mods.railcraft.common.items.*;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Blocks;
@@ -26,6 +23,9 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 
+import cpw.mods.fml.common.ObfuscationReflectionHelper;
+import cpw.mods.fml.common.registry.VillagerRegistry.IVillageTradeHandler;
+
 public class VillagerTradeHandler implements IVillageTradeHandler {
 
     private float baseChance;
@@ -33,8 +33,8 @@ public class VillagerTradeHandler implements IVillageTradeHandler {
     @Override
     public void manipulateTradesForVillager(EntityVillager villager, MerchantRecipeList recipeList, Random rand) {
         // this is where the custom villager trades are specified
-        baseChance = ObfuscationReflectionHelper.<Float, EntityVillager>getPrivateValue(
-                EntityVillager.class, villager, "field_82191_bN");
+        baseChance = ObfuscationReflectionHelper
+                .<Float, EntityVillager>getPrivateValue(EntityVillager.class, villager, "field_82191_bN");
 
         addTrade(recipeList, rand, 0.7F, new Offer(Items.coal, 16, 24), new Offer(Items.emerald));
         addTrade(recipeList, rand, 0.7F, new Offer(Items.emerald), new Offer(Items.coal, 24, 32));
@@ -48,13 +48,12 @@ public class VillagerTradeHandler implements IVillageTradeHandler {
         addTrade(recipeList, rand, 0.1F, new Offer(Blocks.detector_rail, 14, 18), new Offer(Items.emerald, 2, 3));
 
         for (EnumTrack track : EnumTrack.VALUES) {
-            if (track.isEnabled())
-                addTrade(
-                        recipeList,
-                        rand,
-                        0.1F,
-                        new Offer(track.getItem(), track.recipeOutput - 2, track.recipeOutput + 2),
-                        new Offer(Items.emerald, 2, 3));
+            if (track.isEnabled()) addTrade(
+                    recipeList,
+                    rand,
+                    0.1F,
+                    new Offer(track.getItem(), track.recipeOutput - 2, track.recipeOutput + 2),
+                    new Offer(Items.emerald, 2, 3));
         }
 
         addTrade(recipeList, rand, 0.3F, new Offer(Items.minecart), new Offer(Items.emerald, 8, 10));

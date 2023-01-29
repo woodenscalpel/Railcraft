@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.gui;
 
@@ -18,6 +15,7 @@ import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
 import mods.railcraft.common.util.network.PacketBuilder;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -62,7 +60,7 @@ public class GuiTrackRouting extends TileGui {
     protected void actionPerformed(GuiButton guibutton) {
         if (track == null) return;
         updateButtons();
-        //        sendUpdatePacket();
+        // sendUpdatePacket();
     }
 
     @Override
@@ -81,8 +79,7 @@ public class GuiTrackRouting extends TileGui {
             notownedToolTips = ToolTip.buildToolTip("railcraft.gui.tip.button.lock.notowner", "{owner}=" + username);
         }
         lockButton.setToolTip(
-                track.getLockController().getButtonState() == LockButtonState.LOCKED
-                        ? lockedToolTips
+                track.getLockController().getButtonState() == LockButtonState.LOCKED ? lockedToolTips
                         : lockButton.enabled ? unlockedToolTips : notownedToolTips);
     }
 
@@ -98,9 +95,9 @@ public class GuiTrackRouting extends TileGui {
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         GuiTools.drawCenteredString(fontRendererObj, track.getName(), 6);
-        fontRendererObj.drawString(
-                LocalizationPlugin.translate("railcraft.gui.routing.track.slot.label"), 64, 29, 0x404040);
-        fontRendererObj.drawString(
-                StatCollector.translateToLocal("container.inventory"), 8, (ySize - 96) + 2, 0x404040);
+        fontRendererObj
+                .drawString(LocalizationPlugin.translate("railcraft.gui.routing.track.slot.label"), 64, 29, 0x404040);
+        fontRendererObj
+                .drawString(StatCollector.translateToLocal("container.inventory"), 8, (ySize - 96) + 2, 0x404040);
     }
 }

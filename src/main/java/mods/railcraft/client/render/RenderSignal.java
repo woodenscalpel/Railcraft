@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.render;
 
@@ -17,6 +14,7 @@ import mods.railcraft.common.blocks.signals.BlockSignalRailcraft;
 import mods.railcraft.common.blocks.signals.TileSignalBase;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.item.ItemStack;
@@ -26,6 +24,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import org.lwjgl.opengl.GL11;
 
 public class RenderSignal extends RenderTESRSignals implements ICombinedRenderer {
@@ -62,14 +61,12 @@ public class RenderSignal extends RenderTESRSignals implements ICombinedRenderer
         info.texture[facing] = BlockSignalRailcraft.texturesSignalSingle[2];
         RenderFakeBlock.renderBlock(info, iBlockAccess, x, y, z, true, false);
 
-        /*// Aspect
-        SignalAspect aspect = tile.getSignalAspect();
-        if (!aspect.isLit())
-            aspect = SignalAspect.OFF;
-        info.texture[facing] = BlockSignalRailcraft.texturesLampTop[aspect.getTextureIndex()];
-        info.setRenderSingleSide(facing);
-        info.brightness = aspect.getTextureBrightness();
-        RenderFakeBlock.renderBlock(info, iBlockAccess, x, y, z, (info.brightness < 0), false);*/
+        /*
+         * // Aspect SignalAspect aspect = tile.getSignalAspect(); if (!aspect.isLit()) aspect = SignalAspect.OFF;
+         * info.texture[facing] = BlockSignalRailcraft.texturesLampTop[aspect.getTextureIndex()];
+         * info.setRenderSingleSide(facing); info.brightness = aspect.getTextureBrightness();
+         * RenderFakeBlock.renderBlock(info, iBlockAccess, x, y, z, (info.brightness < 0), false);
+         */
         info.brightness = -1;
         info.setRenderAllSides();
         info.texture[facing] = BlockSignalRailcraft.texturesSignalSingle[2];

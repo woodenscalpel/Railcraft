@@ -1,9 +1,11 @@
 package mods.railcraft.common.carts;
 
-import ic2.api.item.IC2Items;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import ic2.api.item.IC2Items;
 
 public final class EntityCartEnergyMFSU extends EntityCartEnergy {
 

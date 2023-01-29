@@ -1,17 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.sounds;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.util.sounds.IBlockSoundProvider;
 import mods.railcraft.common.util.sounds.SoundRegistry;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.Block.SoundType;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -19,6 +16,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.sound.PlaySoundEvent17;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 /**
  *
@@ -45,8 +44,8 @@ public class RCSoundHandler {
                 SoundType sound = getBlockSound(world, ix, iy, iz);
                 if (sound == null) {
                     if (soundName.contains("place")) {
-                        event.manager.addDelayedSound(
-                                event.sound, 3); // Play sound later to adjust for the block not being there yet.
+                        event.manager.addDelayedSound(event.sound, 3); // Play sound later to adjust for the block not
+                                                                       // being there yet.
                     } else if (soundName.contains("step")) {
                         sound = getBlockSound(world, ix, iy - 1, iz);
                     }

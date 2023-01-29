@@ -1,8 +1,6 @@
 /*
- * ******************************************************************************
- *  Copyright 2011-2015 CovertJaguar
- *
- *  This work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
+ * ****************************************************************************** Copyright 2011-2015 CovertJaguar This
+ * work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
  * ***************************************************************************
  */
 
@@ -14,8 +12,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 
 /**
- * To define a new Locomotive Model Renderer, extend this class and register it
- * with the appropriate LocomotiveRendererType.
+ * To define a new Locomotive Model Renderer, extend this class and register it with the appropriate
+ * LocomotiveRendererType.
  *
  * @author CovertJaguar <http://www.railcraft.info/>
  */
@@ -26,10 +24,9 @@ public abstract class LocomotiveModelRenderer {
 
     /**
      *
-     * @param rendererTag The Renderer Tag should be in the form of
-     * "<modid>:<name>", and should be unique among all the renderers defined
-     * for that type of locomotive. The Railcraft default model for each type of
-     * locomotive is defined as "railcraft:default".
+     * @param rendererTag The Renderer Tag should be in the form of "<modid>:<name>", and should be unique among all the
+     *                    renderers defined for that type of locomotive. The Railcraft default model for each type of
+     *                    locomotive is defined as "railcraft:default".
      */
     public LocomotiveModelRenderer(String rendererTag) {
         this.rendererTag = rendererTag;
@@ -40,8 +37,7 @@ public abstract class LocomotiveModelRenderer {
     }
 
     /**
-     * This is the string that will be displayed on the Item tool tip. It should
-     * be localized.
+     * This is the string that will be displayed on the Item tool tip. It should be localized.
      *
      * @return
      */
@@ -54,8 +50,7 @@ public abstract class LocomotiveModelRenderer {
     /**
      * If set to true, then the model will be used to render the items.
      *
-     * If you wish to provide an IIcon instead, you must set it to false, and
-     * implement getItemIcons().
+     * If you wish to provide an IIcon instead, you must set it to false, and implement getItemIcons().
      *
      * @param renderIn3D
      */
@@ -64,8 +59,8 @@ public abstract class LocomotiveModelRenderer {
     }
 
     /**
-     * If you return false to renderItemIn3D(), then you must return up to three
-     * icons in an array here, one for each render pass.
+     * If you return false to renderItemIn3D(), then you must return up to three icons in an array here, one for each
+     * render pass.
      *
      * Passes:
      * <ul>
@@ -88,33 +83,24 @@ public abstract class LocomotiveModelRenderer {
     public void registerItemIcons(IIconRegister iconRegister) {}
 
     /**
-     * This is the core of the renderer. Here is where you do the actual
-     * rendering. You can implement any kind of renderer you like, model based,
-     * obj based, whatever.
+     * This is the core of the renderer. Here is where you do the actual rendering. You can implement any kind of
+     * renderer you like, model based, obj based, whatever.
      *
-     * Your renderer should do a three pass render: primary color, secondary
-     * color, and white. Use GL11.glColor4f() to change the color for each pass.
+     * Your renderer should do a three pass render: primary color, secondary color, and white. Use GL11.glColor4f() to
+     * change the color for each pass.
      *
-     * It is also responsible for rendering the emblem texture onto the
-     * Locomotive.
+     * It is also responsible for rendering the emblem texture onto the Locomotive.
      *
-     * You do not need to worry about rotation or anything like that, that is
-     * taken care of already by Railcraft.
+     * You do not need to worry about rotation or anything like that, that is taken care of already by Railcraft.
      *
      * @param renderer
      * @param cart
-     * @param primaryColor the primary color
+     * @param primaryColor   the primary color
      * @param secondaryColor the secondary color
-     * @param emblemTexture the emblem texture to render
+     * @param emblemTexture  the emblem texture to render
      * @param light
      * @param time
      */
-    public abstract void renderLocomotive(
-            IRenderer renderer,
-            EntityMinecart cart,
-            int primaryColor,
-            int secondaryColor,
-            ResourceLocation emblemTexture,
-            float light,
-            float time);
+    public abstract void renderLocomotive(IRenderer renderer, EntityMinecart cart, int primaryColor, int secondaryColor,
+            ResourceLocation emblemTexture, float light, float time);
 }

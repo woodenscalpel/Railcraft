@@ -1,15 +1,13 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.alpha.ai;
 
 import mods.railcraft.api.core.WorldCoordinate;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -40,8 +38,8 @@ public class EntityAIMoveToBlock extends EntityAIBase {
         this(entity, searchedBlock, searchedMeta, maxDist, 0.001F);
     }
 
-    public EntityAIMoveToBlock(
-            EntityCreature entity, Block searchedBlock, int searchedMeta, int maxDist, float weight) {
+    public EntityAIMoveToBlock(EntityCreature entity, Block searchedBlock, int searchedMeta, int maxDist,
+            float weight) {
         this.entity = entity;
         this.searchedBlock = searchedBlock;
         this.searchedMeta = searchedMeta;
@@ -61,15 +59,14 @@ public class EntityAIMoveToBlock extends EntityAIBase {
 
         if (!entity.worldObj.isDaytime()) return false;
 
-        if (watchedBlock == null || !isBlockValid())
-            watchedBlock = WorldPlugin.findBlock(
-                    entity.worldObj,
-                    (int) entity.posX,
-                    (int) entity.posY,
-                    (int) entity.posZ,
-                    maxDist,
-                    searchedBlock,
-                    searchedMeta);
+        if (watchedBlock == null || !isBlockValid()) watchedBlock = WorldPlugin.findBlock(
+                entity.worldObj,
+                (int) entity.posX,
+                (int) entity.posY,
+                (int) entity.posZ,
+                maxDist,
+                searchedBlock,
+                searchedMeta);
 
         return watchedBlock != null;
     }
@@ -106,8 +103,8 @@ public class EntityAIMoveToBlock extends EntityAIBase {
 
     private void move(double x, double y, double z) {
         entity.getNavigator().tryMoveToXYZ(x, y, z, 0.6D);
-        //        System.out.println("Moving to Block");
-        //        EffectManager.instance.teleportEffect(entity, watchedBlock.x + 0.5D, watchedBlock.y + 0.5D,
+        // System.out.println("Moving to Block");
+        // EffectManager.instance.teleportEffect(entity, watchedBlock.x + 0.5D, watchedBlock.y + 0.5D,
         // watchedBlock.z + 0.5D);
     }
 

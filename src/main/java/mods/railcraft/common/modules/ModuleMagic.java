@@ -1,14 +1,10 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.modules;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import mods.railcraft.common.blocks.ore.BlockOre;
 import mods.railcraft.common.blocks.ore.EnumOre;
 import mods.railcraft.common.fluids.FluidHelper;
@@ -16,9 +12,12 @@ import mods.railcraft.common.fluids.Fluids;
 import mods.railcraft.common.items.firestone.*;
 import mods.railcraft.common.items.firestone.FirestoneTickHandler;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
+
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+
+import cpw.mods.fml.common.FMLCommonHandler;
 
 /**
  *

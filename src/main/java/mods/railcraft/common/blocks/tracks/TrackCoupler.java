@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.tracks;
 
@@ -12,6 +9,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Locale;
+
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.api.tracks.ITrackInstance;
@@ -20,6 +18,7 @@ import mods.railcraft.common.carts.LinkageManager;
 import mods.railcraft.common.plugins.forge.ChatPlugin;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -27,12 +26,15 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 
 public class TrackCoupler extends TrackBaseRailcraft implements ITrackPowered {
+
     private EntityMinecart taggedCart;
     private boolean powered = false;
     private Mode mode = Mode.COUPLER;
 
     enum Mode {
+
         COUPLER(8) {
+
             @Override
             public void onMinecartPass(TrackCoupler track, EntityMinecart cart) {
                 CartTools.getLinkageManager(cart.worldObj).createLink(track.taggedCart, cart);
@@ -40,6 +42,7 @@ public class TrackCoupler extends TrackBaseRailcraft implements ITrackPowered {
             }
         },
         DECOUPLER(0) {
+
             @Override
             public void onMinecartPass(TrackCoupler track, EntityMinecart cart) {
                 CartTools.getLinkageManager(cart.worldObj).breakLinks(cart);
@@ -47,11 +50,13 @@ public class TrackCoupler extends TrackBaseRailcraft implements ITrackPowered {
             }
         },
         AUTO_COUPLER(0) {
+
             @Override
             public void onMinecartPass(TrackCoupler track, EntityMinecart cart) {
                 LinkageManager.instance().setAutoLink(cart, true);
             }
         };
+
         public static Mode[] VALUES = values();
         private int powerPropagation;
 
@@ -102,11 +107,10 @@ public class TrackCoupler extends TrackBaseRailcraft implements ITrackPowered {
                 else m = mode.next();
                 crowbar.onWhack(player, current, getX(), getY(), getZ());
                 if (Game.isHost(getWorld())) setMode(m);
-                else
-                    ChatPlugin.sendLocalizedChat(
-                            player,
-                            "railcraft.gui.track.mode.change",
-                            "\u00A75" + LocalizationPlugin.translate("railcraft.gui.track.coupler.mode." + m.getTag()));
+                else ChatPlugin.sendLocalizedChat(
+                        player,
+                        "railcraft.gui.track.mode.change",
+                        "\u00A75" + LocalizationPlugin.translate("railcraft.gui.track.coupler.mode." + m.getTag()));
                 return true;
             }
         }

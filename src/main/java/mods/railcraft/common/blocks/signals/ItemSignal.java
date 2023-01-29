@@ -1,15 +1,13 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.signals;
 
 import mods.railcraft.common.blocks.ItemBlockRailcraftMultiType;
 import mods.railcraft.common.blocks.RailcraftBlocks;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -45,22 +43,21 @@ public class ItemSignal extends ItemBlockRailcraftMultiType {
         Block oldBlock = world.getBlock(x, y, z);
 
         if (oldBlock == Blocks.snow_layer) side = 1;
-        else if (oldBlock != Blocks.vine
-                && oldBlock != Blocks.tallgrass
+        else if (oldBlock != Blocks.vine && oldBlock != Blocks.tallgrass
                 && oldBlock != Blocks.deadbush
                 && !oldBlock.isReplaceable(world, x, y, z)) {
-            if (side == 0) --y;
+                    if (side == 0) --y;
 
-            if (side == 1) ++y;
+                    if (side == 1) ++y;
 
-            if (side == 2) --z;
+                    if (side == 2) --z;
 
-            if (side == 3) ++z;
+                    if (side == 3) ++z;
 
-            if (side == 4) --x;
+                    if (side == 4) --x;
 
-            if (side == 5) ++x;
-        }
+                    if (side == 5) ++x;
+                }
 
         return world.canPlaceEntityOnSide(field_150939_a, x, y, z, false, side, (Entity) null, stack)
                 && (!getStructureType(stack).needsSupport() || world.isSideSolid(x, y - 1, z, ForgeDirection.UP));

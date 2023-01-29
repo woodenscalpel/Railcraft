@@ -1,18 +1,16 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.worldgen;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import java.util.Locale;
 import java.util.Random;
+
 import mods.railcraft.common.blocks.aesthetics.cube.BlockCube;
 import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -26,12 +24,15 @@ import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType;
 import net.minecraftforge.event.terraingen.TerrainGen;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class GeodePopulator {
-    public static final EventType EVENT_TYPE =
-            EnumHelper.addEnum(EventType.class, "RAILCRAFT_GEODE", new Class[0], new Object[0]);
+
+    public static final EventType EVENT_TYPE = EnumHelper
+            .addEnum(EventType.class, "RAILCRAFT_GEODE", new Class[0], new Object[0]);
     public static final int MIN_DEPTH = 16;
     public static final int MIN_FLOOR = 24;
     private static GeodePopulator instance;
@@ -78,8 +79,7 @@ public class GeodePopulator {
         if (!BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.WATER)) {
             return false;
         }
-        if (biome.biomeName == null
-                || biome.biomeName.toLowerCase(Locale.ENGLISH).contains("river")) {
+        if (biome.biomeName == null || biome.biomeName.toLowerCase(Locale.ENGLISH).contains("river")) {
             return false;
         }
         return rand.nextDouble() <= 0.3;
@@ -104,6 +104,7 @@ public class GeodePopulator {
     }
 
     private class OceanFloor {
+
         public final int floorY;
         public final int depth;
 

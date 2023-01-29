@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.gui;
 
@@ -14,6 +11,7 @@ import mods.railcraft.common.gui.slots.SlotRailcraft;
 import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.gui.tooltips.ToolTipLine;
 import mods.railcraft.common.gui.widgets.Widget;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.RenderHelper;
@@ -21,6 +19,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 
 public abstract class GuiContainerRailcraft extends GuiContainer {
@@ -36,6 +35,7 @@ public abstract class GuiContainerRailcraft extends GuiContainer {
 
     /**
      * Draws the screen and all the components in it.
+     * 
      * @param mouseX
      * @param mouseY
      * @param par3
@@ -124,42 +124,42 @@ public abstract class GuiContainerRailcraft extends GuiContainer {
         super.drawGradientRect(x1, y1, x2, y2, c1, c2);
     }
 
-    //    @Override
-    //    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) {
-    //        super.mouseClicked(mouseX, mouseY, mouseButton);
+    // @Override
+    // protected void mouseClicked(int mouseX, int mouseY, int mouseButton) {
+    // super.mouseClicked(mouseX, mouseY, mouseButton);
     // TODO: Fix button mouse mode passing
-    //        for (Object obj : buttonList) {
-    //            if (obj instanceof GuiBetterButton && ((GuiBetterButton)obj).mousePressed(this.mc, mouseX, mouseY,
+    // for (Object obj : buttonList) {
+    // if (obj instanceof GuiBetterButton && ((GuiBetterButton)obj).mousePressed(this.mc, mouseX, mouseY,
     // mouseButton)) {
-    //                this.selectedButton = guibutton;
-    //                this.mc.sndManager.playSoundFX("random.click", 1.0F, 1.0F);
-    //                this.actionPerformed((GuiBetterButton)obj);
-    //            }
+    // this.selectedButton = guibutton;
+    // this.mc.sndManager.playSoundFX("random.click", 1.0F, 1.0F);
+    // this.actionPerformed((GuiBetterButton)obj);
+    // }
     //
-    //            if () {
-    //            }
-    //        }
-    //        if (mouseButton == 2) {
-    //            Slot var4 = this.getSlotAtPosition(par1, par2);
-    //            int var5 = this.guiLeft;
-    //            int var6 = this.guiTop;
-    //            boolean var7 = par1 < var5 || par2 < var6 || par1 >= var5 + this.xSize || par2 >= var6 + this.ySize;
-    //            int var8 = -1;
+    // if () {
+    // }
+    // }
+    // if (mouseButton == 2) {
+    // Slot var4 = this.getSlotAtPosition(par1, par2);
+    // int var5 = this.guiLeft;
+    // int var6 = this.guiTop;
+    // boolean var7 = par1 < var5 || par2 < var6 || par1 >= var5 + this.xSize || par2 >= var6 + this.ySize;
+    // int var8 = -1;
     //
-    //            if (var4 != null) {
-    //                var8 = var4.slotNumber;
-    //            }
+    // if (var4 != null) {
+    // var8 = var4.slotNumber;
+    // }
     //
-    //            if (var7) {
-    //                var8 = -999;
-    //            }
+    // if (var7) {
+    // var8 = -999;
+    // }
     //
-    //            if (var8 != -1) {
-    //                boolean var9 = var8 != -999 && (Keyboard.isKeyDown(42) || Keyboard.isKeyDown(54));
-    //                this.handleMouseClick(var4, var8, mouseButton, var9 ? 1 : 0);
-    //            }
-    //        }
-    //    }
+    // if (var8 != -1) {
+    // boolean var9 = var8 != -999 && (Keyboard.isKeyDown(42) || Keyboard.isKeyDown(54));
+    // this.handleMouseClick(var4, var8, mouseButton, var9 ? 1 : 0);
+    // }
+    // }
+    // }
     private Slot getSlotAtPosition(int par1, int par2) {
         for (int var3 = 0; var3 < this.inventorySlots.inventorySlots.size(); ++var3) {
             Slot var4 = (Slot) this.inventorySlots.inventorySlots.get(var3);
@@ -177,8 +177,7 @@ public abstract class GuiContainerRailcraft extends GuiContainer {
         int var5 = this.guiTop;
         par2 -= var4;
         par3 -= var5;
-        return par2 >= par1Slot.xDisplayPosition - 1
-                && par2 < par1Slot.xDisplayPosition + 16 + 1
+        return par2 >= par1Slot.xDisplayPosition - 1 && par2 < par1Slot.xDisplayPosition + 16 + 1
                 && par3 >= par1Slot.yDisplayPosition - 1
                 && par3 < par1Slot.yDisplayPosition + 16 + 1;
     }

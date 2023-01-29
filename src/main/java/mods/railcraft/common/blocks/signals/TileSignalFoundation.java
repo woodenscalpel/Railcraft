@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.signals;
 
@@ -12,15 +9,18 @@ import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import org.apache.logging.log4j.Level;
 
 public abstract class TileSignalFoundation extends RailcraftTileEntity {
+
     private boolean checkedBlock = false;
 
     public abstract ISignalTileDefinition getSignalType();
@@ -63,12 +63,8 @@ public abstract class TileSignalFoundation extends RailcraftTileEntity {
 
             int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
             if (getBlockType() != null
-                    && getClass()
-                            != ((BlockSignalBase) getBlockType())
-                                    .getSignalType(meta)
-                                    .getTileClass()) {
-                worldObj.setBlockMetadataWithNotify(
-                        xCoord, yCoord, zCoord, getSignalType().getMeta(), 3);
+                    && getClass() != ((BlockSignalBase) getBlockType()).getSignalType(meta).getTileClass()) {
+                worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, getSignalType().getMeta(), 3);
                 validate();
                 worldObj.setTileEntity(xCoord, yCoord, zCoord, this);
                 Game.log(

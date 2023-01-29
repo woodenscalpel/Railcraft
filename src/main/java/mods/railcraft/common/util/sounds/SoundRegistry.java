@@ -1,15 +1,13 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.sounds;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import mods.railcraft.common.blocks.aesthetics.cube.BlockCube;
 import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
 import mods.railcraft.common.blocks.aesthetics.post.BlockPost;
@@ -17,6 +15,7 @@ import mods.railcraft.common.blocks.aesthetics.post.EnumPost;
 import mods.railcraft.common.blocks.aesthetics.wall.BlockRailcraftWall;
 import mods.railcraft.common.blocks.aesthetics.wall.EnumWallAlpha;
 import mods.railcraft.common.blocks.aesthetics.wall.EnumWallBeta;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.Block.SoundType;
 
@@ -26,8 +25,7 @@ import net.minecraft.block.Block.SoundType;
  */
 public class SoundRegistry {
 
-    private static final Map<Block, Map<Integer, SoundType>> customSounds =
-            new HashMap<Block, Map<Integer, SoundType>>();
+    private static final Map<Block, Map<Integer, SoundType>> customSounds = new HashMap<Block, Map<Integer, SoundType>>();
 
     public static SoundType getSound(Block block, int meta) {
         Map<Integer, SoundType> blockSounds = customSounds.get(block);

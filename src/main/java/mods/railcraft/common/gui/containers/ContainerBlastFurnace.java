@@ -1,23 +1,22 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.gui.containers;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.common.blocks.machine.alpha.TileBlastFurnace;
 import mods.railcraft.common.gui.slots.SlotStackFilter;
 import mods.railcraft.common.util.network.PacketBuilder;
+
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnace;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ContainerBlastFurnace extends RailcraftContainer {
 
@@ -69,9 +68,8 @@ public class ContainerBlastFurnace extends RailcraftContainer {
             if (lastBurnTime != furnace.burnTime)
                 PacketBuilder.instance().sendGuiIntegerPacket((EntityPlayerMP) player, windowId, 1, furnace.burnTime);
 
-            if (lastItemBurnTime != furnace.currentItemBurnTime)
-                PacketBuilder.instance()
-                        .sendGuiIntegerPacket((EntityPlayerMP) player, windowId, 2, furnace.currentItemBurnTime);
+            if (lastItemBurnTime != furnace.currentItemBurnTime) PacketBuilder.instance()
+                    .sendGuiIntegerPacket((EntityPlayerMP) player, windowId, 2, furnace.currentItemBurnTime);
         }
 
         lastCookTime = furnace.getCookTime();

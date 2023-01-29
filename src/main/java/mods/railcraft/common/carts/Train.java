@@ -1,23 +1,24 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.carts;
 
-import com.google.common.collect.Lists;
 import java.util.*;
+
 import mods.railcraft.api.electricity.IElectricMinecart;
+
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
+
+import com.google.common.collect.Lists;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class Train implements Iterable<EntityMinecart> {
+
     public static final String TRAIN_HIGH = "rcTrainHigh";
     public static final String TRAIN_LOW = "rcTrainLow";
     private static final Map<UUID, Train> trains = new HashMap<UUID, Train>();
@@ -129,9 +130,11 @@ public class Train implements Iterable<EntityMinecart> {
 
     public Iterable<EntityMinecart> orderedIteratable(final EntityMinecart head) {
         return new Iterable<EntityMinecart>() {
+
             @Override
             public Iterator<EntityMinecart> iterator() {
                 return new Iterator<EntityMinecart>() {
+
                     private final LinkageManager lm = LinkageManager.instance();
                     private EntityMinecart last = null;
                     private EntityMinecart current = head;

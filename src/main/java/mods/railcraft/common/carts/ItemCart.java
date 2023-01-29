@@ -1,23 +1,19 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.carts;
 
-import com.mojang.authlib.GameProfile;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
+
 import mods.railcraft.api.core.items.IMinecartItem;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
+
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityMinecart;
@@ -27,6 +23,11 @@ import net.minecraft.item.ItemMinecart;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
+
+import com.mojang.authlib.GameProfile;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemCart extends ItemMinecart implements IMinecartItem {
 
@@ -60,17 +61,8 @@ public class ItemCart extends ItemMinecart implements IMinecartItem {
     }
 
     @Override
-    public boolean onItemUse(
-            ItemStack stack,
-            EntityPlayer player,
-            World world,
-            int i,
-            int j,
-            int k,
-            int l,
-            float par8,
-            float par9,
-            float par10) {
+    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int i, int j, int k, int l, float par8,
+            float par9, float par10) {
         if (Game.isNotHost(world)) return false;
         EntityMinecart placedCart = placeCart(player.getGameProfile(), stack, world, i, j, k);
         if (placedCart != null) {
@@ -101,8 +93,10 @@ public class ItemCart extends ItemMinecart implements IMinecartItem {
         if (tip != null) info.addAll(tip.convertToStrings());
         ItemStack filter = EntityCartFiltered.getFilterFromCartItem(stack);
         if (filter != null) {
-            info.add(EnumChatFormatting.BLUE + LocalizationPlugin.translate("railcraft.gui.filter") + ": "
-                    + filter.getDisplayName());
+            info.add(
+                    EnumChatFormatting.BLUE + LocalizationPlugin.translate("railcraft.gui.filter")
+                            + ": "
+                            + filter.getDisplayName());
         }
     }
 }

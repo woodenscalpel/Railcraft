@@ -1,17 +1,13 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.aesthetics.cube;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Random;
+
 import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
 import mods.railcraft.client.sounds.RailcraftSound;
 import mods.railcraft.common.carts.EntityTunnelBore;
@@ -21,6 +17,7 @@ import mods.railcraft.common.plugins.forge.CreativePlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.plugins.misc.MicroBlockPlugin;
 import mods.railcraft.common.util.misc.MiscTools;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -34,6 +31,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class BlockCube extends Block {
 
     private static BlockCube instance;
@@ -46,29 +46,28 @@ public class BlockCube extends Block {
     }
 
     public static void registerBlock() {
-        if (instance == null)
-            if (RailcraftConfig.isBlockEnabled("cube")) {
-                instance = new BlockCube();
-                RailcraftRegistry.register(instance, ItemCube.class);
+        if (instance == null) if (RailcraftConfig.isBlockEnabled("cube")) {
+            instance = new BlockCube();
+            RailcraftRegistry.register(instance, ItemCube.class);
 
-                EntityTunnelBore.addMineableBlock(instance);
+            EntityTunnelBore.addMineableBlock(instance);
 
-                ForestryPlugin.addBackpackItem("miner", EnumCube.COKE_BLOCK.getItem());
-                ForestryPlugin.addBackpackItem("miner", EnumCube.COPPER_BLOCK.getItem());
-                ForestryPlugin.addBackpackItem("miner", EnumCube.LEAD_BLOCK.getItem());
-                ForestryPlugin.addBackpackItem("miner", EnumCube.STEEL_BLOCK.getItem());
-                ForestryPlugin.addBackpackItem("miner", EnumCube.TIN_BLOCK.getItem());
-                ForestryPlugin.addBackpackItem("builder", EnumCube.CONCRETE_BLOCK.getItem());
-                ForestryPlugin.addBackpackItem("builder", EnumCube.CREOSOTE_BLOCK.getItem());
-                ForestryPlugin.addBackpackItem("digger", EnumCube.ABYSSAL_STONE.getItem());
-                ForestryPlugin.addBackpackItem("digger", EnumCube.QUARRIED_STONE.getItem());
+            ForestryPlugin.addBackpackItem("miner", EnumCube.COKE_BLOCK.getItem());
+            ForestryPlugin.addBackpackItem("miner", EnumCube.COPPER_BLOCK.getItem());
+            ForestryPlugin.addBackpackItem("miner", EnumCube.LEAD_BLOCK.getItem());
+            ForestryPlugin.addBackpackItem("miner", EnumCube.STEEL_BLOCK.getItem());
+            ForestryPlugin.addBackpackItem("miner", EnumCube.TIN_BLOCK.getItem());
+            ForestryPlugin.addBackpackItem("builder", EnumCube.CONCRETE_BLOCK.getItem());
+            ForestryPlugin.addBackpackItem("builder", EnumCube.CREOSOTE_BLOCK.getItem());
+            ForestryPlugin.addBackpackItem("digger", EnumCube.ABYSSAL_STONE.getItem());
+            ForestryPlugin.addBackpackItem("digger", EnumCube.QUARRIED_STONE.getItem());
 
-                MicroBlockPlugin.addMicroBlockCandidate(instance, EnumCube.CONCRETE_BLOCK.ordinal());
-                MicroBlockPlugin.addMicroBlockCandidate(instance, EnumCube.CREOSOTE_BLOCK.ordinal());
-                MicroBlockPlugin.addMicroBlockCandidate(instance, EnumCube.STEEL_BLOCK.ordinal());
-                MicroBlockPlugin.addMicroBlockCandidate(instance, EnumCube.ABYSSAL_STONE.ordinal());
-                MicroBlockPlugin.addMicroBlockCandidate(instance, EnumCube.QUARRIED_STONE.ordinal());
-            }
+            MicroBlockPlugin.addMicroBlockCandidate(instance, EnumCube.CONCRETE_BLOCK.ordinal());
+            MicroBlockPlugin.addMicroBlockCandidate(instance, EnumCube.CREOSOTE_BLOCK.ordinal());
+            MicroBlockPlugin.addMicroBlockCandidate(instance, EnumCube.STEEL_BLOCK.ordinal());
+            MicroBlockPlugin.addMicroBlockCandidate(instance, EnumCube.ABYSSAL_STONE.ordinal());
+            MicroBlockPlugin.addMicroBlockCandidate(instance, EnumCube.QUARRIED_STONE.ordinal());
+        }
     }
 
     public BlockCube() {
@@ -189,8 +188,8 @@ public class BlockCube extends Block {
     }
 
     @Override
-    public float getExplosionResistance(
-            Entity exploder, World world, int i, int j, int k, double srcX, double srcY, double srcZ) {
+    public float getExplosionResistance(Entity exploder, World world, int i, int j, int k, double srcX, double srcY,
+            double srcZ) {
         int meta = world.getBlockMetadata(i, j, k);
         return EnumCube.fromOrdinal(meta).getResistance() * 3f / 5f;
     }

@@ -1,20 +1,19 @@
 /*
- * Copyright (c) CovertJaguar, 2015 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2015 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.carts;
 
 import java.util.Set;
+
 import mods.railcraft.api.carts.IFluidCart;
 import mods.railcraft.api.carts.IItemCart;
 import mods.railcraft.api.carts.ITrainTransferHelper;
 import mods.railcraft.api.core.items.IStackFilter;
 import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.util.inventory.InvTools;
+
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -28,6 +27,7 @@ import net.minecraftforge.fluids.IFluidHandler;
  * Created by CovertJaguar on 5/9/2015.
  */
 public class TrainTransferHelper implements mods.railcraft.api.carts.ITrainTransferHelper {
+
     public static final ITrainTransferHelper INSTANCE = new TrainTransferHelper();
     private static final int NUM_SLOTS = 8;
     private static final int TANK_CAPACITY = 8 * FluidHelper.BUCKET_VOLUME;
@@ -39,8 +39,8 @@ public class TrainTransferHelper implements mods.railcraft.api.carts.ITrainTrans
     // ***************************************************************************************************************************
     @Override
     public ItemStack pushStack(EntityMinecart requester, ItemStack stack) {
-        Iterable<EntityMinecart> carts =
-                LinkageManager.instance().getLinkedCarts(requester, LinkageManager.LinkType.LINK_A);
+        Iterable<EntityMinecart> carts = LinkageManager.instance()
+                .getLinkedCarts(requester, LinkageManager.LinkType.LINK_A);
         stack = _pushStack(requester, carts, stack);
         if (stack == null) return null;
         if (LinkageManager.instance().hasLink(requester, LinkageManager.LinkType.LINK_B)) {
@@ -60,8 +60,8 @@ public class TrainTransferHelper implements mods.railcraft.api.carts.ITrainTrans
 
     @Override
     public ItemStack pullStack(EntityMinecart requester, IStackFilter filter) {
-        Iterable<EntityMinecart> carts =
-                LinkageManager.instance().getLinkedCarts(requester, LinkageManager.LinkType.LINK_A);
+        Iterable<EntityMinecart> carts = LinkageManager.instance()
+                .getLinkedCarts(requester, LinkageManager.LinkType.LINK_A);
         ItemStack stack = _pullStack(requester, carts, filter);
         if (stack != null) return stack;
         carts = LinkageManager.instance().getLinkedCarts(requester, LinkageManager.LinkType.LINK_B);
@@ -107,8 +107,8 @@ public class TrainTransferHelper implements mods.railcraft.api.carts.ITrainTrans
     // ***************************************************************************************************************************
     @Override
     public FluidStack pushFluid(EntityMinecart requester, FluidStack fluidStack) {
-        Iterable<EntityMinecart> carts =
-                LinkageManager.instance().getLinkedCarts(requester, LinkageManager.LinkType.LINK_A);
+        Iterable<EntityMinecart> carts = LinkageManager.instance()
+                .getLinkedCarts(requester, LinkageManager.LinkType.LINK_A);
         fluidStack = _pushFluid(requester, carts, fluidStack);
         if (fluidStack == null) return null;
         if (LinkageManager.instance().hasLink(requester, LinkageManager.LinkType.LINK_B)) {
@@ -132,8 +132,8 @@ public class TrainTransferHelper implements mods.railcraft.api.carts.ITrainTrans
 
     @Override
     public FluidStack pullFluid(EntityMinecart requester, FluidStack fluidStack) {
-        Iterable<EntityMinecart> carts =
-                LinkageManager.instance().getLinkedCarts(requester, LinkageManager.LinkType.LINK_A);
+        Iterable<EntityMinecart> carts = LinkageManager.instance()
+                .getLinkedCarts(requester, LinkageManager.LinkType.LINK_A);
         FluidStack pulled = _pullFluid(requester, carts, fluidStack);
         if (pulled != null) return pulled;
         carts = LinkageManager.instance().getLinkedCarts(requester, LinkageManager.LinkType.LINK_B);

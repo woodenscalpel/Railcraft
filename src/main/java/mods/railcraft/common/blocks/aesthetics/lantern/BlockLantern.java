@@ -1,19 +1,16 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.aesthetics.lantern;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Random;
+
 import mods.railcraft.client.particles.ParticleHelper;
 import mods.railcraft.common.plugins.forge.CreativePlugin;
+
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EffectRenderer;
@@ -26,6 +23,9 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockLantern extends Block {
 
@@ -54,7 +54,7 @@ public class BlockLantern extends Block {
         setCreativeTab(CreativePlugin.RAILCRAFT_TAB);
         setHardness(5);
         setResistance(15);
-        //        useNeighborBrightness[id] = false;
+        // useNeighborBrightness[id] = false;
         opaque = false;
         lightOpacity = 0;
         setLightLevel(0.9375F);
@@ -77,7 +77,12 @@ public class BlockLantern extends Block {
     @Override
     public AxisAlignedBB getSelectedBoundingBoxFromPool(World world, int x, int y, int z) {
         return AxisAlignedBB.getBoundingBox(
-                x + SELECT, y + 2 * 0.0625f, z + SELECT, x + 1 - SELECT, y + 1.0F - 1 * 0.0625f, z + 1 - SELECT);
+                x + SELECT,
+                y + 2 * 0.0625f,
+                z + SELECT,
+                x + 1 - SELECT,
+                y + 1.0F - 1 * 0.0625f,
+                z + 1 - SELECT);
     }
 
     @Override

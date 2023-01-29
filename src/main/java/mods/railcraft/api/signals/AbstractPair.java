@@ -1,30 +1,33 @@
 /*
- * ******************************************************************************
- *  Copyright 2011-2015 CovertJaguar
- *
- *  This work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
+ * ****************************************************************************** Copyright 2011-2015 CovertJaguar This
+ * work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
  * ***************************************************************************
  */
 package mods.railcraft.api.signals;
 
-import com.google.common.collect.MapMaker;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.*;
+
 import mods.railcraft.api.core.WorldCoordinate;
+
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import com.google.common.collect.MapMaker;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public abstract class AbstractPair {
+
     protected static final Random rand = new Random();
     private static final boolean IS_BUKKIT;
 
@@ -48,8 +51,7 @@ public abstract class AbstractPair {
     private final Collection<WorldCoordinate> safePairings = Collections.unmodifiableCollection(pairings);
     private final Set<WorldCoordinate> pairingsToTest = new HashSet<WorldCoordinate>();
     private final Set<WorldCoordinate> pairingsToTestNext = new HashSet<WorldCoordinate>();
-    private final Map<WorldCoordinate, TileEntity> tileCache =
-            new MapMaker().weakValues().makeMap();
+    private final Map<WorldCoordinate, TileEntity> tileCache = new MapMaker().weakValues().makeMap();
     private WorldCoordinate coords;
     private boolean isBeingPaired;
     private int update = rand.nextInt();
@@ -167,10 +169,10 @@ public abstract class AbstractPair {
         if (useCache) {
             TileEntity cacheTarget = tileCache.get(coord);
             if (cacheTarget != null) {
-                if (cacheTarget.isInvalid()
-                        || cacheTarget.xCoord != x
+                if (cacheTarget.isInvalid() || cacheTarget.xCoord != x
                         || cacheTarget.yCoord != y
-                        || cacheTarget.zCoord != z) tileCache.remove(coord);
+                        || cacheTarget.zCoord != z)
+                    tileCache.remove(coord);
                 else if (isValidPair(coord, cacheTarget)) return cacheTarget;
             }
         }
@@ -208,9 +210,11 @@ public abstract class AbstractPair {
     }
 
     public WorldCoordinate getCoords() {
-        if (coords == null)
-            coords =
-                    new WorldCoordinate(tile.getWorldObj().provider.dimensionId, tile.xCoord, tile.yCoord, tile.zCoord);
+        if (coords == null) coords = new WorldCoordinate(
+                tile.getWorldObj().provider.dimensionId,
+                tile.xCoord,
+                tile.yCoord,
+                tile.zCoord);
         return coords;
     }
 
@@ -262,7 +266,7 @@ public abstract class AbstractPair {
         NBTTagList list = new NBTTagList();
         for (WorldCoordinate c : pairings) {
             NBTTagCompound tag = new NBTTagCompound();
-            tag.setIntArray("coords", new int[] {c.dimension, c.x, c.y, c.z});
+            tag.setIntArray("coords", new int[] { c.dimension, c.x, c.y, c.z });
             list.appendTag(tag);
         }
         data.setTag("pairings", list);

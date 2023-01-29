@@ -1,16 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.render;
 
 import mods.railcraft.common.blocks.aesthetics.EnumBlockMaterial;
 import mods.railcraft.common.blocks.aesthetics.stairs.BlockRailcraftStairs;
 import mods.railcraft.common.blocks.aesthetics.stairs.TileStair;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -19,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
+
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -32,8 +31,8 @@ public class RenderStair extends BlockRenderer {
     }
 
     @Override
-    public boolean renderWorldBlock(
-            IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderBlocks) {
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+            RenderBlocks renderBlocks) {
         TileEntity tile = world.getTileEntity(x, y, z);
         if (tile instanceof TileStair) {
             TileStair stair = (TileStair) tile;
@@ -68,32 +67,56 @@ public class RenderStair extends BlockRenderer {
             tess.startDrawingQuads();
             tess.setNormal(0.0F, -1.0F, 0.0F);
             renderBlocks.renderFaceYNeg(
-                    block, 0.0D, 0.0D, 0.0D, renderBlocks.getBlockIconFromSideAndMetadata(block, 0, meta));
+                    block,
+                    0.0D,
+                    0.0D,
+                    0.0D,
+                    renderBlocks.getBlockIconFromSideAndMetadata(block, 0, meta));
             tess.draw();
             tess.startDrawingQuads();
             tess.setNormal(0.0F, 1.0F, 0.0F);
             renderBlocks.renderFaceYPos(
-                    block, 0.0D, 0.0D, 0.0D, renderBlocks.getBlockIconFromSideAndMetadata(block, 1, meta));
+                    block,
+                    0.0D,
+                    0.0D,
+                    0.0D,
+                    renderBlocks.getBlockIconFromSideAndMetadata(block, 1, meta));
             tess.draw();
             tess.startDrawingQuads();
             tess.setNormal(0.0F, 0.0F, -1.0F);
             renderBlocks.renderFaceZNeg(
-                    block, 0.0D, 0.0D, 0.0D, renderBlocks.getBlockIconFromSideAndMetadata(block, 2, meta));
+                    block,
+                    0.0D,
+                    0.0D,
+                    0.0D,
+                    renderBlocks.getBlockIconFromSideAndMetadata(block, 2, meta));
             tess.draw();
             tess.startDrawingQuads();
             tess.setNormal(0.0F, 0.0F, 1.0F);
             renderBlocks.renderFaceZPos(
-                    block, 0.0D, 0.0D, 0.0D, renderBlocks.getBlockIconFromSideAndMetadata(block, 3, meta));
+                    block,
+                    0.0D,
+                    0.0D,
+                    0.0D,
+                    renderBlocks.getBlockIconFromSideAndMetadata(block, 3, meta));
             tess.draw();
             tess.startDrawingQuads();
             tess.setNormal(-1.0F, 0.0F, 0.0F);
             renderBlocks.renderFaceXNeg(
-                    block, 0.0D, 0.0D, 0.0D, renderBlocks.getBlockIconFromSideAndMetadata(block, 4, meta));
+                    block,
+                    0.0D,
+                    0.0D,
+                    0.0D,
+                    renderBlocks.getBlockIconFromSideAndMetadata(block, 4, meta));
             tess.draw();
             tess.startDrawingQuads();
             tess.setNormal(1.0F, 0.0F, 0.0F);
             renderBlocks.renderFaceXPos(
-                    block, 0.0D, 0.0D, 0.0D, renderBlocks.getBlockIconFromSideAndMetadata(block, 5, meta));
+                    block,
+                    0.0D,
+                    0.0D,
+                    0.0D,
+                    renderBlocks.getBlockIconFromSideAndMetadata(block, 5, meta));
             tess.draw();
             GL11.glTranslatef(0.5F, 0.5F, 0.5F);
         }

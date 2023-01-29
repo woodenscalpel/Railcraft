@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.carts;
 
@@ -22,6 +19,7 @@ import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.sounds.SoundHelper;
 import mods.railcraft.common.util.steam.Steam;
 import mods.railcraft.common.util.steam.SteamBoiler;
+
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -35,6 +33,7 @@ import net.minecraftforge.fluids.*;
  */
 public abstract class EntityLocomotiveSteam extends EntityLocomotive
         implements IFluidHandler, IRefuelableCart, IFluidCart {
+
     public static final int SLOT_LIQUID_INPUT = 0;
     public static final int SLOT_LIQUID_OUTPUT = 1;
     public static final byte SMOKE_FLAG = 6;
@@ -112,19 +111,18 @@ public abstract class EntityLocomotiveSteam extends EntityLocomotive
             if (update % FluidHelper.BUCKET_FILL_TIME == 0)
                 FluidHelper.drainContainers(this, this, SLOT_LIQUID_INPUT, SLOT_LIQUID_OUTPUT);
         } else {
-            if (isSmoking())
-                if (rand.nextInt(3) == 0) {
-                    double rads = renderYaw * Math.PI / 180D;
-                    float offset = 0.4f;
-                    worldObj.spawnParticle(
-                            "largesmoke",
-                            posX - Math.cos(rads) * offset,
-                            posY + 1.2f,
-                            posZ - Math.sin(rads) * offset,
-                            0,
-                            0,
-                            0);
-                }
+            if (isSmoking()) if (rand.nextInt(3) == 0) {
+                double rads = renderYaw * Math.PI / 180D;
+                float offset = 0.4f;
+                worldObj.spawnParticle(
+                        "largesmoke",
+                        posX - Math.cos(rads) * offset,
+                        posY + 1.2f,
+                        posZ - Math.sin(rads) * offset,
+                        0,
+                        0,
+                        0);
+            }
             if (isSteaming()) EffectManager.instance.steamEffect(worldObj, this, boundingBox.minY - posY - 0.3);
         }
     }
@@ -157,7 +155,7 @@ public abstract class EntityLocomotiveSteam extends EntityLocomotive
             return FUEL_PER_REQUEST;
         }
         return 0;
-        //        return 100;
+        // return 100;
     }
 
     @Override
@@ -180,11 +178,10 @@ public abstract class EntityLocomotiveSteam extends EntityLocomotive
 
     @Override
     public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
-        if (doFill && Fluids.WATER.is(resource))
-            if (boiler.isSuperHeated() && Steam.BOILERS_EXPLODE) {
-                FluidStack water = tankWater.getFluid();
-                if (water == null || water.amount <= 0) explode();
-            }
+        if (doFill && Fluids.WATER.is(resource)) if (boiler.isSuperHeated() && Steam.BOILERS_EXPLODE) {
+            FluidStack water = tankWater.getFluid();
+            if (water == null || water.amount <= 0) explode();
+        }
         return tankWater.fill(resource, doFill);
     }
 

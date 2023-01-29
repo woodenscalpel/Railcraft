@@ -1,8 +1,6 @@
 /*
- * ******************************************************************************
- *  Copyright 2011-2015 CovertJaguar
- *
- *  This work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
+ * ****************************************************************************** Copyright 2011-2015 CovertJaguar This
+ * work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
  * ***************************************************************************
  */
 
@@ -12,10 +10,12 @@ import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
 import mods.railcraft.api.core.WorldCoordinate;
 import mods.railcraft.api.electricity.IElectricGrid.ChargeHandler.ConnectType;
 import mods.railcraft.api.tracks.ITrackInstance;
 import mods.railcraft.api.tracks.ITrackTile;
+
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 
@@ -29,16 +29,14 @@ public class GridTools {
         Set<IElectricGrid> connectedObjects = new HashSet<IElectricGrid>();
 
         WorldCoordinate myPos = new WorldCoordinate(gridObject.getTile());
-        for (Map.Entry<WorldCoordinate, EnumSet<ConnectType>> position :
-                gridObject.getChargeHandler().getPossibleConnectionLocations().entrySet()) {
+        for (Map.Entry<WorldCoordinate, EnumSet<ConnectType>> position : gridObject.getChargeHandler()
+                .getPossibleConnectionLocations().entrySet()) {
             IElectricGrid otherObj = getGridObjectAt(gridObject.getTile().getWorldObj(), position.getKey());
-            if (otherObj != null
-                    && position.getValue().contains(otherObj.getChargeHandler().getType())) {
-                EnumSet<ConnectType> otherType = otherObj.getChargeHandler()
-                        .getPossibleConnectionLocations()
+            if (otherObj != null && position.getValue().contains(otherObj.getChargeHandler().getType())) {
+                EnumSet<ConnectType> otherType = otherObj.getChargeHandler().getPossibleConnectionLocations()
                         .get(myPos);
-                if (otherType != null
-                        && otherType.contains(gridObject.getChargeHandler().getType())) connectedObjects.add(otherObj);
+                if (otherType != null && otherType.contains(gridObject.getChargeHandler().getType()))
+                    connectedObjects.add(otherObj);
             }
         }
         return connectedObjects;

@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.detector.types;
 
@@ -16,6 +13,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+
 import mods.railcraft.common.blocks.detector.DetectorFilter;
 import mods.railcraft.common.blocks.detector.EnumDetector;
 import mods.railcraft.common.fluids.FluidItemHelper;
@@ -27,6 +25,7 @@ import mods.railcraft.common.gui.buttons.IMultiButtonState;
 import mods.railcraft.common.gui.buttons.MultiButtonController;
 import mods.railcraft.common.gui.buttons.StandardButtonTextureSets;
 import mods.railcraft.common.gui.tooltips.ToolTip;
+
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -40,8 +39,10 @@ import net.minecraftforge.fluids.IFluidHandler;
  * @author CovertJaguar <http://www.railcraft.info/>
  */
 public class DetectorTank extends DetectorFilter {
-    private final MultiButtonController<ButtonState> buttonController =
-            new MultiButtonController(ButtonState.ANALOG.ordinal(), ButtonState.values());
+
+    private final MultiButtonController<ButtonState> buttonController = new MultiButtonController(
+            ButtonState.ANALOG.ordinal(),
+            ButtonState.values());
 
     public DetectorTank() {
         super(1);
@@ -166,6 +167,7 @@ public class DetectorTank extends DetectorFilter {
     }
 
     public enum ButtonState implements IMultiButtonState {
+
         VOID("L = *"),
         EMPTY("L = 0%"),
         NOT_EMPTY("L > 0%"),
@@ -178,13 +180,14 @@ public class DetectorTank extends DetectorFilter {
         LESS_THAN_MOST("L < 75%"),
         LESS_THAN_FULL("L < 100%"),
         ANALOG("L = ~");
+
         private final String label;
         private ToolTip tip;
 
         private ButtonState(String label) {
             this.label = label;
-            this.tip = ToolTip.buildToolTip("gui.detector.tank.tip."
-                    + name().toLowerCase(Locale.ENGLISH).replace("_", "."));
+            this.tip = ToolTip
+                    .buildToolTip("gui.detector.tank.tip." + name().toLowerCase(Locale.ENGLISH).replace("_", "."));
         }
 
         @Override

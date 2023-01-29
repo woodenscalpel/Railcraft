@@ -1,8 +1,6 @@
 /*
- * ******************************************************************************
- *  Copyright 2011-2015 CovertJaguar
- *
- *  This work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
+ * ****************************************************************************** Copyright 2011-2015 CovertJaguar This
+ * work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
  * ***************************************************************************
  */
 
@@ -11,8 +9,7 @@ package mods.railcraft.api.carts;
 public interface IExplosiveCart {
 
     /**
-     * If set to true the cart should explode after
-     * whatever fuse duration is set.
+     * If set to true the cart should explode after whatever fuse duration is set.
      *
      * @param primed
      */

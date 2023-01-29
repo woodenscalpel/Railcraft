@@ -1,15 +1,13 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.gui;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import mods.railcraft.client.gui.buttons.GuiBetterButton;
 import mods.railcraft.client.gui.buttons.GuiToggleButton;
 import mods.railcraft.common.blocks.machine.gamma.TileRFUnloader;
@@ -19,13 +17,14 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.PacketDispatcher;
 import mods.railcraft.common.util.network.PacketGuiReturn;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.tileentity.TileEntity;
 
 public class GuiUnloaderRF extends TileGui {
 
     private final String button1Label = LocalizationPlugin.translate("railcraft.gui.energy.unloader.wait");
-    //    private final String BUTTON1 = "Wait till Empty";
+    // private final String BUTTON1 = "Wait till Empty";
     private TileRFUnloader tile;
 
     public GuiUnloaderRF(TileRFUnloader tile) {

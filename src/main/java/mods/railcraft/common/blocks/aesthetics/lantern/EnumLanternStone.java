@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.aesthetics.lantern;
 
@@ -13,12 +10,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
 import mods.railcraft.common.blocks.aesthetics.brick.BrickVariant;
 import mods.railcraft.common.blocks.aesthetics.brick.EnumBrick;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -30,6 +29,7 @@ import net.minecraftforge.common.util.ForgeDirection;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public enum EnumLanternStone implements LanternInfo {
+
     ABYSSAL,
     BLEACHEDBONE,
     BLOODSTAINED,
@@ -40,6 +40,7 @@ public enum EnumLanternStone implements LanternInfo {
     SANDY,
     SANDSTONE,
     STONE;
+
     public static final EnumLanternStone[] VALUES = values();
     public static final Map<String, EnumLanternStone> NAMES = new HashMap<String, EnumLanternStone>();
     public static final List<EnumLanternStone> creativeList = new ArrayList<EnumLanternStone>();
@@ -60,9 +61,15 @@ public enum EnumLanternStone implements LanternInfo {
         for (EnumLanternStone lamp : VALUES) {
             NAMES.put(lamp.name(), lamp);
 
-            if (lamp.isEnabled() && lamp.source != null)
-                CraftingPlugin.addShapedRecipe(
-                        lamp.getItem(1), " S ", " T ", " S ", 'S', lamp.getSource(), 'T', new ItemStack(Blocks.torch));
+            if (lamp.isEnabled() && lamp.source != null) CraftingPlugin.addShapedRecipe(
+                    lamp.getItem(1),
+                    " S ",
+                    " T ",
+                    " S ",
+                    'S',
+                    lamp.getSource(),
+                    'T',
+                    new ItemStack(Blocks.torch));
             creativeList.add(lamp);
         }
     }

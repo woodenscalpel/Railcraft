@@ -1,28 +1,29 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.misc;
 
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.common.core.Railcraft;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.World;
+
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.message.Message;
 import org.apache.logging.log4j.message.MessageFormatMessage;
 
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 /**
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public class Game {
+
     public static final boolean IS_OBFUSCATED = !World.class.getSimpleName().equals("World");
     public static final boolean IS_DEBUG = !Railcraft.VERSION.endsWith("0");
     public static final boolean IS_BUKKIT;
@@ -31,13 +32,11 @@ public class Game {
         boolean foundBukkit = false;
         try {
             foundBukkit = Class.forName("org.spigotmc.SpigotConfig") != null;
-        } catch (ClassNotFoundException er) {
-        }
+        } catch (ClassNotFoundException er) {}
         IS_BUKKIT = foundBukkit;
-        if (IS_BUKKIT)
-            log(
-                    Level.INFO,
-                    "Bukkit detected, disabling Tile Entity caching because Bukkit doesn't seem to invalid Tile Entities properly!");
+        if (IS_BUKKIT) log(
+                Level.INFO,
+                "Bukkit detected, disabling Tile Entity caching because Bukkit doesn't seem to invalid Tile Entities properly!");
     }
 
     public static boolean isHost(final World world) {
@@ -109,9 +108,7 @@ public class Game {
         for (Class classFile : classFiles) {
             if (classFile != null) {
                 msg = new StringBuilder(mod);
-                msg.append(" API error: ")
-                        .append(classFile.getSimpleName())
-                        .append(" is loaded from ")
+                msg.append(" API error: ").append(classFile.getSimpleName()).append(" is loaded from ")
                         .append(classFile.getProtectionDomain().getCodeSource().getLocation());
                 log(Level.ERROR, msg.toString());
             }

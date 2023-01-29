@@ -1,14 +1,10 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.items;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import mods.railcraft.api.electricity.GridTools;
 import mods.railcraft.api.electricity.IElectricGrid;
 import mods.railcraft.api.electricity.IElectricMinecart;
@@ -17,6 +13,7 @@ import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.*;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -25,6 +22,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 /**
  *
@@ -57,7 +56,7 @@ public class ItemElectricMeter extends ItemRailcraft implements IActivationBlock
 
                 LootPlugin.addLootWorkshop(new ItemStack(item), 1, 1, tag);
             }
-            //            CreeperPlugin.fixCreepers();
+            // CreeperPlugin.fixCreepers();
         }
     }
 
@@ -85,39 +84,29 @@ public class ItemElectricMeter extends ItemRailcraft implements IActivationBlock
 
         if (Game.isNotHost(player.worldObj)) return;
 
-        if (stack != null && stack.getItem() instanceof ItemElectricMeter)
-            try {
-                if (entity instanceof IElectricMinecart) {
-                    IElectricMinecart cart = (IElectricMinecart) entity;
-                    IElectricMinecart.ChargeHandler ch = cart.getChargeHandler();
-                    if (ch != null) {
-                        ChatPlugin.sendLocalizedChat(
-                                player,
-                                "railcraft.gui.electric.meter.charge",
-                                ch.getCharge(),
-                                ch.getDraw(),
-                                ch.getLosses());
-                        event.setCanceled(true);
-                    }
+        if (stack != null && stack.getItem() instanceof ItemElectricMeter) try {
+            if (entity instanceof IElectricMinecart) {
+                IElectricMinecart cart = (IElectricMinecart) entity;
+                IElectricMinecart.ChargeHandler ch = cart.getChargeHandler();
+                if (ch != null) {
+                    ChatPlugin.sendLocalizedChat(
+                            player,
+                            "railcraft.gui.electric.meter.charge",
+                            ch.getCharge(),
+                            ch.getDraw(),
+                            ch.getLosses());
+                    event.setCanceled(true);
                 }
-            } catch (Throwable er) {
-                Game.logErrorAPI(Railcraft.MOD_ID, er, IElectricMinecart.class);
-                ChatPlugin.sendLocalizedChatFromServer(player, "chat.railcraft.api.error");
             }
+        } catch (Throwable er) {
+            Game.logErrorAPI(Railcraft.MOD_ID, er, IElectricMinecart.class);
+            ChatPlugin.sendLocalizedChatFromServer(player, "chat.railcraft.api.error");
+        }
     }
 
     @Override
-    public boolean onItemUseFirst(
-            ItemStack stack,
-            EntityPlayer player,
-            World world,
-            int x,
-            int y,
-            int z,
-            int side,
-            float hitX,
-            float hitY,
-            float hitZ) {
+    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side,
+            float hitX, float hitY, float hitZ) {
         if (Game.isNotHost(world)) return false;
         boolean returnValue = false;
         try {

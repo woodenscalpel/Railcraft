@@ -1,15 +1,10 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.gui.containers;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.common.blocks.signals.IRouter;
 import mods.railcraft.common.blocks.signals.RoutingLogic;
 import mods.railcraft.common.gui.slots.*;
@@ -18,10 +13,14 @@ import mods.railcraft.common.gui.widgets.Widget;
 import mods.railcraft.common.items.ItemRoutingTable;
 import mods.railcraft.common.plugins.forge.PlayerPlugin;
 import mods.railcraft.common.util.network.PacketBuilder;
+
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ContainerRouting extends RailcraftContainer {
 
@@ -41,6 +40,7 @@ public class ContainerRouting extends RailcraftContainer {
         this.playerInv = playerInv;
 
         errorElement = new Widget(16, 24, 176, 0, 16, 16) {
+
             @Override
             public ToolTip getToolTip() {
                 if (router.getLogic() != null && router.getLogic().getError() != null)
@@ -52,6 +52,7 @@ public class ContainerRouting extends RailcraftContainer {
         addWidget(errorElement);
 
         slotTicket = new SlotSecure(ItemRoutingTable.FILTER, route.getInventory(), 0, 35, 24) {
+
             @Override
             public void onSlotChanged() {
                 super.onSlotChanged();

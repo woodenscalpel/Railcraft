@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.aesthetics;
 
@@ -12,10 +9,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import mods.railcraft.client.sounds.RailcraftSound;
 import mods.railcraft.common.blocks.aesthetics.brick.EnumBrick;
 import mods.railcraft.common.blocks.aesthetics.cube.BlockCube;
 import mods.railcraft.common.blocks.aesthetics.cube.EnumCube;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.Block.SoundType;
 import net.minecraft.entity.Entity;
@@ -29,6 +28,7 @@ import net.minecraft.world.World;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public enum EnumBlockMaterial implements IDerivedBlock {
+
     SANDY_BRICK,
     INFERNAL_BRICK,
     CONCRETE,
@@ -73,6 +73,7 @@ public enum EnumBlockMaterial implements IDerivedBlock {
     TIN,
     LEAD,
     STEEL;
+
     public static final EnumBlockMaterial[] VALUES = values();
     public static final Map<String, EnumBlockMaterial> NAMES = new HashMap<String, EnumBlockMaterial>();
     public static final List<EnumBlockMaterial> creativeList = new ArrayList<EnumBlockMaterial>();

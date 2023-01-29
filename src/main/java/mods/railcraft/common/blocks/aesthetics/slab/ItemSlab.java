@@ -1,15 +1,13 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.aesthetics.slab;
 
 import mods.railcraft.common.blocks.aesthetics.EnumBlockMaterial;
 import mods.railcraft.common.util.misc.MiscTools;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
@@ -36,22 +34,12 @@ public class ItemSlab extends ItemBlock {
     }
 
     /**
-     * Callback for item usage. If the item does something special on right
-     * clicking, he will have one of those. Return True if something happen and
-     * false if it don't. This is for ITEMS, not BLOCKS
+     * Callback for item usage. If the item does something special on right clicking, he will have one of those. Return
+     * True if something happen and false if it don't. This is for ITEMS, not BLOCKS
      */
     @Override
-    public boolean onItemUse(
-            ItemStack stack,
-            EntityPlayer player,
-            World world,
-            int x,
-            int y,
-            int z,
-            int side,
-            float hitX,
-            float hitY,
-            float hitZ) {
+    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side,
+            float hitX, float hitY, float hitZ) {
         if (stack.stackSize == 0) {
             return false;
         }
@@ -123,8 +111,8 @@ public class ItemSlab extends ItemBlock {
     }
 
     @Override
-    public boolean func_150936_a(
-            World world, int x, int y, int z, int side, EntityPlayer par6EntityPlayer, ItemStack stack) {
+    public boolean func_150936_a(World world, int x, int y, int z, int side, EntityPlayer par6EntityPlayer,
+            ItemStack stack) {
         if (isSingleSlab(world, x, y, z, side)) {
             return true;
         }
@@ -135,50 +123,37 @@ public class ItemSlab extends ItemBlock {
     }
 
     /**
-     * Called to actually place the block, after the location is determined and
-     * all permission checks have been made.
+     * Called to actually place the block, after the location is determined and all permission checks have been made.
      *
-     * @param stack The item stack that was used to place the block. This can be
-     * changed inside the method.
-     * @param player The player who is placing the block. Can be null if the
-     * block is not being placed by a player.
-     * @param side The side the player (or machine) right-clicked on.
+     * @param stack  The item stack that was used to place the block. This can be changed inside the method.
+     * @param player The player who is placing the block. Can be null if the block is not being placed by a player.
+     * @param side   The side the player (or machine) right-clicked on.
      */
     @Override
-    public boolean placeBlockAt(
-            ItemStack stack,
-            EntityPlayer player,
-            World world,
-            int x,
-            int y,
-            int z,
-            int side,
-            float hitX,
-            float hitY,
-            float hitZ,
-            int metadata) {
+    public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side,
+            float hitX, float hitY, float hitZ, int metadata) {
         Block block = field_150939_a;
         if (!world.checkNoEntityCollision(block.getCollisionBoundingBoxFromPool(world, x, y, z))) {
             return false;
         }
 
-        //        boolean shifted = world.getBlockId(x, y, z) != blockID;
-        //        ForgeDirection s = ForgeDirection.getOrientation(side).getOpposite();
-        //        int cx = shifted ? MiscTools.getXOnSide(x, s) : x;
-        //        int cy = shifted ? MiscTools.getYOnSide(y, s) : y;
-        //        int cz = shifted ? MiscTools.getZOnSide(z, s) : z;
-        //        if (world.getBlockId(cx, cy, cz) == blockID) {
-        //            int meta = world.getBlockMetadata(cx, cy, cz);
-        //            if (!shifted && meta != DOUBLE_SLAB_META || meta == UP_SLAB_META && side == 0 || meta ==
+        // boolean shifted = world.getBlockId(x, y, z) != blockID;
+        // ForgeDirection s = ForgeDirection.getOrientation(side).getOpposite();
+        // int cx = shifted ? MiscTools.getXOnSide(x, s) : x;
+        // int cy = shifted ? MiscTools.getYOnSide(y, s) : y;
+        // int cz = shifted ? MiscTools.getZOnSide(z, s) : z;
+        // if (world.getBlockId(cx, cy, cz) == blockID) {
+        // int meta = world.getBlockMetadata(cx, cy, cz);
+        // if (!shifted && meta != DOUBLE_SLAB_META || meta == UP_SLAB_META && side == 0 || meta ==
         // DOWN_SLAB_META && side == 1) {
-        //                world.setBlockMetadataWithNotify(cx, cy, cz, DOUBLE_SLAB_META, 3);
-        //                world.playSoundEffect((double) ((float) cx + 0.5F), (double) ((float) cy + 0.5F), (double)
+        // world.setBlockMetadataWithNotify(cx, cy, cz, DOUBLE_SLAB_META, 3);
+        // world.playSoundEffect((double) ((float) cx + 0.5F), (double) ((float) cy + 0.5F), (double)
         // ((float) cz + 0.5F), block.stepSound.getPlaceSound(), (block.stepSound.getVolume() + 1.0F) / 2.0F,
         // block.stepSound.getPitch() * 0.8F);
-        //                --stack.stackSize;
-        //                return false;
-        //            }
-        //        }
+        // --stack.stackSize;
+        // return false;
+        // }
+        // }
 
         if (!world.setBlock(x, y, z, field_150939_a)) {
             return false;

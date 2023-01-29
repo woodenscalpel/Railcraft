@@ -1,17 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.alpha.ai;
 
-import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIMate;
@@ -23,6 +20,8 @@ import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.world.World;
+
+import cpw.mods.fml.common.ObfuscationReflectionHelper;
 
 public class EntityAIMateBreeding extends EntityAIBase {
 
@@ -45,6 +44,7 @@ public class EntityAIMateBreeding extends EntityAIBase {
 
     /**
      * Returns whether the EntityAIBase should begin execution.
+     * 
      * @return
      */
     @Override
@@ -53,8 +53,8 @@ public class EntityAIMateBreeding extends EntityAIBase {
             return false;
         }
 
-        List nearbyEntites =
-                theAnimal.worldObj.getEntitiesWithinAABB(EntityAnimal.class, theAnimal.boundingBox.expand(1, 1, 1));
+        List nearbyEntites = theAnimal.worldObj
+                .getEntitiesWithinAABB(EntityAnimal.class, theAnimal.boundingBox.expand(1, 1, 1));
         if (nearbyEntites.size() > MAX_ANIMALS) {
             return false;
         }
@@ -65,6 +65,7 @@ public class EntityAIMateBreeding extends EntityAIBase {
 
     /**
      * Returns whether an in-progress EntityAIBase should continue executing
+     * 
      * @return
      */
     @Override
@@ -86,8 +87,8 @@ public class EntityAIMateBreeding extends EntityAIBase {
      */
     @Override
     public void updateTask() {
-        this.theAnimal.getLookHelper().setLookPositionWithEntity(this.targetMate, 10.0F, (float)
-                this.theAnimal.getVerticalFaceSpeed());
+        this.theAnimal.getLookHelper()
+                .setLookPositionWithEntity(this.targetMate, 10.0F, (float) this.theAnimal.getVerticalFaceSpeed());
         this.theAnimal.getNavigator().tryMoveToEntityLiving(this.targetMate, this.moveSpeed);
         ++this.spawnBabyDelay;
 
@@ -142,7 +143,7 @@ public class EntityAIMateBreeding extends EntityAIBase {
         if (sitPriority > 0) {
             EntityAISitBred aiSit = new EntityAISitBred((EntityTameable) animal);
             animal.tasks.addTask(sitPriority, aiSit);
-            //            ObfuscationReflectionHelper.setPrivateValue(EntityTameable.class, (EntityTameable)animal,
+            // ObfuscationReflectionHelper.setPrivateValue(EntityTameable.class, (EntityTameable)animal,
             // aiSit, "d", "aiSit");
             ObfuscationReflectionHelper.setPrivateValue(EntityTameable.class, (EntityTameable) animal, aiSit, 0);
         }
@@ -210,7 +211,11 @@ public class EntityAIMateBreeding extends EntityAIBase {
             double x = rand.nextGaussian() * 0.2D;
             double z = rand.nextGaussian() * 0.2D;
             baby.setLocationAndAngles(
-                    this.theAnimal.posX + x, this.theAnimal.posY, this.theAnimal.posZ + z, 0.0F, 0.0F);
+                    this.theAnimal.posX + x,
+                    this.theAnimal.posY,
+                    this.theAnimal.posZ + z,
+                    0.0F,
+                    0.0F);
             this.theWorld.spawnEntityInWorld(baby);
 
             for (int i = 0; i < 7; ++i) {
@@ -219,12 +224,10 @@ public class EntityAIMateBreeding extends EntityAIBase {
                 double pz = rand.nextGaussian() * 0.02D;
                 this.theWorld.spawnParticle(
                         "heart",
-                        this.theAnimal.posX
-                                + (double) (rand.nextFloat() * this.theAnimal.width * 2.0F)
+                        this.theAnimal.posX + (double) (rand.nextFloat() * this.theAnimal.width * 2.0F)
                                 - (double) this.theAnimal.width,
                         this.theAnimal.posY + 0.5D + (double) (rand.nextFloat() * this.theAnimal.height),
-                        this.theAnimal.posZ
-                                + (double) (rand.nextFloat() * this.theAnimal.width * 2.0F)
+                        this.theAnimal.posZ + (double) (rand.nextFloat() * this.theAnimal.width * 2.0F)
                                 - (double) this.theAnimal.width,
                         px,
                         py,

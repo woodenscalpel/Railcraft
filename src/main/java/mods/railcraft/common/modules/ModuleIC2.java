@@ -1,14 +1,10 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.modules;
 
-import ic2.api.recipe.Recipes;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.detector.BlockDetector;
 import mods.railcraft.common.blocks.detector.EnumDetector;
@@ -22,17 +18,21 @@ import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.plugins.ic2.IC2Plugin;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
 import org.apache.logging.log4j.Level;
+
+import ic2.api.recipe.Recipes;
 
 public class ModuleIC2 extends RailcraftModule {
 
     public static Item lapotronUpgrade;
-    //    private static Item creosoteWood;
+    // private static Item creosoteWood;
 
     @Override
     public boolean canModuleLoad() {
@@ -50,9 +50,7 @@ public class ModuleIC2 extends RailcraftModule {
         RailcraftBlocks.registerBlockMachineGamma();
 
         if (RailcraftConfig.isItemEnabled("ic2.upgrade.lapotron")) {
-            lapotronUpgrade = new ItemRailcraft()
-                    .setUnlocalizedName("railcraft.upgrade.lapotron")
-                    .setMaxStackSize(9);
+            lapotronUpgrade = new ItemRailcraft().setUnlocalizedName("railcraft.upgrade.lapotron").setMaxStackSize(9);
 
             RailcraftRegistry.register(lapotronUpgrade);
 
@@ -64,21 +62,21 @@ public class ModuleIC2 extends RailcraftModule {
         if (IC2Plugin.isClassic()) EnumCart.ENERGY_MFSU.setup();
         else EnumCart.ENERGY_CESU.setup();
 
-        //        id = RailcraftConfig.getItemId("item.creosote.wood");
-        //        if(id > 0){
-        //            creosoteWood = new ItemRailcraft(id).setItemName("creosoteWood").setIconIndex(184);
-        //            ItemStack wood = new ItemStack(creosoteWood);
-        //            RailcraftLanguage.getInstance().registerItemName(creosoteWood, "Creosote Wood");
+        // id = RailcraftConfig.getItemId("item.creosote.wood");
+        // if(id > 0){
+        // creosoteWood = new ItemRailcraft(id).setItemName("creosoteWood").setIconIndex(184);
+        // ItemStack wood = new ItemStack(creosoteWood);
+        // RailcraftLanguage.getInstance().registerItemName(creosoteWood, "Creosote Wood");
         //
-        //            ItemStack oil = RailcraftPartItems.getCreosoteOil(2);
-        //            Ic2Recipes.addExtractorRecipe(wood, oil);
+        // ItemStack oil = RailcraftPartItems.getCreosoteOil(2);
+        // Ic2Recipes.addExtractorRecipe(wood, oil);
         //
-        //            CropCard bush = new CreosoteBush(wood);
+        // CropCard bush = new CreosoteBush(wood);
         //
-        //            if(!CropCard.registerCrop(bush, 156)){
-        //                CropCard.registerCrop(bush);
-        //            }
-        //        }
+        // if(!CropCard.registerCrop(bush, 156)){
+        // CropCard.registerCrop(bush);
+        // }
+        // }
     }
 
     @Override
@@ -93,8 +91,8 @@ public class ModuleIC2 extends RailcraftModule {
             ItemStack stack = EnumDetector.ENERGY.getItem();
             Object tin = RailcraftItem.plate.getRecipeObject(EnumPlate.TIN);
             if (tin == null) tin = "ingotTin";
-            CraftingPlugin.addShapedRecipe(
-                    stack, false, "XXX", "XPX", "XXX", 'X', tin, 'P', Blocks.stone_pressure_plate);
+            CraftingPlugin
+                    .addShapedRecipe(stack, false, "XXX", "XPX", "XXX", 'X', tin, 'P', Blocks.stone_pressure_plate);
         }
 
         ItemStack batbox = IC2Plugin.getItem("batBox");
@@ -151,35 +149,33 @@ public class ModuleIC2 extends RailcraftModule {
         else detector = new ItemStack(Blocks.stone_pressure_plate);
 
         if (battery != null && machine != null) {
-            if (EnumMachineGamma.ENERGY_LOADER.isAvaliable())
-                Recipes.advRecipes.addRecipe(
-                        EnumMachineGamma.ENERGY_LOADER.getItem(),
-                        "BLB",
-                        "BIB",
-                        "BDB",
-                        'D',
-                        detector,
-                        'B',
-                        battery,
-                        'I',
-                        machine,
-                        'L',
-                        new ItemStack(Blocks.hopper));
+            if (EnumMachineGamma.ENERGY_LOADER.isAvaliable()) Recipes.advRecipes.addRecipe(
+                    EnumMachineGamma.ENERGY_LOADER.getItem(),
+                    "BLB",
+                    "BIB",
+                    "BDB",
+                    'D',
+                    detector,
+                    'B',
+                    battery,
+                    'I',
+                    machine,
+                    'L',
+                    new ItemStack(Blocks.hopper));
 
-            if (EnumMachineGamma.ENERGY_UNLOADER.isAvaliable())
-                Recipes.advRecipes.addRecipe(
-                        EnumMachineGamma.ENERGY_UNLOADER.getItem(),
-                        "BDB",
-                        "BIB",
-                        "BLB",
-                        'D',
-                        detector,
-                        'B',
-                        battery,
-                        'I',
-                        machine,
-                        'L',
-                        new ItemStack(Blocks.hopper));
+            if (EnumMachineGamma.ENERGY_UNLOADER.isAvaliable()) Recipes.advRecipes.addRecipe(
+                    EnumMachineGamma.ENERGY_UNLOADER.getItem(),
+                    "BDB",
+                    "BIB",
+                    "BLB",
+                    'D',
+                    detector,
+                    'B',
+                    battery,
+                    'I',
+                    machine,
+                    'L',
+                    new ItemStack(Blocks.hopper));
         }
 
         if (RailcraftConfig.isItemEnabled("ic2.upgrade.lapotron")) {
@@ -189,7 +185,7 @@ public class ModuleIC2 extends RailcraftModule {
 
             if (lapotron != null && glassCable != null && circuit != null) {
                 lapotron.copy();
-                //                lapotron.setItemDamage(-1);
+                // lapotron.setItemDamage(-1);
                 Recipes.advRecipes.addRecipe(
                         new ItemStack(lapotronUpgrade),
                         "GGG",

@@ -1,15 +1,13 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.gui;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import mods.railcraft.client.gui.buttons.GuiBetterButton;
 import mods.railcraft.client.gui.buttons.GuiMultiButton;
 import mods.railcraft.client.gui.buttons.GuiToggleButtonSmall;
@@ -21,6 +19,7 @@ import mods.railcraft.common.gui.containers.ContainerLocomotive;
 import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.network.PacketBuilder;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -46,14 +45,8 @@ public abstract class GuiLocomotive extends EntityGui {
     private ToolTip privateToolTips;
     private String locoOwner;
 
-    public GuiLocomotive(
-            InventoryPlayer inv,
-            EntityLocomotive loco,
-            ContainerLocomotive container,
-            String typeTag,
-            String guiName,
-            int guiHeight,
-            boolean hasIdleMode) {
+    public GuiLocomotive(InventoryPlayer inv, EntityLocomotive loco, ContainerLocomotive container, String typeTag,
+            String guiName, int guiHeight, boolean hasIdleMode) {
         super(loco, container, RailcraftConstants.GUI_TEXTURE_FOLDER + guiName);
         ySize = guiHeight;
         this.loco = loco;
@@ -167,17 +160,16 @@ public abstract class GuiLocomotive extends EntityGui {
     private void updateButtons() {
         lockButton.enabled = loco.clientCanLock;
         lockButton.setToolTip(
-                loco.isPrivate()
-                        ? privateToolTips
+                loco.isPrivate() ? privateToolTips
                         : loco.isSecure() ? lockedToolTips : lockButton.enabled ? unlockedToolTips : null);
         String ownerName = ((ContainerLocomotive) container).ownerName;
         if (ownerName != null && !ownerName.equals(locoOwner)) {
             locoOwner = ownerName;
             lockedToolTips = ToolTip.buildToolTip("railcraft.gui.locomotive.tip.button.locked", "{owner}=" + ownerName);
-            unlockedToolTips =
-                    ToolTip.buildToolTip("railcraft.gui.locomotive.tip.button.unlocked", "{owner}=" + ownerName);
-            privateToolTips =
-                    ToolTip.buildToolTip("railcraft.gui.locomotive.tip.button.private", "{owner}=" + ownerName);
+            unlockedToolTips = ToolTip
+                    .buildToolTip("railcraft.gui.locomotive.tip.button.unlocked", "{owner}=" + ownerName);
+            privateToolTips = ToolTip
+                    .buildToolTip("railcraft.gui.locomotive.tip.button.private", "{owner}=" + ownerName);
         }
         running.active = loco.clientMode == LocoMode.RUNNING;
         idle.active = loco.clientMode == LocoMode.IDLE;
@@ -202,7 +194,7 @@ public abstract class GuiLocomotive extends EntityGui {
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         String name = loco.getCommandSenderName();
         GuiTools.drawCenteredString(fontRendererObj, name, 6);
-        fontRendererObj.drawString(
-                StatCollector.translateToLocal("container.inventory"), 8, (ySize - 96) + 2, 0x404040);
+        fontRendererObj
+                .drawString(StatCollector.translateToLocal("container.inventory"), 8, (ySize - 96) + 2, 0x404040);
     }
 }

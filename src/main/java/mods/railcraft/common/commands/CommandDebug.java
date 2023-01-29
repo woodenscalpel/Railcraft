@@ -1,14 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2015 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2015 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.commands;
 
 import java.util.List;
+
 import mods.railcraft.api.core.WorldCoordinate;
 import mods.railcraft.api.signals.*;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
@@ -16,11 +14,13 @@ import mods.railcraft.common.blocks.signals.TileBoxBase;
 import mods.railcraft.common.plugins.forge.ChatPlugin;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.block.Block;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.message.Message;
 import org.apache.logging.log4j.message.MessageFactory;
@@ -30,6 +30,7 @@ import org.apache.logging.log4j.message.MessageFormatMessageFactory;
  * Created by CovertJaguar on 3/12/2015.
  */
 public class CommandDebug extends SubCommand {
+
     private static final Level DEBUG_LEVEL = Level.INFO;
     private static final MessageFactory msgFactory = new MessageFormatMessageFactory();
 
@@ -49,13 +50,12 @@ public class CommandDebug extends SubCommand {
         int y = coord.y;
         int z = coord.z;
         Block block = world.getBlock(x, y, z);
-        if (block != null)
-            printLine(
-                    sender,
-                    "Target block [{0}] = {1}, {2}",
-                    shortCoords(coord),
-                    block.getClass(),
-                    block.getUnlocalizedName());
+        if (block != null) printLine(
+                sender,
+                "Target block [{0}] = {1}, {2}",
+                shortCoords(coord),
+                block.getClass(),
+                block.getUnlocalizedName());
         else printLine(sender, "Target block [{0}] = null", shortCoords(coord));
         TileEntity t = world.getTileEntity(x, y, z);
         if (t != null)
@@ -68,6 +68,7 @@ public class CommandDebug extends SubCommand {
     }
 
     public static class CommandDebugTile extends SubCommand {
+
         public CommandDebugTile() {
             super("tile");
             addChildCommand(new CommandDebugTileController());
@@ -101,6 +102,7 @@ public class CommandDebug extends SubCommand {
     }
 
     public static class CommandDebugTileController extends SubCommand {
+
         public CommandDebugTileController() {
             super("controller");
             addAlias("con");
@@ -150,6 +152,7 @@ public class CommandDebug extends SubCommand {
     }
 
     public static class CommandDebugTileReceiver extends SubCommand {
+
         public CommandDebugTileReceiver() {
             super("receiver");
             addAlias("rec");

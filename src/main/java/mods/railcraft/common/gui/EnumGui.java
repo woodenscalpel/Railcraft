@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.gui;
 
@@ -12,6 +9,7 @@ package mods.railcraft.common.gui;
  * @author CovertJaguar
  */
 public enum EnumGui {
+
     LOADER_ITEM(true),
     LOADER_FLUID(true),
     LOADER_ENERGY(true),
@@ -74,6 +72,7 @@ public enum EnumGui {
     BOILER_LIQUID(true),
     TURBINE(true),
     ANVIL(true);
+
     private static final EnumGui[] VALUES = values();
     private final boolean hasContainer;
 

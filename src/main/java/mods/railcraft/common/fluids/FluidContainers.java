@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.fluids;
 
@@ -13,6 +10,7 @@ import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.CreativePlugin;
 import mods.railcraft.common.plugins.forge.LootPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
+
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -87,8 +85,8 @@ public class FluidContainers {
                 item.setUnlocalizedName(tag);
                 RailcraftRegistry.register(item);
 
-                boolean forestry =
-                        FluidHelper.registerCan(Fluids.CREOSOTE.get(FluidHelper.BUCKET_VOLUME), new ItemStack(item));
+                boolean forestry = FluidHelper
+                        .registerCan(Fluids.CREOSOTE.get(FluidHelper.BUCKET_VOLUME), new ItemStack(item));
                 if (forestry) item.setCreativeTab(CreativePlugin.RAILCRAFT_TAB);
 
                 itemCreosoteOilCan = item;
@@ -110,8 +108,8 @@ public class FluidContainers {
                 item.setUnlocalizedName(tag);
                 RailcraftRegistry.register(item);
 
-                boolean forestry =
-                        FluidHelper.registerWax(Fluids.CREOSOTE.get(FluidHelper.BUCKET_VOLUME), new ItemStack(item));
+                boolean forestry = FluidHelper
+                        .registerWax(Fluids.CREOSOTE.get(FluidHelper.BUCKET_VOLUME), new ItemStack(item));
                 if (forestry) item.setCreativeTab(CreativePlugin.RAILCRAFT_TAB);
 
                 itemCreosoteOilWax = item;
@@ -133,8 +131,8 @@ public class FluidContainers {
                 item.setUnlocalizedName(tag);
                 RailcraftRegistry.register(item);
 
-                boolean forestry = FluidHelper.registerRefactory(
-                        Fluids.CREOSOTE.get(FluidHelper.BUCKET_VOLUME), new ItemStack(item));
+                boolean forestry = FluidHelper
+                        .registerRefactory(Fluids.CREOSOTE.get(FluidHelper.BUCKET_VOLUME), new ItemStack(item));
                 if (forestry) item.setCreativeTab(CreativePlugin.RAILCRAFT_TAB);
 
                 itemCreosoteOilRefactory = item;
@@ -156,8 +154,8 @@ public class FluidContainers {
                 item.setUnlocalizedName(tag);
                 RailcraftRegistry.register(item);
 
-                boolean ic2 =
-                        FluidHelper.registerCell(Fluids.CREOSOTE.get(FluidHelper.BUCKET_VOLUME), new ItemStack(item));
+                boolean ic2 = FluidHelper
+                        .registerCell(Fluids.CREOSOTE.get(FluidHelper.BUCKET_VOLUME), new ItemStack(item));
                 if (ic2) item.setCreativeTab(CreativePlugin.RAILCRAFT_TAB);
 
                 itemCreosoteOilCell = item;

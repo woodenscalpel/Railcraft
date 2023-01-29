@@ -1,19 +1,18 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.inventory.manipulators;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import mods.railcraft.api.core.items.IStackFilter;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.inventory.wrappers.IInvSlot;
 import mods.railcraft.common.util.inventory.wrappers.InventoryIterator;
+
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 
@@ -25,8 +24,8 @@ public class InventoryManipulator {
     private final IInventory inv;
 
     public static InventoryManipulator get(IInventory inv) {
-        //        if (inv instanceof ISpecialInventory)
-        //            return new SpecialManipulator((ISpecialInventory) inv);
+        // if (inv instanceof ISpecialInventory)
+        // return new SpecialManipulator((ISpecialInventory) inv);
         return new InventoryManipulator(inv);
     }
 
@@ -62,9 +61,8 @@ public class InventoryManipulator {
         List<IInvSlot> filledSlots = new ArrayList<IInvSlot>(inv.getSizeInventory());
         List<IInvSlot> emptySlots = new ArrayList<IInvSlot>(inv.getSizeInventory());
         for (IInvSlot slot : InventoryIterator.getIterable(inv)) {
-            if (slot.canPutStackInSlot(stack))
-                if (slot.getStackInSlot() == null) emptySlots.add(slot);
-                else filledSlots.add(slot);
+            if (slot.canPutStackInSlot(stack)) if (slot.getStackInSlot() == null) emptySlots.add(slot);
+            else filledSlots.add(slot);
         }
 
         int injected = 0;
@@ -126,8 +124,7 @@ public class InventoryManipulator {
     }
 
     /**
-     * Returns true if an item matching the filter can be removed from the
-     * inventory.
+     * Returns true if an item matching the filter can be removed from the inventory.
      *
      * @param filter
      * @return
@@ -137,8 +134,8 @@ public class InventoryManipulator {
     }
 
     /**
-     * Returns the item that would be returned if an item matching the filter
-     * was removed. Does not modify the inventory.
+     * Returns the item that would be returned if an item matching the filter was removed. Does not modify the
+     * inventory.
      *
      * @param filter
      * @return

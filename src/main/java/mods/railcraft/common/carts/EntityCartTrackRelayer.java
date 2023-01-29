@@ -1,14 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.carts;
 
 import java.util.EnumSet;
+
 import mods.railcraft.api.core.items.ITrackItem;
 import mods.railcraft.api.tracks.ITrackTile;
 import mods.railcraft.common.blocks.tracks.TrackSuspended;
@@ -19,6 +17,7 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -77,8 +76,8 @@ public class EntityCartTrackRelayer extends CartMaintenancePatternBase {
             ItemStack trackStock = getStackInSlot(SLOT_STOCK);
 
             boolean nextToSuspended = false;
-            for (ForgeDirection side :
-                    EnumSet.of(ForgeDirection.EAST, ForgeDirection.WEST, ForgeDirection.NORTH, ForgeDirection.SOUTH)) {
+            for (ForgeDirection side : EnumSet
+                    .of(ForgeDirection.EAST, ForgeDirection.WEST, ForgeDirection.NORTH, ForgeDirection.SOUTH)) {
                 TileEntity tile = WorldPlugin.getTileEntityOnSide(worldObj, i, j, k, side);
                 if (tile instanceof ITrackTile) {
                     ITrackTile track = (ITrackTile) tile;
@@ -91,20 +90,19 @@ public class EntityCartTrackRelayer extends CartMaintenancePatternBase {
 
             if (nextToSuspended) return;
 
-            if (trackExist != null && trackStock != null)
-                if (trackExist.getItem() instanceof ITrackItem) {
-                    ITrackItem trackItem = (ITrackItem) trackExist.getItem();
-                    if (trackItem.getPlacedBlock() == block) {
-                        TileEntity tile = worldObj.getTileEntity(i, j, k);
-                        if (trackItem.isPlacedTileEntity(trackExist, tile)) {
-                            int meta = removeOldTrack(i, j, k, block);
-                            if (meta != -1) placeNewTrack(i, j, k, SLOT_STOCK, meta);
-                        }
+            if (trackExist != null && trackStock != null) if (trackExist.getItem() instanceof ITrackItem) {
+                ITrackItem trackItem = (ITrackItem) trackExist.getItem();
+                if (trackItem.getPlacedBlock() == block) {
+                    TileEntity tile = worldObj.getTileEntity(i, j, k);
+                    if (trackItem.isPlacedTileEntity(trackExist, tile)) {
+                        int meta = removeOldTrack(i, j, k, block);
+                        if (meta != -1) placeNewTrack(i, j, k, SLOT_STOCK, meta);
                     }
-                } else if (InvTools.isStackEqualToBlock(trackExist, block)) {
-                    int meta = removeOldTrack(i, j, k, block);
-                    if (meta != -1) placeNewTrack(i, j, k, SLOT_STOCK, meta);
                 }
+            } else if (InvTools.isStackEqualToBlock(trackExist, block)) {
+                int meta = removeOldTrack(i, j, k, block);
+                if (meta != -1) placeNewTrack(i, j, k, SLOT_STOCK, meta);
+            }
         }
     }
 

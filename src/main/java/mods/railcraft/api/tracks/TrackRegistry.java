@@ -1,32 +1,30 @@
 /*
- * ******************************************************************************
- *  Copyright 2011-2015 CovertJaguar
- *
- *  This work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
+ * ****************************************************************************** Copyright 2011-2015 CovertJaguar This
+ * work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
  * ***************************************************************************
  */
 
 package mods.railcraft.api.tracks;
 
-import cpw.mods.fml.common.FMLLog;
 import java.util.*;
+
 import mods.railcraft.api.core.ITextureLoader;
+
 import org.apache.logging.log4j.Level;
 
+import cpw.mods.fml.common.FMLLog;
+
 /**
- * The TrackRegistry is part of a system that allows 3rd party addons to simply,
- * quickly, and easily define new Tracks with unique behaviors without requiring
- * that any additional block ids be used.
+ * The TrackRegistry is part of a system that allows 3rd party addons to simply, quickly, and easily define new Tracks
+ * with unique behaviors without requiring that any additional block ids be used.
  *
- * All the tracks in RailcraftProxy are implemented using this system 100%
- * (except for Gated Tracks and Switch Tracks which have some custom render
- * code).
+ * All the tracks in RailcraftProxy are implemented using this system 100% (except for Gated Tracks and Switch Tracks
+ * which have some custom render code).
  *
- * To define a new track, you need to define a TrackSpec and create a
- * ITrackInstance.
+ * To define a new track, you need to define a TrackSpec and create a ITrackInstance.
  *
- * The TrackSpec contains basic constant information about the Track, while the
- * TrackInstace controls how an individual Track block interact with the world.
+ * The TrackSpec contains basic constant information about the Track, while the TrackInstace controls how an individual
+ * Track block interact with the world.
  *
  * @author CovertJaguar <http://www.railcraft.info>
  * @see TrackSpec
@@ -44,11 +42,10 @@ public class TrackRegistry {
     /**
      * Provides a means to hook into the texture loader of my Track block.
      *
-     * You should load your track textures in the ITextureLoader and put them
-     * someplace to be fed to the TrackSpec/TrackInstance later.
+     * You should load your track textures in the ITextureLoader and put them someplace to be fed to the
+     * TrackSpec/TrackInstance later.
      *
-     * This should be called before the Post-Init Phase, during the Init or
-     * Pre-Init Phase.
+     * This should be called before the Post-Init Phase, during the Init or Pre-Init Phase.
      *
      * @param iconLoader
      */
@@ -68,20 +65,17 @@ public class TrackRegistry {
     }
 
     /**
-     * Registers a new TrackSpec. This should be called before the Post-Init
-     * Phase, during the Init or Pre-Init Phase.
+     * Registers a new TrackSpec. This should be called before the Post-Init Phase, during the Init or Pre-Init Phase.
      *
      * @param trackSpec
      */
     public static void registerTrackSpec(TrackSpec trackSpec) {
-        if (trackSpecsFromID.put(trackSpec.getTrackId(), trackSpec) != null)
-            throw new TrackSpecConflictException(
-                    "TrackId conflict detected, please adjust your config or contact the author of the "
-                            + trackSpec.getTrackTag());
-        if (trackSpecsFromTag.put(trackSpec.getTrackTag(), trackSpec) != null)
-            throw new TrackSpecConflictException(
-                    "TrackTag conflict detected, please adjust your config or contact the author of the "
-                            + trackSpec.getTrackTag());
+        if (trackSpecsFromID.put(trackSpec.getTrackId(), trackSpec) != null) throw new TrackSpecConflictException(
+                "TrackId conflict detected, please adjust your config or contact the author of the "
+                        + trackSpec.getTrackTag());
+        if (trackSpecsFromTag.put(trackSpec.getTrackTag(), trackSpec) != null) throw new TrackSpecConflictException(
+                "TrackTag conflict detected, please adjust your config or contact the author of the "
+                        + trackSpec.getTrackTag());
     }
 
     /**

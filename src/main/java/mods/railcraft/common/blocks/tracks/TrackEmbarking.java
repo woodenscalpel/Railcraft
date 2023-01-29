@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.tracks;
 
@@ -14,6 +11,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.api.tracks.ITrackPowered;
 import mods.railcraft.common.gui.EnumGui;
@@ -21,6 +19,7 @@ import mods.railcraft.common.gui.GuiHandler;
 import mods.railcraft.common.util.effects.EffectManager;
 import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
@@ -88,19 +87,17 @@ public class TrackEmbarking extends TrackBaseRailcraft implements ITrackPowered,
 
     @Override
     public void onMinecartPass(EntityMinecart cart) {
-        if (powered
-                && cart.canBeRidden()
+        if (powered && cart.canBeRidden()
                 && cart.riddenByEntity == null
                 && cart.getEntityData().getInteger("MountPrevention") <= 0) {
             int a = area;
-            AxisAlignedBB box =
-                    AxisAlignedBB.getBoundingBox(getX(), getY(), getZ(), getX() + 1, getY() + 1, getZ() + 1);
+            AxisAlignedBB box = AxisAlignedBB
+                    .getBoundingBox(getX(), getY(), getZ(), getX() + 1, getY() + 1, getZ() + 1);
             box = box.expand(a, a, a);
             List entities = getWorld().getEntitiesWithinAABB(EntityLivingBase.class, box);
 
             if (entities.size() > 0) {
-                EntityLivingBase entity =
-                        (EntityLivingBase) entities.get(MiscTools.getRand().nextInt(entities.size()));
+                EntityLivingBase entity = (EntityLivingBase) entities.get(MiscTools.getRand().nextInt(entities.size()));
 
                 if (entity instanceof EntityPlayer) {
                     EntityPlayer player = (EntityPlayer) entity;

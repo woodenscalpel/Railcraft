@@ -1,8 +1,6 @@
 /*
- * ******************************************************************************
- *  Copyright 2011-2015 CovertJaguar
- *
- *  This work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
+ * ****************************************************************************** Copyright 2011-2015 CovertJaguar This
+ * work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
  * ***************************************************************************
  */
 
@@ -14,8 +12,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 /**
- * Should be implemented by any rail item class that wishes to have
- * it's rails placed by for example the Tunnel Bore or Track Relayer.
+ * Should be implemented by any rail item class that wishes to have it's rails placed by for example the Tunnel Bore or
+ * Track Relayer.
  *
  * If you defined your rails with a TrackSpec, you don't need to worry about this.
  *
@@ -28,9 +26,9 @@ public interface ITrackItem {
      *
      * @param stack
      * @param world The World object
-     * @param i x-Coord
-     * @param j y-Coord
-     * @param k z-Coord
+     * @param i     x-Coord
+     * @param j     y-Coord
+     * @param k     z-Coord
      * @return true if successful
      */
     public boolean placeTrack(ItemStack stack, World world, int i, int j, int k);

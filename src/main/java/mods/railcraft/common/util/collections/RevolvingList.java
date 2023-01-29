@@ -1,15 +1,13 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.collections;
 
-import com.google.common.collect.ForwardingCollection;
 import java.util.*;
+
+import com.google.common.collect.ForwardingCollection;
 
 /**
  *
@@ -49,13 +47,11 @@ public class RevolvingList<T> extends ForwardingCollection<T> {
     public void setCurrent(T e) {
         if (!contains(e)) return;
 
-        if (e == null)
-            while (getCurrent() != null) {
-                rotateRight();
-            }
-        else
-            while (getCurrent() == null || !getCurrent().equals(e)) {
-                rotateRight();
-            }
+        if (e == null) while (getCurrent() != null) {
+            rotateRight();
+        }
+        else while (getCurrent() == null || !getCurrent().equals(e)) {
+            rotateRight();
+        }
     }
 }

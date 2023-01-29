@@ -1,14 +1,10 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.gui.containers;
 
-import cofh.api.energy.EnergyStorage;
 import mods.railcraft.common.blocks.machine.alpha.TileRollingMachine;
 import mods.railcraft.common.gui.slots.SlotOutput;
 import mods.railcraft.common.gui.slots.SlotUnshiftable;
@@ -19,6 +15,7 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.crafting.RollingMachineCraftingManager;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
@@ -27,6 +24,8 @@ import net.minecraft.inventory.InventoryCraftResult;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+
+import cofh.api.energy.EnergyStorage;
 
 public class ContainerRollingMachine extends RailcraftContainer {
 
@@ -42,12 +41,12 @@ public class ContainerRollingMachine extends RailcraftContainer {
         this.tile = tile;
         craftMatrix = tile.getCraftMatrix();
         craftResult = new InventoryCraftResult() {
+
             @Override
             public void setInventorySlotContents(int slot, ItemStack stack) {
                 super.setInventorySlotContents(slot, stack);
-                if (stack != null && Game.isNotHost(tile.getWorldObj()))
-                    InvTools.addItemToolTip(
-                            stack, LocalizationPlugin.translate("railcraft.gui.rolling.machine.tip.craft"));
+                if (stack != null && Game.isNotHost(tile.getWorldObj())) InvTools
+                        .addItemToolTip(stack, LocalizationPlugin.translate("railcraft.gui.rolling.machine.tip.craft"));
             }
         };
 
@@ -120,8 +119,8 @@ public class ContainerRollingMachine extends RailcraftContainer {
 
     @Override
     public final void onCraftMatrixChanged(IInventory inv) {
-        ItemStack output =
-                RollingMachineCraftingManager.getInstance().findMatchingRecipe(craftMatrix, tile.getWorldObj());
+        ItemStack output = RollingMachineCraftingManager.getInstance()
+                .findMatchingRecipe(craftMatrix, tile.getWorldObj());
         craftResult.setInventorySlotContents(0, output);
     }
 

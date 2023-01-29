@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.modules;
 
@@ -33,6 +30,7 @@ import mods.railcraft.common.plugins.forestry.ForestryPlugin;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.util.crafting.RollingMachineCraftingManager;
 import mods.railcraft.common.util.misc.EnumColor;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -43,6 +41,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class ModuleStructures extends RailcraftModule {
+
     @Override
     public void preInit() {
         addBlockFactory(new BlockFactoryStairs());
@@ -68,12 +67,18 @@ public class ModuleStructures extends RailcraftModule {
             Block cube = BlockCube.getBlock();
             if (cube != null) {
                 ItemStack stack = cubeType.getItem();
-                if (ModuleManager.isModuleLoaded(Module.FACTORY)
-                        && RailcraftBlocks.getBlockMachineAlpha() != null
+                if (ModuleManager.isModuleLoaded(Module.FACTORY) && RailcraftBlocks.getBlockMachineAlpha() != null
                         && RailcraftConfig.isSubBlockEnabled(EnumMachineAlpha.ROLLING_MACHINE.getTag())) {
                     stack.stackSize = 8;
                     CraftingPlugin.addShapedRecipe(
-                            stack, "SIS", "ISI", "SIS", 'I', RailcraftItem.rebar.getRecipeObject(), 'S', "stone");
+                            stack,
+                            "SIS",
+                            "ISI",
+                            "SIS",
+                            'I',
+                            RailcraftItem.rebar.getRecipeObject(),
+                            'S',
+                            "stone");
                 } else {
                     stack.stackSize = 4;
                     CraftingPlugin.addShapedRecipe(stack, " S ", "SIS", " S ", 'I', "ingotIron", 'S', "stone");
@@ -87,8 +92,8 @@ public class ModuleStructures extends RailcraftModule {
             Block cube = BlockCube.getBlock();
             if (cube != null) {
                 ItemStack stack = cubeType.getItem();
-                for (ItemStack container :
-                        FluidHelper.getContainersFilledWith(Fluids.CREOSOTE.get(FluidHelper.BUCKET_VOLUME))) {
+                for (ItemStack container : FluidHelper
+                        .getContainersFilledWith(Fluids.CREOSOTE.get(FluidHelper.BUCKET_VOLUME))) {
                     CraftingPlugin.addShapelessRecipe(stack, "logWood", container);
                 }
             }
@@ -110,33 +115,32 @@ public class ModuleStructures extends RailcraftModule {
                     "dustRedstone");
         }
 
-        //        cubeType = EnumCube.BANDED_PLANKS;
-        //        if(RailcraftConfig.isSubBlockEnabled(cubeType.getTag())) {
-        //            RailcraftBlocks.registerBlockCube();
-        //            Block cube = RailcraftBlocks.getBlockCube();
-        //            if(cube != null) {
-        //                ItemStack stack = cubeType.getItem(8);
-        //                RailcraftLanguage.getInstance().registerItemName(stack, cubeType.getTag());
-        //                ModLoader.addRecipe(stack, new Object[]{
-        //                        "WWW",
-        //                        "III",
-        //                        "WWW",
-        //                        'I', new ItemStack(Items.iron_ingot),
-        //                        'W', Block.planks});
-        //            }
-        //        }
-        if (BlockStrengthGlass.getBlock() != null)
-            for (EnumColor color : EnumColor.VALUES) {
-                CraftingPlugin.addShapedRecipe(
-                        BlockStrengthGlass.getItem(8, color.inverse().ordinal()),
-                        "GGG",
-                        "GDG",
-                        "GGG",
-                        'G',
-                        BlockStrengthGlass.getBlock(),
-                        'D',
-                        color.getDye());
-            }
+        // cubeType = EnumCube.BANDED_PLANKS;
+        // if(RailcraftConfig.isSubBlockEnabled(cubeType.getTag())) {
+        // RailcraftBlocks.registerBlockCube();
+        // Block cube = RailcraftBlocks.getBlockCube();
+        // if(cube != null) {
+        // ItemStack stack = cubeType.getItem(8);
+        // RailcraftLanguage.getInstance().registerItemName(stack, cubeType.getTag());
+        // ModLoader.addRecipe(stack, new Object[]{
+        // "WWW",
+        // "III",
+        // "WWW",
+        // 'I', new ItemStack(Items.iron_ingot),
+        // 'W', Block.planks});
+        // }
+        // }
+        if (BlockStrengthGlass.getBlock() != null) for (EnumColor color : EnumColor.VALUES) {
+            CraftingPlugin.addShapedRecipe(
+                    BlockStrengthGlass.getItem(8, color.inverse().ordinal()),
+                    "GGG",
+                    "GDG",
+                    "GGG",
+                    'G',
+                    BlockStrengthGlass.getBlock(),
+                    'D',
+                    color.getDye());
+        }
     }
 
     @Override
@@ -146,7 +150,8 @@ public class ModuleStructures extends RailcraftModule {
         Block blockPost = BlockPost.block;
         if (blockPost != null) {
             CraftingPlugin.addShapelessRecipe(
-                    EnumPost.WOOD.getItem(4), RailcraftItem.tie.getRecipeObject(ItemTie.EnumTie.WOOD));
+                    EnumPost.WOOD.getItem(4),
+                    RailcraftItem.tie.getRecipeObject(ItemTie.EnumTie.WOOD));
             CraftingPlugin.addShapedRecipe(
                     EnumPost.WOOD_PLATFORM.getItem(),
                     " T ",
@@ -218,8 +223,8 @@ public class ModuleStructures extends RailcraftModule {
             for (EnumColor color : EnumColor.values()) {
                 ItemStack outputStack = new ItemStack(BlockPostMetal.post, 8, color.ordinal());
                 CraftingPlugin.addShapedRecipe(outputStack, "III", "IDI", "III", 'I', stackRaw, 'D', color.getDye());
-                CraftingPlugin.addShapedRecipe(
-                        outputStack, "III", "IDI", "III", 'I', stackColored, 'D', color.getDye());
+                CraftingPlugin
+                        .addShapedRecipe(outputStack, "III", "IDI", "III", 'I', stackColored, 'D', color.getDye());
             }
         }
 
@@ -230,8 +235,8 @@ public class ModuleStructures extends RailcraftModule {
             for (EnumColor color : EnumColor.values()) {
                 ItemStack outputStack = new ItemStack(BlockPostMetal.platform, 8, color.ordinal());
                 CraftingPlugin.addShapedRecipe(outputStack, "III", "IDI", "III", 'I', stackRaw, 'D', color.getDye());
-                CraftingPlugin.addShapedRecipe(
-                        outputStack, "III", "IDI", "III", 'I', stackColored, 'D', color.getDye());
+                CraftingPlugin
+                        .addShapedRecipe(outputStack, "III", "IDI", "III", 'I', stackColored, 'D', color.getDye());
             }
         }
     }
@@ -239,7 +244,7 @@ public class ModuleStructures extends RailcraftModule {
     @Override
     public void postInit() {
         if (BlockStrengthGlass.getBlock() != null) {
-            Object[] frameTypes = new Object[] {"ingotTin", Items.iron_ingot};
+            Object[] frameTypes = new Object[] { "ingotTin", Items.iron_ingot };
             FluidStack water = Fluids.WATER.get(FluidHelper.BUCKET_VOLUME);
             for (ItemStack container : FluidHelper.getContainersFilledWith(water)) {
                 for (Object frame : frameTypes) {
@@ -263,13 +268,19 @@ public class ModuleStructures extends RailcraftModule {
         EnumCube cubeType = EnumCube.CREOSOTE_BLOCK;
         if (cubeType.isEnabled()) {
             ItemStack stack = cubeType.getItem();
-            for (ItemStack container :
-                    FluidHelper.getContainersFilledWith(Fluids.CREOSOTE.get(FluidHelper.BUCKET_VOLUME))) {
+            for (ItemStack container : FluidHelper
+                    .getContainersFilledWith(Fluids.CREOSOTE.get(FluidHelper.BUCKET_VOLUME))) {
                 CraftingPlugin.addShapelessRecipe(stack, "logWood", container);
             }
-            ForestryPlugin.instance()
-                    .addCarpenterRecipe(
-                            "creosote.block", 40, Fluids.CREOSOTE.get(750), null, stack, "L", 'L', "logWood");
+            ForestryPlugin.instance().addCarpenterRecipe(
+                    "creosote.block",
+                    40,
+                    Fluids.CREOSOTE.get(750),
+                    null,
+                    stack,
+                    "L",
+                    'L',
+                    "logWood");
         }
     }
 }

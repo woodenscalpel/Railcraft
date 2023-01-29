@@ -1,16 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.gamma;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.core.items.IMinecartItem;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
@@ -24,6 +22,7 @@ import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.inventory.wrappers.InventoryCopy;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -109,8 +108,8 @@ public class TileDispenserCart extends TileMachineItem {
                                 canPlace = ((IMinecartItem) cartStack.getItem()).canBePlacedByNonPlayer(cartStack);
                             if (canPlace) {
                                 ItemStack placedStack = cartStack.copy();
-                                EntityMinecart placedCart =
-                                        CartUtils.placeCart(getOwner(), placedStack, (WorldServer) worldObj, x, y, z);
+                                EntityMinecart placedCart = CartUtils
+                                        .placeCart(getOwner(), placedStack, (WorldServer) worldObj, x, y, z);
                                 if (placedCart != null) {
                                     decrStackSize(ii, 1);
                                     timeSinceLastSpawn = 0;
@@ -179,7 +178,7 @@ public class TileDispenserCart extends TileMachineItem {
         super.writePacketData(data);
 
         data.writeByte(direction.ordinal());
-        //        data.writeBoolean(powered);
+        // data.writeBoolean(powered);
     }
 
     @Override
@@ -187,7 +186,7 @@ public class TileDispenserCart extends TileMachineItem {
         super.readPacketData(data);
 
         direction = ForgeDirection.getOrientation(data.readByte());
-        //        powered = data.readBoolean();
+        // powered = data.readBoolean();
 
         markBlockForUpdate();
     }

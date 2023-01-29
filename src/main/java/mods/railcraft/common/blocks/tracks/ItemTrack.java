@@ -1,16 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.tracks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
+
 import mods.railcraft.api.core.items.ITrackItem;
 import mods.railcraft.api.tracks.ITrackCustomPlaced;
 import mods.railcraft.api.tracks.ITrackInstance;
@@ -19,6 +15,7 @@ import mods.railcraft.api.tracks.TrackSpec;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,6 +27,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTrack extends ItemBlock implements ITrackItem {
 
@@ -149,32 +149,22 @@ public class ItemTrack extends ItemBlock implements ITrackItem {
     }
 
     @Override
-    public boolean onItemUse(
-            ItemStack stack,
-            EntityPlayer player,
-            World world,
-            int x,
-            int y,
-            int z,
-            int side,
-            float par8,
-            float par9,
-            float par10) {
+    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side,
+            float par8, float par9, float par10) {
         if (stack.stackSize <= 0) return false;
 
         Block block = world.getBlock(x, y, z);
         if (block == Blocks.snow_layer) side = 1;
-        else if (block != Blocks.vine
-                && block != Blocks.tallgrass
+        else if (block != Blocks.vine && block != Blocks.tallgrass
                 && block != Blocks.deadbush
                 && !block.isReplaceable(world, x, y, z)) {
-            if (side == 0) y--;
-            if (side == 1) y++;
-            if (side == 2) z--;
-            if (side == 3) z++;
-            if (side == 4) x--;
-            if (side == 5) x++;
-        }
+                    if (side == 0) y--;
+                    if (side == 1) y++;
+                    if (side == 2) z--;
+                    if (side == 3) z++;
+                    if (side == 4) x--;
+                    if (side == 5) x++;
+                }
 
         if (player != null && !player.canPlayerEdit(x, y, z, side, stack)) return false;
 

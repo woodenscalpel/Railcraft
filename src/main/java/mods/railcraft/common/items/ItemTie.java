@@ -1,20 +1,19 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.items;
 
 import java.util.List;
 import java.util.Locale;
+
 import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.fluids.Fluids;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.plugins.forge.LootPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -25,8 +24,10 @@ import net.minecraft.util.IIcon;
 public class ItemTie extends ItemRailcraft {
 
     public enum EnumTie implements IItemMetaEnum {
+
         WOOD("slabWood"),
         STONE(Blocks.stone_slab);
+
         public static final EnumTie[] VALUES = values();
         private IIcon icon;
         private Object alternate;
@@ -54,8 +55,7 @@ public class ItemTie extends ItemRailcraft {
     @Override
     public void registerIcons(IIconRegister iconRegister) {
         for (EnumTie tie : EnumTie.VALUES) {
-            tie.icon =
-                    iconRegister.registerIcon("railcraft:part.tie." + tie.name().toLowerCase(Locale.ENGLISH));
+            tie.icon = iconRegister.registerIcon("railcraft:part.tie." + tie.name().toLowerCase(Locale.ENGLISH));
         }
     }
 
@@ -96,7 +96,13 @@ public class ItemTie extends ItemRailcraft {
     public void defineRecipes() {
         ItemStack tieStone = RailcraftItem.tie.getStack(1, EnumTie.STONE);
         CraftingPlugin.addShapedRecipe(
-                tieStone, " O ", "###", 'O', RailcraftItem.rebar, '#', new ItemStack(Blocks.stone_slab, 1, 0));
+                tieStone,
+                " O ",
+                "###",
+                'O',
+                RailcraftItem.rebar,
+                '#',
+                new ItemStack(Blocks.stone_slab, 1, 0));
     }
 
     @Override

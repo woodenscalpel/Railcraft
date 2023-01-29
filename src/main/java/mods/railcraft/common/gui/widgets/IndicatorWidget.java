@@ -1,17 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.gui.widgets;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.client.gui.GuiContainerRailcraft;
 import mods.railcraft.common.gui.tooltips.ToolTip;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  *
@@ -26,8 +23,8 @@ public class IndicatorWidget extends Widget {
         this(controller, x, y, u, v, w, h, true);
     }
 
-    public IndicatorWidget(
-            IIndicatorController controller, int x, int y, int u, int v, int w, int h, boolean vertical) {
+    public IndicatorWidget(IIndicatorController controller, int x, int y, int u, int v, int w, int h,
+            boolean vertical) {
         super(x, y, u, v, w, h);
         this.controller = controller;
         this.vertical = vertical;

@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.gui;
 
@@ -14,6 +11,7 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.PacketDispatcher;
 import mods.railcraft.common.util.network.PacketGuiReturn;
+
 import net.minecraft.client.gui.GuiButton;
 
 public class GuiDetectorTrain extends GuiBasic {
@@ -43,7 +41,9 @@ public class GuiDetectorTrain extends GuiBasic {
     @Override
     protected void drawExtras(int x, int y, float f) {
         GuiTools.drawCenteredString(
-                fontRendererObj, LocalizationPlugin.translate("railcraft.gui.detector.train.size", trainSize), 25);
+                fontRendererObj,
+                LocalizationPlugin.translate("railcraft.gui.detector.train.size", trainSize),
+                25);
     }
 
     @Override

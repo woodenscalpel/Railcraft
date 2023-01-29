@@ -6,6 +6,7 @@ import mods.railcraft.common.gui.GuiHandler;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -41,14 +42,8 @@ public class EntityCartTrackLayer extends CartMaintenancePatternBase {
     }
 
     @Override
-    protected void func_145821_a(
-            int trackX,
-            int trackY,
-            int trackZ,
-            double maxSpeed,
-            double slopeAdjustment,
-            Block trackBlock,
-            int trackMeta) {
+    protected void func_145821_a(int trackX, int trackY, int trackZ, double maxSpeed, double slopeAdjustment,
+            Block trackBlock, int trackMeta) {
         super.func_145821_a(trackX, trackY, trackZ, maxSpeed, slopeAdjustment, trackBlock, trackMeta);
         if (Game.isNotHost(worldObj)) return;
 
@@ -89,11 +84,9 @@ public class EntityCartTrackLayer extends CartMaintenancePatternBase {
 
     private boolean isValidReplacementBlock(int x, int y, int z) {
         Block block = worldObj.getBlock(x, y, z);
-        return (worldObj.isAirBlock(x, y, z)
-                        || block instanceof IPlantable
-                        || block instanceof IShearable
-                        || EntityTunnelBore.replaceableBlocks.contains(block))
-                || block.isReplaceable(worldObj, x, y, z);
+        return (worldObj.isAirBlock(x, y, z) || block instanceof IPlantable
+                || block instanceof IShearable
+                || EntityTunnelBore.replaceableBlocks.contains(block)) || block.isReplaceable(worldObj, x, y, z);
     }
 
     @Override

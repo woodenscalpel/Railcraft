@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.signals;
 
@@ -13,6 +10,7 @@ import static mods.railcraft.common.plugins.forge.PowerPlugin.*;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+
 import mods.railcraft.api.signals.IReceiverTile;
 import mods.railcraft.api.signals.SignalAspect;
 import mods.railcraft.api.signals.SignalController;
@@ -24,6 +22,7 @@ import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -31,6 +30,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileBoxReceiver extends TileBoxActionManager
         implements IAspectActionManager, IGuiReturnHandler, IReceiverTile, IAspectProvider {
+
     private static final int FORCED_UPDATE = 512;
     private final SimpleSignalReceiver receiver = new SimpleSignalReceiver(getLocalizationTag(), this);
 
@@ -76,8 +76,8 @@ public class TileBoxReceiver extends TileBoxActionManager
 
     @Override
     public int getPowerOutput(int side) {
-        TileEntity tile =
-                WorldPlugin.getTileEntityOnSide(worldObj, xCoord, yCoord, zCoord, MiscTools.getOppositeSide(side));
+        TileEntity tile = WorldPlugin
+                .getTileEntityOnSide(worldObj, xCoord, yCoord, zCoord, MiscTools.getOppositeSide(side));
         if (tile instanceof TileBoxBase) return NO_POWER;
         return doesActionOnAspect(receiver.getAspect()) ? FULL_POWER : NO_POWER;
     }

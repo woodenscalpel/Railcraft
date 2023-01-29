@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.tracks.speedcontroller;
 
@@ -14,6 +11,7 @@ import mods.railcraft.common.blocks.tracks.TrackTools;
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.MiscTools;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.world.World;
@@ -59,28 +57,27 @@ public class SpeedControllerHighSpeed extends SpeedController {
 
     private static float speedForNextTrack(World world, int x, int y, int z, int dist) {
         float maxSpeed = RailcraftConfig.getMaxHighSpeed();
-        if (dist < LOOK_AHEAD_DIST)
-            for (int side = 2; side < 6; side++) {
-                ForgeDirection dir = ForgeDirection.getOrientation(side);
-                int xx = MiscTools.getXOnSide(x, dir);
-                int yy = y;
-                int zz = MiscTools.getZOnSide(z, dir);
-                Block block = WorldPlugin.getBlock(world, xx, yy, zz);
-                if (!TrackTools.isRailBlock(block)) {
-                    block = WorldPlugin.getBlock(world, xx, yy + 1, zz);
-                    if (TrackTools.isRailBlock(block)) yy = yy + 1;
-                    else {
-                        block = WorldPlugin.getBlock(world, xx, yy - 1, zz);
-                        if (TrackTools.isRailBlock(block)) yy = yy - 1;
-                    }
-                }
-                if (TrackTools.isRailBlock(block)) {
-                    int meta = TrackTools.getTrackMeta(world, block, null, xx, yy, zz);
-                    if (meta > 1 && meta < 6) return SPEED_SLOPE;
-                    maxSpeed = speedForNextTrack(world, xx, yy, zz, dist + 1);
-                    if (maxSpeed == SPEED_SLOPE) return SPEED_SLOPE;
+        if (dist < LOOK_AHEAD_DIST) for (int side = 2; side < 6; side++) {
+            ForgeDirection dir = ForgeDirection.getOrientation(side);
+            int xx = MiscTools.getXOnSide(x, dir);
+            int yy = y;
+            int zz = MiscTools.getZOnSide(z, dir);
+            Block block = WorldPlugin.getBlock(world, xx, yy, zz);
+            if (!TrackTools.isRailBlock(block)) {
+                block = WorldPlugin.getBlock(world, xx, yy + 1, zz);
+                if (TrackTools.isRailBlock(block)) yy = yy + 1;
+                else {
+                    block = WorldPlugin.getBlock(world, xx, yy - 1, zz);
+                    if (TrackTools.isRailBlock(block)) yy = yy - 1;
                 }
             }
+            if (TrackTools.isRailBlock(block)) {
+                int meta = TrackTools.getTrackMeta(world, block, null, xx, yy, zz);
+                if (meta > 1 && meta < 6) return SPEED_SLOPE;
+                maxSpeed = speedForNextTrack(world, xx, yy, zz, dist + 1);
+                if (maxSpeed == SPEED_SLOPE) return SPEED_SLOPE;
+            }
+        }
         return maxSpeed;
     }
 }

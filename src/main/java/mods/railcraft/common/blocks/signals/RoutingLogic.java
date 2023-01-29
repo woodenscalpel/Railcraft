@@ -1,21 +1,17 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.signals;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.GameRegistry.UniqueIdentifier;
 import java.util.Deque;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
+
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.IPaintedCart;
 import mods.railcraft.api.carts.IRefuelableCart;
@@ -26,10 +22,14 @@ import mods.railcraft.common.carts.Train;
 import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.EnumColor;
+
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
+
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.GameRegistry.UniqueIdentifier;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info/>
@@ -155,12 +155,11 @@ public class RoutingLogic {
             if (!supportsRegex && isRegex)
                 throw new RoutingLogicException("railcraft.gui.routing.logic.regex.unsupported", line);
             this.value = line.replaceFirst(keywordMatch, "");
-            if (isRegex)
-                try {
-                    Pattern.compile(value);
-                } catch (PatternSyntaxException ex) {
-                    throw new RoutingLogicException("railcraft.gui.routing.logic.regex.invalid", line);
-                }
+            if (isRegex) try {
+                Pattern.compile(value);
+            } catch (PatternSyntaxException ex) {
+                throw new RoutingLogicException("railcraft.gui.routing.logic.regex.invalid", line);
+            }
         }
 
         @Override

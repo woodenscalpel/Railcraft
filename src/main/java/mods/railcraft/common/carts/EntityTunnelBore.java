@@ -1,14 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.carts;
 
 import java.util.*;
+
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.ILinkableCart;
 import mods.railcraft.api.carts.bore.IBoreHead;
@@ -32,6 +30,7 @@ import mods.railcraft.common.util.misc.BallastRegistry;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.misc.RailcraftDamageSource;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -52,6 +51,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 
 public class EntityTunnelBore extends CartContainerBase implements IInventory, ILinkableCart {
+
     public static final float SPEED = 0.03F;
     public static final float LENGTH = 6.2f;
     public static final int MAX_FILL_DEPTH = 10;
@@ -67,74 +67,18 @@ public class EntityTunnelBore extends CartContainerBase implements IInventory, I
     protected static final int WATCHER_ID_MOVING = 25;
     protected static final int WATCHER_ID_BORE_HEAD = 26;
     protected static final int WATCHER_ID_FACING = 5;
-    private static final Block[] mineable = {
-        Blocks.clay,
-        Blocks.snow_layer,
-        Blocks.cactus,
-        Blocks.carrots,
-        Blocks.cobblestone,
-        Blocks.mossy_cobblestone,
-        Blocks.cocoa,
-        Blocks.wheat,
-        Blocks.deadbush,
-        Blocks.dirt,
-        Blocks.fire,
-        Blocks.glowstone,
-        Blocks.grass,
-        Blocks.gravel,
-        Blocks.ice,
-        Blocks.leaves,
-        Blocks.melon_block,
-        Blocks.melon_stem,
-        Blocks.brown_mushroom,
-        Blocks.brown_mushroom_block,
-        Blocks.red_mushroom,
-        Blocks.red_mushroom_block,
-        Blocks.mycelium,
-        Blocks.nether_wart,
-        Blocks.netherrack,
-        Blocks.obsidian,
-        Blocks.coal_ore,
-        Blocks.diamond_ore,
-        Blocks.emerald_ore,
-        Blocks.gold_ore,
-        Blocks.iron_ore,
-        Blocks.lapis_ore,
-        Blocks.redstone_ore,
-        Blocks.lit_redstone_ore,
-        Blocks.red_flower,
-        Blocks.yellow_flower,
-        Blocks.potatoes,
-        Blocks.pumpkin,
-        Blocks.pumpkin_stem,
-        Blocks.reeds,
-        Blocks.sand,
-        Blocks.sandstone,
-        Blocks.sapling,
-        Blocks.soul_sand,
-        Blocks.snow,
-        Blocks.stone,
-        Blocks.tallgrass,
-        Blocks.farmland,
-        Blocks.torch,
-        Blocks.vine,
-        Blocks.waterlily,
-        Blocks.web,
-        Blocks.end_stone,
-        Blocks.log,
-        Blocks.log2,
-    };
-    private static final Block[] replaceable = {
-        Blocks.torch,
-        Blocks.tallgrass,
-        Blocks.deadbush,
-        Blocks.vine,
-        Blocks.brown_mushroom,
-        Blocks.red_mushroom,
-        Blocks.yellow_flower,
-        Blocks.red_flower,
-        Blocks.double_plant
-    };
+    private static final Block[] mineable = { Blocks.clay, Blocks.snow_layer, Blocks.cactus, Blocks.carrots,
+            Blocks.cobblestone, Blocks.mossy_cobblestone, Blocks.cocoa, Blocks.wheat, Blocks.deadbush, Blocks.dirt,
+            Blocks.fire, Blocks.glowstone, Blocks.grass, Blocks.gravel, Blocks.ice, Blocks.leaves, Blocks.melon_block,
+            Blocks.melon_stem, Blocks.brown_mushroom, Blocks.brown_mushroom_block, Blocks.red_mushroom,
+            Blocks.red_mushroom_block, Blocks.mycelium, Blocks.nether_wart, Blocks.netherrack, Blocks.obsidian,
+            Blocks.coal_ore, Blocks.diamond_ore, Blocks.emerald_ore, Blocks.gold_ore, Blocks.iron_ore, Blocks.lapis_ore,
+            Blocks.redstone_ore, Blocks.lit_redstone_ore, Blocks.red_flower, Blocks.yellow_flower, Blocks.potatoes,
+            Blocks.pumpkin, Blocks.pumpkin_stem, Blocks.reeds, Blocks.sand, Blocks.sandstone, Blocks.sapling,
+            Blocks.soul_sand, Blocks.snow, Blocks.stone, Blocks.tallgrass, Blocks.farmland, Blocks.torch, Blocks.vine,
+            Blocks.waterlily, Blocks.web, Blocks.end_stone, Blocks.log, Blocks.log2, };
+    private static final Block[] replaceable = { Blocks.torch, Blocks.tallgrass, Blocks.deadbush, Blocks.vine,
+            Blocks.brown_mushroom, Blocks.red_mushroom, Blocks.yellow_flower, Blocks.red_flower, Blocks.double_plant };
 
     static {
         for (Block block : mineable) {
@@ -146,7 +90,7 @@ public class EntityTunnelBore extends CartContainerBase implements IInventory, I
     protected final IInventory invFuel = new InventoryMapper(this, 1, 6);
     protected final IInventory invBallast = new InventoryMapper(this, 7, 9);
     protected final IInventory invRails = new InventoryMapper(this, 16, 9);
-    //    protected static final int WATCHER_ID_BURN_TIME = 22;
+    // protected static final int WATCHER_ID_BURN_TIME = 22;
     protected boolean degreeCalc = false;
     protected int delay = 0;
     protected boolean placeRail = false;
@@ -172,13 +116,12 @@ public class EntityTunnelBore extends CartContainerBase implements IInventory, I
     public EntityTunnelBore(World world, double i, double j, double k, ForgeDirection f) {
         super(world);
         partArray = new EntityTunnelBorePart[] {
-            // ------------------------------------- width, height, forwardOffset, sideOffset
-            partHead1 = new EntityTunnelBorePart(this, "head1", 1.9F, 2.6F, 2F, -0.6F),
-            partHead2 = new EntityTunnelBorePart(this, "head2", 1.9F, 2.6F, 2F, 0.6F),
-            partBody = new EntityTunnelBorePart(this, "body", 2.0F, 1.9F, 0.6F),
-            partTail1 = new EntityTunnelBorePart(this, "tail1", 1.6F, 1.4F, -1F),
-            partTail2 = new EntityTunnelBorePart(this, "tail2", 1.6F, 1.4F, -2.2F),
-        };
+                // ------------------------------------- width, height, forwardOffset, sideOffset
+                partHead1 = new EntityTunnelBorePart(this, "head1", 1.9F, 2.6F, 2F, -0.6F),
+                partHead2 = new EntityTunnelBorePart(this, "head2", 1.9F, 2.6F, 2F, 0.6F),
+                partBody = new EntityTunnelBorePart(this, "body", 2.0F, 1.9F, 0.6F),
+                partTail1 = new EntityTunnelBorePart(this, "tail1", 1.6F, 1.4F, -1F),
+                partTail2 = new EntityTunnelBorePart(this, "tail2", 1.6F, 1.4F, -2.2F), };
         hasInit = true;
         setPosition(i, j + (double) yOffset, k);
         motionX = 0.0D;
@@ -187,7 +130,7 @@ public class EntityTunnelBore extends CartContainerBase implements IInventory, I
         prevPosX = i;
         prevPosY = j;
         prevPosZ = k;
-        //        cargoItems = new ItemStack[25];
+        // cargoItems = new ItemStack[25];
         setFacing(f);
         setSize(LENGTH, 4F);
     }
@@ -253,7 +196,7 @@ public class EntityTunnelBore extends CartContainerBase implements IInventory, I
         dataWatcher.addObject(WATCHER_ID_MOVING, (byte) 0);
         dataWatcher.addObjectByDataType(WATCHER_ID_BORE_HEAD, 5);
         dataWatcher.addObject(WATCHER_ID_FACING, (byte) 0);
-        //        dataWatcher.addObject(WATCHER_ID_BURN_TIME, Integer.valueOf(0));
+        // dataWatcher.addObject(WATCHER_ID_BURN_TIME, Integer.valueOf(0));
     }
 
     public boolean isMinecartPowered() {
@@ -266,25 +209,24 @@ public class EntityTunnelBore extends CartContainerBase implements IInventory, I
 
     @Override
     public boolean attackEntityFrom(DamageSource source, float damage) {
-        if (!this.worldObj.isRemote && !this.isDead)
-            if (this.isEntityInvulnerable()) return false;
-            else {
-                this.setRollingDirection(-this.getRollingDirection());
-                this.setRollingAmplitude(10);
-                this.setBeenAttacked();
-                this.setDamage(this.getDamage() + damage * 10);
-                boolean flag = source.getEntity() instanceof EntityPlayer
-                        && ((EntityPlayer) source.getEntity()).capabilities.isCreativeMode;
+        if (!this.worldObj.isRemote && !this.isDead) if (this.isEntityInvulnerable()) return false;
+        else {
+            this.setRollingDirection(-this.getRollingDirection());
+            this.setRollingAmplitude(10);
+            this.setBeenAttacked();
+            this.setDamage(this.getDamage() + damage * 10);
+            boolean flag = source.getEntity() instanceof EntityPlayer
+                    && ((EntityPlayer) source.getEntity()).capabilities.isCreativeMode;
 
-                if (flag || this.getDamage() > 120) {
-                    if (this.riddenByEntity != null) this.riddenByEntity.mountEntity(this);
+            if (flag || this.getDamage() > 120) {
+                if (this.riddenByEntity != null) this.riddenByEntity.mountEntity(this);
 
-                    if (flag && !this.hasCustomInventoryName()) this.setDead();
-                    else this.killMinecart(source);
-                }
-
-                return true;
+                if (flag && !this.hasCustomInventoryName()) this.setDead();
+                else this.killMinecart(source);
             }
+
+            return true;
+        }
         else return true;
     }
 
@@ -347,7 +289,12 @@ public class EntityTunnelBore extends CartContainerBase implements IInventory, I
         }
 
         boundingBox.setBounds(
-                x1, (j - (double) yOffset) + (double) ySize, z1, x2, (j - (double) yOffset) + (double) ySize + h, z2);
+                x1,
+                (j - (double) yOffset) + (double) ySize,
+                z1,
+                x2,
+                (j - (double) yOffset) + (double) ySize + h,
+                z2);
     }
 
     @Override
@@ -374,13 +321,13 @@ public class EntityTunnelBore extends CartContainerBase implements IInventory, I
         if (Game.isHost(worldObj)) {
 
             updateFuel();
-            //            if(update % 64 == 0){
-            //                System.out.println("bore tick");
-            //            }
+            // if(update % 64 == 0){
+            // System.out.println("bore tick");
+            // }
 
             if (hasFuel() && getDelay() == 0) {
                 setActive(true);
-                //            System.out.println("Yaw = " + MathHelper.floor_double(rotationYaw));
+                // System.out.println("Yaw = " + MathHelper.floor_double(rotationYaw));
 
                 int x;
                 int y = MathHelper.floor_double(posY);
@@ -463,7 +410,8 @@ public class EntityTunnelBore extends CartContainerBase implements IInventory, I
                 double k = getZAhead(posZ, 3.3);
                 double size = 0.8;
                 List entities = worldObj.getEntitiesWithinAABBExcludingEntity(
-                        this, AxisAlignedBB.getBoundingBox(i - size, posY, k - size, i + size, posY + 2, k + size));
+                        this,
+                        AxisAlignedBB.getBoundingBox(i - size, posY, k - size, i + size, posY + 2, k + size));
                 for (Object e : entities) {
                     if (e instanceof EntityLivingBase) {
                         EntityLivingBase ent = (EntityLivingBase) e;
@@ -749,7 +697,13 @@ public class EntityTunnelBore extends CartContainerBase implements IInventory, I
 
         // Start of Event Fire
         BreakEvent breakEvent = new BreakEvent(
-                x, y, z, worldObj, block, meta, PlayerPlugin.getFakePlayer((WorldServer) worldObj, posX, posY, posZ));
+                x,
+                y,
+                z,
+                worldObj,
+                block,
+                meta,
+                PlayerPlugin.getFakePlayer((WorldServer) worldObj, posX, posY, posZ));
         MinecraftForge.EVENT_BUS.post(breakEvent);
 
         if (breakEvent.isCanceled()) return false;
@@ -771,7 +725,11 @@ public class EntityTunnelBore extends CartContainerBase implements IInventory, I
                 double yr = (double) (worldObj.rand.nextFloat() - 0.5D) * f;
                 double zr = (double) (worldObj.rand.nextFloat() - 0.5D) * f;
                 EntityItem entityitem = new EntityItem(
-                        worldObj, getXAhead(posX, -3.2) + xr, posY + 0.3 + yr, getZAhead(posZ, -3.2) + zr, stack);
+                        worldObj,
+                        getXAhead(posX, -3.2) + xr,
+                        posY + 0.3 + yr,
+                        getZAhead(posZ, -3.2) + zr,
+                        stack);
                 worldObj.spawnEntityInWorld(entityitem);
             }
         }
@@ -872,7 +830,7 @@ public class EntityTunnelBore extends CartContainerBase implements IInventory, I
 
     @Override
     protected void writeEntityToNBT(NBTTagCompound data) {
-        //        fuel = getFuel();
+        // fuel = getFuel();
         super.writeEntityToNBT(data);
         data.setByte("facing", (byte) getFacing().ordinal());
         data.setInteger("delay", getDelay());
@@ -893,24 +851,24 @@ public class EntityTunnelBore extends CartContainerBase implements IInventory, I
 
     protected int getDelay() {
         return delay;
-        //        return dataWatcher.getWatchableObjectInt(WATCHER_ID_DELAY);
+        // return dataWatcher.getWatchableObjectInt(WATCHER_ID_DELAY);
     }
 
     protected void setDelay(int i) {
         delay = i;
-        //        dataWatcher.updateObject(WATCHER_ID_DELAY, Integer.valueOf(i));
+        // dataWatcher.updateObject(WATCHER_ID_DELAY, Integer.valueOf(i));
     }
 
     protected boolean isActive() {
         return active;
-        //        return dataWatcher.getWatchableObjectByte(WATCHER_ID_ACTIVE) != 0;
+        // return dataWatcher.getWatchableObjectByte(WATCHER_ID_ACTIVE) != 0;
     }
 
     protected void setActive(boolean active) {
         this.active = active;
         TrainState state = active ? Train.TrainState.STOPPED : Train.TrainState.NORMAL;
         Train.getTrain(this).setTrainState(state);
-        //        dataWatcher.updateObject(WATCHER_ID_ACTIVE, Byte.valueOf((byte)(active ? 1 : 0)));
+        // dataWatcher.updateObject(WATCHER_ID_ACTIVE, Byte.valueOf((byte)(active ? 1 : 0)));
     }
 
     protected boolean isMoving() {
@@ -923,22 +881,22 @@ public class EntityTunnelBore extends CartContainerBase implements IInventory, I
 
     public int getBurnTime() {
         return burnTime;
-        //        return dataWatcher.getWatchableObjectInt(WATCHER_ID_BURN_TIME);
+        // return dataWatcher.getWatchableObjectInt(WATCHER_ID_BURN_TIME);
     }
 
     public void setBurnTime(int burnTime) {
         this.burnTime = burnTime;
-        //        dataWatcher.updateObject(WATCHER_ID_BURN_TIME, Integer.valueOf(burnTime));
+        // dataWatcher.updateObject(WATCHER_ID_BURN_TIME, Integer.valueOf(burnTime));
     }
 
     public int getFuel() {
         return fuel;
-        //        return dataWatcher.getWatchableObjectInt(WATCHER_ID_FUEL);
+        // return dataWatcher.getWatchableObjectInt(WATCHER_ID_FUEL);
     }
 
     public void setFuel(int i) {
         fuel = i;
-        //        dataWatcher.updateObject(WATCHER_ID_FUEL, Integer.valueOf(i));
+        // dataWatcher.updateObject(WATCHER_ID_FUEL, Integer.valueOf(i));
     }
 
     public boolean outOfFuel() {

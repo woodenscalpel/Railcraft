@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.inventory;
 
@@ -13,14 +10,14 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
 import net.minecraft.item.ItemStack;
 
 /**
- * This is a custom data structure designed specifically
- * for using ItemStacks as keys in a Map.
+ * This is a custom data structure designed specifically for using ItemStacks as keys in a Map.
  *
- * The keys index on the itemID and damage of the ItemStacks,
- * ignoring any other differences (NBT Tags, stackSize, etc...).
+ * The keys index on the itemID and damage of the ItemStacks, ignoring any other differences (NBT Tags, stackSize,
+ * etc...).
  *
  * @author CovertJaguar <http://www.railcraft.info>
  * @see Map

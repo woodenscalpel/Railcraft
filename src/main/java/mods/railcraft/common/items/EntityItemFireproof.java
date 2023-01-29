@@ -1,21 +1,20 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.items;
 
-import cpw.mods.fml.common.registry.EntityRegistry;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.util.misc.EntityIDs;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
+import cpw.mods.fml.common.registry.EntityRegistry;
 
 /**
  *
@@ -71,13 +70,10 @@ public class EntityItemFireproof extends EntityItem {
         this.moveEntity(this.motionX, this.motionY, this.motionZ);
         float f = 0.98F;
 
-        if (this.onGround)
-            f = this.worldObj.getBlock(
-                                    MathHelper.floor_double(this.posX),
-                                    MathHelper.floor_double(this.boundingBox.minY) - 1,
-                                    MathHelper.floor_double(this.posZ))
-                            .slipperiness
-                    * 0.98F;
+        if (this.onGround) f = this.worldObj.getBlock(
+                MathHelper.floor_double(this.posX),
+                MathHelper.floor_double(this.boundingBox.minY) - 1,
+                MathHelper.floor_double(this.posZ)).slipperiness * 0.98F;
 
         this.motionX *= (double) f;
         this.motionY *= 0.9800000190734863D;

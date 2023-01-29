@@ -5,6 +5,7 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import mods.railcraft.api.signals.SignalAspect;
 import mods.railcraft.common.blocks.signals.TileBoxAnalogController;
 import mods.railcraft.common.core.RailcraftConstants;
@@ -12,19 +13,21 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.PacketDispatcher;
 import mods.railcraft.common.util.network.PacketGuiReturn;
+
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiTextField;
+
 import org.lwjgl.opengl.GL11;
 
 public class GuiBoxAnalogController extends GuiBasic {
 
     private final TileBoxAnalogController tile;
     private static final Pattern patternRange = Pattern.compile("(\\d+)-(\\d+)|(\\d+)");
-    // When doing Pattern.matcher, these are the groups:           ^ 1    ^ 2    ^ 3
+    // When doing Pattern.matcher, these are the groups: ^ 1 ^ 2 ^ 3
 
     private final EnumMap<SignalAspect, BitSet> aspects = new EnumMap<SignalAspect, BitSet>(SignalAspect.class);
-    private final EnumMap<SignalAspect, GuiTextField> textbox =
-            new EnumMap<SignalAspect, GuiTextField>(SignalAspect.class);
+    private final EnumMap<SignalAspect, GuiTextField> textbox = new EnumMap<SignalAspect, GuiTextField>(
+            SignalAspect.class);
 
     public GuiBoxAnalogController(TileBoxAnalogController tile) {
         super(tile.getName(), RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_basic_large.png", 176, 113);
@@ -102,7 +105,11 @@ public class GuiBoxAnalogController extends GuiBasic {
 
         for (Map.Entry<SignalAspect, BitSet> entry : aspects.entrySet()) {
             GuiTextField textField = new GuiTextField(
-                    fontRendererObj, w + 72, h + getYPosFromIndex(entry.getKey().ordinal()), 95, 10);
+                    fontRendererObj,
+                    w + 72,
+                    h + getYPosFromIndex(entry.getKey().ordinal()),
+                    95,
+                    10);
             textField.setMaxStringLength(37);
             textField.setText(rangeToString(entry.getValue()));
             textbox.put(entry.getKey(), textField);

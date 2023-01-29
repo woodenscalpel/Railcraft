@@ -1,30 +1,31 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.modules;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.io.File;
 import java.util.EnumSet;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Set;
+
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.world.World;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+
 import org.apache.logging.log4j.Level;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ModuleManager {
 
@@ -41,6 +42,7 @@ public class ModuleManager {
     }
 
     public enum Module {
+
         CORE(ModuleCore.class),
         FACTORY(ModuleFactory.class),
         EXTRAS(ModuleExtras.class),
@@ -68,16 +70,14 @@ public class ModuleManager {
         MAGIC(ModuleMagic.class),
         ELECTRICITY(ModuleElectricity.class),
         REDSTONE_FLUX(ModuleRF.class);
+
         private final RailcraftModule instance;
 
         private Module(Class<? extends RailcraftModule> moduleClass) {
             RailcraftModule inst = null;
-            if (moduleClass != null)
-                try {
-                    inst = moduleClass.newInstance();
-                } catch (InstantiationException ex) {
-                } catch (IllegalAccessException ex) {
-                }
+            if (moduleClass != null) try {
+                inst = moduleClass.newInstance();
+            } catch (InstantiationException ex) {} catch (IllegalAccessException ex) {}
 
             this.instance = inst;
         }
@@ -90,8 +90,7 @@ public class ModuleManager {
             Class<? extends RailcraftModule> moduleClass = null;
             try {
                 moduleClass = (Class<? extends RailcraftModule>) Class.forName(className);
-            } catch (ClassNotFoundException ex) {
-            }
+            } catch (ClassNotFoundException ex) {}
             return moduleClass;
         }
     };
@@ -111,8 +110,8 @@ public class ModuleManager {
         Locale locale = Locale.getDefault();
         Locale.setDefault(Locale.ENGLISH);
 
-        Configuration config =
-                new Configuration(new File(Railcraft.getMod().getConfigFolder(), MODULE_CONFIG_FILE_NAME));
+        Configuration config = new Configuration(
+                new File(Railcraft.getMod().getConfigFolder(), MODULE_CONFIG_FILE_NAME));
 
         config.load();
         config.addCustomCategoryComment(
@@ -201,8 +200,8 @@ public class ModuleManager {
 
     private static boolean isEnabled(Configuration config, Module m) {
         boolean defaultValue = true;
-        Property prop = config.get(
-                CATEGORY_MODULES, m.toString().toLowerCase(Locale.ENGLISH).replace('_', '.'), defaultValue);
+        Property prop = config
+                .get(CATEGORY_MODULES, m.toString().toLowerCase(Locale.ENGLISH).replace('_', '.'), defaultValue);
         return prop.getBoolean(true);
     }
 
@@ -211,8 +210,8 @@ public class ModuleManager {
     }
 
     @SideOnly(Side.CLIENT)
-    public static GuiScreen getGuiScreen(
-            EnumGui guiType, InventoryPlayer inv, Object obj, World world, int x, int y, int z) {
+    public static GuiScreen getGuiScreen(EnumGui guiType, InventoryPlayer inv, Object obj, World world, int x, int y,
+            int z) {
         for (Module m : loadedModules) {
             GuiScreen gui = m.instance.getGuiScreen(guiType, inv, obj, world, x, y, z);
             if (gui != null) return gui;
@@ -220,8 +219,8 @@ public class ModuleManager {
         return null;
     }
 
-    public static Container getGuiContainer(
-            EnumGui guiType, InventoryPlayer inv, Object obj, World world, int x, int y, int z) {
+    public static Container getGuiContainer(EnumGui guiType, InventoryPlayer inv, Object obj, World world, int x, int y,
+            int z) {
         for (Module m : loadedModules) {
             Container con = m.instance.getGuiContainer(guiType, inv, obj, world, x, y, z);
             if (con != null) return con;
@@ -235,8 +234,7 @@ public class ModuleManager {
             boolean override = false;
             try {
                 override = instance.getClass().getMethod("preInit").getDeclaringClass() != RailcraftModule.class;
-            } catch (Exception ex) {
-            }
+            } catch (Exception ex) {}
             if (override) {
                 Game.log(Level.TRACE, "Pre-Init Start: {0}", instance);
                 instance.preInit();
@@ -251,8 +249,7 @@ public class ModuleManager {
             boolean override = false;
             try {
                 override = instance.getClass().getMethod("initFirst").getDeclaringClass() != RailcraftModule.class;
-            } catch (Exception ex) {
-            }
+            } catch (Exception ex) {}
             if (override) {
                 Game.log(Level.TRACE, "Init-First Start: {0}", instance);
                 instance.initBlocks();
@@ -268,8 +265,7 @@ public class ModuleManager {
             boolean override = false;
             try {
                 override = instance.getClass().getMethod("initSecond").getDeclaringClass() != RailcraftModule.class;
-            } catch (Exception ex) {
-            }
+            } catch (Exception ex) {}
             if (override) {
                 Game.log(Level.TRACE, "Init-Second Start: {0}", instance);
                 instance.initRecipes(module);
@@ -285,8 +281,7 @@ public class ModuleManager {
             boolean override = false;
             try {
                 override = instance.getClass().getMethod("postInit").getDeclaringClass() != RailcraftModule.class;
-            } catch (Exception ex) {
-            }
+            } catch (Exception ex) {}
             if (override) {
                 Game.log(Level.TRACE, "Post-Init Start: {0}", instance);
                 instance.postInit();
@@ -301,10 +296,9 @@ public class ModuleManager {
         if (instance != null) {
             boolean override = false;
             try {
-                override =
-                        instance.getClass().getMethod("postInitNotLoaded").getDeclaringClass() != RailcraftModule.class;
-            } catch (Exception ex) {
-            }
+                override = instance.getClass().getMethod("postInitNotLoaded").getDeclaringClass()
+                        != RailcraftModule.class;
+            } catch (Exception ex) {}
             if (override) {
                 Game.log(Level.TRACE, "Disabled-Init Start: {0}", instance);
                 instance.postInitNotLoaded();

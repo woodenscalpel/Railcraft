@@ -1,14 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.items.waterstone;
 
 import java.util.List;
+
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.items.ItemRailcraft;
@@ -16,6 +14,7 @@ import mods.railcraft.common.items.firestone.*;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
+
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -61,7 +60,7 @@ public class ItemWaterstoneRefined extends ItemRailcraft {
     @Override
     public void getSubItems(Item id, CreativeTabs tab, List list) {
         list.add(new ItemStack(item, 1, 5000));
-        //        list.add(new ItemStack(item, 1, 0));
+        // list.add(new ItemStack(item, 1, 0));
     }
 
     @Override
@@ -87,17 +86,8 @@ public class ItemWaterstoneRefined extends ItemRailcraft {
     }
 
     @Override
-    public boolean onItemUse(
-            ItemStack stack,
-            EntityPlayer player,
-            World world,
-            int x,
-            int y,
-            int z,
-            int side,
-            float hitX,
-            float hitY,
-            float hitZ) {
+    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side,
+            float hitX, float hitY, float hitZ) {
         if (player.canPlayerEdit(x, y, z, side, stack)) {
             Block block = WorldPlugin.getBlock(world, x, y, z);
             if (block != null && block != Blocks.stone) {
@@ -105,12 +95,16 @@ public class ItemWaterstoneRefined extends ItemRailcraft {
                 if (drops.size() == 1 && drops.get(0) != null && drops.get(0).getItem() instanceof ItemBlock) {
                     ItemStack cooked = FurnaceRecipes.smelting().getSmeltingResult(drops.get(0));
                     if (cooked != null && cooked.getItem() instanceof ItemBlock) {
-                        int meta = !cooked.getItem().getHasSubtypes()
-                                ? 0
+                        int meta = !cooked.getItem().getHasSubtypes() ? 0
                                 : cooked.getItem().getMetadata(cooked.getItemDamage());
                         world.setBlock(x, y, z, InvTools.getBlockFromStack(cooked), meta, 3);
                         world.playSoundEffect(
-                                x + 0.5D, y + 0.5D, z + 0.5D, "fire.ignite", 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
+                                x + 0.5D,
+                                y + 0.5D,
+                                z + 0.5D,
+                                "fire.ignite",
+                                1.0F,
+                                itemRand.nextFloat() * 0.4F + 0.8F);
                         stack.damageItem(1, player);
                         return true;
                     }
@@ -132,7 +126,12 @@ public class ItemWaterstoneRefined extends ItemRailcraft {
 
         if (player.canPlayerEdit(x, y, z, side, stack) && world.isAirBlock(x, y, z)) {
             world.playSoundEffect(
-                    x + 0.5D, y + 0.5D, z + 0.5D, "fire.ignite", 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
+                    x + 0.5D,
+                    y + 0.5D,
+                    z + 0.5D,
+                    "fire.ignite",
+                    1.0F,
+                    itemRand.nextFloat() * 0.4F + 0.8F);
             world.setBlock(x, y, z, Blocks.fire);
             stack.damageItem(1, player);
             return true;
@@ -141,14 +140,12 @@ public class ItemWaterstoneRefined extends ItemRailcraft {
     }
 
     /**
-     * Determines if this Item has a special entity for when they are in the
-     * world. Is called when a EntityItem is spawned in the world, if true and
-     * Item#createCustomEntity returns non null, the EntityItem will be
-     * destroyed and the new Entity will be added to the world.
+     * Determines if this Item has a special entity for when they are in the world. Is called when a EntityItem is
+     * spawned in the world, if true and Item#createCustomEntity returns non null, the EntityItem will be destroyed and
+     * the new Entity will be added to the world.
      *
      * @param stack The current item stack
-     * @return True of the item has a custom entity, If true,
-     * Item#createCustomEntity will be called
+     * @return True of the item has a custom entity, If true, Item#createCustomEntity will be called
      */
     @Override
     public boolean hasCustomEntity(ItemStack stack) {
@@ -156,13 +153,11 @@ public class ItemWaterstoneRefined extends ItemRailcraft {
     }
 
     /**
-     * This function should return a new entity to replace the dropped item.
-     * Returning null here will not kill the EntityItem and will leave it to
-     * function normally. Called when the item it placed in a world.
+     * This function should return a new entity to replace the dropped item. Returning null here will not kill the
+     * EntityItem and will leave it to function normally. Called when the item it placed in a world.
      *
      * @param world    The world object
-     * @param location The EntityItem object, useful for getting the position of
-     *                 the entity
+     * @param location The EntityItem object, useful for getting the position of the entity
      * @param stack    The current item stack
      * @return A new Entity object to spawn or null
      */

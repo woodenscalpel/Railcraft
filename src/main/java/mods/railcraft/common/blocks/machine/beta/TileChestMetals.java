@@ -1,15 +1,13 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.beta;
 
 import java.util.EnumMap;
 import java.util.Map;
+
 import mods.railcraft.api.core.items.IStackFilter;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.items.Metal;
@@ -17,6 +15,7 @@ import mods.railcraft.common.util.inventory.filters.ComplexStackFilter;
 import mods.railcraft.common.util.inventory.filters.ExclusionStackFilter;
 import mods.railcraft.common.util.inventory.manipulators.InventoryManipulator;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.inventory.IInventory;
 
 /**
@@ -39,14 +38,14 @@ public class TileChestMetals extends TileChestRailcraft {
     }
 
     enum Target {
+
         NUGGET_CONDENSE {
 
             @Override
             public boolean evaluate(IInventory inv) {
                 InventoryManipulator im = InventoryManipulator.get(inv);
                 for (Metal metal : Metal.VALUES) {
-                    if (metal.getIngot() != null
-                            && im.canRemoveItems(metal.nuggetFilter, 9)
+                    if (metal.getIngot() != null && im.canRemoveItems(metal.nuggetFilter, 9)
                             && im.canAddStack(metal.getIngot())) {
                         im.removeItems(metal.nuggetFilter, 9);
                         im.addStack(metal.getIngot());
@@ -62,8 +61,7 @@ public class TileChestMetals extends TileChestRailcraft {
             public boolean evaluate(IInventory inv) {
                 InventoryManipulator im = InventoryManipulator.get(inv);
                 for (Metal metal : Metal.VALUES) {
-                    if (metal.getBlock() != null
-                            && im.canRemoveItems(metal.ingotFilter, 9)
+                    if (metal.getBlock() != null && im.canRemoveItems(metal.ingotFilter, 9)
                             && im.canAddStack(metal.getBlock())) {
                         im.removeItems(metal.ingotFilter, 9);
                         im.addStack(metal.getBlock());
@@ -80,8 +78,7 @@ public class TileChestMetals extends TileChestRailcraft {
                 InventoryManipulator im = InventoryManipulator.get(inv);
                 for (Metal metal : Metal.VALUES) {
                     IStackFilter filter = nuggetFilters.get(metal);
-                    if (metal.getNugget() != null
-                            && im.canRemoveItems(filter, 1)
+                    if (metal.getNugget() != null && im.canRemoveItems(filter, 1)
                             && im.canAddStack(metal.getNugget())) {
                         im.removeItems(filter, 1);
                         im.addStack(metal.getNugget());

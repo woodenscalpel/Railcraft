@@ -1,18 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.gamma;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import mods.railcraft.client.util.textures.TextureAtlasSheet;
 import mods.railcraft.common.blocks.RailcraftBlocks;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
@@ -22,16 +18,21 @@ import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.modules.ModuleManager.Module;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 /**
  * @author CovertJaguar
  */
 public enum EnumMachineGamma implements IEnumMachine {
+
     ITEM_LOADER(Module.TRANSPORT, "loader.item", 0, TileItemLoader.class),
     ITEM_UNLOADER(Module.TRANSPORT, "unloader.item", 0, TileItemUnloader.class),
     ITEM_LOADER_ADVANCED(Module.TRANSPORT, "loader.item.advanced", 0, TileItemLoaderAdvanced.class),
@@ -44,6 +45,7 @@ public enum EnumMachineGamma implements IEnumMachine {
     DISPENSER_TRAIN(Module.TRAIN, "dispenser.train", 0, TileDispenserTrain.class),
     RF_LOADER(Module.REDSTONE_FLUX, "loader.rf", -1, TileRFLoader.class),
     RF_UNLOADER(Module.REDSTONE_FLUX, "unloader.rf", -1, TileRFUnloader.class);
+
     private final Module module;
     private final String tag;
     private final int extraIcons;
@@ -96,8 +98,8 @@ public enum EnumMachineGamma implements IEnumMachine {
         for (EnumMachineGamma machine : VALUES) {
             if (machine.extraIcons == -1) continue;
             machine.texture = new IIcon[machine.extraIcons + 6];
-            IIcon[] icons =
-                    TextureAtlasSheet.unstitchIcons(iconRegister, "railcraft:" + machine.tag, machine.extraIcons + 3);
+            IIcon[] icons = TextureAtlasSheet
+                    .unstitchIcons(iconRegister, "railcraft:" + machine.tag, machine.extraIcons + 3);
             IIcon cap = icons[0];
             IIcon side = icons[1];
             IIcon face = icons[2];
@@ -128,16 +130,16 @@ public enum EnumMachineGamma implements IEnumMachine {
         RF_LOADER.texture = new IIcon[9];
         Arrays.fill(RF_LOADER.texture, emitterSide);
         RF_LOADER.texture[6] = iconRegister.registerIcon("railcraft:" + RF_LOADER.tag + ".side.unpowered");
-        RF_LOADER.texture[3] =
-                RF_LOADER.texture[7] = iconRegister.registerIcon("railcraft:" + RF_LOADER.tag + ".facing");
+        RF_LOADER.texture[3] = RF_LOADER.texture[7] = iconRegister
+                .registerIcon("railcraft:" + RF_LOADER.tag + ".facing");
         RF_LOADER.texture[8] = iconRegister.registerIcon("railcraft:" + RF_LOADER.tag + ".facing.unpowered");
 
         emitterSide = iconRegister.registerIcon("railcraft:" + RF_UNLOADER.tag + ".side");
         RF_UNLOADER.texture = new IIcon[9];
         Arrays.fill(RF_UNLOADER.texture, emitterSide);
         RF_UNLOADER.texture[6] = RF_LOADER.texture[6];
-        RF_UNLOADER.texture[3] =
-                RF_UNLOADER.texture[7] = iconRegister.registerIcon("railcraft:" + RF_UNLOADER.tag + ".facing");
+        RF_UNLOADER.texture[3] = RF_UNLOADER.texture[7] = iconRegister
+                .registerIcon("railcraft:" + RF_UNLOADER.tag + ".facing");
         RF_UNLOADER.texture[8] = RF_LOADER.texture[8];
 
         IIcon[] pipe = TextureAtlasSheet.unstitchIcons(iconRegister, "railcraft:loader.pipe", 2);
@@ -171,8 +173,7 @@ public enum EnumMachineGamma implements IEnumMachine {
     public TileMachineBase getTileEntity() {
         try {
             return tile.newInstance();
-        } catch (Exception ex) {
-        }
+        } catch (Exception ex) {}
         return null;
     }
 

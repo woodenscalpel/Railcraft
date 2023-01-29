@@ -1,19 +1,15 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.aesthetics.stairs;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
+
 import mods.railcraft.client.particles.ParticleHelper;
 import mods.railcraft.client.sounds.RailcraftSound;
 import mods.railcraft.common.blocks.aesthetics.EnumBlockMaterial;
@@ -22,6 +18,7 @@ import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.plugins.forge.CreativePlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.sounds.IBlockSoundProvider;
+
 import net.minecraft.block.*;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -38,6 +35,9 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockRailcraftStairs extends BlockStairs implements IBlockSoundProvider {
 
@@ -82,8 +82,7 @@ public class BlockRailcraftStairs extends BlockStairs implements IBlockSoundProv
     @Override
     public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileStair)
-            return new ItemStack(this, 1, ((TileStair) tile).getStair().ordinal());
+        if (tile instanceof TileStair) return new ItemStack(this, 1, ((TileStair) tile).getStair().ordinal());
         return null;
     }
 
@@ -98,8 +97,7 @@ public class BlockRailcraftStairs extends BlockStairs implements IBlockSoundProv
     public ArrayList<ItemStack> getDrops(World world, int i, int j, int k, int md, int fortune) {
         TileEntity tile = world.getTileEntity(i, j, k);
         ArrayList<ItemStack> items = new ArrayList<ItemStack>();
-        if (tile instanceof TileStair)
-            items.add(new ItemStack(this, 1, ((TileStair) tile).getStair().ordinal()));
+        if (tile instanceof TileStair) items.add(new ItemStack(this, 1, ((TileStair) tile).getStair().ordinal()));
         return items;
     }
 
@@ -151,8 +149,8 @@ public class BlockRailcraftStairs extends BlockStairs implements IBlockSoundProv
     }
 
     @Override
-    public float getExplosionResistance(
-            Entity entity, World world, int x, int y, int z, double explosionX, double explosionY, double explosionZ) {
+    public float getExplosionResistance(Entity entity, World world, int x, int y, int z, double explosionX,
+            double explosionY, double explosionZ) {
         TileEntity tile = world.getTileEntity(x, y, z);
         if (tile instanceof TileStair) return ((TileStair) tile).getStair().getExplosionResistance(entity);
         return super.getExplosionResistance(entity, world, x, y, z, explosionX, explosionY, explosionZ);

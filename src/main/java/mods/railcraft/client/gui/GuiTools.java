@@ -1,20 +1,20 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.gui;
 
 import java.util.List;
+
 import mods.railcraft.client.gui.buttons.GuiBetterButton;
+
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.passive.EntityVillager;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
@@ -43,8 +43,8 @@ public class GuiTools {
         fr.drawString(s, x - sWidth / 2, y, color, shadow);
     }
 
-    public static void newButtonRowAuto(
-            List buttonList, int xStart, int xSize, List<? extends GuiBetterButton> buttons) {
+    public static void newButtonRowAuto(List buttonList, int xStart, int xSize,
+            List<? extends GuiBetterButton> buttons) {
         int buttonWidth = 0;
         for (GuiBetterButton b : buttons) {
             buttonWidth += b.getWidth();
@@ -60,8 +60,8 @@ public class GuiTools {
         }
     }
 
-    public static void newButtonRowBookended(
-            List buttonList, int xStart, int xEnd, List<? extends GuiBetterButton> buttons) {
+    public static void newButtonRowBookended(List buttonList, int xStart, int xEnd,
+            List<? extends GuiBetterButton> buttons) {
         int buttonWidth = 0;
         for (GuiBetterButton b : buttons) {
             buttonWidth += b.getWidth();

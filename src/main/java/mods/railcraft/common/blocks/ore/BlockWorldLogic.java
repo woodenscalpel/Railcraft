@@ -1,20 +1,19 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.ore;
 
 import java.util.EnumSet;
 import java.util.Random;
+
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.plugins.forge.CreativePlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
 import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.MiscTools;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -90,10 +89,12 @@ public class BlockWorldLogic extends Block {
 
         int airCount = 0;
         Block ore = BlockOre.getBlock();
-        for (ForgeDirection side :
-                EnumSet.of(ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.WEST)) {
+        for (ForgeDirection side : EnumSet
+                .of(ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.WEST)) {
             boolean isAir = world.isAirBlock(
-                    MiscTools.getXOnSide(x, side), MiscTools.getYOnSide(surfaceY, side), MiscTools.getZOnSide(z, side));
+                    MiscTools.getXOnSide(x, side),
+                    MiscTools.getYOnSide(surfaceY, side),
+                    MiscTools.getZOnSide(z, side));
             if (isAir) airCount++;
 
             if (airCount > 1) return;
@@ -105,7 +106,7 @@ public class BlockWorldLogic extends Block {
         }
 
         world.setBlock(x, surfaceY, z, ore, EnumOre.SALTPETER.ordinal(), 3);
-        //        System.out.println("saltpeter spawned");
+        // System.out.println("saltpeter spawned");
     }
 
     @Override

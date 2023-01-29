@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.detector;
 
@@ -12,6 +9,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.List;
+
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.common.blocks.RailcraftTileEntity;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
@@ -19,6 +17,7 @@ import mods.railcraft.common.plugins.forge.WorldPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.SafeNBTWrapper;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,6 +25,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileDetector extends RailcraftTileEntity implements IGuiReturnHandler {
+
     public static final float SENSITIVITY = 0.2f;
     private static final int POWER_DELAY = 10;
     public ForgeDirection direction = ForgeDirection.UP;
@@ -137,7 +137,12 @@ public class TileDetector extends RailcraftTileEntity implements IGuiReturnHandl
                 sendUpdateToClient();
                 worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord, BlockDetector.getBlock());
                 WorldPlugin.notifyBlocksOfNeighborChangeOnSide(
-                        worldObj, xCoord, yCoord, zCoord, BlockDetector.getBlock(), direction);
+                        worldObj,
+                        xCoord,
+                        yCoord,
+                        zCoord,
+                        BlockDetector.getBlock(),
+                        direction);
             }
         }
     }

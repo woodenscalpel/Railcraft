@@ -1,17 +1,16 @@
 /*
- * ******************************************************************************
- *  Copyright 2011-2015 CovertJaguar
- *
- *  This work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
+ * ****************************************************************************** Copyright 2011-2015 CovertJaguar This
+ * work (the API) is licensed under the "MIT" License, see LICENSE.md for details.
  * ***************************************************************************
  */
 package mods.railcraft.api.carts;
 
-import com.mojang.authlib.GameProfile;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
 import mods.railcraft.api.core.items.IMinecartItem;
+
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,9 +23,13 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.FakePlayerFactory;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import com.mojang.authlib.GameProfile;
+
 public abstract class CartTools {
-    private static final GameProfile railcraftProfile =
-            new GameProfile(UUID.nameUUIDFromBytes("[Railcraft]".getBytes()), "[Railcraft]");
+
+    private static final GameProfile railcraftProfile = new GameProfile(
+            UUID.nameUUIDFromBytes("[Railcraft]".getBytes()),
+            "[Railcraft]");
     public static ILinkageManager linkageManager;
     public static ITrainTransferHelper transferHelper;
 
@@ -104,14 +107,12 @@ public abstract class CartTools {
     /**
      * Spawns a new cart entity using the provided item.
      * <p/>
-     * The backing item must implement <code>IMinecartItem</code> and/or extend
-     * <code>ItemMinecart</code>.
+     * The backing item must implement <code>IMinecartItem</code> and/or extend <code>ItemMinecart</code>.
      * <p/>
      * Generally Forge requires all cart items to extend ItemMinecart.
      *
      * @param owner The player name that should used as the owner
-     * @param cart  An ItemStack containing a cart item, will not be changed by
-     *              the function
+     * @param cart  An ItemStack containing a cart item, will not be changed by the function
      * @param world The World object
      * @param x     x-Coord
      * @param y     y-Coord
@@ -125,20 +126,19 @@ public abstract class CartTools {
         if (cart.getItem() instanceof IMinecartItem) {
             IMinecartItem mi = (IMinecartItem) cart.getItem();
             return mi.placeCart(owner, cart, world, x, y, z);
-        } else if (cart.getItem() instanceof ItemMinecart)
-            try {
-                boolean placed = cart.getItem()
-                        .onItemUse(cart, FakePlayerFactory.get(world, railcraftProfile), world, x, y, z, 0, 0, 0, 0);
-                if (placed) {
-                    List<EntityMinecart> carts = getMinecartsAt(world, x, y, z, 0.3f);
-                    if (carts.size() > 0) {
-                        setCartOwner(carts.get(0), owner);
-                        return carts.get(0);
-                    }
+        } else if (cart.getItem() instanceof ItemMinecart) try {
+            boolean placed = cart.getItem()
+                    .onItemUse(cart, FakePlayerFactory.get(world, railcraftProfile), world, x, y, z, 0, 0, 0, 0);
+            if (placed) {
+                List<EntityMinecart> carts = getMinecartsAt(world, x, y, z, 0.3f);
+                if (carts.size() > 0) {
+                    setCartOwner(carts.get(0), owner);
+                    return carts.get(0);
                 }
-            } catch (Exception e) {
-                return null;
             }
+        } catch (Exception e) {
+            return null;
+        }
 
         return null;
     }
@@ -159,14 +159,8 @@ public abstract class CartTools {
         return isMinecartOnRailAt(world, i, j, k, sensitivity, null, true);
     }
 
-    public static boolean isMinecartOnRailAt(
-            World world,
-            int i,
-            int j,
-            int k,
-            float sensitivity,
-            Class<? extends EntityMinecart> type,
-            boolean subclass) {
+    public static boolean isMinecartOnRailAt(World world, int i, int j, int k, float sensitivity,
+            Class<? extends EntityMinecart> type, boolean subclass) {
         if (BlockRailBase.func_150049_b_(world, i, j, k))
             return isMinecartAt(world, i, j, k, sensitivity, type, subclass);
         return false;
@@ -176,24 +170,17 @@ public abstract class CartTools {
         return isMinecartOnAnySide(world, i, j, k, sensitivity, null, true);
     }
 
-    public static boolean isMinecartOnAnySide(
-            World world,
-            int i,
-            int j,
-            int k,
-            float sensitivity,
-            Class<? extends EntityMinecart> type,
-            boolean subclass) {
+    public static boolean isMinecartOnAnySide(World world, int i, int j, int k, float sensitivity,
+            Class<? extends EntityMinecart> type, boolean subclass) {
         List<EntityMinecart> list = new ArrayList<EntityMinecart>();
         for (int side = 0; side < 6; side++) {
             list.addAll(getMinecartsOnSide(world, i, j, k, sensitivity, ForgeDirection.getOrientation(side)));
         }
 
         if (type == null) return !list.isEmpty();
-        else
-            for (EntityMinecart cart : list) {
-                if ((subclass && type.isInstance(cart)) || cart.getClass() == type) return true;
-            }
+        else for (EntityMinecart cart : list) {
+            if ((subclass && type.isInstance(cart)) || cart.getClass() == type) return true;
+        }
         return false;
     }
 
@@ -201,21 +188,14 @@ public abstract class CartTools {
         return isMinecartAt(world, i, j, k, sensitivity, null, true);
     }
 
-    public static boolean isMinecartAt(
-            World world,
-            int i,
-            int j,
-            int k,
-            float sensitivity,
-            Class<? extends EntityMinecart> type,
-            boolean subclass) {
+    public static boolean isMinecartAt(World world, int i, int j, int k, float sensitivity,
+            Class<? extends EntityMinecart> type, boolean subclass) {
         List<EntityMinecart> list = getMinecartsAt(world, i, j, k, sensitivity);
 
         if (type == null) return !list.isEmpty();
-        else
-            for (EntityMinecart cart : list) {
-                if ((subclass && type.isInstance(cart)) || cart.getClass() == type) return true;
-            }
+        else for (EntityMinecart cart : list) {
+            if ((subclass && type.isInstance(cart)) || cart.getClass() == type) return true;
+        }
         return false;
     }
 
@@ -228,14 +208,8 @@ public abstract class CartTools {
         return carts;
     }
 
-    public static List<EntityMinecart> getMinecartsOnAllSides(
-            World world,
-            int i,
-            int j,
-            int k,
-            float sensitivity,
-            Class<? extends EntityMinecart> type,
-            boolean subclass) {
+    public static List<EntityMinecart> getMinecartsOnAllSides(World world, int i, int j, int k, float sensitivity,
+            Class<? extends EntityMinecart> type, boolean subclass) {
         List<EntityMinecart> list = new ArrayList<EntityMinecart>();
         List<EntityMinecart> carts = new ArrayList<EntityMinecart>();
         for (int side = 0; side < 6; side++) {
@@ -281,8 +255,8 @@ public abstract class CartTools {
         }
     }
 
-    public static List<EntityMinecart> getMinecartsOnSide(
-            World world, int i, int j, int k, float sensitivity, ForgeDirection side) {
+    public static List<EntityMinecart> getMinecartsOnSide(World world, int i, int j, int k, float sensitivity,
+            ForgeDirection side) {
         return getMinecartsAt(world, getXOnSide(i, side), getYOnSide(j, side), getZOnSide(k, side), sensitivity);
     }
 
@@ -290,28 +264,21 @@ public abstract class CartTools {
         return getMinecartOnSide(world, i, j, k, sensitivity, side) != null;
     }
 
-    public static EntityMinecart getMinecartOnSide(
-            World world, int i, int j, int k, float sensitivity, ForgeDirection side) {
+    public static EntityMinecart getMinecartOnSide(World world, int i, int j, int k, float sensitivity,
+            ForgeDirection side) {
         for (EntityMinecart cart : getMinecartsOnSide(world, i, j, k, sensitivity, side)) {
             return cart;
         }
         return null;
     }
 
-    public static boolean isMinecartOnSide(
-            World world,
-            int i,
-            int j,
-            int k,
-            float sensitivity,
-            ForgeDirection side,
-            Class<? extends EntityMinecart> type,
-            boolean subclass) {
+    public static boolean isMinecartOnSide(World world, int i, int j, int k, float sensitivity, ForgeDirection side,
+            Class<? extends EntityMinecart> type, boolean subclass) {
         return getMinecartOnSide(world, i, j, k, sensitivity, side, type, subclass) != null;
     }
 
-    public static <T extends EntityMinecart> T getMinecartOnSide(
-            World world, int i, int j, int k, float sensitivity, ForgeDirection side, Class<T> type, boolean subclass) {
+    public static <T extends EntityMinecart> T getMinecartOnSide(World world, int i, int j, int k, float sensitivity,
+            ForgeDirection side, Class<T> type, boolean subclass) {
         for (EntityMinecart cart : getMinecartsOnSide(world, i, j, k, sensitivity, side)) {
             if (type == null || (subclass && type.isInstance(cart)) || cart.getClass() == type) return (T) cart;
         }
@@ -323,8 +290,7 @@ public abstract class CartTools {
      * @param i
      * @param j
      * @param k
-     * @param sensitivity Controls the size of the search box, ranges from
-     *                    (-inf, 0.49].
+     * @param sensitivity Controls the size of the search box, ranges from (-inf, 0.49].
      * @return
      */
     public static List<EntityMinecart> getMinecartsAt(World world, int i, int j, int k, float sensitivity) {
@@ -347,8 +313,8 @@ public abstract class CartTools {
     }
 
     public static List<EntityMinecart> getMinecartsIn(World world, int i1, int j1, int k1, int i2, int j2, int k2) {
-        List entities =
-                world.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getBoundingBox(i1, j1, k1, i2, j2, k2));
+        List entities = world
+                .getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getBoundingBox(i1, j1, k1, i2, j2, k2));
         List<EntityMinecart> carts = new ArrayList<EntityMinecart>();
         for (Object o : entities) {
             EntityMinecart cart = (EntityMinecart) o;
@@ -358,10 +324,8 @@ public abstract class CartTools {
     }
 
     /**
-     * Returns the cart's "speed". It is not capped by the carts max speed, it
-     * instead returns the cart's "potential" speed. Used by collision and
-     * linkage logic. Do not use this to determine how fast a cart is currently
-     * moving.
+     * Returns the cart's "speed". It is not capped by the carts max speed, it instead returns the cart's "potential"
+     * speed. Used by collision and linkage logic. Do not use this to determine how fast a cart is currently moving.
      *
      * @param cart
      * @return speed

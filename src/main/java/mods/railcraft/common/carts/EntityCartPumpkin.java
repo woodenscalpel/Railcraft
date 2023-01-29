@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.carts;
 
@@ -12,9 +9,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.Game;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -155,7 +154,8 @@ public class EntityCartPumpkin extends EntityCartTNTWood {
                     }
 
                     mob.setCurrentItemOrArmor(
-                            4, new ItemStack(this.rand.nextFloat() < 0.25F ? Blocks.lit_pumpkin : Blocks.pumpkin));
+                            4,
+                            new ItemStack(this.rand.nextFloat() < 0.25F ? Blocks.lit_pumpkin : Blocks.pumpkin));
                 } else if (living != null) living.onSpawnWithEgg(null);
 
                 this.worldObj.spawnEntityInWorld(mob);

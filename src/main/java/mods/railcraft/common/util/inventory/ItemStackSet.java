@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.util.inventory;
 
@@ -13,14 +10,13 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
 import net.minecraft.item.ItemStack;
 
 /**
- * This is a custom data structure designed specifically for using ItemStacks as
- * elements of a Set.
+ * This is a custom data structure designed specifically for using ItemStacks as elements of a Set.
  *
- * Its backed by an ArrayList, so as expected, most operations result in
- * traversing the list one or more times.
+ * Its backed by an ArrayList, so as expected, most operations result in traversing the list one or more times.
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */

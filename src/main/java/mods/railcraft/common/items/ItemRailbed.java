@@ -1,18 +1,17 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.items;
 
 import java.util.List;
 import java.util.Locale;
+
 import mods.railcraft.common.items.ItemTie.EnumTie;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -23,8 +22,10 @@ import net.minecraft.util.IIcon;
 public class ItemRailbed extends ItemRailcraft {
 
     public enum EnumRailbed implements IItemMetaEnum {
+
         WOOD("stickWood"),
         STONE(Blocks.stone_slab);
+
         public static final EnumRailbed[] VALUES = values();
         private IIcon icon;
         private Object alternate;
@@ -60,8 +61,8 @@ public class ItemRailbed extends ItemRailcraft {
     @Override
     public void registerIcons(IIconRegister iconRegister) {
         for (EnumRailbed railbed : EnumRailbed.VALUES) {
-            railbed.icon = iconRegister.registerIcon(
-                    "railcraft:part.railbed." + railbed.name().toLowerCase(Locale.ENGLISH));
+            railbed.icon = iconRegister
+                    .registerIcon("railcraft:part.railbed." + railbed.name().toLowerCase(Locale.ENGLISH));
         }
     }
 

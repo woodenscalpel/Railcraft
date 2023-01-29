@@ -1,16 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.ore;
 
 import mods.railcraft.common.core.RailcraftConfig;
 import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.modules.ModuleManager.Module;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
@@ -19,6 +17,7 @@ import net.minecraft.util.IIcon;
  * @author CovertJaguar <http://www.railcraft.info>
  */
 public enum EnumOre {
+
     SULFUR("sulfur"),
     SALTPETER("saltpeter"),
     DARK_DIAMOND("dark.diamond"),
@@ -30,8 +29,8 @@ public enum EnumOre {
     POOR_GOLD("poor.gold"),
     POOR_COPPER("poor.copper"),
     POOR_TIN("poor.tin"),
-    POOR_LEAD("poor.lead"),
-    ;
+    POOR_LEAD("poor.lead"),;
+
     public static final EnumOre[] VALUES = values();
     private IIcon texture;
     private final String tag;
@@ -66,8 +65,7 @@ public enum EnumOre {
     }
 
     public boolean isEnabled() {
-        return ModuleManager.isModuleLoaded(Module.WORLD)
-                && BlockOre.getBlock() != null
+        return ModuleManager.isModuleLoaded(Module.WORLD) && BlockOre.getBlock() != null
                 && RailcraftConfig.isSubBlockEnabled(getTag());
     }
 

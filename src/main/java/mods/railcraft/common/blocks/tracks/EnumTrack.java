@@ -1,14 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.tracks;
 
 import java.util.*;
+
 import mods.railcraft.api.tracks.TrackRegistry;
 import mods.railcraft.api.tracks.TrackSpec;
 import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
@@ -28,11 +26,13 @@ import mods.railcraft.common.modules.ModuleManager.Module;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public enum EnumTrack {
+
     BOARDING(Module.TRACKS, 4, 1, "boarding", 8, TrackBoarding.class),
     HOLDING(Module.TRACKS, 2, 1, "holding", 8, TrackHolding.class),
     ONEWAY(Module.TRACKS, 4, 1, "oneway", 8, TrackOneWay.class),
@@ -81,6 +81,7 @@ public enum EnumTrack {
     ELECTRIC_SWITCH(Module.TRACKS_ELECTRIC, 4, 0, "electric.switch", 8, TrackElectricSwitch.class),
     ELECTRIC_WYE(Module.TRACKS_ELECTRIC, 2, 0, "electric.wye", 8, TrackElectricWye.class),
     FORCE(Module.ELECTRICITY, 1, 0, "force", 1, TrackForce.class);
+
     public static final EnumTrack[] VALUES = values();
     private static final List<EnumTrack> creativeList = new ArrayList<EnumTrack>(50);
     private static final Set<TrackSpec> trackSpecs = new HashSet<TrackSpec>(50);
@@ -153,12 +154,7 @@ public enum EnumTrack {
         HOLDING_TRAIN.depreciated = true;
     }
 
-    EnumTrack(
-            Module module,
-            int numIcons,
-            int itemIconIndex,
-            String tag,
-            int recipeOutput,
+    EnumTrack(Module module, int numIcons, int itemIconIndex, String tag, int recipeOutput,
             Class<? extends TrackBaseRailcraft> trackInstance) {
         this.module = module;
         this.numIcons = numIcons;
@@ -187,8 +183,7 @@ public enum EnumTrack {
     }
 
     public boolean isEnabled() {
-        return ModuleManager.isModuleLoaded(module)
-                && RailcraftConfig.isBlockEnabled("track")
+        return ModuleManager.isModuleLoaded(module) && RailcraftConfig.isBlockEnabled("track")
                 && RailcraftConfig.isSubBlockEnabled(getTag())
                 && !isDepreciated();
     }
@@ -242,32 +237,26 @@ public enum EnumTrack {
     private ItemStack registerRecipe() {
         if (getItem() == null) return null;
         ItemStack output = getItem(recipeOutput * 2);
-        Object railWood =
-                RailcraftConfig.useOldRecipes() ? "slabWood" : RailcraftItem.rail.getRecipeObject(EnumRail.WOOD);
-        Object railStandard = RailcraftConfig.useOldRecipes()
-                ? new ItemStack(Items.iron_ingot)
+        Object railWood = RailcraftConfig.useOldRecipes() ? "slabWood"
+                : RailcraftItem.rail.getRecipeObject(EnumRail.WOOD);
+        Object railStandard = RailcraftConfig.useOldRecipes() ? new ItemStack(Items.iron_ingot)
                 : RailcraftItem.rail.getRecipeObject(EnumRail.STANDARD);
-        Object railAdvanced = RailcraftConfig.useOldRecipes()
-                ? new ItemStack(Items.gold_ingot)
+        Object railAdvanced = RailcraftConfig.useOldRecipes() ? new ItemStack(Items.gold_ingot)
                 : RailcraftItem.rail.getRecipeObject(EnumRail.ADVANCED);
-        Object railSpeed =
-                RailcraftConfig.useOldRecipes() ? "ingotSteel" : RailcraftItem.rail.getRecipeObject(EnumRail.SPEED);
+        Object railSpeed = RailcraftConfig.useOldRecipes() ? "ingotSteel"
+                : RailcraftItem.rail.getRecipeObject(EnumRail.SPEED);
         Object railReinforced = RailcraftConfig.useOldRecipes() || !EnumMachineAlpha.ROCK_CRUSHER.isEnabled()
                 ? "ingotSteel"
                 : RailcraftItem.rail.getRecipeObject(EnumRail.REINFORCED);
-        Object railElectric =
-                RailcraftConfig.useOldRecipes() ? "ingotCopper" : RailcraftItem.rail.getRecipeObject(EnumRail.ELECTRIC);
+        Object railElectric = RailcraftConfig.useOldRecipes() ? "ingotCopper"
+                : RailcraftItem.rail.getRecipeObject(EnumRail.ELECTRIC);
         Object woodTie = RailcraftItem.tie.getRecipeObject(EnumTie.WOOD);
-        Object woodRailbed =
-                RailcraftConfig.useOldRecipes() ? "stickWood" : RailcraftItem.railbed.getRecipeObject(EnumRailbed.WOOD);
-        Object stoneRailbed = RailcraftConfig.useOldRecipes()
-                ? Blocks.stone_slab
+        Object woodRailbed = RailcraftConfig.useOldRecipes() ? "stickWood"
+                : RailcraftItem.railbed.getRecipeObject(EnumRailbed.WOOD);
+        Object stoneRailbed = RailcraftConfig.useOldRecipes() ? Blocks.stone_slab
                 : RailcraftItem.railbed.getRecipeObject(EnumRailbed.STONE);
-        Object reinforcedRailbed = RailcraftConfig.useOldRecipes()
-                        || !RailcraftItem.rail.isEnabled()
-                        || !EnumMachineAlpha.ROCK_CRUSHER.isEnabled()
-                ? new ItemStack(Blocks.obsidian)
-                : stoneRailbed;
+        Object reinforcedRailbed = RailcraftConfig.useOldRecipes() || !RailcraftItem.rail.isEnabled()
+                || !EnumMachineAlpha.ROCK_CRUSHER.isEnabled() ? new ItemStack(Blocks.obsidian) : stoneRailbed;
 
         ItemStack crowbar = ItemCrowbar.getItem();
 
@@ -289,16 +278,16 @@ public enum EnumTrack {
                         'b',
                         Blocks.stone_pressure_plate);
                 break;
-                //            case BOARDING_TRAIN:
-                //                CraftingPlugin.addShapedOreRecipe(output,
-                //                        "IrI",
-                //                        "IbI",
-                //                        "IsI",
-                //                        'I', railAdvanced,
-                //                        's', woodRailbed,
-                //                        'r', Items.repeater,
-                //                        'b', Blocks.stone_pressure_plate);
-                //                break;
+            // case BOARDING_TRAIN:
+            // CraftingPlugin.addShapedOreRecipe(output,
+            // "IrI",
+            // "IbI",
+            // "IsI",
+            // 'I', railAdvanced,
+            // 's', woodRailbed,
+            // 'r', Items.repeater,
+            // 'b', Blocks.stone_pressure_plate);
+            // break;
             case ONEWAY:
                 CraftingPlugin.addShapedRecipe(
                         output,
@@ -329,58 +318,85 @@ public enum EnumTrack {
                         'r',
                         "dustRedstone");
                 break;
-                //            case HOLDING:
-                //                CraftingPlugin.addShapedOreRecipe(output,
-                //                        "IsI",
-                //                        "IbI",
-                //                        "IrI",
-                //                        'I', railAdvanced,
-                //                        's', woodRailbed,
-                //                        'r', "dustRedstone",
-                //                        'b', Blocks.stone_pressure_plate);
-                //                break;
-                //            case HOLDING_TRAIN:
-                //                CraftingPlugin.addShapedOreRecipe(output,
-                //                        "IsI",
-                //                        "IbI",
-                //                        "IrI",
-                //                        'I', railAdvanced,
-                //                        's', woodRailbed,
-                //                        'r', Items.repeater,
-                //                        'b', Blocks.stone_pressure_plate);
-                //                break;
-                //            case LOCKDOWN:
-                //                CraftingPlugin.addShapedOreRecipe(output,
-                //                        "IbI",
-                //                        "IrI",
-                //                        "IsI",
-                //                        'I', railAdvanced,
-                //                        's', woodRailbed,
-                //                        'r', "dustRedstone",
-                //                        'b', Blocks.stone_pressure_plate);
-                //                break;
-                //            case LOCKDOWN_TRAIN:
-                //                CraftingPlugin.addShapedOreRecipe(output,
-                //                        "IbI",
-                //                        "IrI",
-                //                        "IsI",
-                //                        'I', railAdvanced,
-                //                        's', woodRailbed,
-                //                        'r', Items.repeater,
-                //                        'b', Blocks.stone_pressure_plate);
-                //                break;
+            // case HOLDING:
+            // CraftingPlugin.addShapedOreRecipe(output,
+            // "IsI",
+            // "IbI",
+            // "IrI",
+            // 'I', railAdvanced,
+            // 's', woodRailbed,
+            // 'r', "dustRedstone",
+            // 'b', Blocks.stone_pressure_plate);
+            // break;
+            // case HOLDING_TRAIN:
+            // CraftingPlugin.addShapedOreRecipe(output,
+            // "IsI",
+            // "IbI",
+            // "IrI",
+            // 'I', railAdvanced,
+            // 's', woodRailbed,
+            // 'r', Items.repeater,
+            // 'b', Blocks.stone_pressure_plate);
+            // break;
+            // case LOCKDOWN:
+            // CraftingPlugin.addShapedOreRecipe(output,
+            // "IbI",
+            // "IrI",
+            // "IsI",
+            // 'I', railAdvanced,
+            // 's', woodRailbed,
+            // 'r', "dustRedstone",
+            // 'b', Blocks.stone_pressure_plate);
+            // break;
+            // case LOCKDOWN_TRAIN:
+            // CraftingPlugin.addShapedOreRecipe(output,
+            // "IbI",
+            // "IrI",
+            // "IsI",
+            // 'I', railAdvanced,
+            // 's', woodRailbed,
+            // 'r', Items.repeater,
+            // 'b', Blocks.stone_pressure_plate);
+            // break;
             case SPEED:
                 CraftingPlugin.addShapedRecipe(output, "I I", "IsI", "I I", 'I', railSpeed, 's', stoneRailbed);
                 break;
             case SPEED_BOOST:
                 CraftingPlugin.addShapedRecipe(
-                        output, "IrI", "IsI", "IrI", 'I', railSpeed, 's', stoneRailbed, 'r', "dustRedstone");
+                        output,
+                        "IrI",
+                        "IsI",
+                        "IrI",
+                        'I',
+                        railSpeed,
+                        's',
+                        stoneRailbed,
+                        'r',
+                        "dustRedstone");
                 break;
             case SPEED_TRANSITION:
                 CraftingPlugin.addShapedRecipe(
-                        output, "IrI", "IrI", "IsI", 'I', railSpeed, 's', stoneRailbed, 'r', "dustRedstone");
+                        output,
+                        "IrI",
+                        "IrI",
+                        "IsI",
+                        'I',
+                        railSpeed,
+                        's',
+                        stoneRailbed,
+                        'r',
+                        "dustRedstone");
                 CraftingPlugin.addShapedRecipe(
-                        output, "IsI", "IrI", "IrI", 'I', railSpeed, 's', stoneRailbed, 'r', "dustRedstone");
+                        output,
+                        "IsI",
+                        "IrI",
+                        "IrI",
+                        'I',
+                        railSpeed,
+                        's',
+                        stoneRailbed,
+                        'r',
+                        "dustRedstone");
                 break;
             case SPEED_SWITCH:
                 CraftingPlugin.addShapedRecipe(output, "IsI", "III", "III", 'I', railSpeed, 's', stoneRailbed);
@@ -464,8 +480,8 @@ public enum EnumTrack {
                 CraftingPlugin.addShapedRecipe(output, "III", "II#", "III", 'I', railWood, '#', woodRailbed);
                 break;
             case REINFORCED_WYE:
-                CraftingPlugin.addShapedRecipe(
-                        output, "III", "II#", "III", 'I', railReinforced, '#', reinforcedRailbed);
+                CraftingPlugin
+                        .addShapedRecipe(output, "III", "II#", "III", 'I', railReinforced, '#', reinforcedRailbed);
                 break;
             case SPEED_WYE:
                 CraftingPlugin.addShapedRecipe(output, "III", "II#", "III", 'I', railSpeed, '#', stoneRailbed);
@@ -487,7 +503,16 @@ public enum EnumTrack {
                 break;
             case EMBARKING:
                 CraftingPlugin.addShapedRecipe(
-                        output, "IpI", "I#I", "IpI", 'I', railAdvanced, '#', woodRailbed, 'p', Items.ender_pearl);
+                        output,
+                        "IpI",
+                        "I#I",
+                        "IpI",
+                        'I',
+                        railAdvanced,
+                        '#',
+                        woodRailbed,
+                        'p',
+                        Items.ender_pearl);
                 break;
             case SUSPENDED:
                 CraftingPlugin.addShapedRecipe(output, "ItI", "ItI", "ItI", 'I', railStandard, 't', woodTie);
@@ -508,7 +533,16 @@ public enum EnumTrack {
                 break;
             case BUFFER_STOP:
                 CraftingPlugin.addShapedRecipe(
-                        output, "I I", "I#I", "IbI", 'I', railStandard, '#', woodRailbed, 'b', "blockIron");
+                        output,
+                        "I I",
+                        "I#I",
+                        "IbI",
+                        'I',
+                        railStandard,
+                        '#',
+                        woodRailbed,
+                        'b',
+                        "blockIron");
                 break;
             case DETECTOR_DIRECTION:
                 CraftingPlugin.addShapedRecipe(
@@ -527,7 +561,16 @@ public enum EnumTrack {
                 break;
             case GATED:
                 CraftingPlugin.addShapedRecipe(
-                        output, "IgI", "I#I", "IgI", 'I', railStandard, '#', woodRailbed, 'g', Blocks.fence_gate);
+                        output,
+                        "IgI",
+                        "I#I",
+                        "IgI",
+                        'I',
+                        railStandard,
+                        '#',
+                        woodRailbed,
+                        'g',
+                        Blocks.fence_gate);
                 break;
             case GATED_ONEWAY:
                 CraftingPlugin.addShapedRecipe(
@@ -546,7 +589,16 @@ public enum EnumTrack {
                 break;
             case COUPLER:
                 CraftingPlugin.addShapedRecipe(
-                        output, "IcI", "I#I", "IcI", 'I', railAdvanced, '#', woodRailbed, 'c', crowbar);
+                        output,
+                        "IcI",
+                        "I#I",
+                        "IcI",
+                        'I',
+                        railAdvanced,
+                        '#',
+                        woodRailbed,
+                        'c',
+                        crowbar);
                 break;
             case WHISTLE:
                 CraftingPlugin.addShapedRecipe(
@@ -578,7 +630,16 @@ public enum EnumTrack {
                 break;
             case LIMITER:
                 CraftingPlugin.addShapedRecipe(
-                        output, "IlI", "I#I", "IlI", 'I', railStandard, '#', woodRailbed, 'l', Items.repeater);
+                        output,
+                        "IlI",
+                        "I#I",
+                        "IlI",
+                        'I',
+                        railStandard,
+                        '#',
+                        woodRailbed,
+                        'l',
+                        Items.repeater);
                 break;
             case ROUTING:
                 CraftingPlugin.addShapedRecipe(
@@ -609,20 +670,29 @@ public enum EnumTrack {
                         ItemTicketGold.getTicket());
                 break;
             case REINFORCED:
-                CraftingPlugin.addShapedRecipe(
-                        output, "I I", "I#I", "I I", 'I', railReinforced, '#', reinforcedRailbed);
+                CraftingPlugin
+                        .addShapedRecipe(output, "I I", "I#I", "I I", 'I', railReinforced, '#', reinforcedRailbed);
                 break;
             case REINFORCED_BOOSTER:
                 CraftingPlugin.addShapedRecipe(
-                        output, "I I", "I#I", "IrI", 'I', railReinforced, 'r', "dustRedstone", '#', reinforcedRailbed);
+                        output,
+                        "I I",
+                        "I#I",
+                        "IrI",
+                        'I',
+                        railReinforced,
+                        'r',
+                        "dustRedstone",
+                        '#',
+                        reinforcedRailbed);
                 break;
             case REINFORCED_JUNCTION:
-                CraftingPlugin.addShapedRecipe(
-                        output, "III", "I#I", "III", 'I', railReinforced, '#', reinforcedRailbed);
+                CraftingPlugin
+                        .addShapedRecipe(output, "III", "I#I", "III", 'I', railReinforced, '#', reinforcedRailbed);
                 break;
             case REINFORCED_SWITCH:
-                CraftingPlugin.addShapedRecipe(
-                        output, "I#I", "III", "III", 'I', railReinforced, '#', reinforcedRailbed);
+                CraftingPlugin
+                        .addShapedRecipe(output, "I#I", "III", "III", 'I', railReinforced, '#', reinforcedRailbed);
                 break;
         }
         return output;

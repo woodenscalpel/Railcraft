@@ -1,17 +1,16 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.detector;
 
 import java.util.Locale;
+
 import mods.railcraft.common.blocks.detector.types.*;
 import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.modules.ModuleManager.Module;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
@@ -20,6 +19,7 @@ import net.minecraft.util.IIcon;
  * @author CovertJaguar <http://www.railcraft.info/>
  */
 public enum EnumDetector {
+
     ITEM(Module.AUTOMATION, DetectorItem.class),
     ANY(Module.AUTOMATION, Detector.class),
     EMPTY(Module.AUTOMATION, DetectorEmpty.class),
@@ -37,6 +37,7 @@ public enum EnumDetector {
     VILLAGER(Module.AUTOMATION, DetectorVillager.class),
     LOCOMOTIVE(Module.AUTOMATION, DetectorLocomotive.class),
     ROUTING(Module.ROUTING, DetectorRouting.class);
+
     public static final EnumDetector[] VALUES = values();
     public IIcon[] textures;
     private final Class<? extends Detector> handler;
@@ -57,8 +58,7 @@ public enum EnumDetector {
     public Detector buildHandler() {
         try {
             return handler.newInstance();
-        } catch (Exception ex) {
-        }
+        } catch (Exception ex) {}
         throw new RuntimeException("Failed to create Detector!");
     }
 

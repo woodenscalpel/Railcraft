@@ -1,22 +1,21 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.render;
 
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import java.util.HashMap;
 import java.util.Map;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
+
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 /**
  *
@@ -60,8 +59,8 @@ public class BlockRenderer implements ISimpleBlockRenderingHandler, IInvRenderer
     public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {}
 
     @Override
-    public boolean renderWorldBlock(
-            IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderblocks) {
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+            RenderBlocks renderblocks) {
         if (!blockRenderers.isEmpty()) {
             int meta = world.getBlockMetadata(x, y, z);
             IBlockRenderer renderer = blockRenderers.get(meta);

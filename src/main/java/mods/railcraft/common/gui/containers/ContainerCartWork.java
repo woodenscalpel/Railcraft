@@ -1,15 +1,13 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.gui.containers;
 
 import mods.railcraft.common.carts.EntityCartWork;
 import mods.railcraft.common.gui.slots.SlotUnshiftable;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
@@ -61,7 +59,8 @@ public final class ContainerCartWork extends RailcraftContainer {
     @Override
     public void onCraftMatrixChanged(IInventory par1IInventory) {
         this.craftResult.setInventorySlotContents(
-                0, CraftingManager.getInstance().findMatchingRecipe(this.craftMatrix, cart.worldObj));
+                0,
+                CraftingManager.getInstance().findMatchingRecipe(this.craftMatrix, cart.worldObj));
     }
 
     /**
@@ -71,11 +70,10 @@ public final class ContainerCartWork extends RailcraftContainer {
     public void onContainerClosed(EntityPlayer par1EntityPlayer) {
         super.onContainerClosed(par1EntityPlayer);
 
-        if (!cart.worldObj.isRemote)
-            for (int var2 = 0; var2 < 9; ++var2) {
-                ItemStack var3 = this.craftMatrix.getStackInSlotOnClosing(var2);
+        if (!cart.worldObj.isRemote) for (int var2 = 0; var2 < 9; ++var2) {
+            ItemStack var3 = this.craftMatrix.getStackInSlotOnClosing(var2);
 
-                if (var3 != null) par1EntityPlayer.dropPlayerItemWithRandomChoice(var3, false);
-            }
+            if (var3 != null) par1EntityPlayer.dropPlayerItemWithRandomChoice(var3, false);
+        }
     }
 }

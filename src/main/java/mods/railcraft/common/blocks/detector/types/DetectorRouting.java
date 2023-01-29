@@ -1,16 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.detector.types;
 
 import static mods.railcraft.common.plugins.forge.PowerPlugin.*;
 
 import java.util.List;
+
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.common.blocks.detector.DetectorSecured;
 import mods.railcraft.common.blocks.detector.EnumDetector;
@@ -23,6 +21,7 @@ import mods.railcraft.common.items.ItemRoutingTable;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.inventory.StandaloneInventory;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -39,6 +38,7 @@ public class DetectorRouting extends DetectorSecured implements IRouter, IRoutin
 
     private RoutingLogic logic;
     private final StandaloneInventory inv = new StandaloneInventory(1, null, new StandaloneInventory.Callback() {
+
         @Override
         public void markDirty() {
             logic = null;
@@ -50,8 +50,9 @@ public class DetectorRouting extends DetectorSecured implements IRouter, IRoutin
             return tile.getName();
         }
     });
-    private final MultiButtonController<RoutingButtonState> routingController =
-            new MultiButtonController<RoutingButtonState>(0, RoutingButtonState.values());
+    private final MultiButtonController<RoutingButtonState> routingController = new MultiButtonController<RoutingButtonState>(
+            0,
+            RoutingButtonState.values());
     private boolean powered;
 
     @Override
@@ -67,18 +68,16 @@ public class DetectorRouting extends DetectorSecured implements IRouter, IRoutin
     @Override
     public boolean blockActivated(EntityPlayer player) {
         ItemStack current = player.inventory.getCurrentItem();
-        if (current != null && current.getItem() instanceof ItemRoutingTable)
-            if (inv.getStackInSlot(0) == null) {
-                ItemStack copy = current.copy();
-                copy.stackSize = 1;
-                inv.setInventorySlotContents(0, copy);
-                if (!player.capabilities.isCreativeMode) {
-                    player.inventory.setInventorySlotContents(
-                            player.inventory.currentItem, InvTools.depleteItem(current));
-                    player.inventory.markDirty();
-                }
-                return true;
+        if (current != null && current.getItem() instanceof ItemRoutingTable) if (inv.getStackInSlot(0) == null) {
+            ItemStack copy = current.copy();
+            copy.stackSize = 1;
+            inv.setInventorySlotContents(0, copy);
+            if (!player.capabilities.isCreativeMode) {
+                player.inventory.setInventorySlotContents(player.inventory.currentItem, InvTools.depleteItem(current));
+                player.inventory.markDirty();
             }
+            return true;
+        }
         openGui(EnumGui.DETECTOR_ROUTING, player);
         return true;
     }

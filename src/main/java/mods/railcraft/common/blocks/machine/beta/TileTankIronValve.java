@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.beta;
 
@@ -18,6 +15,7 @@ import mods.railcraft.common.fluids.tanks.StandardTank;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.ITileFilter;
 import mods.railcraft.common.util.misc.MiscTools;
+
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -34,6 +32,7 @@ import net.minecraftforge.fluids.IFluidHandler;
 public class TileTankIronValve extends TileTankBase implements IFluidHandler, IComparatorValueProvider {
 
     private static final ITileFilter FLUID_OUTPUT_FILTER = new ITileFilter() {
+
         @Override
         public boolean matches(TileEntity tile) {
             if (tile instanceof TileTankBase) return false;
@@ -41,7 +40,7 @@ public class TileTankIronValve extends TileTankBase implements IFluidHandler, IC
             return false;
         }
     };
-    private static final ForgeDirection[] FLUID_OUTPUTS = {ForgeDirection.DOWN};
+    private static final ForgeDirection[] FLUID_OUTPUTS = { ForgeDirection.DOWN };
     private static final int FLOW_RATE = FluidHelper.BUCKET_VOLUME;
     private static final byte FILL_INCREMENT = 1;
     private final StandardTank fillTank = new StandardTank(20);
@@ -143,11 +142,10 @@ public class TileTankIronValve extends TileTankBase implements IFluidHandler, IC
     public IIcon getIcon(int side) {
         if (!isStructureValid() || getPattern() == null) return getMachineType().getTexture(side);
         ForgeDirection s = ForgeDirection.getOrientation(side);
-        char markerSide = getPattern()
-                .getPatternMarkerChecked(
-                        MiscTools.getXOnSide(getPatternPositionX(), s),
-                        MiscTools.getYOnSide(getPatternPositionY(), s),
-                        MiscTools.getZOnSide(getPatternPositionZ(), s));
+        char markerSide = getPattern().getPatternMarkerChecked(
+                MiscTools.getXOnSide(getPatternPositionX(), s),
+                MiscTools.getYOnSide(getPatternPositionY(), s),
+                MiscTools.getZOnSide(getPatternPositionZ(), s));
 
         if (!isMapPositionOtherBlock(markerSide)) {
             if (side == ForgeDirection.UP.ordinal() || side == ForgeDirection.DOWN.ordinal())
@@ -164,7 +162,7 @@ public class TileTankIronValve extends TileTankBase implements IFluidHandler, IC
         TankManager tMan = getTankManager();
         if (tMan == null) return 0;
         resource = resource.copy();
-        //        resource.amount = Math.min(resource.amount, FLOW_RATE);
+        // resource.amount = Math.min(resource.amount, FLOW_RATE);
         int filled = tMan.fill(0, resource, doFill);
         if (filled > 0 && doFill) setFilling(resource.copy());
         return filled;

@@ -1,17 +1,14 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.client.gui;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
+
 import mods.railcraft.common.gui.containers.ContainerAnvil;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -25,8 +22,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.client.C17PacketCustomPayload;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class GuiAnvil extends GuiContainer implements ICrafting {
@@ -61,8 +62,7 @@ public class GuiAnvil extends GuiContainer implements ICrafting {
     }
 
     /**
-     * Called when the screen is unloaded. Used to disable keyboard repeat
-     * events
+     * Called when the screen is unloaded. Used to disable keyboard repeat events
      */
     @Override
     public void onGuiClosed() {
@@ -72,8 +72,7 @@ public class GuiAnvil extends GuiContainer implements ICrafting {
     }
 
     /**
-     * Draw the foreground layer for the GuiContainer (everything in front of
-     * the items)
+     * Draw the foreground layer for the GuiContainer (everything in front of the items)
      */
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2) {
@@ -84,7 +83,8 @@ public class GuiAnvil extends GuiContainer implements ICrafting {
             int k = 8453920;
             boolean flag = true;
             String s = I18n.format(
-                    "container.repair.cost", new Object[] {Integer.valueOf(this.repairContainer.maximumCost)});
+                    "container.repair.cost",
+                    new Object[] { Integer.valueOf(this.repairContainer.maximumCost) });
 
             if (this.repairContainer.maximumCost >= 40 && !this.mc.thePlayer.capabilities.isCreativeMode) {
                 s = I18n.format("container.repair.expensive");
@@ -114,8 +114,7 @@ public class GuiAnvil extends GuiContainer implements ICrafting {
     }
 
     /**
-     * Fired when a key is typed. This is the equivalent of
-     * KeyListener.keyTyped(KeyEvent e).
+     * Fired when a key is typed. This is the equivalent of KeyListener.keyTyped(KeyEvent e).
      */
     @Override
     protected void keyTyped(char par1, int par2) {
@@ -127,10 +126,10 @@ public class GuiAnvil extends GuiContainer implements ICrafting {
         String s = this.itemNameField.getText();
         Slot slot = this.repairContainer.getSlot(0);
 
-        if (slot != null
-                && slot.getHasStack()
+        if (slot != null && slot.getHasStack()
                 && !slot.getStack().hasDisplayName()
-                && s.equals(slot.getStack().getDisplayName())) s = "";
+                && s.equals(slot.getStack().getDisplayName()))
+            s = "";
 
         this.repairContainer.updateItemName(s);
         this.mc.thePlayer.sendQueue.addToSendQueue(new C17PacketCustomPayload("MC|ItemName", s.getBytes()));
@@ -156,8 +155,7 @@ public class GuiAnvil extends GuiContainer implements ICrafting {
     }
 
     /**
-     * Draw the background layer for the GuiContainer (everything behind the
-     * items)
+     * Draw the background layer for the GuiContainer (everything behind the items)
      */
     @Override
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
@@ -167,10 +165,14 @@ public class GuiAnvil extends GuiContainer implements ICrafting {
         int l = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
         this.drawTexturedModalRect(
-                k + 59, l + 20, 0, this.ySize + (this.repairContainer.getSlot(0).getHasStack() ? 0 : 16), 110, 16);
+                k + 59,
+                l + 20,
+                0,
+                this.ySize + (this.repairContainer.getSlot(0).getHasStack() ? 0 : 16),
+                110,
+                16);
 
-        if ((this.repairContainer.getSlot(0).getHasStack()
-                        || this.repairContainer.getSlot(1).getHasStack())
+        if ((this.repairContainer.getSlot(0).getHasStack() || this.repairContainer.getSlot(1).getHasStack())
                 && !this.repairContainer.getSlot(2).getHasStack())
             this.drawTexturedModalRect(k + 99, l + 45, this.xSize, 0, 28, 21);
     }
@@ -181,9 +183,8 @@ public class GuiAnvil extends GuiContainer implements ICrafting {
     }
 
     /**
-     * Sends the contents of an inventory slot to the client-side Container.
-     * This doesn't have to match the actual contents of that slot. Args:
-     * Container, slot number, slot contents
+     * Sends the contents of an inventory slot to the client-side Container. This doesn't have to match the actual
+     * contents of that slot. Args: Container, slot number, slot contents
      */
     @Override
     public void sendSlotContents(Container par1Container, int par2, ItemStack par3ItemStack) {
@@ -196,10 +197,9 @@ public class GuiAnvil extends GuiContainer implements ICrafting {
     }
 
     /**
-     * Sends two ints to the client-side Container. Used for furnace burning
-     * time, smelting progress, brewing progress, and enchanting level. Normally
-     * the first int identifies which variable to update, and the second
-     * contains the new value. Both are truncated to shorts in non-local SMP.
+     * Sends two ints to the client-side Container. Used for furnace burning time, smelting progress, brewing progress,
+     * and enchanting level. Normally the first int identifies which variable to update, and the second contains the new
+     * value. Both are truncated to shorts in non-local SMP.
      */
     @Override
     public void sendProgressBarUpdate(Container par1Container, int par2, int par3) {}

@@ -1,10 +1,7 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.signals;
 
@@ -12,6 +9,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.EnumSet;
+
 import mods.railcraft.api.signals.IControllerTile;
 import mods.railcraft.api.signals.SignalAspect;
 import mods.railcraft.api.signals.SimpleSignalController;
@@ -20,6 +18,7 @@ import mods.railcraft.common.gui.GuiHandler;
 import mods.railcraft.common.plugins.forge.PowerPlugin;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -27,8 +26,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileBoxController extends TileBoxBase implements IControllerTile, IGuiReturnHandler {
+
     private static final EnumSet<ForgeDirection> powerSides = EnumSet.of(
-            ForgeDirection.DOWN, ForgeDirection.EAST, ForgeDirection.WEST, ForgeDirection.NORTH, ForgeDirection.SOUTH);
+            ForgeDirection.DOWN,
+            ForgeDirection.EAST,
+            ForgeDirection.WEST,
+            ForgeDirection.NORTH,
+            ForgeDirection.SOUTH);
     private final SimpleSignalController controller = new SimpleSignalController(getLocalizationTag(), this);
     public SignalAspect defaultAspect = SignalAspect.GREEN;
     public SignalAspect poweredAspect = SignalAspect.RED;
@@ -77,8 +81,8 @@ public class TileBoxController extends TileBoxBase implements IControllerTile, I
         for (ForgeDirection side : powerSides) {
             if (tileCache.getTileOnSide(side) instanceof TileBoxBase) continue;
             if (PowerPlugin.isBlockBeingPowered(worldObj, xCoord, yCoord, zCoord, side)) return true;
-            //            if (PowerPlugin.isBlockBeingPowered(worldObj, xCoord, yCoord - 1, zCoord, side))
-            //                return true;
+            // if (PowerPlugin.isBlockBeingPowered(worldObj, xCoord, yCoord - 1, zCoord, side))
+            // return true;
         }
         return false;
     }
@@ -90,9 +94,8 @@ public class TileBoxController extends TileBoxBase implements IControllerTile, I
             TileEntity t = tileCache.getTileOnSide(forgeSide);
             if (t instanceof TileBoxBase) {
                 TileBoxBase tile = (TileBoxBase) t;
-                if (tile.canTransferAspect())
-                    newAspect =
-                            SignalAspect.mostRestrictive(newAspect, tile.getBoxSignalAspect(forgeSide.getOpposite()));
+                if (tile.canTransferAspect()) newAspect = SignalAspect
+                        .mostRestrictive(newAspect, tile.getBoxSignalAspect(forgeSide.getOpposite()));
             }
         }
         return newAspect;

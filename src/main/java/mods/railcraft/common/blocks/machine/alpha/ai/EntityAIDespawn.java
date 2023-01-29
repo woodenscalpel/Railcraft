@@ -1,14 +1,12 @@
 /*
- * Copyright (c) CovertJaguar, 2014 http://railcraft.info
- *
- * This code is the property of CovertJaguar
- * and may only be used with explicit written
- * permission unless otherwise specified on the
- * license page at http://railcraft.info/wiki/info:license.
+ * Copyright (c) CovertJaguar, 2014 http://railcraft.info This code is the property of CovertJaguar and may only be used
+ * with explicit written permission unless otherwise specified on the license page at
+ * http://railcraft.info/wiki/info:license.
  */
 package mods.railcraft.common.blocks.machine.alpha.ai;
 
 import java.util.List;
+
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -33,8 +31,8 @@ public class EntityAIDespawn extends EntityAIBase {
         double chance = ADULT_DESPAWN_CHANCE;
         if (theAnimal.isChild()) chance = CHILD_DESPAWN_CHANCE;
         if (theAnimal.getRNG().nextDouble() > chance) return false;
-        List nearbyEntites =
-                theAnimal.worldObj.getEntitiesWithinAABB(EntityAnimal.class, theAnimal.boundingBox.expand(1, 1, 1));
+        List nearbyEntites = theAnimal.worldObj
+                .getEntitiesWithinAABB(EntityAnimal.class, theAnimal.boundingBox.expand(1, 1, 1));
         return nearbyEntites.size() > MAX_ANIMALS;
     }
 

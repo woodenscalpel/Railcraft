@@ -9,6 +9,6 @@ dependencies {
     compileOnly 'com.github.GTNewHorizons:ForestryMC:4.4.14:dev'
     compileOnly 'curse.maven:craftguide-75557:2459320'
 
-    runtime 'com.github.GTNewHorizons:Baubles:1.0.1.14:dev'
-    runtime 'com.github.GTNewHorizons:NotEnoughItems:2.2.32-GTNH:dev'
+    runtimeOnly 'com.github.GTNewHorizons:Baubles:1.0.1.14:dev'
+    runtimeOnly 'com.github.GTNewHorizons:NotEnoughItems:2.2.32-GTNH:dev'
 }
