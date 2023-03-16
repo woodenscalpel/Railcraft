@@ -8,13 +8,21 @@ package mods.railcraft.common.blocks.aesthetics.stairs;
 import static mods.railcraft.common.blocks.aesthetics.EnumBlockMaterial.*;
 import static mods.railcraft.common.blocks.aesthetics.stairs.BlockRailcraftStairs.getItem;
 
+import mods.railcraft.api.crafting.IRockCrusherRecipe;
+import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.common.blocks.BlockFactory;
 import mods.railcraft.common.blocks.aesthetics.EnumBlockMaterial;
+import mods.railcraft.common.blocks.aesthetics.brick.BrickVariant;
+import mods.railcraft.common.blocks.aesthetics.brick.EnumBrick;
 import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.plugins.forestry.ForestryPlugin;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.plugins.forge.RailcraftRegistry;
+import mods.railcraft.common.util.misc.Game;
+
+import net.minecraft.item.ItemStack;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
@@ -59,7 +67,48 @@ public class BlockFactoryStairs extends BlockFactory {
                         "SSS",
                         'S',
                         mat.getSourceItem());
+                if (!Game.isGTNH) {
+                    IRockCrusherRecipe recipe = RailcraftCraftingManager.rockCrusher
+                            .createNewRecipe(BlockRailcraftStairs.getItem(mat), true, false);
+                    recipe.addOutput(mat.getSourceItem(), 1.0f);
+                }
             }
+        }
+
+        if (!Game.isGTNH) {
+            addRockCrusherRecipe(EnumBrick.ABYSSAL, ABYSSAL_BLOCK, ABYSSAL_BRICK, ABYSSAL_COBBLE, ABYSSAL_FITTED);
+            addRockCrusherRecipe(
+                    EnumBrick.BLEACHEDBONE,
+                    BLEACHEDBONE_BLOCK,
+                    BLEACHEDBONE_BRICK,
+                    BLEACHEDBONE_COBBLE,
+                    BLEACHEDBONE_FITTED);
+            addRockCrusherRecipe(
+                    EnumBrick.BLOODSTAINED,
+                    BLOODSTAINED_BLOCK,
+                    BLOODSTAINED_BRICK,
+                    BLOODSTAINED_COBBLE,
+                    BLOODSTAINED_FITTED);
+            addRockCrusherRecipe(
+                    EnumBrick.FROSTBOUND,
+                    FROSTBOUND_BLOCK,
+                    FROSTBOUND_BRICK,
+                    FROSTBOUND_COBBLE,
+                    FROSTBOUND_FITTED);
+            addRockCrusherRecipe(EnumBrick.INFERNAL, INFERNAL_BLOCK, INFERNAL_BRICK, INFERNAL_COBBLE, INFERNAL_FITTED);
+            addRockCrusherRecipe(EnumBrick.NETHER, NETHER_BLOCK, NETHER_COBBLE, NETHER_FITTED);
+            addRockCrusherRecipe(EnumBrick.QUARRIED, QUARRIED_BLOCK, QUARRIED_BRICK, QUARRIED_COBBLE, QUARRIED_FITTED);
+            addRockCrusherRecipe(EnumBrick.SANDY, SANDY_BLOCK, SANDY_BRICK, SANDY_COBBLE, SANDY_FITTED);
+        }
+    }
+
+    private void addRockCrusherRecipe(EnumBrick brick, EnumBlockMaterial... types) {
+        if (brick.getBlock() == null) return;
+        ItemStack output = brick.get(BrickVariant.COBBLE, 1);
+        for (EnumBlockMaterial mat : types) {
+            if (!BlockRailcraftStairs.isEnabled(mat)) continue;
+            IRockCrusherRecipe recipe = RailcraftCraftingManager.rockCrusher.createNewRecipe(getItem(mat), true, false);
+            recipe.addOutput(output, 1.0F);
         }
     }
 }

@@ -27,6 +27,7 @@ public class Game {
     public static final boolean IS_OBFUSCATED = !World.class.getSimpleName().equals("World");
     public static final boolean IS_DEBUG = !Railcraft.VERSION.endsWith("0");
     public static final boolean IS_BUKKIT;
+    public static boolean isGTNH;
 
     static {
         boolean foundBukkit = false;

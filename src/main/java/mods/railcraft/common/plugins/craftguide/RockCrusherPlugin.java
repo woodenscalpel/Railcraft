@@ -5,9 +5,22 @@
  */
 package mods.railcraft.common.plugins.craftguide;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import mods.railcraft.api.crafting.IRockCrusherRecipe;
+import mods.railcraft.api.crafting.RailcraftCraftingManager;
+import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
+import mods.railcraft.common.core.RailcraftConstants;
+import mods.railcraft.common.util.misc.Game;
+
+import net.minecraft.item.ItemStack;
+
 import uristqwerty.CraftGuide.api.ItemSlot;
 import uristqwerty.CraftGuide.api.RecipeGenerator;
 import uristqwerty.CraftGuide.api.RecipeProvider;
+import uristqwerty.CraftGuide.api.RecipeTemplate;
 import uristqwerty.CraftGuide.api.SlotType;
 
 /**
@@ -33,6 +46,34 @@ public class RockCrusherPlugin implements RecipeProvider {
 
     @Override
     public void generateRecipes(RecipeGenerator generator) {
-        // Do nothing
+        if (Game.isGTNH) return;
+        ItemStack crafter = EnumMachineAlpha.ROCK_CRUSHER.getItem();
+        if (crafter != null) {
+            RecipeTemplate template = generator.createRecipeTemplate(
+                    slots,
+                    crafter,
+                    RailcraftConstants.GUI_TEXTURE_FOLDER + "gui_craft_guide.png",
+                    1,
+                    61,
+                    82,
+                    61);
+
+            for (IRockCrusherRecipe recipe : RailcraftCraftingManager.rockCrusher.getRecipes()) {
+                Object[] items = new Object[11];
+                items[0] = recipe.getInput();
+                List<Map.Entry<ItemStack, Float>> output = recipe.getOutputs();
+                int i = 1;
+                for (Entry<ItemStack, Float> e : output) {
+                    if (i > 9) {
+                        break;
+                    }
+                    items[i] = new Object[] { e.getKey(), e.getValue() };
+                    i++;
+                }
+
+                items[10] = crafter;
+                generator.addRecipe(template, items);
+            }
+        }
     }
 }

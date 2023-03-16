@@ -532,6 +532,11 @@ public class RailcraftConfig {
                 false,
                 "change to '{t}=true' to use track recipes more similar to vanilla minecraft");
         loadRecipeProperty(
+                "railcraft.rockCrusher",
+                "ores",
+                true,
+                "change to '{t}=false' to prevent the game from crushing ores into dusts (only available if IC2 installed)");
+        loadRecipeProperty(
                 "railcraft.misc",
                 "gunpowder",
                 true,
@@ -1028,7 +1033,7 @@ public class RailcraftConfig {
     }
 
     public static boolean canCrushOres() {
-        return false;
+        return !Game.isGTNH && getRecipeConfig("railcraft.rockCrusher.ores");
     }
 
     public static boolean addObsidianRecipesToMacerator() {

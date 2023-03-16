@@ -7,6 +7,8 @@ package mods.railcraft.common.core;
 
 import java.io.File;
 
+import mods.railcraft.api.crafting.IRockCrusherRecipe;
+import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.api.fuel.FuelManager;
 import mods.railcraft.common.blocks.aesthetics.lantern.BlockLantern;
 import mods.railcraft.common.blocks.anvil.BlockRCAnvil;
@@ -27,6 +29,7 @@ import mods.railcraft.common.util.network.PacketHandler;
 import net.minecraft.block.Block;
 import net.minecraft.command.CommandHandler;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -38,6 +41,7 @@ import com.google.common.collect.Iterables;
 import com.google.common.primitives.Ints;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
@@ -158,8 +162,17 @@ public final class Railcraft {
                                 "Mod %s registered %s as a valid liquid Boiler fuel",
                                 mess.getSender(),
                                 mess.getStringValue()));
-            } else if (mess.key.equals("rock-crusher")) {
-                // Ignore it
+            } else if (mess.key.equals("rock-crusher") && !Game.isGTNH) {
+                NBTTagCompound nbt = mess.getNBTValue();
+                ItemStack input = ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("input"));
+                IRockCrusherRecipe recipe = RailcraftCraftingManager.rockCrusher
+                        .createNewRecipe(input, nbt.getBoolean("matchMeta"), nbt.getBoolean("matchNBT"));
+                for (int i = 0; i < 9; i++) {
+                    if (nbt.hasKey("output" + i)) {
+                        NBTTagCompound outputNBT = nbt.getCompoundTag("output" + i);
+                        recipe.addOutput(ItemStack.loadItemStackFromNBT(outputNBT), outputNBT.getFloat("chance"));
+                    }
+                }
             } else if (mess.key.equals("high-speed-explosion-excluded-entities")) {
                 NBTTagCompound nbt = mess.getNBTValue();
                 if (nbt.hasKey("entities")) {
@@ -189,6 +202,8 @@ public final class Railcraft {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         // Game.log(Level.FINE, "Pre-Init Phase");
+
+        Game.isGTNH = Loader.isModLoaded("dreamcraft");
 
         configFolder = new File(event.getModConfigurationDirectory(), "railcraft");
         RailcraftConfig.preInit();

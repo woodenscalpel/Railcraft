@@ -5,13 +5,21 @@
  */
 package mods.railcraft.common.modules;
 
+import mods.railcraft.api.crafting.IRockCrusherRecipe;
+import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import mods.railcraft.common.blocks.ore.BlockOre;
 import mods.railcraft.common.blocks.ore.EnumOre;
 import mods.railcraft.common.fluids.FluidHelper;
 import mods.railcraft.common.fluids.Fluids;
-import mods.railcraft.common.items.firestone.*;
+import mods.railcraft.common.items.firestone.BlockFirestoneRecharge;
+import mods.railcraft.common.items.firestone.EntityItemFirestone;
 import mods.railcraft.common.items.firestone.FirestoneTickHandler;
+import mods.railcraft.common.items.firestone.ItemFirestoneCracked;
+import mods.railcraft.common.items.firestone.ItemFirestoneCut;
+import mods.railcraft.common.items.firestone.ItemFirestoneRaw;
+import mods.railcraft.common.items.firestone.ItemFirestoneRefined;
 import mods.railcraft.common.plugins.forge.CraftingPlugin;
+import mods.railcraft.common.util.misc.Game;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -40,6 +48,12 @@ public class ModuleMagic extends RailcraftModule {
         FMLCommonHandler.instance().bus().register(new FirestoneTickHandler());
 
         if (EnumOre.FIRESTONE.isEnabled() && ItemFirestoneRaw.item != null && ItemFirestoneCut.item != null) {
+            if (!Game.isGTNH) {
+                IRockCrusherRecipe recipe = RailcraftCraftingManager.rockCrusher
+                        .createNewRecipe(EnumOre.FIRESTONE.getItem(), true, false);
+                recipe.addOutput(ItemFirestoneRaw.getItem(), 1F);
+            }
+
             CraftingPlugin.addShapedRecipe(
                     ItemFirestoneCut.getItem(),
                     " P ",
