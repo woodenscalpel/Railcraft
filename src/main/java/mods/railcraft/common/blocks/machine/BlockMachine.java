@@ -308,7 +308,10 @@ public class BlockMachine extends BlockContainer implements IPostConnection {
     @Override
     public int getLightOpacity(IBlockAccess world, int x, int y, int z) {
         int meta = world.getBlockMetadata(x, y, z);
-        return metaOpacity[meta];
+        if (meta >= 0 && meta < metaOpacity.length) {
+            return metaOpacity[meta];
+        }
+        return 255;
     }
 
     @Override
