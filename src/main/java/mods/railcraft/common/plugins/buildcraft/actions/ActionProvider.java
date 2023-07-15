@@ -15,6 +15,10 @@ import mods.railcraft.common.plugins.buildcraft.triggers.*;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
+@cpw.mods.fml.common.Optional.InterfaceList(
+        value = { @cpw.mods.fml.common.Optional.Interface(
+                iface = "buildcraft.api.statements.IActionProvider",
+                modid = "BuildCraft|Core"), })
 public class ActionProvider implements IActionProvider {
 
     public ActionProvider() {
@@ -22,11 +26,13 @@ public class ActionProvider implements IActionProvider {
     }
 
     @Override
+    @cpw.mods.fml.common.Optional.Method(modid = "BuildCraft|Core")
     public Collection<IActionInternal> getInternalActions(IStatementContainer isc) {
         return null;
     }
 
     @Override
+    @cpw.mods.fml.common.Optional.Method(modid = "BuildCraft|Core")
     public Collection<IActionExternal> getExternalActions(ForgeDirection side,
             net.minecraft.tileentity.TileEntity tile) {
         Collection<IActionExternal> actions = new LinkedList<IActionExternal>();

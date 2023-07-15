@@ -16,6 +16,10 @@ import mods.railcraft.common.blocks.machine.beta.TileEngine;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
+@cpw.mods.fml.common.Optional.InterfaceList(
+        value = { @cpw.mods.fml.common.Optional.Interface(
+                iface = "buildcraft.api.statements.ITriggerProvider",
+                modid = "BuildCraft|Core"), })
 public class TriggerProvider implements ITriggerProvider {
 
     public TriggerProvider() {
@@ -23,11 +27,13 @@ public class TriggerProvider implements ITriggerProvider {
     }
 
     @Override
+    @cpw.mods.fml.common.Optional.Method(modid = "BuildCraft|Core")
     public Collection<ITriggerInternal> getInternalTriggers(IStatementContainer isc) {
         return null;
     }
 
     @Override
+    @cpw.mods.fml.common.Optional.Method(modid = "BuildCraft|Core")
     public Collection<ITriggerExternal> getExternalTriggers(ForgeDirection side, TileEntity tile) {
         LinkedList<ITriggerExternal> triggers = new LinkedList<ITriggerExternal>();
         if (tile instanceof IHasWork) triggers.add(Triggers.HAS_WORK);

@@ -19,6 +19,10 @@ import mods.railcraft.common.plugins.forge.LocalizationPlugin;
  *
  * @author CovertJaguar <http://www.railcraft.info>
  */
+@cpw.mods.fml.common.Optional.InterfaceList(
+        value = { @cpw.mods.fml.common.Optional.Interface(
+                iface = "buildcraft.api.statements.ITriggerExternal",
+                modid = "BuildCraft|Core"), })
 public enum Triggers implements ITriggerExternal {
 
     HAS_WORK("work", new TriggerHasWork()),
@@ -73,6 +77,7 @@ public enum Triggers implements ITriggerExternal {
     }
 
     @Override
+    @cpw.mods.fml.common.Optional.Method(modid = "BuildCraft|Core")
     public boolean isTriggerActive(TileEntity tile, ForgeDirection side, IStatementContainer isc,
             IStatementParameter[] parameter) {
         return trigger.isTriggerActive(side, tile, parameter);
