@@ -10,6 +10,7 @@ import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import cofh.api.energy.EnergyStorage;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
@@ -30,7 +31,7 @@ public class ContainerRockCrusher extends RailcraftContainer {
         super(crusher);
         this.tile = crusher;
 
-        energyIndicator = new RFEnergyIndicator(tile);
+        energyIndicator = new RFEnergyIndicator(tile.getMaxEnergyStored(ForgeDirection.UNKNOWN));
         addWidget(new IndicatorWidget(energyIndicator, 157, 23, 176, 53, 6, 48));
 
         for (int i = 0; i < 3; i++) {
@@ -58,19 +59,19 @@ public class ContainerRockCrusher extends RailcraftContainer {
     public void addCraftingToCrafters(ICrafting icrafting) {
         super.addCraftingToCrafters(icrafting);
         icrafting.sendProgressBarUpdate(this, 0, tile.getProcessTime());
-        EnergyStorage storage = tile.getEnergyStorage();
-        if (storage != null) icrafting.sendProgressBarUpdate(this, 1, storage.getEnergyStored());
+        Object storage = tile.getEnergyStorage();
+        if (storage != null) icrafting.sendProgressBarUpdate(this, 1, ((EnergyStorage) storage).getEnergyStored());
     }
 
     @Override
     public void sendUpdateToClient() {
         super.sendUpdateToClient();
-        EnergyStorage storage = tile.getEnergyStorage();
+        Object storage = tile.getEnergyStorage();
         for (Object crafter : crafters) {
             ICrafting icrafting = (ICrafting) crafter;
             if (lastProcessTime != tile.getProcessTime())
                 icrafting.sendProgressBarUpdate(this, 0, tile.getProcessTime());
-            if (storage != null) icrafting.sendProgressBarUpdate(this, 2, storage.getEnergyStored());
+            if (storage != null) icrafting.sendProgressBarUpdate(this, 2, ((EnergyStorage) storage).getEnergyStored());
         }
 
         lastProcessTime = tile.getProcessTime();

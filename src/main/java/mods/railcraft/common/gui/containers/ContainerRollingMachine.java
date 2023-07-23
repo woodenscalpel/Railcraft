@@ -13,6 +13,7 @@ import net.minecraft.inventory.InventoryCraftResult;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import cofh.api.energy.EnergyStorage;
 import mods.railcraft.common.blocks.machine.alpha.TileRollingMachine;
@@ -49,7 +50,7 @@ public class ContainerRollingMachine extends RailcraftContainer {
             }
         };
 
-        energyIndicator = new RFEnergyIndicator(tile);
+        energyIndicator = new RFEnergyIndicator(tile.getMaxEnergyStored(ForgeDirection.UNKNOWN));
         addWidget(new IndicatorWidget(energyIndicator, 157, 19, 176, 12, 6, 48));
 
         addSlot(new SlotRollingMachine(craftResult, 0, 93, 27));
@@ -78,18 +79,18 @@ public class ContainerRollingMachine extends RailcraftContainer {
     public void addCraftingToCrafters(ICrafting icrafting) {
         super.addCraftingToCrafters(icrafting);
         icrafting.sendProgressBarUpdate(this, 0, tile.getProgress());
-        EnergyStorage storage = tile.getEnergyStorage();
-        if (storage != null) icrafting.sendProgressBarUpdate(this, 1, storage.getEnergyStored());
+        Object storage = tile.getEnergyStorage();
+        if (storage != null) icrafting.sendProgressBarUpdate(this, 1, ((EnergyStorage) storage).getEnergyStored());
     }
 
     @Override
     public void sendUpdateToClient() {
         super.sendUpdateToClient();
-        EnergyStorage storage = tile.getEnergyStorage();
+        Object storage = tile.getEnergyStorage();
         for (Object crafter : crafters) {
             ICrafting icrafting = (ICrafting) crafter;
             if (lastProgress != tile.getProgress()) icrafting.sendProgressBarUpdate(this, 0, tile.getProgress());
-            if (storage != null) icrafting.sendProgressBarUpdate(this, 2, storage.getEnergyStored());
+            if (storage != null) icrafting.sendProgressBarUpdate(this, 2, ((EnergyStorage) storage).getEnergyStored());
         }
 
         ItemStack output = tile.getStackInSlot(0);
