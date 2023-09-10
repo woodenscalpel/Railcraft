@@ -59,13 +59,15 @@ public class BlockFactoryStairs extends BlockFactory {
         EnumBlockMaterial.initialize();
         for (EnumBlockMaterial mat : EnumBlockMaterial.VALUES) {
             if (BlockRailcraftStairs.isEnabled(mat) && mat.getSourceItem() != null) {
-                CraftingPlugin.addShapedRecipe(
-                        BlockRailcraftStairs.getItem(mat, 4),
-                        "S  ",
-                        "SS ",
-                        "SSS",
-                        'S',
-                        mat.getSourceItem());
+                if (!Game.isGTNH || mat != PACKED_ICE) {
+                    CraftingPlugin.addShapedRecipe(
+                            BlockRailcraftStairs.getItem(mat, 4),
+                            "S  ",
+                            "SS ",
+                            "SSS",
+                            'S',
+                            mat.getSourceItem());
+                }
                 if (!Game.isGTNH) {
                     IRockCrusherRecipe recipe = RailcraftCraftingManager.rockCrusher
                             .createNewRecipe(BlockRailcraftStairs.getItem(mat), true, false);
