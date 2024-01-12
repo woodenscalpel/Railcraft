@@ -24,6 +24,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import mods.railcraft.api.carts.locomotive.LocomotiveRenderType;
 import mods.railcraft.client.render.BlockRenderer;
+import mods.railcraft.client.render.FluidRenderer;
 import mods.railcraft.client.render.RenderBlockFrame;
 import mods.railcraft.client.render.RenderBlockLamp;
 import mods.railcraft.client.render.RenderBlockMachineBeta;
@@ -123,6 +124,7 @@ public class ClientProxy extends CommonProxy {
     public void preInitClient() {
         MinecraftForge.EVENT_BUS.register(RCSoundHandler.INSTANCE);
         MinecraftForge.EVENT_BUS.register(new TextureHook());
+        MinecraftForge.EVENT_BUS.register(new FluidRenderer.TextureHook());
     }
 
     public static class TextureHook {

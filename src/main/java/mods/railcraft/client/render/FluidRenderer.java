@@ -13,10 +13,12 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fluids.Fluid;
 
 import org.lwjgl.opengl.GL11;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
 import mods.railcraft.common.fluids.tanks.StandardTank;
 
@@ -121,5 +123,16 @@ public class FluidRenderer {
         cache.put(fluid, diplayLists);
 
         return diplayLists;
+    }
+
+    public static class TextureHook {
+
+        @SubscribeEvent
+        public void clearRenderCaches(TextureStitchEvent.Post event) {
+            if (event.map.getTextureType() == 0) {
+                flowingRenderCache.clear();
+                stillRenderCache.clear();
+            }
+        }
     }
 }
