@@ -42,8 +42,8 @@ item.railcraft.cart.energy.mfsu.name=Vagon s MFSU-om
 entity.Railcraft.cart.energy.mfsu.name=Vagon s MFSU-om
 item.railcraft.cart.pumpkin.name=Vagon s Bundevom
 entity.Railcraft.cart.pumpkin.name=Vagon s Bundevom
-item.railcraft.cart.tank.name=Vagon sa Spremnikom 
-entity.Railcraft.cart.tank.name=Vagon sa Spremnikom 
+item.railcraft.cart.tank.name=Vagon sa Spremnikom
+entity.Railcraft.cart.tank.name=Vagon sa Spremnikom
 item.railcraft.cart.tnt.name=TNT vagon
 entity.Railcraft.cart.tnt.name=TNT vagon
 item.railcraft.cart.tnt.wood.name=Drveni TNT Vagon
@@ -235,7 +235,7 @@ railcraft.gui.turbine=Parna Turbina
 railcraft.gui.turbine.output=Izlaz: @d%%
 railcraft.gui.turbine.rotor=Rotor:
 
-item.railcraft.upgrade.lapotron=Nadogradnja za Lapotronski Utovarivač
+item.railcraft.upgrade.lapotron.name=Nadogradnja za Lapotronski Utovarivač
 
 item.railcraft.ingot.steel.name=Čelična Poluga
 

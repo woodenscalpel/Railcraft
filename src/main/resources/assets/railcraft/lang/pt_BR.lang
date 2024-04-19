@@ -102,7 +102,7 @@ railcraft.gui.tank.water=Tanque de Água
 railcraft.gui.ticks=ticks
 railcraft.gui.track.embarking.radius=Raio
 
-item.railcraft.upgrade.lapotron=Upgrade de carga Laptrônica
+item.railcraft.upgrade.lapotron.name=Upgrade de carga Laptrônica
 
 item.railcraft.ingot.steel.name=Barra de Aço
 
@@ -134,7 +134,7 @@ tile.railcraft.machine.beta.tank.iron.wall.name=Parede de Tanque
 tile.railcraft.machine.gamma.dispenser.cart.name=Dispensador de Vagões
 tile.railcraft.machine.gamma.dispenser.train.name=Dispensador de Trem
 tile.railcraft.machine.gamma.loader.energy.name=Carregador de UE
-tile.railcraft.machine.gamma.loader.item.advanced.name=Carregador de Objetos Avançado 
+tile.railcraft.machine.gamma.loader.item.advanced.name=Carregador de Objetos Avançado
 tile.railcraft.machine.gamma.loader.item.name=Carregador de Itens
 tile.railcraft.machine.gamma.loader.liquid.name=Carregador de Líquidos
 tile.railcraft.machine.gamma.unloader.energy.name=Descarregador de UE
@@ -190,7 +190,7 @@ tile.railcraft.track.disposal.name=Trilho de Disposição
 tile.railcraft.track.elevator.name=Trilho Elevador
 tile.railcraft.track.embarking.name=Trilho de Embarque
 tile.railcraft.track.gated.name=Trilho com Portão
-tile.railcraft.track.gated.oneway.name=Trilho com Portão Via-Única 
+tile.railcraft.track.gated.oneway.name=Trilho com Portão Via-Única
 tile.railcraft.track.holding.name=Trilho de Frenagem
 tile.railcraft.track.holding.train.name=Trilho de Frenagem de Trens
 tile.railcraft.track.junction.name=Trilho de Cruzamento

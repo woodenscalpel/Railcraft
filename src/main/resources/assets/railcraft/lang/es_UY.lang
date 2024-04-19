@@ -153,7 +153,7 @@ item.railcraft.tool.surveyor.name=Inspector de Señales Bloqueadas
 item.railcraft.tool.surveyor.tip=Enlaza Señales a Bloques de Señal
 item.railcraft.tool.whistle.tuner.name=Afinador de Silvato
 
-item.railcraft.upgrade.lapotron=Mejora de Cargador de Lapotron
+item.railcraft.upgrade.lapotron.name=Mejora de Cargador de Lapotron
 
 item.synthetic=Sintético
 

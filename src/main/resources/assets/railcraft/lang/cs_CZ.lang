@@ -29,7 +29,7 @@ death.railcraft.bore.1=%s neopatrně vstoupil před razič.
 death.railcraft.bore.2=%s pokusil se zastavit vrták holou rukou.
 death.railcraft.bore.3=%s byl rozdrcen razičem.
 death.railcraft.bore.4=%s si myslel že bude lepší než Chuck Norris (John Henry R.I.P.)
-death.railcraft.bore.5=%s se ocitl mezi mlýnskými kameny... 
+death.railcraft.bore.5=%s se ocitl mezi mlýnskými kameny...
 death.railcraft.bore.6=%s byl na špatném místě ve špatný čas.
 
 death.railcraft.crusher.1=%s zakopl(a) vedle těžkého stroje.
@@ -86,7 +86,7 @@ entity.Railcraft.cart.tnt.name=TNT na vozíku
 entity.Railcraft.cart.tnt.wood.name=TNT na dřevěném vozíku
 entity.Railcraft.cart.track.layer.name=Pokladač tratí
 entity.Railcraft.cart.track.relayer.name=Vyměňovač tratí
-entity.Railcraft.cart.track.remover.name=Odstraňovač tratí 
+entity.Railcraft.cart.track.remover.name=Odstraňovač tratí
 entity.Railcraft.cart.undercutter.name=Vozík s řezačkou
 entity.Railcraft.cart.work.name=Pracovní vozík
 
@@ -238,7 +238,7 @@ item.railcraft.tool.surveyor.name=Signální blok Surveyor
 item.railcraft.tool.surveyor.tip=Spojuje signálem Signální bloky
 item.railcraft.tool.whistle.tuner.name=Ladička píšťaly
 
-item.railcraft.upgrade.lapotron=Lapotronový zesilovač objemu
+item.railcraft.upgrade.lapotron.name=Lapotronový zesilovač objemu
 
 item.synthetic=Syntetika
 
@@ -503,7 +503,7 @@ railcraft.gui.surveyor.abandon=Signální blok Survey opuštěný
 railcraft.gui.surveyor.begin=Začátek Signálního bloku Survey
 railcraft.gui.surveyor.invalid=Signální blok není platný
 railcraft.gui.surveyor.lost=První signál již neexistuje, opouštím Survey
-railcraft.gui.surveyor.success=Signální blok úspěšně definován 
+railcraft.gui.surveyor.success=Signální blok úspěšně definován
 railcraft.gui.surveyor.track=Žádná trať poblíž nenalezena
 railcraft.gui.surveyor.unloaded=První signál není v načteném Chunku
 railcraft.gui.surveyor.wrong=Neplatný blok signálu
@@ -536,7 +536,7 @@ railcraft.gui.trade.station.dice.tip=Náhodný obchod
 railcraft.gui.tuner.abandon.chunk=Kontroler není v načteném Chunku, párování zrušeno.
 railcraft.gui.tuner.abandon.gone=Kontroler již neexistuje, párování zrušeno.
 railcraft.gui.tuner.abandon.player=Kontroler párování zrušeno.
-railcraft.gui.tuner.start=Párování odstartováno %s s přijímačem 
+railcraft.gui.tuner.start=Párování odstartováno %s s přijímačem
 railcraft.gui.tuner.stop=Párování zastaveno %s s přijímačem
 railcraft.gui.tuner.success=%1$s úspěšně spárováno s %2$s
 
@@ -892,7 +892,7 @@ tile.railcraft.stair.abyssal.cobble.name=Abyssal kamenné schody
 tile.railcraft.stair.abyssal.fitted.name=Řezané Abyssal kamenná schody
 tile.railcraft.stair.bleachedbone.block.name=Schody z vybělených kostí
 tile.railcraft.stair.bleachedbone.brick.name=Cihlové schody z vybělených kostí
-tile.railcraft.stair.bleachedbone.cobble.name=Kamenné schody z vybělených kostí 
+tile.railcraft.stair.bleachedbone.cobble.name=Kamenné schody z vybělených kostí
 tile.railcraft.stair.bleachedbone.fitted.name=Řezané kamenné schody z vybělených kostí
 tile.railcraft.stair.bloodstained.block.name=Krví potřísněné schody
 tile.railcraft.stair.bloodstained.brick.name=Krví potřísněné cihlové schody
@@ -939,7 +939,7 @@ tile.railcraft.lantern.metal.steel.name=Ocelová lucerna
 tile.railcraft.lantern.metal.tin.name=Cínová lucerna
 
 tile.railcraft.lantern.stone.abyssal.name=Abyssal kamenná lucerna
-tile.railcraft.lantern.stone.bleachedbone.name=Kamenná lucerna z vybělených kostí 
+tile.railcraft.lantern.stone.bleachedbone.name=Kamenná lucerna z vybělených kostí
 tile.railcraft.lantern.stone.bloodstained.name=Krví potřísněná kamenná lucerna
 tile.railcraft.lantern.stone.frostbound.name=Zmrzlá kamenná lucerna
 tile.railcraft.lantern.stone.infernal.name=Pekelná kamenná lucerna
@@ -1087,7 +1087,7 @@ tile.railcraft.machine.alpha.feed.station.tip=-Feed Station-
 tile.railcraft.machine.alpha.rolling.machine.tip=-Rolling Machine-\n vyrábí kolejnice, kovové tyče,\n recykluje koleje
 tile.railcraft.machine.alpha.steam.trap.auto.tip=-Automated Steam Trap-
 tile.railcraft.machine.alpha.steam.trap.tip=-Manual Steam Trap-
-tile.railcraft.machine.alpha.smoker.tip=-Smoker-\n pro vypnutí použij Rudit 
+tile.railcraft.machine.alpha.smoker.tip=-Smoker-\n pro vypnutí použij Rudit
 tile.railcraft.machine.alpha.trade.station.tip=-Trade Station-
 tile.railcraft.track.force.tip=-Force Track-
 tile.railcraft.track.junction.tip=-Junction Track-\n Nebezpečí srážky vlaků

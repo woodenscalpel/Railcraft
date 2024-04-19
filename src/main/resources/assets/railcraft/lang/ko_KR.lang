@@ -26,8 +26,8 @@ tile.railcraft.brick.abyssal.etched.name=조각된 심해석
 tile.railcraft.brick.bleachedbone.brick.name=백골석 벽돌
 tile.railcraft.brick.bleachedbone.block.name=백골석
 tile.railcraft.brick.bleachedbone.fitted.name=백골석 큰 벽돌
-tile.railcraft.brick.bleachedbone.ornate.name=장식된 백골석 
-tile.railcraft.brick.bleachedbone.etched.name=조각된 백골석 
+tile.railcraft.brick.bleachedbone.ornate.name=장식된 백골석
+tile.railcraft.brick.bleachedbone.etched.name=조각된 백골석
 
 tile.railcraft.brick.bloodstained.brick.name=혈석 벽돌
 tile.railcraft.brick.bloodstained.block.name=혈석
@@ -55,7 +55,7 @@ tile.railcraft.brick.quarried.etched.name=조각된 정제석
 
 tile.railcraft.brick.sandy.brick.name=샌디스톤 벽돌
 tile.railcraft.brick.sandy.block.name=샌디스톤
-tile.railcraft.brick.sandy.fitted.name=샌디스톤 큰 벽돌 
+tile.railcraft.brick.sandy.fitted.name=샌디스톤 큰 벽돌
 tile.railcraft.brick.sandy.ornate.name=장식된 샌디스톤
 tile.railcraft.brick.sandy.etched.name=조각된 샌디스톤
 
@@ -332,7 +332,7 @@ railcraft.gui.turbine=증기 터빈
 railcraft.gui.turbine.output=출력: @d%%
 railcraft.gui.turbine.rotor=로터:
 
-item.railcraft.upgrade.lapotron=라포트론 공급기 업그레이드
+item.railcraft.upgrade.lapotron.name=라포트론 공급기 업그레이드
 
 item.railcraft.ingot.steel.name=강철 주괴
 
@@ -456,7 +456,7 @@ railcraft.gui.routing.table.manual.title=노선 수동 지정
 railcraft.gui.routing.table.manual.page1=노선표를 노선 감지기나 스위치에 배치하면 지나는 열차의 진행 방향이 정의됩니다. 간단한 논리 문법으로 원하는 만큼 노선을 정의할 수 있습니다. 연산자 뒤에 피연산자를 표시하는 전위 표기법이 사용됩니다. 키워드는 1행당 1개로 제한됩니다. 연산자를 표기하지 않으면 OR가 암시됩니다. 노선표는 작업대에 2개 이상 배치하면 복사됩니다.
 railcraft.gui.routing.table.manual.page2=연산자 키워드:\n   AND - 두 피연산자 모두 참이어야 참이 됩니다.\n   OR - 두 피연산자 모두 거짓이어야 거짓이 됩니다.\n   NOT - 다음 연산자의 반대가 됩니다..
 railcraft.gui.routing.table.manual.page3=조건 키워드:\n   Dest=<문자열>\n      이 열차의 목적지 이름이 입력한\n      문자열로 시작하면 조건이 참이\n      됩니다.\n   Owner=<이름>\n      이 열차의 소유자 이름이 일치\n      하면 참이 됩니다.\n
-railcraft.gui.routing.table.manual.page4=Condition Keywords:\n   Color=<주 색상>,<보조 색상>\n      열차의 주 색상과 보조 색상이 일치하면\n      참이 됩니다.\n      "Any"를 입력하면 아무 색상을 지정합니다.\n      색상: Black, Red, Green, Brown, Blue,\n      Purple, Cyan, LightGray, Gray, Pink, Lime,\n      Yellow, LightBlue, Magenta, Orange, White 
+railcraft.gui.routing.table.manual.page4=Condition Keywords:\n   Color=<주 색상>,<보조 색상>\n      열차의 주 색상과 보조 색상이 일치하면\n      참이 됩니다.\n      "Any"를 입력하면 아무 색상을 지정합니다.\n      색상: Black, Red, Green, Brown, Blue,\n      Purple, Cyan, LightGray, Gray, Pink, Lime,\n      Yellow, LightBlue, Magenta, Orange, White
 railcraft.gui.routing.table.manual.page5=예시 스크립트:\n   Dest=TheFarLands\n   Color=Black,Red\n   AND\n   NOT\n   Owner=RichardG\n   Dest=SecretHideout/OceanEntrance
 railcraft.gui.routing.table.manual.page6=결과:\n   "TheFarLands/Milliways"로 향하거나,\n   검은색-빨간색으로 칠해져 있거나,\n   "SecretHideout/OceanEntrance"로 향하는\n   기관차가 RichardG 소유가 아니면\n   이전 페이지의 스크립트에 지정된\n   조건을 만족합니다.
 railcraft.gui.routing.table.name=이름

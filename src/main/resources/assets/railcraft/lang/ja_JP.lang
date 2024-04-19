@@ -108,7 +108,7 @@ railcraft.gui.turbine=蒸気タービン
 railcraft.gui.turbine.output=出力: @d%%
 railcraft.gui.turbine.rotor=ローター:
 
-item.railcraft.upgrade.lapotron=ラポトロンローダーアップグレード
+item.railcraft.upgrade.lapotron.name=ラポトロンローダーアップグレード
 
 item.railcraft.ingot.steel.name=鋼鉄インゴット
 

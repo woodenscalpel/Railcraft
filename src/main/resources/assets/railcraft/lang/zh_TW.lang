@@ -283,7 +283,7 @@ item.railcraft.tool.surveyor.name=號誌測量器
 item.railcraft.tool.surveyor.tip=連結號誌形成號誌區間
 item.railcraft.tool.whistle.tuner.name=汽笛調音器
 
-item.railcraft.upgrade.lapotron=藍波頓容量升級晶片
+item.railcraft.upgrade.lapotron.name=藍波頓容量升級晶片
 
 item.synthetic=人造
 
@@ -500,7 +500,7 @@ railcraft.gui.locomotive.tip.slot.ticket=放入車票
 
 railcraft.gui.mag.glass.aspect=此號誌的狀態是 %s
 railcraft.gui.mag.glass.aspect.dual=此號誌上半部狀態為 %1$s ;下半部為 %2$s
-railcraft.gui.mag.glass.placedby=由 %2$s 放置的 %1$s 
+railcraft.gui.mag.glass.placedby=由 %2$s 放置的 %1$s
 
 railcraft.gui.rolling.machine.tip.craft=§e§o-點擊開始合成-
 

@@ -417,7 +417,7 @@ railcraft.gui.turbine=Dampturbin
 railcraft.gui.turbine.output=Ut: @d%%
 railcraft.gui.turbine.rotor=Rotor:
 
-item.railcraft.upgrade.lapotron=Lapotron Laster oppgradering
+item.railcraft.upgrade.lapotron.name=Lapotron Laster oppgradering
 
 item.railcraft.ingot.steel.name=Stålbar
 

@@ -240,7 +240,7 @@ railcraft.gui.turbine=Parna Turbina
 railcraft.gui.turbine.output=Izlaz: @d%%
 railcraft.gui.turbine.rotor=Rotor:
 
-item.railcraft.upgrade.lapotron=Lapotron Poboljšanje za Utorivač
+item.railcraft.upgrade.lapotron.name=Lapotron Poboljšanje za Utorivač
 
 item.railcraft.ingot.steel.name=Čelična Poluga
 

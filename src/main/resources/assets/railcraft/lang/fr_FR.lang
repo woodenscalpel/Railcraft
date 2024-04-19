@@ -13,7 +13,7 @@ item.railcraft.backpack.apothecary.t1.name=Sac à dos de l'apothicaire
 item.railcraft.backpack.apothecary.t2.name=Sac à dos Tissé de l'apothicaire
 item.railcraft.backpack.iceman.t1.name=Sac à dos glacière
 item.railcraft.backpack.iceman.t2.name=Sac à dos tissé glacière
-item.railcraft.backpack.trackman.t1.name=Sac à dos de l'agent de voie 
+item.railcraft.backpack.trackman.t1.name=Sac à dos de l'agent de voie
 item.railcraft.backpack.trackman.t2.name=Sac à dos tissé de l'agent de voie
 item.railcraft.backpack.tip=Conçu par Railcraft Inc.
 
@@ -115,8 +115,8 @@ item.railcraft.cart.tnt.name=Wagonnet TNT
 entity.Railcraft.cart.tnt.name=Wagonnet TNT
 item.railcraft.cart.tnt.wood.name=Wagonnet TNT en bois
 entity.Railcraft.cart.tnt.wood.name=Wagonnet TNT en bois
-item.railcraft.cart.track.relayer.name=Wagonnet changeur de rail 
-entity.Railcraft.cart.track.relayer.name=Wagonnet changeur de rail 
+item.railcraft.cart.track.relayer.name=Wagonnet changeur de rail
+entity.Railcraft.cart.track.relayer.name=Wagonnet changeur de rail
 item.railcraft.cart.undercutter.name=Wagonnet changeur de bloc
 entity.Railcraft.cart.undercutter.name=Wagonnet changeur de bloc
 item.railcraft.cart.work.name=Wagonnet atelier
@@ -290,7 +290,7 @@ railcraft.gui.detector.tank.tip.most=Pus des 3/4 du réservoir
 railcraft.gui.detector.tank.tip.less.than.quarter=Moins d'un quart du réservoir
 railcraft.gui.detector.tank.tip.less.than.half=Moins de la moitié du réservoir
 railcraft.gui.detector.tank.tip.less.than.most=Moins des 3/4 du réservoir
-railcraft.gui.detector.tank.tip.less.than.full=Moins du plein du réservoir 
+railcraft.gui.detector.tank.tip.less.than.full=Moins du plein du réservoir
 railcraft.gui.detector.tank.tip.analog=Émet un signal de redstone en fonction\n du montant dans le réservoir
 railcraft.gui.detector.villager.any=Tout
 railcraft.gui.detector.villager.equals=Égale
@@ -429,7 +429,7 @@ railcraft.gui.turbine=Turbine à vapeur
 railcraft.gui.turbine.output=Sortie: @d%%
 railcraft.gui.turbine.rotor=Rotor:
 
-item.railcraft.upgrade.lapotron=Mise à niveau d'énergie lapotron
+item.railcraft.upgrade.lapotron.name=Mise à niveau d'énergie lapotron
 
 item.railcraft.ingot.steel.name=Lingot d'acier
 
@@ -465,7 +465,7 @@ tile.railcraft.machine.alpha.turbine.name=Emplacement pour turbine à vapeur
 
 tile.railcraft.machine.beta.anchor.sentinel.name=Ancre sentinel
 tile.railcraft.machine.beta.boiler.firebox.liquid.name=Chambre à combustible liquide
-tile.railcraft.machine.beta.boiler.firebox.solid.name=Chambre à combustible solide 
+tile.railcraft.machine.beta.boiler.firebox.solid.name=Chambre à combustible solide
 tile.railcraft.machine.beta.boiler.tank.pressure.high.name=Chaudière à haute pression
 tile.railcraft.machine.beta.boiler.tank.pressure.low.name=Chaudière à basse pression
 tile.railcraft.machine.beta.chest.void.name=Coffre de vide

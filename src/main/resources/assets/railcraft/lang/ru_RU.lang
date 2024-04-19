@@ -242,7 +242,7 @@ item.railcraft.tool.surveyor.name=Блок сигнальной привязки
 item.railcraft.tool.surveyor.tip=Соединяет сигналы в сигнальные блоки
 item.railcraft.tool.whistle.tuner.name=Настройщик свистка
 
-item.railcraft.upgrade.lapotron=Лапотроновое улучшение энергоёмкости
+item.railcraft.upgrade.lapotron.name=Лапотроновое улучшение энергоёмкости
 
 item.synthetic=Синтетика
 

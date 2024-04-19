@@ -81,7 +81,7 @@ death.railcraft.bore.3=%s został zmiażdżony
 death.railcraft.bore.4=%s myślał że może być lepszy niż John Henry
 death.railcraft.bore.5=%s utkwił pomiędzy skałą a twardym miejscem
 
-death.railcraft.train.1=%s został rozjechany 
+death.railcraft.train.1=%s został rozjechany
 death.railcraft.train.2=%s bawił się na torach
 death.railcraft.train.3=%s bawil się w kurczka z pociągiem; pociąg wygrał
 death.railcraft.train.4=%s złapał nie ten pociąg
@@ -198,7 +198,7 @@ railcraft.gui.turbine=Turbina Parowa
 railcraft.gui.turbine.output=Wydajność: @d%%
 railcraft.gui.turbine.rotor=Wirnik:
 
-item.railcraft.upgrade.lapotron=Lapotroniczne Ulepszenie Ładowarki 
+item.railcraft.upgrade.lapotron.name=Lapotroniczne Ulepszenie Ładowarki
 
 item.railcraft.ingot.steel.name=Sztabka Stali
 

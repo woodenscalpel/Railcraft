@@ -217,7 +217,7 @@ item.railcraft.tool.surveyor.name=Jelző-blokk felügyelő
 item.railcraft.tool.surveyor.tip=Összeköti a jeleket és a jelző-blokkokat
 item.railcraft.tool.whistle.tuner.name=Hangolósíp
 
-item.railcraft.upgrade.lapotron=Lapotron Loader Upgrade
+item.railcraft.upgrade.lapotron.name=Lapotron Loader Upgrade
 
 item.synthetic=mesterséges
 
@@ -488,7 +488,7 @@ railcraft.gui.tip.button.lock.notowner=Ez az eszköz nem \n a te tulajdonod.\n A
 railcraft.gui.tip.button.lock.unlocked=Kattint az eszköz zárolásához.\n Ha lezárod, akkor \n a későbbiekben \n csak te vagy egy Opreátor \n férhet hozzá.
 
 railcraft.gui.track.embarking.radius=Sugár
-railcraft.gui.track.mode.change=A következő módra váltott: @s 
+railcraft.gui.track.mode.change=A következő módra váltott: @s
 railcraft.gui.track.locking.mode.boarding.train=Vonat elindítása
 railcraft.gui.track.locking.mode.boarding=Indító/továbbító
 railcraft.gui.track.locking.mode.holding.train=Vonat megtartása
@@ -502,7 +502,7 @@ railcraft.gui.trade.station.dice.tip=Véletlenszerű kereskedelem
 
 railcraft.gui.tuner.abandon.chunk=Az irányító nem betöltött chunk-ban van, ezért a kapcsolat megszűnik
 railcraft.gui.tuner.abandon.gone=Az irányító már nem létezik, kapcsolat megszüntetése
-railcraft.gui.tuner.start= %s megkezdte a kapcsolatot a vevővel 
+railcraft.gui.tuner.start= %s megkezdte a kapcsolatot a vevővel
 railcraft.gui.tuner.stop= %s kapcsolata megszakadt a vevővel
 railcraft.gui.tuner.success=%1$s sikeresen összepárosítva a következővel %2$s
 

@@ -213,7 +213,7 @@ item.railcraft.tool.surveyor.name=Inspector de Señales a Bloques
 item.railcraft.tool.surveyor.tip=Enlaza Señales a Bloques de Señal
 item.railcraft.tool.whistle.tuner.name=Afinador de Silbato
 
-item.railcraft.upgrade.lapotron=Mejora de Cargador de Lapotron
+item.railcraft.upgrade.lapotron.name=Mejora de Cargador de Lapotron
 
 item.synthetic=Sintético
 
@@ -865,7 +865,7 @@ tile.railcraft.stair.infernal.brick.name=Escalera de Ladrillos Infernales
 tile.railcraft.stair.infernal.cobble.name=Escalera de Adoquín Infernal
 tile.railcraft.stair.infernal.fitted.name=Escalera de Piedra Infernal Entallada
 tile.railcraft.stair.iron.name=Escalera de Hierro
-tile.railcraft.stair.lead.name=Escalera de Plomo 
+tile.railcraft.stair.lead.name=Escalera de Plomo
 tile.railcraft.stair.nether.block.name=Escalera de Bloque de Inframundo
 tile.railcraft.stair.nether.cobble.name=Escalera de Adoquín de Inframundo
 tile.railcraft.stair.nether.fitted.name=Escalera de Piedra de Inframundo

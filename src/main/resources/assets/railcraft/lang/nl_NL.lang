@@ -187,7 +187,7 @@ railcraft.gui.turbine=Stoomturbine
 railcraft.gui.turbine.output=Output: @d%%
 railcraft.gui.turbine.rotor=Rotor:
 
-item.railcraft.upgrade.lapotron=Lapotron Lader Upgrade
+item.railcraft.upgrade.lapotron.name=Lapotron Lader Upgrade
 
 item.railcraft.ingot.steel.name=Stalen Staaf
 
@@ -197,7 +197,7 @@ item.railcraft.fluid.creosote.bottle.name=Creosootolie Fles
 item.railcraft.fluid.creosote.bucket.name=Creosootolie Emmer
 item.railcraft.fluid.creosote.can.name=Creosootolie Blikje
 item.railcraft.fluid.creosote.cell.name=Creosootolie Cel
-fluid.creosote=Creosootolie 
+fluid.creosote=Creosootolie
 item.railcraft.fluid.creosote.refactory.name=Creosootolie Capsule
 item.railcraft.fluid.creosote.wax.name=Creosootolie Capsule
 fluid.steam=Stoom
