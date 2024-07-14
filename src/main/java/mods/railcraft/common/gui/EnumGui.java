@@ -57,6 +57,7 @@ public enum EnumGui {
     CART_UNDERCUTTER(true),
     CART_TRACK_LAYER(true),
     LOCO_STEAM(true),
+    LOCO_MAGIC(true),
     LOCO_ELECTRIC(true),
     LOCO_CREATIVE(true),
     BOX_CONTROLLER(false),

@@ -5,6 +5,7 @@
  */
 package mods.railcraft.client.gui;
 
+import mods.railcraft.common.carts.*;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.world.World;
@@ -48,20 +49,6 @@ import mods.railcraft.common.blocks.tracks.TrackEmbarking;
 import mods.railcraft.common.blocks.tracks.TrackLauncher;
 import mods.railcraft.common.blocks.tracks.TrackPriming;
 import mods.railcraft.common.blocks.tracks.TrackRouting;
-import mods.railcraft.common.carts.CartExplosiveBase;
-import mods.railcraft.common.carts.EntityCartAnchor;
-import mods.railcraft.common.carts.EntityCartCargo;
-import mods.railcraft.common.carts.EntityCartRF;
-import mods.railcraft.common.carts.EntityCartTank;
-import mods.railcraft.common.carts.EntityCartTrackLayer;
-import mods.railcraft.common.carts.EntityCartTrackRelayer;
-import mods.railcraft.common.carts.EntityCartUndercutter;
-import mods.railcraft.common.carts.EntityCartWork;
-import mods.railcraft.common.carts.EntityLocomotiveCreative;
-import mods.railcraft.common.carts.EntityLocomotiveElectric;
-import mods.railcraft.common.carts.EntityLocomotiveSteamSolid;
-import mods.railcraft.common.carts.EntityTunnelBore;
-import mods.railcraft.common.carts.IIC2EnergyCart;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
@@ -200,6 +187,8 @@ public class FactoryGui {
                     return new GuiCartUndercutter(inv, (EntityCartUndercutter) obj);
                 case LOCO_STEAM:
                     return new GuiLocomotiveSteamSolid(inv, (EntityLocomotiveSteamSolid) obj);
+                case LOCO_MAGIC:
+                    return new GuiLocomotiveSteamMagic(inv, (EntityLocomotiveSteamMagic) obj);
                 case LOCO_ELECTRIC:
                     return new GuiLocomotiveElectric(inv, (EntityLocomotiveElectric) obj);
                 case LOCO_CREATIVE:

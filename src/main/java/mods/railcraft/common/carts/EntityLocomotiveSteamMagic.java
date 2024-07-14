@@ -8,6 +8,7 @@ package mods.railcraft.common.carts;
 import java.util.Map.Entry;
 
 import mods.railcraft.api.carts.IItemCart;
+import mods.railcraft.common.fluids.tanks.StandardTank;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -43,18 +44,18 @@ import thaumcraft.api.aspects.IAspectContainer;
         value = { @Optional.Interface(iface = "thaumcraft.api.aspects.IAspectContainer", modid = "Thaumcraft"), })
 public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements ISidedInventory, IAspectContainer {
 
-    private static final int SLOT_BURN = 2;
-    private static final int SLOT_FUEL_A = 3;
-    private static final int SLOT_FUEL_B = 4;
-    private static final int SLOT_FUEL_C = 5;
+  //  private static final int SLOT_BURN = 2;
+  //  private static final int SLOT_FUEL_A = 3;
+   // private static final int SLOT_FUEL_B = 4;
+  //  private static final int SLOT_FUEL_C = 5;
     private static final int SLOT_TICKET = 6;
     private static final int SLOT_DESTINATION = 7;
     private static final int[] SLOTS = InvTools.buildSlotArray(0, 7);
     private static final byte FIRE_ASPECT_DATA_ID = 31;
     //private static final byte WATER_ASPECT_DATA_ID = 31; //Many IDs crash, why??????
-    private final IInventory invBurn = new InventoryMapper(this, SLOT_BURN, 1);
-    private final IInventory invStock = new InventoryMapper(this, SLOT_FUEL_A, 3);
-    private final IInventory invFuel = new InventoryMapper(this, SLOT_BURN, 4);
+ //   private final IInventory invBurn = new InventoryMapper(this, SLOT_BURN, 1);
+ //   private final IInventory invStock = new InventoryMapper(this, SLOT_FUEL_A, 3);
+//    private final IInventory invFuel = new InventoryMapper(this, SLOT_BURN, 4);
     private final IInventory invTicket = new InventoryMapper(this, SLOT_TICKET, 2, false);
     private EssentiaTank fireAspect;
     private EssentiaTank waterAspect;
@@ -88,7 +89,7 @@ public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements
         super.entityInit();
 
         fireAspect = new EssentiaTank(Aspect.FIRE, 256, dataWatcher, FIRE_ASPECT_DATA_ID);
-        //fireAspect.fill(100,true);
+        fireAspect.fill(100,true);
        // waterAspect = new EssentiaTank(Aspect.WATER, 256, dataWatcher, WATER_ASPECT_DATA_ID);
 
         boiler.setFuelProvider(new EssentiaFuelProvider(fireAspect) {
@@ -104,27 +105,25 @@ public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements
     @Override
     public void onUpdate() {
         super.onUpdate();
-
+/*
         if (Game.isHost(worldObj)) {
             InvTools.moveOneItem(invStock, invBurn);
             InvTools.moveOneItem(invBurn, invWaterOutput, FluidContainerRegistry.EMPTY_BUCKET);
         }
+
+ */
     }
 
     @Override
     protected void openGui(EntityPlayer player) {
-        GuiHandler.openGui(EnumGui.LOCO_STEAM, player, worldObj, this);
+        GuiHandler.openGui(EnumGui.LOCO_MAGIC, player, worldObj, this);
     }
 
     @Override
     public boolean needsRefuel() {
         FluidStack water = tankWater.getFluid();
         if (water == null || water.amount < tankWater.getCapacity() / 2) return true;
-        if (InvTools.countItems(invFuel) < 16) return true;
-        for (IInvSlot slot : InventoryIterator.getIterable(invFuel)) {
-            ItemStack stack = slot.getStackInSlot();
-            if (stack == null || stack.stackSize < stack.getMaxStackSize() / 4) return true;
-        }
+        if (fireAspect.getAmount() < 16) return true;
         return false;
     }
 
@@ -164,11 +163,6 @@ public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack) {
         switch (slot) {
-            case SLOT_BURN:
-            case SLOT_FUEL_A:
-            case SLOT_FUEL_B:
-            case SLOT_FUEL_C:
-                return FuelPlugin.getBurnTime(stack) > 0;
             case SLOT_LIQUID_INPUT:
                 return FluidItemHelper.containsFluid(stack, Fluids.WATER.get(1));
             case SLOT_TICKET:
@@ -233,5 +227,9 @@ public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements
         if (tag == Aspect.FIRE) return fireAspect.getAmount();
         if (tag == Aspect.WATER) return waterAspect.getAmount();
         return 0;
+    }
+
+    public EssentiaTank getEssentiaFireTank() {
+        return fireAspect;
     }
 }

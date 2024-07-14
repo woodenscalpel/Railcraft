@@ -5,9 +5,17 @@
  */
 package mods.railcraft.common.plugins.thaumcraft;
 
+import mods.railcraft.common.fluids.tanks.StandardTank;
+import mods.railcraft.common.gui.tooltips.ToolTip;
+import mods.railcraft.common.gui.tooltips.ToolTipLine;
 import net.minecraft.entity.DataWatcher;
 
+import net.minecraft.item.EnumRarity;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
 import thaumcraft.api.aspects.Aspect;
+
+import java.util.Locale;
 
 /**
  *
@@ -18,6 +26,16 @@ public class EssentiaTank {
     private final Aspect aspect;
     private final DataWatcher dataWatcher;
     private final int capacity, dataId;
+    protected final ToolTip toolTip = new ToolTip() {
+
+        @Override
+        public void refresh() {
+            refreshTooltip();
+        }
+    };
+
+    public static final int DEFAULT_COLOR = 0xFFFFFF;
+    public final EssentiaTank.TankRenderData renderData = new EssentiaTank.TankRenderData();
 
     public EssentiaTank(Aspect aspect, int capacity, DataWatcher dataWatcher, int dataId) {
         this.aspect = aspect;
@@ -65,5 +83,43 @@ public class EssentiaTank {
             return true;
         }
         return false;
+    }
+
+    public ToolTip getToolTip() {
+        return toolTip;
+    }
+
+
+    protected void refreshTooltip() {
+        toolTip.clear();
+        int amount = 0;
+        if (renderData.aspect != null && getAmount() > 0) {
+            EnumRarity rarity = EnumRarity.common;
+            ToolTipLine fluidName = new ToolTipLine(
+                renderData.aspect.getName(),
+                rarity.rarityColor);
+            fluidName.setSpacing(2);
+            toolTip.add(fluidName);
+            amount = getAmount();
+        }
+        toolTip.add(new ToolTipLine(String.format(Locale.ENGLISH, "%,d / %,d", getAmount(), getCapacity())));
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+
+    public static class TankRenderData {
+
+        public Aspect aspect = null;
+        //public int amount = getA;
+        public int color = DEFAULT_COLOR;
+
+        public void reset() {
+            aspect = null;
+         //   amount = 0;
+            color = DEFAULT_COLOR;
+        }
     }
 }

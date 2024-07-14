@@ -5,6 +5,7 @@
  */
 package mods.railcraft.common.gui.containers;
 
+import mods.railcraft.common.carts.*;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.world.World;
@@ -39,19 +40,6 @@ import mods.railcraft.common.blocks.signals.IAspectActionManager;
 import mods.railcraft.common.blocks.signals.IRouter;
 import mods.railcraft.common.blocks.tracks.TileTrack;
 import mods.railcraft.common.blocks.tracks.TrackRouting;
-import mods.railcraft.common.carts.EntityCartAnchor;
-import mods.railcraft.common.carts.EntityCartCargo;
-import mods.railcraft.common.carts.EntityCartRF;
-import mods.railcraft.common.carts.EntityCartTank;
-import mods.railcraft.common.carts.EntityCartTrackLayer;
-import mods.railcraft.common.carts.EntityCartTrackRelayer;
-import mods.railcraft.common.carts.EntityCartUndercutter;
-import mods.railcraft.common.carts.EntityCartWork;
-import mods.railcraft.common.carts.EntityLocomotiveCreative;
-import mods.railcraft.common.carts.EntityLocomotiveElectric;
-import mods.railcraft.common.carts.EntityLocomotiveSteamSolid;
-import mods.railcraft.common.carts.EntityTunnelBore;
-import mods.railcraft.common.carts.IIC2EnergyCart;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.modules.ModuleManager;
 import mods.railcraft.common.util.misc.Game;
@@ -151,6 +139,8 @@ public class FactoryContainer {
                     return new ContainerCartUndercutter(inv, (EntityCartUndercutter) obj);
                 case LOCO_STEAM:
                     return ContainerLocomotiveSteamSolid.make(inv, (EntityLocomotiveSteamSolid) obj);
+                case LOCO_MAGIC:
+                    return ContainerLocomotiveSteamMagic.make(inv, (EntityLocomotiveSteamMagic) obj);
                 case LOCO_ELECTRIC:
                     return ContainerLocomotiveElectric.make(inv, (EntityLocomotiveElectric) obj);
                 case LOCO_CREATIVE:
