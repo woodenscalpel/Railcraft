@@ -91,6 +91,11 @@ public class ModuleLocomotives extends RailcraftModule {
         if (cart.setup()) {
             paintLocomotive(cart.getCartItem());
         }
+
+        cart = EnumCart.LOCO_STEAM_MAGIC;
+        if(cart.setup()){
+            paintLocomotive(cart.getCartItem());
+        }
     }
 
     @Override

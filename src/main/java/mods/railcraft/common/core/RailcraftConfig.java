@@ -736,6 +736,7 @@ public class RailcraftConfig {
         loadCartProperty("cart.track.relayer");
         loadCartProperty("cart.undercutter");
         loadCartProperty("cart.loco.steam.solid");
+        loadCartProperty("cart.loco.steam.magic");
         loadCartProperty("cart.loco.electric");
         loadCartProperty("cart.loco.creative");
         loadCartProperty("cart.track.layer");

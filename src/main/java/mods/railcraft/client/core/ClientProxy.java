@@ -180,6 +180,7 @@ public class ClientProxy extends CommonProxy {
                         LocomotiveRenderType.STEAM_MAGIC,
                         (EntityLocomotive) EnumCart.LOCO_STEAM_MAGIC.makeCart(stack, null, 0, 0, 0)));
 
+
         stack = LocomotiveRenderType.ELECTRIC.getItemWithRenderer("railcraft:default");
         if (stack != null) MinecraftForgeClient.registerItemRenderer(
                 stack.getItem(),

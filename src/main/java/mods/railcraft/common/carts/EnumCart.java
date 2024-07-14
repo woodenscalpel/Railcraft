@@ -26,6 +26,7 @@ import mods.railcraft.common.util.misc.EntityIDs;
 import mods.railcraft.common.util.misc.EnumColor;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
+import org.apache.logging.log4j.Level;
 
 public enum EnumCart implements ICartType {
 
@@ -115,11 +116,12 @@ public enum EnumCart implements ICartType {
         try {
             Constructor<? extends EntityMinecart> con = type
                     .getConstructor(World.class, double.class, double.class, double.class);
-            EntityMinecart entity = con.newInstance(world, i, j, k);
+           EntityMinecart entity = con.newInstance(world, i, j, k);
             if (entity instanceof IRailcraftCart) ((IRailcraftCart) entity).initEntityFromItem(stack);
             return entity;
-        } catch (Throwable ex) {
-            Game.logThrowable("Failed to create cart entity!", ex);
+       } catch (Throwable ex) {
+          Game.logThrowable("Failed to create cart entity!", ex);
+          ex.printStackTrace();
         }
         return new EntityCartBasic(world, i, j, k);
     }
@@ -169,6 +171,7 @@ public enum EnumCart implements ICartType {
         // Legacy stuff
         EntityList.stringToClassMapping.put("Railcraft." + getTag(), type);
         if (this == LOCO_STEAM_SOLID) EntityList.stringToClassMapping.put("Railcraft.railcraft.cart.loco.steam", type);
+        if (this == LOCO_STEAM_MAGIC) EntityList.stringToClassMapping.put("Railcraft.railcraft.cart.loco.magic",type);
     }
 
     public boolean setup() {

@@ -7,6 +7,7 @@ package mods.railcraft.common.carts;
 
 import java.util.Map.Entry;
 
+import mods.railcraft.api.carts.IItemCart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -49,8 +50,8 @@ public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements
     private static final int SLOT_TICKET = 6;
     private static final int SLOT_DESTINATION = 7;
     private static final int[] SLOTS = InvTools.buildSlotArray(0, 7);
-    private static final byte FIRE_ASPECT_DATA_ID = 30;
-    private static final byte WATER_ASPECT_DATA_ID = 31;
+    private static final byte FIRE_ASPECT_DATA_ID = 31;
+    //private static final byte WATER_ASPECT_DATA_ID = 31; //Many IDs crash, why??????
     private final IInventory invBurn = new InventoryMapper(this, SLOT_BURN, 1);
     private final IInventory invStock = new InventoryMapper(this, SLOT_FUEL_A, 3);
     private final IInventory invFuel = new InventoryMapper(this, SLOT_BURN, 4);
@@ -72,9 +73,9 @@ public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements
     }
 
     @Override
-    public LocomotiveRenderType getRenderType() {
-        return LocomotiveRenderType.STEAM_MAGIC;
-    }
+    public LocomotiveRenderType getRenderType() {return LocomotiveRenderType.STEAM_MAGIC;}
+   // public LocomotiveRenderType getRenderType() {return LocomotiveRenderType.STEAM_MAGIC;}
+
 
     @Override
     @Optional.Method(modid = "Thaumcraft")
@@ -87,7 +88,8 @@ public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements
         super.entityInit();
 
         fireAspect = new EssentiaTank(Aspect.FIRE, 256, dataWatcher, FIRE_ASPECT_DATA_ID);
-        waterAspect = new EssentiaTank(Aspect.WATER, 256, dataWatcher, WATER_ASPECT_DATA_ID);
+        //fireAspect.fill(100,true);
+       // waterAspect = new EssentiaTank(Aspect.WATER, 256, dataWatcher, WATER_ASPECT_DATA_ID);
 
         boiler.setFuelProvider(new EssentiaFuelProvider(fireAspect) {
 
