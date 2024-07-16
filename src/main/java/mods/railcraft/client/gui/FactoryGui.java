@@ -5,6 +5,7 @@
  */
 package mods.railcraft.client.gui;
 
+import mods.railcraft.common.blocks.machine.gamma.*;
 import mods.railcraft.common.carts.*;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -29,15 +30,6 @@ import mods.railcraft.common.blocks.machine.beta.TileBoilerFireboxFluid;
 import mods.railcraft.common.blocks.machine.beta.TileBoilerFireboxSolid;
 import mods.railcraft.common.blocks.machine.beta.TileEngineSteam;
 import mods.railcraft.common.blocks.machine.beta.TileEngineSteamHobby;
-import mods.railcraft.common.blocks.machine.gamma.TileDispenserCart;
-import mods.railcraft.common.blocks.machine.gamma.TileDispenserTrain;
-import mods.railcraft.common.blocks.machine.gamma.TileEnergyLoader;
-import mods.railcraft.common.blocks.machine.gamma.TileEnergyUnloader;
-import mods.railcraft.common.blocks.machine.gamma.TileFluidLoader;
-import mods.railcraft.common.blocks.machine.gamma.TileFluidUnloader;
-import mods.railcraft.common.blocks.machine.gamma.TileLoaderItemBase;
-import mods.railcraft.common.blocks.machine.gamma.TileRFLoader;
-import mods.railcraft.common.blocks.machine.gamma.TileRFUnloader;
 import mods.railcraft.common.blocks.signals.IAspectActionManager;
 import mods.railcraft.common.blocks.signals.IRouter;
 import mods.railcraft.common.blocks.signals.TileBoxAnalogController;
@@ -78,6 +70,8 @@ public class FactoryGui {
                     return new GuiUnloaderEnergy(inv, (TileEnergyUnloader) obj);
                 case LOADER_RF:
                     return new GuiLoaderRF((TileRFLoader) obj);
+                case LOADER_ESSENTIA:
+                    return new GuiLoaderEssentia(inv,(TileEssentiaLoader) obj);
                 case UNLOADER_RF:
                     return new GuiUnloaderRF((TileRFUnloader) obj);
                 case DETECTOR_ITEM:
@@ -171,6 +165,8 @@ public class FactoryGui {
                     return new GuiCartRF((EntityCartRF) obj);
                 case CART_TANK:
                     return new GuiCartTank(inv, (EntityCartTank) obj);
+                case CART_ESSENTIATANK:
+                    return new GuiCartEssentiaTank(inv, (EntityCartEssentiaTank) obj);
                 case CART_CARGO:
                     return new GuiCartCargo(inv, (EntityCartCargo) obj);
                 case CART_ANCHOR:

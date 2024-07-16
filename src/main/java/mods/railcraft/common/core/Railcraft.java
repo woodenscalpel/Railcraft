@@ -53,6 +53,8 @@ import mods.railcraft.common.util.misc.BlinkTick;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.MiscTools;
 import mods.railcraft.common.util.network.PacketHandler;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Mod(
         modid = Railcraft.MOD_ID,
@@ -74,6 +76,8 @@ public final class Railcraft {
     public static final String VERSION = Tags.VERSION;
     public static final String MC_VERSION = "[1.7.10,1.8)";
     public static final RootCommand rootCommand = new RootCommand();
+
+    public static final Logger logger = LogManager.getLogger(MOD_ID);
 
     @Instance("Railcraft")
     public static Railcraft instance;

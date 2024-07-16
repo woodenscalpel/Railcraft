@@ -5,37 +5,13 @@
  */
 package mods.railcraft.common.blocks.machine.gamma;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
-import mods.railcraft.common.core.Railcraft;
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidHandler;
-
 import mods.railcraft.api.carts.CartTools;
-import mods.railcraft.api.carts.IFluidCart;
-import mods.railcraft.api.carts.ILiquidTransfer;
 import mods.railcraft.api.tracks.ITrackInstance;
 import mods.railcraft.api.tracks.ITrackLockdown;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.tracks.TileTrack;
-import mods.railcraft.common.carts.EntityLocomotiveSteam;
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.fluids.FluidHelper;
+import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.fluids.FluidItemHelper;
-import mods.railcraft.common.fluids.Fluids;
-import mods.railcraft.common.fluids.TankToolkit;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
 import mods.railcraft.common.gui.buttons.IButtonTextureSet;
@@ -44,11 +20,38 @@ import mods.railcraft.common.gui.buttons.MultiButtonController;
 import mods.railcraft.common.gui.buttons.StandardButtonTextureSets;
 import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+import mods.railcraft.common.plugins.thaumcraft.EssentiaTankInfo;
+import mods.railcraft.common.plugins.thaumcraft.EssentiaTankToolkit;
+import mods.railcraft.common.plugins.thaumcraft.IEssentiaCart;
+import mods.railcraft.common.plugins.thaumcraft.IEssentiaHandler;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.SafeNBTWrapper;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
+import net.minecraft.block.BlockRailBase;
+import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+import org.w3c.dom.ranges.DocumentRange;
+import thaumcraft.api.ThaumcraftApiHelper;
+import thaumcraft.api.aspects.Aspect;
+import thaumcraft.api.aspects.AspectList;
+import thaumcraft.api.aspects.IEssentiaTransport;
 
-public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHandler {
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
+public class TileEssentiaLoader extends TileLoaderEssentiaBase implements IGuiReturnHandler {
 
     private static final int RESET_WAIT = 200;
     private static final int TRANSFER_RATE = 200;
@@ -58,16 +61,16 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
             ButtonState.FORCE_FULL.ordinal(),
             ButtonState.values());
     private int waitForReset = 0;
+    private int FILLRATE = 1;
     private float pipeLenght = 0;
 
-    public TileFluidLoader() {
+    public TileEssentiaLoader() {
         super();
-        tankManager.add(loaderTank);
     }
 
     @Override
     public IEnumMachine getMachineType() {
-        return EnumMachineGamma.FLUID_LOADER;
+        return EnumMachineGamma.ESSENTIA_LOADER;
     }
 
     public MultiButtonController<ButtonState> getStateController() {
@@ -92,6 +95,7 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
     }
 
     private void extendPipe() {
+        Railcraft.logger.info("EXTENDING");
         float y = pipeLenght + PIPE_INCREMENT;
         if (pipeIsExtended()) y = MAX_PIPE_LENGTH;
         setPipeLength(y);
@@ -125,8 +129,10 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
     @Override
     public void updateEntity() {
         super.updateEntity();
+        fillessentia();
         if (Game.isNotHost(getWorld())) return;
-
+        // Item Drain Code ****************************************************************************
+       /*
         ItemStack topSlot = getStackInSlot(SLOT_INPUT);
         if (topSlot != null && !FluidItemHelper.isContainer(topSlot)) {
             setInventorySlotContents(SLOT_INPUT, null);
@@ -140,7 +146,11 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
         }
 
         if (clock % FluidHelper.BUCKET_FILL_TIME == 0) FluidHelper.drainContainers(this, this, SLOT_INPUT, SLOT_OUTPUT);
+        */
 
+        // Adjacent Tank Code (Not needed for Essentia)
+
+        /*
         for (ForgeDirection side : ForgeDirection.values()) {
             if (side == ForgeDirection.UNKNOWN) continue;
             TileEntity tile = tileCache.getTileOnSide(side);
@@ -149,16 +159,18 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
                 side = side.getOpposite();
                 Fluid filterFluid = getFilterFluid();
                 if (filterFluid != null) {
-                    FluidStack drained = nearbyTank.drain(side, new FluidStack(filterFluid, TRANSFER_RATE), false);
+                    FluidStack drained = nearbyTank.drainess(side, new FluidStack(filterFluid, TRANSFER_RATE), false);
                     int used = loaderTank.fill(drained, true);
-                    nearbyTank.drain(side, new FluidStack(filterFluid, used), true);
+                    nearbyTank.drainess(side, new FluidStack(filterFluid, used), true);
                 } else {
-                    FluidStack drained = nearbyTank.drain(side, TRANSFER_RATE, false);
+                    FluidStack drained = nearbyTank.drainess(side, TRANSFER_RATE, false);
                     int used = loaderTank.fill(drained, true);
-                    nearbyTank.drain(side, used, true);
+                    nearbyTank.drainess(side, used, true);
                 }
             }
         }
+
+         */
 
         boolean needsPipe = false;
 
@@ -169,8 +181,8 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
         }
 
         if (cart != currentCart) {
-            if (currentCart instanceof IFluidCart) ((IFluidCart) currentCart).setFilling(false);
-            else if (currentCart instanceof ILiquidTransfer) ((ILiquidTransfer) currentCart).setFilling(false);
+            if (currentCart instanceof IEssentiaCart) ((IEssentiaCart) currentCart).setFilling(false);
+            //else if (currentCart instanceof ILiquidTransfer) ((ILiquidTransfer) currentCart).setFilling(false);
             setPowered(false);
             currentCart = cart;
             cartWasSent();
@@ -195,6 +207,7 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
             return;
         }
 
+        /*
         if (cart instanceof EntityLocomotiveSteam) {
             EntityLocomotiveSteam loco = (EntityLocomotiveSteam) cart;
             if (!loco.isSafeToFill()) {
@@ -203,30 +216,44 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
             }
         }
 
+         */
+
         if (isPaused()) return;
 
-        TankToolkit tankCart = new TankToolkit((IFluidHandler) cart);
+
+        EssentiaTankToolkit tankCart = new EssentiaTankToolkit((IEssentiaHandler) cart);
         boolean cartNeedsFilling = cartNeedsFilling(tankCart);
 
         if (cartNeedsFilling && needsPipe) extendPipe();
         else retractPipe();
 
+        //Wait for pipe to extend
+        if(cartNeedsFilling && needsPipe && !pipeIsExtended()){
+            return;
+        }
+
+        Railcraft.logger.info(cartNeedsFilling);
+        Railcraft.logger.info(needsPipe);
+
         flow = 0;
         if (cartNeedsFilling && (!needsPipe || pipeIsExtended())) {
-            FluidStack drained = tankManager.drain(0, RailcraftConfig.getTankCartFillRate(), false);
-            if (drained != null) {
-                flow = tankCart.fill(ForgeDirection.UP, drained, true);
-                tankManager.drain(0, flow, true);
+            Integer drained = tankManager.drain(0, FILLRATE, false);
+            Railcraft.logger.info(drained);
+            Railcraft.logger.info(tankCart.canFill2(ForgeDirection.UP,tankManager.get(0).getAspect(),FILLRATE));
+            if (drained > 0 && tankCart.canFill2(ForgeDirection.UP,tankManager.get(0).getAspect(),FILLRATE)) {
+                flow = tankCart.fill(ForgeDirection.UP, tankManager.get(0).getAspect(),FILLRATE, true);
+                Railcraft.logger.info(flow);
+                tankManager.drain(ForgeDirection.UP, tankManager.get(0).getAspect(),FILLRATE, true);
             }
         }
 
         boolean flowed = flow > 0;
         if (flowed) setPowered(false);
 
-        if (cart instanceof IFluidCart) ((IFluidCart) cart).setFilling(flowed);
-        else if (cart instanceof ILiquidTransfer) ((ILiquidTransfer) cart).setFilling(flowed);
+        if (cart instanceof IEssentiaCart) ((IEssentiaCart) cart).setFilling(flowed);
+        //else if (cart instanceof ILiquidTransfer) ((ILiquidTransfer) cart).setFilling(flowed);
 
-        if (tankCart.isTankFull(loaderTank.getFluidType())) waitForReset = RESET_WAIT;
+        if (tankCart.isTankFull(loaderTank.getAspect())) waitForReset = RESET_WAIT;
 
         if (stateController.getButtonState() != ButtonState.MANUAL && pipeIsRetracted()
                 && flow <= 0
@@ -234,22 +261,35 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
             sendCart(cart);
     }
 
-    private boolean cartNeedsFilling(TankToolkit tankCart) {
-        FluidStack loaderLiquid = loaderTank.getFluid();
-        return loaderLiquid != null && loaderLiquid.amount > 0 && tankCart.canPutFluid(ForgeDirection.UP, loaderLiquid);
+    private boolean cartNeedsFilling(EssentiaTankToolkit tankCart) {
+        Aspect a = loaderTank.getAspect();
+        int i = loaderTank.amount;
+        //return a != null && i > 0 && tankCart.canFill(ForgeDirection.UP, a,1);
+        EssentiaTankInfo e =  tankCart.getEssTankInfo(ForgeDirection.UP)[0];
+        return a != null && i > 0 && e.amount < e.capacity;
     }
 
     @Override
     protected boolean shouldSendCart(EntityMinecart cart) {
-        if (!(cart instanceof IFluidHandler)) return true;
-        TankToolkit tankCart = new TankToolkit((IFluidHandler) cart);
-        Fluid fluidHandled = getFluidHandled();
-        if (!loaderTank.isEmpty() && !tankCart.canPutFluid(ForgeDirection.UP, loaderTank.getFluid())) return true;
-        else if (stateController.getButtonState() != ButtonState.FORCE_FULL && !tankCart.isTankEmpty(fluidHandled))
+        if (!(cart instanceof IEssentiaHandler)) return true;
+        EssentiaTankToolkit tankCart = new EssentiaTankToolkit((IEssentiaHandler) cart);
+        //Fluid fluidHandled = getFluidHandled();
+        if (!loaderTank.isEmpty() && !tankCart.canFill2(ForgeDirection.UP, loaderTank.getAspect(),1)){
+            Railcraft.logger.info("C1");
+            return true;}
+        else if (stateController.getButtonState() != ButtonState.FORCE_FULL && tankCart.isFluidInTank()) {
+            Railcraft.logger.info("C2");
             return true;
-        else if (stateController.getButtonState() == ButtonState.IMMEDIATE && tankCart.isTankEmpty(fluidHandled))
+        }
+        else if (stateController.getButtonState() == ButtonState.IMMEDIATE && !tankCart.isFluidInTank()) {
+
+            Railcraft.logger.info("C3");
             return true;
-        else if (tankCart.isTankFull(fluidHandled)) return true;
+        }
+        else if (tankCart.areTanksFull()) {
+            Railcraft.logger.info("C4");
+            return true;
+        }
         return false;
     }
 
@@ -288,33 +328,6 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
         resetPipe();
     }
 
-    @Override
-    public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
-        Fluid fluidFilter = getFilterFluid();
-        if (resource == null || (fluidFilter != null && !Fluids.areEqual(fluidFilter, resource))) return 0;
-        return super.fill(from, resource, doFill);
-    }
-
-    @Override
-    public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
-        return null;
-    }
-
-    @Override
-    public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
-        return null;
-    }
-
-    @Override
-    public boolean canFill(ForgeDirection from, Fluid fluid) {
-        Fluid fluidFilter = getFilterFluid();
-        return fluidFilter == null || fluid.equals(fluidFilter);
-    }
-
-    @Override
-    public boolean canDrain(ForgeDirection from, Fluid fluid) {
-        return false;
-    }
 
     @Override
     public void writeToNBT(NBTTagCompound data) {
@@ -357,7 +370,7 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
 
     @Override
     public boolean openGui(EntityPlayer player) {
-        GuiHandler.openGui(EnumGui.LOADER_FLUID, player, worldObj, xCoord, yCoord, zCoord);
+        GuiHandler.openGui(EnumGui.LOADER_ESSENTIA, player, worldObj, xCoord, yCoord, zCoord);
         return true;
     }
 
@@ -384,6 +397,155 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
     public boolean isManualMode() {
         return stateController.getButtonState() == ButtonState.MANUAL;
     }
+
+
+    @Override
+    public boolean isConnectable(ForgeDirection var1) {
+        return true;
+    }
+    @Override
+    public boolean canInputFrom(ForgeDirection var1) {
+        return true;
+    }
+
+    @Override
+    public boolean canOutputTo(ForgeDirection var1) {
+        return false;
+    }
+
+    @Override
+    public void setSuction(Aspect var1, int var2) {
+
+    }
+
+    @Override
+    public Aspect getSuctionType(ForgeDirection var1) {
+        return null;
+    }
+
+    @Override
+    public int getSuctionAmount(ForgeDirection var1) {
+        return 128;
+    }
+
+    @Override
+    public int takeEssentia(Aspect aspect, int amount, ForgeDirection face) {
+        return this.canOutputTo(face) && this.takeFromContainer(aspect, amount)?amount:0;
+    }
+
+    @Override
+    public int addEssentia(Aspect aspect, int amount, ForgeDirection face) {
+        return this.canInputFrom(face)?amount - this.addToContainer(aspect, amount):0;
+    }
+
+    @Override
+    public Aspect getEssentiaType(ForgeDirection var1) {
+        return loaderTank.getAspect();
+    }
+
+    @Override
+    public int getEssentiaAmount(ForgeDirection var1) {
+        return loaderTank.amount;
+    }
+
+    @Override
+    public int getMinimumSuction() {
+        return 0;
+    }
+
+    @Override
+    public boolean renderExtendedTube() {
+        return true;
+    }
+
+    @Override
+    public AspectList getAspects() {
+        return null;
+    }
+
+    @Override
+    public void setAspects(AspectList var1) {
+
+    }
+
+
+    @Override
+    public boolean doesContainerAccept(Aspect var1) {
+        return true;
+    }
+
+
+    @Override
+    public int addToContainer(Aspect tt, int am) {
+        loaderTank.fill(tt,am,true);
+        //extend TileThaumcraft
+        this.markDirty();
+        this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+        return am;
+    }
+
+    @Override
+    public boolean takeFromContainer(Aspect tt, int am) {
+        loaderTank.drain(am,true);
+        //extend TileThaumcraft
+        this.markDirty();
+        this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+        return true;
+    }
+
+    @Override
+    public boolean takeFromContainer(AspectList var1) {
+        return false;
+    }
+
+    @Override
+    public boolean doesContainerContainAmount(Aspect var1, int var2) {
+        return false;
+    }
+
+    @Override
+    public boolean doesContainerContain(AspectList var1) {
+        return false;
+    }
+
+    @Override
+    public int containerContains(Aspect var1) {
+        return 0;
+    }
+
+    void fillessentia() {
+        //Railcraft.logger.info("FILL");
+        //Railcraft.logger.info(String.valueOf(loaderTank.amount));
+        TileEntity te = null;
+        IEssentiaTransport ic = null;
+
+        Aspect currentAspect = loaderTank.getAspect();
+
+        for(int y = 0; y <= 1; ++y) {
+            for(ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
+                te = ThaumcraftApiHelper.getConnectableTile(this.worldObj, this.xCoord, this.yCoord + y, this.zCoord, dir);
+                if(te != null) {
+                    ic = (IEssentiaTransport)te;
+                    if(ic.getEssentiaAmount(dir.getOpposite()) > 0 && ic.getSuctionAmount(dir.getOpposite()) < this.getSuctionAmount((ForgeDirection)null) && this.getSuctionAmount((ForgeDirection)null) >= ic.getMinimumSuction()) {
+                        if(currentAspect == null){
+                            currentAspect = ic.getEssentiaType(dir.getOpposite());
+
+                        }
+                        int ess = ic.takeEssentia(currentAspect, 1, dir.getOpposite());
+                        if(ess > 0) {
+                            this.addToContainer(currentAspect, 1);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
+
+    }
+
+
+
 
     public enum ButtonState implements IMultiButtonState {
 
@@ -415,4 +577,11 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
             return tip;
         }
     }
+
+    @Override
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+        super.onDataPacket(net, pkt);
+        this.readFromNBT(pkt.func_148857_g());
+    }
+
 }

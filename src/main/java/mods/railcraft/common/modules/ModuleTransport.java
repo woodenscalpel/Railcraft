@@ -212,6 +212,35 @@ public class ModuleTransport extends RailcraftModule {
             CraftingPlugin.addRecipe(new CartFilterRecipe());
         }
 
+        cart = EnumCart.ESSENTIATANK;
+
+        if (cart.setup()) {
+            if (EnumMachineBeta.TANK_IRON_GAUGE.isAvaliable()) {
+                CraftingPlugin.addShapedRecipe(
+                    cart.getCartItem(),
+                    "T",
+                    "M",
+                    'T',
+                    EnumMachineBeta.TANK_IRON_GAUGE.getItem(),
+                    'M',
+                    Items.minecart);
+                cart.setContents(getColorTank(EnumMachineBeta.TANK_IRON_GAUGE, EnumColor.WHITE, 1));
+            } else {
+                CraftingPlugin.addShapedRecipe(
+                    cart.getCartItem(),
+                    "GGG",
+                    "GMG",
+                    "GGG",
+                    'G',
+                    "blockGlassColorless",
+                    'M',
+                    Items.minecart);
+                cart.setContents(new ItemStack(Blocks.glass, 8));
+            }
+            CraftingPlugin.addShapelessRecipe(new ItemStack(Items.minecart), cart.getCartItem());
+            CraftingPlugin.addRecipe(new CartFilterRecipe());
+        }
+
         cart = EnumCart.CARGO;
 
         if (cart.setup()) {

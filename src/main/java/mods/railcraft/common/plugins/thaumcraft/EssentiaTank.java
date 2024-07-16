@@ -35,7 +35,7 @@ public class EssentiaTank {
     };
 
     public static final int DEFAULT_COLOR = 0xFFFFFF;
-    public final EssentiaTank.TankRenderData renderData = new EssentiaTank.TankRenderData();
+    //public final EssentiaTank.TankRenderData renderData = new EssentiaTank.TankRenderData();
 
     public EssentiaTank(Aspect aspect, int capacity, DataWatcher dataWatcher, int dataId) {
         this.aspect = aspect;
@@ -61,12 +61,17 @@ public class EssentiaTank {
         if (amount < 0) return 0;
         int remainder = 0;
         int contents = getAmount() + amount;
+        int added = 0;
+        if(contents < capacity){
+           added = amount;
+        }
         if (contents > capacity) {
             remainder = contents - capacity;
             contents = capacity;
+            added = amount - remainder;
         }
         if (doAdd) setAmount(contents);
-        return remainder;
+        return added;
     }
 
     public boolean contains(int amount) {
@@ -93,15 +98,16 @@ public class EssentiaTank {
     protected void refreshTooltip() {
         toolTip.clear();
         int amount = 0;
-        if (renderData.aspect != null && getAmount() > 0) {
+        if (aspect != null && getAmount() > 0) {
             EnumRarity rarity = EnumRarity.common;
             ToolTipLine fluidName = new ToolTipLine(
-                renderData.aspect.getName(),
+                aspect.getName(),
                 rarity.rarityColor);
             fluidName.setSpacing(2);
             toolTip.add(fluidName);
             amount = getAmount();
         }
+        //toolTip.add(new ToolTipLine(String.format(aspect.getName())));
         toolTip.add(new ToolTipLine(String.format(Locale.ENGLISH, "%,d / %,d", getAmount(), getCapacity())));
     }
 
@@ -109,7 +115,7 @@ public class EssentiaTank {
         return capacity;
     }
 
-
+/*
     public static class TankRenderData {
 
         public Aspect aspect = null;
@@ -122,4 +128,5 @@ public class EssentiaTank {
             color = DEFAULT_COLOR;
         }
     }
+ */
 }

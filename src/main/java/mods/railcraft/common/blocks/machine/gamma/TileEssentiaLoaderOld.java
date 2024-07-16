@@ -5,24 +5,6 @@
  */
 package mods.railcraft.common.blocks.machine.gamma;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
-import mods.railcraft.common.core.Railcraft;
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidHandler;
-
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.IFluidCart;
 import mods.railcraft.api.carts.ILiquidTransfer;
@@ -30,11 +12,9 @@ import mods.railcraft.api.tracks.ITrackInstance;
 import mods.railcraft.api.tracks.ITrackLockdown;
 import mods.railcraft.common.blocks.machine.IEnumMachine;
 import mods.railcraft.common.blocks.tracks.TileTrack;
-import mods.railcraft.common.carts.EntityLocomotiveSteam;
-import mods.railcraft.common.core.RailcraftConfig;
-import mods.railcraft.common.fluids.FluidHelper;
+import mods.railcraft.common.carts.EntityLocomotiveSteamMagic;
+import mods.railcraft.common.core.Railcraft;
 import mods.railcraft.common.fluids.FluidItemHelper;
-import mods.railcraft.common.fluids.Fluids;
 import mods.railcraft.common.fluids.TankToolkit;
 import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
@@ -44,11 +24,34 @@ import mods.railcraft.common.gui.buttons.MultiButtonController;
 import mods.railcraft.common.gui.buttons.StandardButtonTextureSets;
 import mods.railcraft.common.gui.tooltips.ToolTip;
 import mods.railcraft.common.plugins.forge.LocalizationPlugin;
+import mods.railcraft.common.plugins.thaumcraft.StandardEssentiaTank;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.misc.SafeNBTWrapper;
 import mods.railcraft.common.util.network.IGuiReturnHandler;
+import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.IFluidHandler;
+import thaumcraft.api.ThaumcraftApiHelper;
+import thaumcraft.api.aspects.Aspect;
+import thaumcraft.api.aspects.AspectList;
+import thaumcraft.api.aspects.IEssentiaTransport;
 
-public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHandler {
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
+import static net.minecraft.launchwrapper.LogWrapper.log;
+
+public class TileEssentiaLoaderOld extends TileLoaderEssentiaBase implements IGuiReturnHandler {
 
     private static final int RESET_WAIT = 200;
     private static final int TRANSFER_RATE = 200;
@@ -60,14 +63,14 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
     private int waitForReset = 0;
     private float pipeLenght = 0;
 
-    public TileFluidLoader() {
+    public TileEssentiaLoaderOld() {
         super();
-        tankManager.add(loaderTank);
+
     }
 
     @Override
     public IEnumMachine getMachineType() {
-        return EnumMachineGamma.FLUID_LOADER;
+        return EnumMachineGamma.ESSENTIA_LOADER;
     }
 
     public MultiButtonController<ButtonState> getStateController() {
@@ -124,9 +127,19 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
 
     @Override
     public void updateEntity() {
+
+        //Railcraft.logger.info(String.valueOf(this.));
+
+
         super.updateEntity();
         if (Game.isNotHost(getWorld())) return;
-
+        fill();
+        /*
+        if(loaderTank.getAspect() != null) {
+            Railcraft.logger.info(String.valueOf(loaderTank.getAspect().getName()));
+            Railcraft.logger.info(String.valueOf(loaderTank.amount));
+        }
+         */
         ItemStack topSlot = getStackInSlot(SLOT_INPUT);
         if (topSlot != null && !FluidItemHelper.isContainer(topSlot)) {
             setInventorySlotContents(SLOT_INPUT, null);
@@ -139,25 +152,28 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
             dropItem(bottomSlot);
         }
 
-        if (clock % FluidHelper.BUCKET_FILL_TIME == 0) FluidHelper.drainContainers(this, this, SLOT_INPUT, SLOT_OUTPUT);
+        //if (clock % FluidHelper.BUCKET_FILL_TIME == 0) FluidHelper.drainContainers(this, this, SLOT_INPUT, SLOT_OUTPUT);
 
         for (ForgeDirection side : ForgeDirection.values()) {
             if (side == ForgeDirection.UNKNOWN) continue;
             TileEntity tile = tileCache.getTileOnSide(side);
+            /*
             if (tile instanceof IFluidHandler) {
                 IFluidHandler nearbyTank = (IFluidHandler) tile;
                 side = side.getOpposite();
                 Fluid filterFluid = getFilterFluid();
                 if (filterFluid != null) {
-                    FluidStack drained = nearbyTank.drain(side, new FluidStack(filterFluid, TRANSFER_RATE), false);
+                    FluidStack drained = nearbyTank.drainess(side, new FluidStack(filterFluid, TRANSFER_RATE), false);
                     int used = loaderTank.fill(drained, true);
-                    nearbyTank.drain(side, new FluidStack(filterFluid, used), true);
+                    nearbyTank.drainess(side, new FluidStack(filterFluid, used), true);
                 } else {
-                    FluidStack drained = nearbyTank.drain(side, TRANSFER_RATE, false);
+                    FluidStack drained = nearbyTank.drainess(side, TRANSFER_RATE, false);
                     int used = loaderTank.fill(drained, true);
-                    nearbyTank.drain(side, used, true);
+                    nearbyTank.drainess(side, used, true);
                 }
+
             }
+             */
         }
 
         boolean needsPipe = false;
@@ -169,8 +185,8 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
         }
 
         if (cart != currentCart) {
-            if (currentCart instanceof IFluidCart) ((IFluidCart) currentCart).setFilling(false);
-            else if (currentCart instanceof ILiquidTransfer) ((ILiquidTransfer) currentCart).setFilling(false);
+            //if (currentCart instanceof IFluidCart) ((IFluidCart) currentCart).setFilling(false);
+            //else if (currentCart instanceof ILiquidTransfer) ((ILiquidTransfer) currentCart).setFilling(false);
             setPowered(false);
             currentCart = cart;
             cartWasSent();
@@ -195,6 +211,7 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
             return;
         }
 
+        /*
         if (cart instanceof EntityLocomotiveSteam) {
             EntityLocomotiveSteam loco = (EntityLocomotiveSteam) cart;
             if (!loco.isSafeToFill()) {
@@ -202,6 +219,8 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
                 return;
             }
         }
+
+         */
 
         if (isPaused()) return;
 
@@ -213,11 +232,18 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
 
         flow = 0;
         if (cartNeedsFilling && (!needsPipe || pipeIsExtended())) {
-            FluidStack drained = tankManager.drain(0, RailcraftConfig.getTankCartFillRate(), false);
-            if (drained != null) {
-                flow = tankCart.fill(ForgeDirection.UP, drained, true);
-                tankManager.drain(0, flow, true);
+            if(cart instanceof EntityLocomotiveSteamMagic){
+                Integer drained = tankManager.drain(0, 1, false);
+                if (drained != null) {
+                    ((EntityLocomotiveSteamMagic) cart).getFireAspect().fill(1,true);
+                 tankManager.drain(0, 1, true);
+                }
             }
+            //FluidStack drained = tankManager.drainess(0, RailcraftConfig.getTankCartFillRate(), false);
+            //if (drained != null) {
+                //flow = tankCart.fill(ForgeDirection.UP, drained, true);
+               // tankManager.drainess(0, flow, true);
+            //}
         }
 
         boolean flowed = flow > 0;
@@ -226,23 +252,26 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
         if (cart instanceof IFluidCart) ((IFluidCart) cart).setFilling(flowed);
         else if (cart instanceof ILiquidTransfer) ((ILiquidTransfer) cart).setFilling(flowed);
 
-        if (tankCart.isTankFull(loaderTank.getFluidType())) waitForReset = RESET_WAIT;
+        if (loaderTank.isFull()) waitForReset = RESET_WAIT;
 
         if (stateController.getButtonState() != ButtonState.MANUAL && pipeIsRetracted()
                 && flow <= 0
                 && shouldSendCart(cart))
             sendCart(cart);
+
+
     }
 
     private boolean cartNeedsFilling(TankToolkit tankCart) {
-        FluidStack loaderLiquid = loaderTank.getFluid();
-        return loaderLiquid != null && loaderLiquid.amount > 0 && tankCart.canPutFluid(ForgeDirection.UP, loaderLiquid);
+        Aspect loaderAspect = loaderTank.getAspect();
+        return loaderAspect != null && loaderTank.getFluidAmount()> 0 && true;//tankCart.canPutFluid(ForgeDirection.UP, loaderLiquid);
     }
 
     @Override
     protected boolean shouldSendCart(EntityMinecart cart) {
         if (!(cart instanceof IFluidHandler)) return true;
         TankToolkit tankCart = new TankToolkit((IFluidHandler) cart);
+        /*
         Fluid fluidHandled = getFluidHandled();
         if (!loaderTank.isEmpty() && !tankCart.canPutFluid(ForgeDirection.UP, loaderTank.getFluid())) return true;
         else if (stateController.getButtonState() != ButtonState.FORCE_FULL && !tankCart.isTankEmpty(fluidHandled))
@@ -250,6 +279,8 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
         else if (stateController.getButtonState() == ButtonState.IMMEDIATE && tankCart.isTankEmpty(fluidHandled))
             return true;
         else if (tankCart.isTankFull(fluidHandled)) return true;
+
+         */
         return false;
     }
 
@@ -287,7 +318,7 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
         super.onBlockRemoval();
         resetPipe();
     }
-
+/*
     @Override
     public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
         Fluid fluidFilter = getFilterFluid();
@@ -296,12 +327,12 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
     }
 
     @Override
-    public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
+    public FluidStack drainess(ForgeDirection from, int maxDrain, boolean doDrain) {
         return null;
     }
 
     @Override
-    public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
+    public FluidStack drainess(ForgeDirection from, FluidStack resource, boolean doDrain) {
         return null;
     }
 
@@ -315,6 +346,8 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
     public boolean canDrain(ForgeDirection from, Fluid fluid) {
         return false;
     }
+
+ */
 
     @Override
     public void writeToNBT(NBTTagCompound data) {
@@ -357,7 +390,7 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
 
     @Override
     public boolean openGui(EntityPlayer player) {
-        GuiHandler.openGui(EnumGui.LOADER_FLUID, player, worldObj, xCoord, yCoord, zCoord);
+        GuiHandler.openGui(EnumGui.LOADER_ESSENTIA, player, worldObj, xCoord, yCoord, zCoord);
         return true;
     }
 
@@ -384,6 +417,152 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
     public boolean isManualMode() {
         return stateController.getButtonState() == ButtonState.MANUAL;
     }
+
+    public StandardEssentiaTank getEssentiaTank() {
+        return loaderTank;
+    }
+
+    @Override
+    public boolean isConnectable(ForgeDirection var1) {
+        return true;
+    }
+    @Override
+    public boolean canInputFrom(ForgeDirection var1) {
+        return true;
+    }
+
+    @Override
+    public boolean canOutputTo(ForgeDirection var1) {
+        return false;
+    }
+
+    @Override
+    public void setSuction(Aspect var1, int var2) {
+
+    }
+
+    @Override
+    public Aspect getSuctionType(ForgeDirection var1) {
+        return null;
+    }
+
+    @Override
+    public int getSuctionAmount(ForgeDirection var1) {
+        return 128;
+    }
+
+    @Override
+    public int takeEssentia(Aspect aspect, int amount, ForgeDirection face) {
+        return this.canOutputTo(face) && this.takeFromContainer(aspect, amount)?amount:0;
+    }
+
+    @Override
+    public int addEssentia(Aspect aspect, int amount, ForgeDirection face) {
+        return this.canInputFrom(face)?amount - this.addToContainer(aspect, amount):0;
+    }
+
+    @Override
+    public Aspect getEssentiaType(ForgeDirection var1) {
+        return loaderTank.getAspect();
+    }
+
+    @Override
+    public int getEssentiaAmount(ForgeDirection var1) {
+        return loaderTank.amount;
+    }
+
+    @Override
+    public int getMinimumSuction() {
+        return 0;
+    }
+
+    @Override
+    public boolean renderExtendedTube() {
+        return true;
+    }
+
+    @Override
+    public AspectList getAspects() {
+        return null;
+    }
+
+    @Override
+    public void setAspects(AspectList var1) {
+
+    }
+
+
+    @Override
+    public boolean doesContainerAccept(Aspect var1) {
+        return true;
+    }
+
+
+    @Override
+    public int addToContainer(Aspect tt, int am) {
+        loaderTank.fill(tt,am,true);
+        //extend TileThaumcraft
+        this.markDirty();
+        this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+        return am;
+    }
+
+    @Override
+    public boolean takeFromContainer(Aspect tt, int am) {
+        loaderTank.drain(am,true);
+            //extend TileThaumcraft
+            this.markDirty();
+            this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+            return true;
+        }
+
+    @Override
+    public boolean takeFromContainer(AspectList var1) {
+        return false;
+    }
+
+    @Override
+    public boolean doesContainerContainAmount(Aspect var1, int var2) {
+        return false;
+    }
+
+    @Override
+    public boolean doesContainerContain(AspectList var1) {
+        return false;
+    }
+
+    @Override
+    public int containerContains(Aspect var1) {
+        return 0;
+    }
+
+    void fill() {
+        Railcraft.logger.info("FILL");
+        Railcraft.logger.info(String.valueOf(loaderTank.amount));
+        TileEntity te = null;
+        IEssentiaTransport ic = null;
+
+        for(int y = 0; y <= 1; ++y) {
+            for(ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
+                    te = ThaumcraftApiHelper.getConnectableTile(this.worldObj, this.xCoord, this.yCoord + y, this.zCoord, dir);
+                    if(te != null) {
+                        ic = (IEssentiaTransport)te;
+                        if(ic.getEssentiaAmount(dir.getOpposite()) > 0 && ic.getSuctionAmount(dir.getOpposite()) < this.getSuctionAmount((ForgeDirection)null) && this.getSuctionAmount((ForgeDirection)null) >= ic.getMinimumSuction()) {
+                            int ess = ic.takeEssentia(Aspect.FIRE, 1, dir.getOpposite());
+                            if(ess > 0) {
+                                this.addToContainer(Aspect.FIRE, 1);
+                                return;
+                            }
+                        }
+                    }
+            }
+        }
+
+
+    }
+
+
+
 
     public enum ButtonState implements IMultiButtonState {
 
@@ -414,5 +593,11 @@ public class TileFluidLoader extends TileLoaderFluidBase implements IGuiReturnHa
         public ToolTip getToolTip() {
             return tip;
         }
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+        super.onDataPacket(net, pkt);
+        this.readFromNBT(pkt.func_148857_g());
     }
 }

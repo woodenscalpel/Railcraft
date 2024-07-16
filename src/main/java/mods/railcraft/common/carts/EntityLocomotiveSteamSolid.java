@@ -11,6 +11,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -28,6 +29,7 @@ import mods.railcraft.common.util.inventory.filters.StackFilter;
 import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.steam.SolidFuelProvider;
+import net.minecraftforge.fluids.FluidTankInfo;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info/>
@@ -181,4 +183,10 @@ public class EntityLocomotiveSteamSolid extends EntityLocomotiveSteam implements
     public boolean canProvidePulledItem(EntityMinecart requester, ItemStack stack) {
         return false;
     }
+
+    @Override
+    public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
+        return null;
+    }
+
 }

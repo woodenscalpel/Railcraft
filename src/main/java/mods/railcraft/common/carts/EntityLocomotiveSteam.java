@@ -188,10 +188,6 @@ public abstract class EntityLocomotiveSteam extends EntityLocomotive
         return tankWater.fill(resource, doFill);
     }
 
-    @Override
-    public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
-        return null;
-    }
 
     @Override
     public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
@@ -208,7 +204,6 @@ public abstract class EntityLocomotiveSteam extends EntityLocomotive
         return false;
     }
 
-    @Override
     public FluidTankInfo[] getTankInfo(ForgeDirection direction) {
         return tankManager.getTankInfo();
     }

@@ -47,18 +47,7 @@ import mods.railcraft.common.blocks.machine.epsilon.TileElectricFeederAdmin;
 import mods.railcraft.common.blocks.machine.epsilon.TileEngravingBench;
 import mods.railcraft.common.blocks.machine.epsilon.TileFluxTransformer;
 import mods.railcraft.common.blocks.machine.epsilon.TileForceTrackEmitter;
-import mods.railcraft.common.blocks.machine.gamma.TileDispenserCart;
-import mods.railcraft.common.blocks.machine.gamma.TileDispenserTrain;
-import mods.railcraft.common.blocks.machine.gamma.TileEnergyLoader;
-import mods.railcraft.common.blocks.machine.gamma.TileEnergyUnloader;
-import mods.railcraft.common.blocks.machine.gamma.TileFluidLoader;
-import mods.railcraft.common.blocks.machine.gamma.TileFluidUnloader;
-import mods.railcraft.common.blocks.machine.gamma.TileItemLoader;
-import mods.railcraft.common.blocks.machine.gamma.TileItemLoaderAdvanced;
-import mods.railcraft.common.blocks.machine.gamma.TileItemUnloader;
-import mods.railcraft.common.blocks.machine.gamma.TileItemUnloaderAdvanced;
-import mods.railcraft.common.blocks.machine.gamma.TileRFLoader;
-import mods.railcraft.common.blocks.machine.gamma.TileRFUnloader;
+import mods.railcraft.common.blocks.machine.gamma.*;
 import mods.railcraft.common.blocks.machine.tank.TileGenericMultiTankGauge;
 import mods.railcraft.common.blocks.machine.tank.TileGenericMultiTankValve;
 import mods.railcraft.common.blocks.machine.tank.TileGenericMultiTankWall;
@@ -119,6 +108,7 @@ public class MachineTileRegistery {
         GameRegistry.registerTileEntity(TileFluidUnloader.class, "RCUnloaderTileLiquid");
         GameRegistry.registerTileEntity(TileRFLoader.class, "RCLoaderTileRF");
         GameRegistry.registerTileEntity(TileRFUnloader.class, "RCUnloaderTileRF");
+        GameRegistry.registerTileEntity(TileEssentiaLoader.class, "RCLoaderTileEssentia");
 
         // Delta
         GameRegistry.registerTileEntity(TileCage.class, "RCCageTile");

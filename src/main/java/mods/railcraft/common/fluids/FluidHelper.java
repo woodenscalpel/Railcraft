@@ -175,8 +175,8 @@ public final class FluidHelper {
         if (canFluidContainerBeDrained(drainSim, fluidHandler)) {
             DrainReturn drainSim2 = FluidItemHelper.drainContainer(input, tankFilledAmount);
             // draining full and partial volume might return different item, so we're simulating twice
-            // e.g. GT cell item doesn't allow partial drain
-            // e.g. GT large cell can return empty or partially filled item depending on the amount to drain
+            // e.g. GT cell item doesn't allow partial drainess
+            // e.g. GT large cell can return empty or partially filled item depending on the amount to drainess
             if (canFluidContainerBeDrained(drainSim2, fluidHandler) && drainSim2.fluidDrained != null
                     && (drainSim2.container == null || hasPlaceToPutContainer(output, drainSim2.container))) {
                 DrainReturn drain = FluidItemHelper.drainContainer(input, tankFilledAmount);

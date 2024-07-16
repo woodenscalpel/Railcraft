@@ -35,6 +35,7 @@ public enum EnumCart implements ICartType {
     FURNACE(0, EntityCartFurnace.class, new ItemStack(Blocks.furnace)),
     TNT_WOOD(0, EntityCartTNTWood.class, new ItemStack(Blocks.tnt)),
     TANK(0, EntityCartTank.class, null),
+    ESSENTIATANK(0, EntityCartEssentiaTank.class, null),
     CARGO(0, EntityCartCargo.class, new ItemStack(Blocks.trapped_chest)),
     ANCHOR(0, EntityCartAnchor.class, null),
     WORK(0, EntityCartWork.class, new ItemStack(Blocks.crafting_table)),
@@ -177,6 +178,8 @@ public enum EnumCart implements ICartType {
     public boolean setup() {
         String tag = getTag();
         boolean cartEnabled = RailcraftConfig.isCartEnabled(tag);
+        Railcraft.logger.info(tag);
+        Railcraft.logger.info(tag == "essentiatank");
         if (cartEnabled) {
             registerEntity();
             ItemCart item = defineItem();

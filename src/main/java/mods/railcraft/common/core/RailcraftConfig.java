@@ -722,6 +722,7 @@ public class RailcraftConfig {
         loadCartProperty("cart.pumpkin");
         loadCartProperty("cart.gift");
         loadCartProperty("cart.tank");
+        loadCartProperty("cart.essentiatank");
         loadCartProperty("cart.cargo");
         loadCartProperty("cart.bore");
         loadCartProperty("cart.energy.batbox");

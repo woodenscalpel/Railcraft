@@ -5,15 +5,22 @@
  */
 package mods.railcraft.common.carts;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map.Entry;
 
 import mods.railcraft.api.carts.IItemCart;
 import mods.railcraft.common.fluids.tanks.StandardTank;
+import mods.railcraft.common.plugins.thaumcraft.EssentiaTankInfo;
+import mods.railcraft.common.plugins.thaumcraft.IEssentiaCart;
+import mods.railcraft.common.plugins.thaumcraft.IEssentiaHandler;
+import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -32,6 +39,7 @@ import mods.railcraft.common.util.inventory.wrappers.InventoryIterator;
 import mods.railcraft.common.util.inventory.wrappers.InventoryMapper;
 import mods.railcraft.common.util.misc.Game;
 import mods.railcraft.common.util.steam.EssentiaFuelProvider;
+import scala.Int;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.aspects.IAspectContainer;
@@ -42,7 +50,7 @@ import thaumcraft.api.aspects.IAspectContainer;
  */
 @Optional.InterfaceList(
         value = { @Optional.Interface(iface = "thaumcraft.api.aspects.IAspectContainer", modid = "Thaumcraft"), })
-public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements ISidedInventory, IAspectContainer {
+public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements ISidedInventory, IAspectContainer, IEssentiaCart, IEssentiaHandler {
 
   //  private static final int SLOT_BURN = 2;
   //  private static final int SLOT_FUEL_A = 3;
@@ -231,5 +239,56 @@ public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements
 
     public EssentiaTank getEssentiaFireTank() {
         return fireAspect;
+    }
+
+    @Override
+    public boolean canAcceptPushedEssentia(EntityMinecart requester, Aspect aspect, int amt) {
+        return aspect == Aspect.FIRE;
+    }
+
+    @Override
+    public boolean canProvidePulledEssentia(EntityMinecart requester, Aspect aspect, int amt) {
+        return false;
+    }
+
+    @Override
+    public int fill(ForgeDirection from, Aspect a, int amt, boolean doFill) {
+        return fireAspect.fill(amt,doFill);
+    }
+
+    @Override
+    public Integer drainess(ForgeDirection from, Aspect a, int amt, boolean doDrain) {
+        return null;
+    }
+
+    @Override
+    public Integer drainess(ForgeDirection from, int maxDrain, boolean doDrain) {
+        return 0;
+    }
+
+
+    @Override
+    public boolean canFill(ForgeDirection from, Aspect a, int i) {
+        if(a != Aspect.FIRE){return false;}
+        else {
+            return fireAspect.getAmount() < fireAspect.getCapacity();
+        }
+    }
+
+    @Override
+    public boolean canDrain(ForgeDirection from, Aspect a, int i) {
+        return false;
+    }
+
+    @Override
+    public EssentiaTankInfo[] getEssTankInfo(ForgeDirection side) {
+        List<EssentiaTankInfo> info = new ArrayList<>();
+        info.add(new EssentiaTankInfo(fireAspect));
+        return info.toArray(new EssentiaTankInfo[info.size()]);
+    }
+
+    @Override
+    public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
+        return null;
     }
 }

@@ -30,7 +30,7 @@ public interface ILiquidTransfer {
     /**
      * Requests liquid from this object.
      * <p/>
-     * Is not used by the Liquid Unloader to drain carts, the traditional ILiquidContainer is used for that.
+     * Is not used by the Liquid Unloader to drainess carts, the traditional ILiquidContainer is used for that.
      *
      * @param source  The Object requesting the liquid, used to prevent request loops in trains
      * @param request The FluidStack requested

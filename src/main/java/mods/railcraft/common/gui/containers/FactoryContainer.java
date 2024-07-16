@@ -5,6 +5,7 @@
  */
 package mods.railcraft.common.gui.containers;
 
+import mods.railcraft.common.blocks.machine.gamma.*;
 import mods.railcraft.common.carts.*;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -28,14 +29,6 @@ import mods.railcraft.common.blocks.machine.beta.TileBoilerFireboxFluid;
 import mods.railcraft.common.blocks.machine.beta.TileBoilerFireboxSolid;
 import mods.railcraft.common.blocks.machine.beta.TileEngineSteam;
 import mods.railcraft.common.blocks.machine.beta.TileEngineSteamHobby;
-import mods.railcraft.common.blocks.machine.gamma.TileDispenserCart;
-import mods.railcraft.common.blocks.machine.gamma.TileDispenserTrain;
-import mods.railcraft.common.blocks.machine.gamma.TileEnergyLoader;
-import mods.railcraft.common.blocks.machine.gamma.TileEnergyUnloader;
-import mods.railcraft.common.blocks.machine.gamma.TileFluidLoader;
-import mods.railcraft.common.blocks.machine.gamma.TileFluidUnloader;
-import mods.railcraft.common.blocks.machine.gamma.TileLoaderItemBase;
-import mods.railcraft.common.blocks.machine.gamma.TileRFLoaderBase;
 import mods.railcraft.common.blocks.signals.IAspectActionManager;
 import mods.railcraft.common.blocks.signals.IRouter;
 import mods.railcraft.common.blocks.tracks.TileTrack;
@@ -69,6 +62,8 @@ public class FactoryContainer {
                     return new ContainerEnergyLoader(inv, (TileEnergyUnloader) obj);
                 case LOADER_RF:
                     return new ContainerLoaderRF((TileRFLoaderBase) obj);
+                case LOADER_ESSENTIA:
+                    return new ContainerEssentiaLoader(inv,(TileEssentiaLoader) obj);
                 case UNLOADER_RF:
                     return new ContainerLoaderRF((TileRFLoaderBase) obj);
                 case DETECTOR_ITEM:
@@ -125,6 +120,8 @@ public class FactoryContainer {
                     return new ContainerCartRF((EntityCartRF) obj);
                 case CART_TANK:
                     return new ContainerCartTank(inv, (EntityCartTank) obj);
+                case CART_ESSENTIATANK:
+                    return new ContainerCartEssentiaTank(inv, (EntityCartEssentiaTank) obj);
                 case CART_CARGO:
                     return new ContainerCartCargo(inv, (EntityCartCargo) obj);
                 case CART_ANCHOR:
