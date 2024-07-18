@@ -109,6 +109,7 @@ public class MachineTileRegistery {
         GameRegistry.registerTileEntity(TileRFLoader.class, "RCLoaderTileRF");
         GameRegistry.registerTileEntity(TileRFUnloader.class, "RCUnloaderTileRF");
         GameRegistry.registerTileEntity(TileEssentiaLoader.class, "RCLoaderTileEssentia");
+        GameRegistry.registerTileEntity(TileEssentiaUnloader.class, "RCUnloaderTileEssentia");
 
         // Delta
         GameRegistry.registerTileEntity(TileCage.class, "RCCageTile");

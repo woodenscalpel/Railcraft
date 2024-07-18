@@ -174,6 +174,9 @@ public class ModuleTransport extends RailcraftModule {
                     Blocks.hopper);
         }
 
+        EnumMachineGamma essentiaUnloader = EnumMachineGamma.ESSENTIA_UNLOADER;
+        essentiaUnloader.register();
+
         // EnumMachineDelta delta = EnumMachineDelta.CAGE;
         // if (delta.register())
         // CraftingPlugin.addShapedOreRecipe(alpha.getItem(6),

@@ -64,6 +64,8 @@ public class FactoryContainer {
                     return new ContainerLoaderRF((TileRFLoaderBase) obj);
                 case LOADER_ESSENTIA:
                     return new ContainerEssentiaLoader(inv,(TileEssentiaLoader) obj);
+                case UNLOADER_ESSENTIA:
+                    return new ContainerEssentiaUnloader(inv,(TileEssentiaUnloader) obj);
                 case UNLOADER_RF:
                     return new ContainerLoaderRF((TileRFLoaderBase) obj);
                 case DETECTOR_ITEM:

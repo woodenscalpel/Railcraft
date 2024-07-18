@@ -5,6 +5,9 @@
  */
 package mods.railcraft.client.core;
 
+import mods.railcraft.client.render.*;
+import mods.railcraft.common.blocks.machine.gamma.TileEssentiaLoader;
+import mods.railcraft.common.blocks.machine.gamma.TileEssentiaUnloader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.item.Item;
@@ -23,33 +26,6 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import mods.railcraft.api.carts.locomotive.LocomotiveRenderType;
-import mods.railcraft.client.render.BlockRenderer;
-import mods.railcraft.client.render.FluidRenderer;
-import mods.railcraft.client.render.RenderBlockFrame;
-import mods.railcraft.client.render.RenderBlockLamp;
-import mods.railcraft.client.render.RenderBlockMachineBeta;
-import mods.railcraft.client.render.RenderBlockMachineDelta;
-import mods.railcraft.client.render.RenderBlockMachineEta;
-import mods.railcraft.client.render.RenderBlockMachineZeta;
-import mods.railcraft.client.render.RenderBlockOre;
-import mods.railcraft.client.render.RenderBlockPost;
-import mods.railcraft.client.render.RenderBlockPostMetal;
-import mods.railcraft.client.render.RenderBlockSignal;
-import mods.railcraft.client.render.RenderBlockStrengthGlass;
-import mods.railcraft.client.render.RenderCagedEntity;
-import mods.railcraft.client.render.RenderChest;
-import mods.railcraft.client.render.RenderElevator;
-import mods.railcraft.client.render.RenderFluidLoader;
-import mods.railcraft.client.render.RenderIronTank;
-import mods.railcraft.client.render.RenderPneumaticEngine;
-import mods.railcraft.client.render.RenderSlab;
-import mods.railcraft.client.render.RenderStair;
-import mods.railcraft.client.render.RenderTESRFirestone;
-import mods.railcraft.client.render.RenderTESRSignals;
-import mods.railcraft.client.render.RenderTrack;
-import mods.railcraft.client.render.RenderTrackBuffer;
-import mods.railcraft.client.render.RenderTurbineGauge;
-import mods.railcraft.client.render.RenderWall;
 import mods.railcraft.client.render.carts.CartContentRendererRedstoneFlux;
 import mods.railcraft.client.render.carts.LocomotiveRendererDefault;
 import mods.railcraft.client.render.carts.LocomotiveRendererElectric;
@@ -191,6 +167,10 @@ public class ClientProxy extends CommonProxy {
         RenderFluidLoader fluidLoaderRenderer = new RenderFluidLoader();
         ClientRegistry.bindTileEntitySpecialRenderer(TileFluidLoader.class, fluidLoaderRenderer);
         ClientRegistry.bindTileEntitySpecialRenderer(TileFluidUnloader.class, fluidLoaderRenderer);
+
+        RenderEssentiaLoader essentiaLoaderRenderer = new RenderEssentiaLoader();
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEssentiaLoader.class, essentiaLoaderRenderer);
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEssentiaUnloader.class, essentiaLoaderRenderer);
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileTankIronGauge.class, new RenderIronTank());
         ClientRegistry.bindTileEntitySpecialRenderer(TileTankIronWall.class, new RenderIronTank());

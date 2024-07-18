@@ -43,8 +43,9 @@ public enum EnumMachineGamma implements IEnumMachine {
     DISPENSER_CART(Module.AUTOMATION, "dispenser.cart", 0, TileDispenserCart.class),
     DISPENSER_TRAIN(Module.TRAIN, "dispenser.train", 0, TileDispenserTrain.class),
     RF_LOADER(Module.REDSTONE_FLUX, "loader.rf", -1, TileRFLoader.class),
+    RF_UNLOADER(Module.REDSTONE_FLUX, "unloader.rf", -1, TileRFUnloader.class),
     ESSENTIA_LOADER(Module.THAUMCRAFT, "loader.essentia", 2, TileEssentiaLoader.class),
-    RF_UNLOADER(Module.REDSTONE_FLUX, "unloader.rf", -1, TileRFUnloader.class);
+    ESSENTIA_UNLOADER(Module.THAUMCRAFT, "unloader.essentia", 2, TileEssentiaUnloader.class);
 
     private final Module module;
     private final String tag;
@@ -70,6 +71,7 @@ public enum EnumMachineGamma implements IEnumMachine {
         creativeList.add(DISPENSER_CART);
         creativeList.add(DISPENSER_TRAIN);
         creativeList.add(ESSENTIA_LOADER);
+        creativeList.add(ESSENTIA_UNLOADER);
     }
 
     EnumMachineGamma(Module module, String tag, int extraIcons, Class<? extends TileMachineBase> tile) {
@@ -119,6 +121,7 @@ public enum EnumMachineGamma implements IEnumMachine {
                     break;
                 case ITEM_UNLOADER:
                 case FLUID_UNLOADER:
+                case ESSENTIA_UNLOADER:
                     machine.texture[1] = face;
                     break;
                 default:

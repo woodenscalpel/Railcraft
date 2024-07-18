@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import mods.railcraft.common.carts.*;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -24,13 +25,6 @@ import org.lwjgl.opengl.GL11;
 import mods.railcraft.api.carts.IRoutableCart;
 import mods.railcraft.api.carts.locomotive.IRenderer;
 import mods.railcraft.client.render.RenderFakeBlock.RenderInfo;
-import mods.railcraft.common.carts.CartExplosiveBase;
-import mods.railcraft.common.carts.CartMaintenanceBase;
-import mods.railcraft.common.carts.EntityCartCargo;
-import mods.railcraft.common.carts.EntityCartRF;
-import mods.railcraft.common.carts.EntityCartTank;
-import mods.railcraft.common.carts.EntityLocomotive;
-import mods.railcraft.common.carts.IDirectionalCart;
 
 public class RenderCart extends Render implements IRenderer {
 
@@ -52,6 +46,7 @@ public class RenderCart extends Render implements IRenderer {
         renderersContent.put(EntityCartRF.class, CartContentRendererRedstoneFlux.instance());
         renderersContent.put(CartExplosiveBase.class, new CartContentRendererTNT());
         renderersContent.put(CartMaintenanceBase.class, new CartContentRendererMaintance());
+        renderersContent.put(EntityCartEssentiaTank.class, new CartContentRendererEssentia());
     }
 
     public void renderCart(EntityMinecart cart, double x, double y, double z, float yaw, float time) {

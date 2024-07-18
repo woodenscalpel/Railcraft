@@ -45,6 +45,7 @@ import org.w3c.dom.ranges.DocumentRange;
 import thaumcraft.api.ThaumcraftApiHelper;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
+import thaumcraft.api.aspects.IEssentiaContainerItem;
 import thaumcraft.api.aspects.IEssentiaTransport;
 
 import java.io.DataInputStream;
@@ -129,22 +130,25 @@ public class TileEssentiaLoader extends TileLoaderEssentiaBase implements IGuiRe
     @Override
     public void updateEntity() {
         super.updateEntity();
-        fillessentia();
         if (Game.isNotHost(getWorld())) return;
+        fillessentia();
+        if(getFilterAspect() != null) {
+           // Railcraft.logger.info(getFilterAspect().getName());
+        }
         // Item Drain Code ****************************************************************************
-       /*
         ItemStack topSlot = getStackInSlot(SLOT_INPUT);
-        if (topSlot != null && !FluidItemHelper.isContainer(topSlot)) {
+        if (topSlot != null && !(topSlot.getItem() instanceof IEssentiaContainerItem)) {
             setInventorySlotContents(SLOT_INPUT, null);
             dropItem(topSlot);
         }
 
         ItemStack bottomSlot = getStackInSlot(SLOT_OUTPUT);
-        if (bottomSlot != null && !FluidItemHelper.isContainer(bottomSlot)) {
+        if (bottomSlot != null && !(bottomSlot.getItem() instanceof IEssentiaContainerItem)) {
             setInventorySlotContents(SLOT_OUTPUT, null);
             dropItem(bottomSlot);
         }
 
+       /*
         if (clock % FluidHelper.BUCKET_FILL_TIME == 0) FluidHelper.drainContainers(this, this, SLOT_INPUT, SLOT_OUTPUT);
         */
 
@@ -420,7 +424,8 @@ public class TileEssentiaLoader extends TileLoaderEssentiaBase implements IGuiRe
 
     @Override
     public Aspect getSuctionType(ForgeDirection var1) {
-        return null;
+        if(getFilterAspect() != null) return getFilterAspect();
+        return loaderTank.getAspect();
     }
 
     @Override
@@ -531,10 +536,12 @@ public class TileEssentiaLoader extends TileLoaderEssentiaBase implements IGuiRe
                             currentAspect = ic.getEssentiaType(dir.getOpposite());
 
                         }
-                        int ess = ic.takeEssentia(currentAspect, 1, dir.getOpposite());
-                        if(ess > 0) {
-                            this.addToContainer(currentAspect, 1);
-                            return;
+                        if(getFilterAspect() == null || getFilterAspect() == currentAspect) {
+                            int ess = ic.takeEssentia(currentAspect, 1, dir.getOpposite());
+                            if (ess > 0) {
+                                this.addToContainer(currentAspect, 1);
+                                return;
+                            }
                         }
                     }
                 }

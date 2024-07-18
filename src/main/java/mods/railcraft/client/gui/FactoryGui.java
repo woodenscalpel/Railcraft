@@ -72,6 +72,8 @@ public class FactoryGui {
                     return new GuiLoaderRF((TileRFLoader) obj);
                 case LOADER_ESSENTIA:
                     return new GuiLoaderEssentia(inv,(TileEssentiaLoader) obj);
+                case UNLOADER_ESSENTIA:
+                    return new GuiUnloaderEssentia(inv,(TileEssentiaUnloader) obj);
                 case UNLOADER_RF:
                     return new GuiUnloaderRF((TileRFUnloader) obj);
                 case DETECTOR_ITEM:

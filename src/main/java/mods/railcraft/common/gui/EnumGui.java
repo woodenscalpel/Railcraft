@@ -17,6 +17,7 @@ public enum EnumGui {
     LOADER_ESSENTIA(true),
     UNLOADER_FLUID(true),
     UNLOADER_ENERGY(true),
+    UNLOADER_ESSENTIA(true),
     UNLOADER_RF(true),
     DETECTOR_CART(true),
     DETECTOR_ITEM(true),

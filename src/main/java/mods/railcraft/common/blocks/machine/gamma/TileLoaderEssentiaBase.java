@@ -27,9 +27,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidHandler;
-import thaumcraft.api.aspects.Aspect;
-import thaumcraft.api.aspects.IAspectContainer;
-import thaumcraft.api.aspects.IEssentiaTransport;
+import thaumcraft.api.aspects.*;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -63,10 +61,10 @@ public abstract class TileLoaderEssentiaBase extends TileLoaderBase implements I
         return invFilter;
     }
 
-    public Fluid getFilterFluid() {
+    public Aspect getFilterAspect() {
         if (invFilter.getStackInSlot(0) != null) {
-            FluidStack fluidStack = FluidItemHelper.getFluidStackInContainer(invFilter.getStackInSlot(0));
-            return fluidStack != null ? fluidStack.getFluid() : null;
+            Aspect apsect = ((IEssentiaContainerItem) invFilter.getStackInSlot(0).getItem()).getAspects(invFilter.getStackInSlot(0)).getAspects()[0];
+            return apsect;
         }
         return null;
     }
@@ -135,7 +133,6 @@ public abstract class TileLoaderEssentiaBase extends TileLoaderBase implements I
         if (data.getTag("tanks") instanceof NBTTagCompound) data.setTag("tanks", new NBTTagList());
         tankManager.readTanksFromNBT(data);
 
-        //loaderTank.setAspect(Aspect.getAspect(data.getString("loadertankAspect")));
 
         if (data.hasKey("filter")) {
             NBTTagCompound filter = data.getCompoundTag("filter");
@@ -149,8 +146,6 @@ public abstract class TileLoaderEssentiaBase extends TileLoaderBase implements I
     public void writeToNBT(NBTTagCompound data) {
         super.writeToNBT(data);
 
-        //data.setString("loadertankAspect",loaderTank.getAspect().getName());
-        //data.setInteger("loaderTankAmount", loaderTank.amount);
 
         tankManager.writeTanksToNBT(data);
         getFluidFilter().writeToNBT("invFilter", data);

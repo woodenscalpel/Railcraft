@@ -30,6 +30,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import thaumcraft.api.aspects.Aspect;
+import thaumcraft.api.aspects.IEssentiaContainerItem;
 
 public class EntityCartEssentiaTank extends EntityCartFiltered
         implements IEssentiaHandler, ISidedInventory, IMinecart, IEssentiaCart {
@@ -41,13 +42,13 @@ public class EntityCartEssentiaTank extends EntityCartFiltered
     private static final int SLOT_INPUT = 0;
     private static final int SLOT_OUTPUT = 1;
     private static final int[] SLOTS = InvTools.buildSlotArray(0, 2);
-    private static final int ESSCAP = 256;
+    private static final int ESSCAP = 64;
     private final EssentiaTankManager tankManager = new EssentiaTankManager();
     private final StandardEssentiaTank tank = new StandardEssentiaTank(ESSCAP);
     //Filters
     private final IInventory invLiquids = new InventoryMapper(this, false);
-    private final IInventory invInput = new InventoryMapper(this, SLOT_INPUT, 1, false);
-    private final IInventory invOutput = new InventoryMapper(this, SLOT_OUTPUT, 1, false);
+   // private final IInventory invInput = new InventoryMapper(this, SLOT_INPUT, 1, false);
+    //private final IInventory invOutput = new InventoryMapper(this, SLOT_OUTPUT, 1, false);
     private int update = MiscTools.getRand().nextInt();
 
     public EntityCartEssentiaTank(World world) {
@@ -144,7 +145,7 @@ public class EntityCartEssentiaTank extends EntityCartFiltered
         }
 
         update++;
-
+/*
         ItemStack topSlot = invLiquids.getStackInSlot(SLOT_INPUT);
         if (topSlot != null && !FluidItemHelper.isContainer(topSlot)) {
             invLiquids.setInventorySlotContents(SLOT_INPUT, null);
@@ -160,6 +161,8 @@ public class EntityCartEssentiaTank extends EntityCartFiltered
         if (update % FluidHelper.BUCKET_FILL_TIME == 0) {
             //FluidHelper.processContainers(tank, invLiquids, SLOT_INPUT, SLOT_OUTPUT);
         }
+
+ */
     }
 
     @Override
@@ -191,10 +194,9 @@ public class EntityCartEssentiaTank extends EntityCartFiltered
     @Override
     public int fill(ForgeDirection from, Aspect a, int i, boolean doFill) {
         if (a == null) return 0;
-        //Fluid filterFluid = getFilterFluid();
-        //if (filterFluid == null || resource.getFluid() == filterFluid) return tank.fill(resource, doFill);
-        return tank.fill(a,i,doFill);
-        //return 0;
+        Aspect filterAspect = getFilterAspect();
+        if(filterAspect == null || a == filterAspect) { return tank.fill(a, i, doFill); }
+        return 0;
     }
 
 
@@ -214,11 +216,14 @@ public class EntityCartEssentiaTank extends EntityCartFiltered
         dataWatcher.updateObject(FILLING_DATA_ID, Byte.valueOf(fill ? 1 : (byte) 0));
     }
 
-    public Fluid getFilterFluid() {
-        ItemStack filter = getFilterItem();
-        if (filter == null) return null;
-        return FluidItemHelper.getFluidInContainer(filter);
+    public Aspect getFilterAspect() {
+        if (getFilterItem() != null) {
+            Aspect apsect = ((IEssentiaContainerItem) getFilterItem().getItem()).getAspects(getFilterItem()).getAspects()[0];
+            return apsect;
+        }
+        return null;
     }
+
 
     public IInventory getInvLiquids() {
         return invLiquids;

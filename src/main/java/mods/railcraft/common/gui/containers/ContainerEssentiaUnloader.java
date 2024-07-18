@@ -7,28 +7,29 @@ package mods.railcraft.common.gui.containers;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.railcraft.common.blocks.machine.gamma.TileEssentiaLoader;
+import mods.railcraft.common.blocks.machine.gamma.TileEssentiaUnloader;
+import mods.railcraft.common.blocks.machine.gamma.TileFluidUnloader;
 import mods.railcraft.common.gui.slots.*;
 import mods.railcraft.common.gui.widgets.EssentiaGaugeWidget3;
+import mods.railcraft.common.gui.widgets.FluidGaugeWidget;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 
-public class ContainerEssentiaLoader extends RailcraftContainer {
+public class ContainerEssentiaUnloader extends RailcraftContainer {
 
-    private final TileEssentiaLoader tile;
+    private final TileEssentiaUnloader tile;
 
-    public ContainerEssentiaLoader(InventoryPlayer inventoryplayer, TileEssentiaLoader tile) {
+    public ContainerEssentiaUnloader(InventoryPlayer inventoryplayer, TileEssentiaUnloader tile) {
         super(tile);
         this.tile = tile;
 
-        //addWidget(new FluidGaugeWidget(tile.getTankManager().get(0), 17, 23, 176, 0, 16, 47));
-        addWidget(new EssentiaGaugeWidget3(tile.getTankManager().get(0),17,23,176,0,16,47));
+        addWidget(new EssentiaGaugeWidget3(tile.getTankManager().get(0), 17, 23, 176, 0, 16, 47));
 
         addSlot(new SlotMinecartFilter(tile.getCartFilters(), 0, 44, 39));
         addSlot(new SlotMinecartFilter(tile.getCartFilters(), 1, 62, 39));
         addSlot(new SlotEssentiaFilter(tile.getFluidFilter(), 0, 89, 39));
-        //addSlot(new SlotEssentiaContainerFilled(tile, 0, 134, 21));
+        //addSlot(new SlotFluidContainerEmpty(tile, 0, 134, 21));
         //addSlot(new SlotOutput(tile, 1, 134, 56));
 
         for (int i = 0; i < 3; i++) {
@@ -51,7 +52,7 @@ public class ContainerEssentiaLoader extends RailcraftContainer {
     @Override
     public void sendUpdateToClient() {
         super.sendUpdateToClient();
-       tile.getTankManager().updateGuiData(this, crafters, 0);
+        tile.getTankManager().updateGuiData(this, crafters, 0);
     }
 
     @Override
