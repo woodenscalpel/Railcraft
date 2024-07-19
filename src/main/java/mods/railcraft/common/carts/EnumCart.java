@@ -178,8 +178,6 @@ public enum EnumCart implements ICartType {
     public boolean setup() {
         String tag = getTag();
         boolean cartEnabled = RailcraftConfig.isCartEnabled(tag);
-        Railcraft.logger.info(tag);
-        Railcraft.logger.info(tag == "essentiatank");
         if (cartEnabled) {
             registerEntity();
             ItemCart item = defineItem();

@@ -5,6 +5,7 @@
  */
 package mods.railcraft.common.modules;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -91,11 +92,45 @@ public class ModuleLocomotives extends RailcraftModule {
         if (cart.setup()) {
             paintLocomotive(cart.getCartItem());
         }
-
         cart = EnumCart.LOCO_STEAM_MAGIC;
         if(cart.setup()){
             paintLocomotive(cart.getCartItem());
+
+            ItemStack emptyJar = GameRegistry.findItemStack("Thaumcraft", "blockJar", 1);
+            ItemStack tank;
+            if (EnumMachineBeta.BOILER_TANK_HIGH_PRESSURE.isAvaliable())
+                tank = EnumMachineBeta.BOILER_TANK_HIGH_PRESSURE.getItem();
+            else if (EnumMachineBeta.BOILER_TANK_LOW_PRESSURE.isAvaliable())
+                tank = EnumMachineBeta.BOILER_TANK_LOW_PRESSURE.getItem();
+            else if (EnumMachineBeta.TANK_IRON_WALL.isAvaliable()) tank = EnumMachineBeta.TANK_IRON_WALL.getItem();
+            else if (RailcraftItem.ingot.getStack(ItemIngot.EnumIngot.STEEL) != null)
+                tank = RailcraftItem.ingot.getStack(ItemIngot.EnumIngot.STEEL);
+            else tank = new ItemStack(Items.iron_ingot);
+
+            ItemStack firebox;
+            if (EnumMachineBeta.BOILER_FIREBOX_SOLID.isAvaliable())
+                firebox = EnumMachineBeta.BOILER_FIREBOX_SOLID.getItem();
+            else if (EnumMachineAlpha.BLAST_FURNACE.isAvaliable()) firebox = EnumMachineAlpha.BLAST_FURNACE.getItem();
+            else firebox = new ItemStack(Blocks.furnace);
+
+            CraftingPlugin.addShapedRecipe(
+                cart.getCartItem(),
+                "TTF",
+                "TJF",
+                "BMM",
+                'T',
+                tank,
+                'F',
+                firebox,
+                'M',
+                Items.minecart,
+                'B',
+                new ItemStack(Blocks.iron_bars),
+                'J',
+                emptyJar);
         }
+
+
     }
 
     @Override
@@ -122,6 +157,8 @@ public class ModuleLocomotives extends RailcraftModule {
                     'T',
                     RailcraftItem.plate.getRecipeObject(EnumPlate.STEEL));
         }
+
+
     }
 
     private void paintLocomotive(ItemStack base) {

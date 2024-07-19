@@ -36,21 +36,10 @@ public class EssentiaGaugeWidget3 extends Widget {
 
     @Override
     public void draw(GuiContainerRailcraft gui, int guiX, int guiY, int mouseX, int mouseY) {
-        //Railcraft.logger.info("DRAW");
-
-      //  Railcraft.logger.info(tank.renderData.amount);
-
-        /*
-        Railcraft.logger.info(tank.getCapacity());
-        Railcraft.logger.info(tank.renderData.color);
-        Railcraft.logger.info(tank.renderData.aspect);
-
-         */
         if (tank == null) return;
-        //if (tank.renderData.aspect == null || tank.renderData.amount <= 0) return;
-        if (tank.renderData.amount <= 0) return;
+        if (tank.renderData.aspect == null || tank.renderData.amount <= 0) return;
 
-        IIcon fluidIcon = FluidRenderer.getFluidTexture(Fluids.LAVA.get(), false);
+        IIcon fluidIcon = FluidRenderer.getFluidTexture(Fluids.STEAM.get(), false);
 
         if (fluidIcon == null) return;
 
@@ -58,8 +47,7 @@ public class EssentiaGaugeWidget3 extends Widget {
 
 
 
-        gui.bindTexture(FluidRenderer.getFluidSheet(Fluids.LAVA.get()));
-        //FluidRenderer.setColorForTank(tank.getColor());
+        gui.bindTexture(FluidRenderer.getFluidSheet(Fluids.STEAM.get()));
 
         RenderTools.setColor(tank.renderData.color);
 

@@ -77,8 +77,6 @@ public final class Railcraft {
     public static final String MC_VERSION = "[1.7.10,1.8)";
     public static final RootCommand rootCommand = new RootCommand();
 
-    public static final Logger logger = LogManager.getLogger(MOD_ID);
-
     @Instance("Railcraft")
     public static Railcraft instance;
     // public int totalMultiBlockUpdates = 0;

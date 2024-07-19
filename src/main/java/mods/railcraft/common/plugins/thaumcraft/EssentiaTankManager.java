@@ -119,15 +119,12 @@ public class EssentiaTankManager extends ForwardingList<StandardEssentiaTank> im
     }
 
     public void initGuiData(Container container, ICrafting player, int tankIndex) {
-        Railcraft.logger.info("INIT GUI");
         if (tankIndex >= tanks.size()) return;
         StandardEssentiaTank tank = tanks.get(tankIndex);
         //FluidStack fluidStack = tanks.get(tankIndex).getFluid();
         int color = tank.getColor();
         int fluidId = -1;
         int fluidAmount = 0;
-        Railcraft.logger.info("ASECT");
-        Railcraft.logger.info(tank.getAspect());
         if (tank.aspect != null && tank.amount > 0) {
             fluidId = EssentiaHelper.EssentiaEnum.intfromname(tank.aspect.getTag());
             fluidAmount = tank.amount;

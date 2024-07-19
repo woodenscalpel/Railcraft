@@ -5,6 +5,18 @@
  */
 package mods.railcraft.common.modules;
 
+import cpw.mods.fml.common.registry.GameRegistry;
+import mods.railcraft.common.blocks.machine.alpha.EnumMachineAlpha;
+import mods.railcraft.common.blocks.machine.beta.EnumMachineBeta;
+import mods.railcraft.common.carts.EnumCart;
+import mods.railcraft.common.carts.LocomotivePaintingRecipe;
+import mods.railcraft.common.items.ItemIngot;
+import mods.railcraft.common.items.RailcraftItem;
+import mods.railcraft.common.plugins.forge.CraftingPlugin;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import org.apache.logging.log4j.Level;
 
 import mods.railcraft.common.plugins.thaumcraft.ItemCrowbarMagic;

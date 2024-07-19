@@ -5,6 +5,8 @@
  */
 package mods.railcraft.common.modules;
 
+import cpw.mods.fml.common.registry.GameRegistry;
+import mods.railcraft.common.plugins.thaumcraft.ThaumcraftPlugin;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -21,6 +23,7 @@ import mods.railcraft.common.plugins.forge.CraftingPlugin;
 import mods.railcraft.common.util.crafting.CartFilterRecipe;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.misc.EnumColor;
+import thaumcraft.common.Thaumcraft;
 
 /**
  * @author CovertJaguar <http://www.railcraft.info>
@@ -175,7 +178,46 @@ public class ModuleTransport extends RailcraftModule {
         }
 
         EnumMachineGamma essentiaUnloader = EnumMachineGamma.ESSENTIA_UNLOADER;
-        essentiaUnloader.register();
+
+        if (essentiaUnloader.register()) {
+            ItemStack detector = EnumDetector.TANK.getItem();
+            ItemStack emptyJar = GameRegistry.findItemStack("Thaumcraft", "blockJar", 1);
+            if (detector == null) detector = new ItemStack(Blocks.stone_pressure_plate);
+            CraftingPlugin.addShapedRecipe(
+                essentiaUnloader.getItem(),
+                "GDG",
+                "GJG",
+                "GLG",
+                'D',
+                detector,
+                'G',
+                "blockGlassColorless",
+                'L',
+                Blocks.hopper,
+                'J',
+                emptyJar);
+        }
+
+        EnumMachineGamma essentiaLoader = EnumMachineGamma.ESSENTIA_LOADER;
+
+        if (essentiaLoader.register()) {
+            ItemStack detector = EnumDetector.TANK.getItem();
+            ItemStack emptyJar = GameRegistry.findItemStack("Thaumcraft", "blockJar", 1);
+            if (detector == null) detector = new ItemStack(Blocks.stone_pressure_plate);
+            CraftingPlugin.addShapedRecipe(
+                essentiaLoader.getItem(),
+                "GLG",
+                "GJG",
+                "GDG",
+                'D',
+                detector,
+                'G',
+                "blockGlassColorless",
+                'L',
+                Blocks.hopper,
+                'J',
+                emptyJar);
+        }
 
         // EnumMachineDelta delta = EnumMachineDelta.CAGE;
         // if (delta.register())
@@ -218,13 +260,14 @@ public class ModuleTransport extends RailcraftModule {
         cart = EnumCart.ESSENTIATANK;
 
         if (cart.setup()) {
+            ItemStack emptyJar = GameRegistry.findItemStack("Thaumcraft", "blockJar", 1);
             if (EnumMachineBeta.TANK_IRON_GAUGE.isAvaliable()) {
                 CraftingPlugin.addShapedRecipe(
                     cart.getCartItem(),
-                    "T",
+                    "J",
                     "M",
-                    'T',
-                    EnumMachineBeta.TANK_IRON_GAUGE.getItem(),
+                    'J',
+                    emptyJar,
                     'M',
                     Items.minecart);
                 cart.setContents(getColorTank(EnumMachineBeta.TANK_IRON_GAUGE, EnumColor.WHITE, 1));

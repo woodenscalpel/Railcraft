@@ -11,14 +11,13 @@ import java.util.Map.Entry;
 
 import mods.railcraft.api.carts.IItemCart;
 import mods.railcraft.common.fluids.tanks.StandardTank;
-import mods.railcraft.common.plugins.thaumcraft.EssentiaTankInfo;
-import mods.railcraft.common.plugins.thaumcraft.IEssentiaCart;
-import mods.railcraft.common.plugins.thaumcraft.IEssentiaHandler;
+import mods.railcraft.common.plugins.thaumcraft.*;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidContainerRegistry;
@@ -32,7 +31,6 @@ import mods.railcraft.common.gui.EnumGui;
 import mods.railcraft.common.gui.GuiHandler;
 import mods.railcraft.common.items.ItemTicket;
 import mods.railcraft.common.plugins.forge.FuelPlugin;
-import mods.railcraft.common.plugins.thaumcraft.EssentiaTank;
 import mods.railcraft.common.util.inventory.InvTools;
 import mods.railcraft.common.util.inventory.wrappers.IInvSlot;
 import mods.railcraft.common.util.inventory.wrappers.InventoryIterator;
@@ -52,19 +50,13 @@ import thaumcraft.api.aspects.IAspectContainer;
         value = { @Optional.Interface(iface = "thaumcraft.api.aspects.IAspectContainer", modid = "Thaumcraft"), })
 public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements ISidedInventory, IAspectContainer, IEssentiaCart, IEssentiaHandler {
 
-  //  private static final int SLOT_BURN = 2;
-  //  private static final int SLOT_FUEL_A = 3;
-   // private static final int SLOT_FUEL_B = 4;
-  //  private static final int SLOT_FUEL_C = 5;
     private static final int SLOT_TICKET = 6;
     private static final int SLOT_DESTINATION = 7;
     private static final int[] SLOTS = InvTools.buildSlotArray(0, 7);
     private static final byte FIRE_ASPECT_DATA_ID = 31;
-    //private static final byte WATER_ASPECT_DATA_ID = 31; //Many IDs crash, why??????
- //   private final IInventory invBurn = new InventoryMapper(this, SLOT_BURN, 1);
- //   private final IInventory invStock = new InventoryMapper(this, SLOT_FUEL_A, 3);
-//    private final IInventory invFuel = new InventoryMapper(this, SLOT_BURN, 4);
+    //private static final byte WATER_ASPECT_DATA_ID = 31;
     private final IInventory invTicket = new InventoryMapper(this, SLOT_TICKET, 2, false);
+    private EssentiaTankManager essTankManager;
     private EssentiaTank fireAspect;
     private EssentiaTank waterAspect;
 
@@ -83,7 +75,6 @@ public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements
 
     @Override
     public LocomotiveRenderType getRenderType() {return LocomotiveRenderType.STEAM_MAGIC;}
-   // public LocomotiveRenderType getRenderType() {return LocomotiveRenderType.STEAM_MAGIC;}
 
 
     @Override
@@ -96,8 +87,10 @@ public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements
     protected void entityInit() {
         super.entityInit();
 
+       // essTankManager = new EssentiaTankManager();
+
         fireAspect = new EssentiaTank(Aspect.FIRE, 256, dataWatcher, FIRE_ASPECT_DATA_ID);
-        fireAspect.fill(100,true);
+
        // waterAspect = new EssentiaTank(Aspect.WATER, 256, dataWatcher, WATER_ASPECT_DATA_ID);
 
         boiler.setFuelProvider(new EssentiaFuelProvider(fireAspect) {
@@ -113,13 +106,18 @@ public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements
     @Override
     public void onUpdate() {
         super.onUpdate();
-/*
-        if (Game.isHost(worldObj)) {
-            InvTools.moveOneItem(invStock, invBurn);
-            InvTools.moveOneItem(invBurn, invWaterOutput, FluidContainerRegistry.EMPTY_BUCKET);
-        }
+    }
 
- */
+    @Override
+    public void writeEntityToNBT(NBTTagCompound data) {
+        super.writeEntityToNBT(data);
+        data.setInteger("EssentiaAMT",fireAspect.getAmount());
+    }
+
+    @Override
+    public void readEntityFromNBT(NBTTagCompound data) {
+        super.readEntityFromNBT(data);
+        fireAspect.setAmount(data.getInteger("EssentiaAMT"));
     }
 
     @Override
@@ -253,7 +251,10 @@ public class EntityLocomotiveSteamMagic extends EntityLocomotiveSteam implements
 
     @Override
     public int fill(ForgeDirection from, Aspect a, int amt, boolean doFill) {
-        return fireAspect.fill(amt,doFill);
+        if(a == fireAspect.getAspect()) {
+            return fireAspect.fill(amt, doFill);
+        }
+        return 0;
     }
 
     @Override

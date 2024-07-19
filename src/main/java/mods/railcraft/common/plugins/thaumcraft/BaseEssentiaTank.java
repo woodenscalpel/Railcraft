@@ -44,7 +44,6 @@ public class BaseEssentiaTank
 
     public BaseEssentiaTank readFromNBT(NBTTagCompound nbt)
     {
-        Railcraft.logger.info("READING FROM NBTTTTTT");
         String aspectString = nbt.getString("AspectType");
         if (!Objects.equals(aspectString, "null"))
         {

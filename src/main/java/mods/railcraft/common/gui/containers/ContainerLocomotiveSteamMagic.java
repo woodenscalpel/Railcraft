@@ -41,7 +41,7 @@ public class ContainerLocomotiveSteamMagic extends ContainerLocomotive {
     public void defineSlotsAndWidgets() {
         addWidget(new FluidGaugeWidget(loco.getTankManager().get(0), 116, 23, 176, 0, 16, 47));
         addWidget(new FluidGaugeWidget(loco.getTankManager().get(1), 17, 23, 176, 0, 16, 47));
-        addWidget(new EssentiaGaugeWidget(loco.getEssentiaFireTank(), 72, 23, 176, 0, 16, 47));
+        addWidget(new EssentiaGaugeWidget(loco.getEssentiaFireTank(), 82, 23, 176, 0, 16, 47));
 
         addWidget(new IndicatorWidget(loco.boiler.heatIndicator, 40, 25, 176, 61, 6, 43));
 

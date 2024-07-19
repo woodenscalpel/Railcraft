@@ -121,7 +121,6 @@ public class TileEssentiaUnloader extends TileLoaderEssentiaBase implements IGui
                 flow = tankManager.get(0).fill(
                     tankCart.getEssTankInfo(ForgeDirection.DOWN)[0].aspect
                     , 1, true);
-                Railcraft.logger.info(flow);
                 tankCart.drainess(ForgeDirection.DOWN, flow, true);
             }
         }
@@ -134,16 +133,13 @@ public class TileEssentiaUnloader extends TileLoaderEssentiaBase implements IGui
     @Override
     protected boolean shouldSendCart(EntityMinecart cart) {
         if (!(cart instanceof IEssentiaCart)){
-            Railcraft.logger.info("R1");
             return true;
         }
         EssentiaTankToolkit tankCart = new EssentiaTankToolkit((IEssentiaHandler) cart);
         if (stateController.getButtonState() == ButtonState.IMMEDIATE){
-            Railcraft.logger.info("R2");
             return true;}
         //if (getFilterFluid() != null && tankCart.isTankEmpty(getFilterFluid())) return true;
         if(getFilterAspect() != null && tankCart.isTankEmpty(getFilterAspect())) {
-            Railcraft.logger.info("R3");
             return true;
         }
 

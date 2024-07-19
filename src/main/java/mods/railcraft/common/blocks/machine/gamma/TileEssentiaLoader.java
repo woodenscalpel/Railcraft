@@ -96,7 +96,6 @@ public class TileEssentiaLoader extends TileLoaderEssentiaBase implements IGuiRe
     }
 
     private void extendPipe() {
-        Railcraft.logger.info("EXTENDING");
         float y = pipeLenght + PIPE_INCREMENT;
         if (pipeIsExtended()) y = MAX_PIPE_LENGTH;
         setPipeLength(y);
@@ -236,17 +235,12 @@ public class TileEssentiaLoader extends TileLoaderEssentiaBase implements IGuiRe
             return;
         }
 
-        Railcraft.logger.info(cartNeedsFilling);
-        Railcraft.logger.info(needsPipe);
 
         flow = 0;
         if (cartNeedsFilling && (!needsPipe || pipeIsExtended())) {
             Integer drained = tankManager.drain(0, FILLRATE, false);
-            Railcraft.logger.info(drained);
-            Railcraft.logger.info(tankCart.canFill2(ForgeDirection.UP,tankManager.get(0).getAspect(),FILLRATE));
-            if (drained > 0 && tankCart.canFill2(ForgeDirection.UP,tankManager.get(0).getAspect(),FILLRATE)) {
+            if (drained > 0 && tankCart.canPutFluid(ForgeDirection.UP,tankManager.get(0).getAspect(),FILLRATE)) {
                 flow = tankCart.fill(ForgeDirection.UP, tankManager.get(0).getAspect(),FILLRATE, true);
-                Railcraft.logger.info(flow);
                 tankManager.drain(ForgeDirection.UP, tankManager.get(0).getAspect(),FILLRATE, true);
             }
         }
@@ -277,21 +271,16 @@ public class TileEssentiaLoader extends TileLoaderEssentiaBase implements IGuiRe
     protected boolean shouldSendCart(EntityMinecart cart) {
         if (!(cart instanceof IEssentiaHandler)) return true;
         EssentiaTankToolkit tankCart = new EssentiaTankToolkit((IEssentiaHandler) cart);
-        //Fluid fluidHandled = getFluidHandled();
-        if (!loaderTank.isEmpty() && !tankCart.canFill2(ForgeDirection.UP, loaderTank.getAspect(),1)){
-            Railcraft.logger.info("C1");
+        //if (!loaderTank.isEmpty() && !tankCart.canFill2(ForgeDirection.UP, loaderTank.getAspect(),1)){
+        if (!loaderTank.isEmpty() && !tankCart.canPutFluid(ForgeDirection.UP, loaderTank.getAspect(),1)){
             return true;}
         else if (stateController.getButtonState() != ButtonState.FORCE_FULL && tankCart.isFluidInTank()) {
-            Railcraft.logger.info("C2");
             return true;
         }
         else if (stateController.getButtonState() == ButtonState.IMMEDIATE && !tankCart.isFluidInTank()) {
-
-            Railcraft.logger.info("C3");
             return true;
         }
         else if (tankCart.areTanksFull()) {
-            Railcraft.logger.info("C4");
             return true;
         }
         return false;
